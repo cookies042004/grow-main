@@ -1,0 +1,15 @@
+.awardsbanner {
+  height: 420px;
+}
+
+@media screen and (max-width: 768px) {
+  .awardsbanner {
+    height: 300px !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .awardsbanner {
+    height: 240px !important;
+  }
+}
