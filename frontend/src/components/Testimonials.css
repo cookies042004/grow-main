@@ -20,21 +20,25 @@
   transform: translateX(100%);
 }
 
+/* Swiper Container */
 .testimonial-swiper {
-  width: 100% !important;
+  width: 100%;
   max-width: 600px;
+  min-width: 300px;
 }
 
+/* Medium screens */
 @media screen and (max-width: 900px) {
   .testimonial-swiper {
-    width: 400px !important;
-    height: auto !important;
+    max-width: 400px;
+    height: auto;
   }
 }
 
+/* Small screens */
 @media screen and (max-width: 430px) {
   .testimonial-swiper {
-    width: 300px !important;
-    height: auto !important;
+    max-width: 300px;
+    height: auto;
   }
 }

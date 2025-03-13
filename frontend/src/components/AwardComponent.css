@@ -3,13 +3,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 20vh;
-  padding: 10px 0;
+  min-height: 50vh; /* Increased height for better layout */
+  padding: 30px 0;
   width: 100%;
+  background: #f8f8f8; /* Light background for contrast */
 }
 
-.swiper-3d{
-  perspective: 800px;
+.swiper-3d {
+  perspective: 1200px; /* Better depth effect */
 }
 
 .award-container {
@@ -20,20 +21,21 @@
 }
 
 .award-heading {
-  font-size: 1.5rem;
-  color: #333;
+  font-size: 1.8rem;
+  color: #03002e;
+  font-weight: bold;
   margin-bottom: 20px;
 }
 
 @media (min-width: 768px) {
   .award-heading {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 }
 
 @media (min-width: 1024px) {
   .award-heading {
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
 }
 
@@ -45,56 +47,60 @@
   padding-bottom: 30px;
 }
 
+/* Award Card Styling */
 .award-swiper-slide {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 300px;
-  height: 280px;
+  width: 280px;
+  height: 350px;
   background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
   overflow: hidden;
   transition: transform 0.3s ease-in-out;
 }
 
-@media (min-width: 576px) {
-  .award-swiper-slide {
-    width: 250px;
-    height: 350px;
-  }
+.award-swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
-@media (min-width: 200px) {
+.award-swiper-slide:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive Fix */
+@media (max-width: 576px) {
   .award-swiper-slide {
-    width: 50px;
-    height: 60px;
+    width: 220px;
+    height: 300px;
   }
 }
 
 @media (min-width: 768px) {
   .award-swiper-slide {
-    width: 420px;
-    height: 380px;
+    width: 350px;
+    height: 400px;
   }
 }
 
+@media (min-width: 1024px) {
+  .award-swiper-slide {
+    width: 400px;
+    height: 450px;
+  }
+}
 
-  
-/* Swiper Pagination   */
+/* Swiper Pagination */
 .award-swiper_pagination {
-  background: #333 !important;
-  width: 8px;
-  height: 8px;
-  opacity: 0.7;
+  background: #03002e !important;
+  width: 10px;
+  height: 10px;
+  opacity: 0.8;
   transition: opacity 0.3s;
-}
-
-@media (min-width: 576px) {
-  .award-swiper_pagination {
-    width: 10px;
-    height: 10px;
-  }
 }
 
 @media (min-width: 768px) {
@@ -104,7 +110,8 @@
   }
 }
 
-/* .pagination-bullet-active {
-  opacity: 1;
+/* Active Pagination Bullet */
+.pagination-bullet-active {
   background: #ff5733 !important;
-} */
+  opacity: 1;
+}

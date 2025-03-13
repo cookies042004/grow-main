@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { Layout } from "../../components/Layout";
 import { NavigationBar } from "../../components/NavigationBar";
@@ -9,44 +9,41 @@ import awardsBanner from "../../assets/img/awardsbanner.jpg";
 export const Awards = () => {
   const apiUrl = `${process.env.BASE_URL}/api/v1/awards`;
 
-  const { data, loading, error, refetch } = useFetchData(apiUrl);
+  const { data, loading, error } = useFetchData(apiUrl);
   const awards = data?.awards || [];
 
   return (
     <>
       <ToastContainer />
       <Layout>
+        {/* Hero Banner */}
         <div
-          className="awardsbanner flex items-center justify-center"
+          className="relative flex items-center justify-center text-center h-[260px] sm:h-[300px] md:h-[350px] lg:h-[400px] px-4"
           style={{
-            background: `radial-gradient(
-                34.28% 34.28% at 50% 50%, 
-                rgba(0, 0, 0, 0) 0%, 
-                rgba(0, 0, 0, 0.5) 99.83%
+            background: `linear-gradient(
+                rgba(0, 0, 0, 0.6), 
+                rgba(0, 0, 0, 0.3)
               ), url(${awardsBanner})`,
-            backgroundPosition: "center",
             backgroundSize: "cover",
+            backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
-            height: "420px",
           }}
         >
-          <div className="grid sm:grid-cols-12">
-            <div className="col-span-12 text-center lg:mt-20 flex justify-center items-center">
-              <h1 className="font-dmsans text-3xl lg:text-4xl font-medium text-white">
-                Awards
-              </h1>
-            </div>
-          </div>
+          <h1 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold">
+            Our Achievements & Awards
+          </h1>
         </div>
 
         <NavigationBar />
 
-        <div className="my-10">
-          <h1 className="font-roboto text-3xl lg:text-4xl font-bold lg:font-medium text-center py-3 lg:py-8">
-            Awards
-          </h1>
+        {/* Awards Section */}
+        <div className="my-10 px-4 sm:px-8 lg:px-16">
+          <h2 className="text-center text-[#03002e] text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold py-4">
+            Recognizing Excellence
+          </h2>
 
-          <div className="grid sm:grid-cols-12 max-w-[1280px] mx-auto">
+          {/* Awards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-[1280px] mx-auto">
             {loading && (
               <div className="col-span-12 flex justify-center">
                 <CircularProgress size="30px" />
@@ -54,24 +51,28 @@ export const Awards = () => {
             )}
 
             {error && (
-              <div className="col-span-12 flex justify-center">
+              <div className="col-span-12 flex justify-center text-red-500">
                 <p>Something went wrong while loading the awards.</p>
               </div>
             )}
 
             {awards.length > 0 ? (
-              awards.map((award, i) => (
-                <div
-                  key={award._id}
-                  className="col-span-12 md:col-span-6 lg:col-span-4 m-5"
-                >
-                  <img src={award.image} alt={award.name || "Award"} />
+              awards.map((award) => (
+                <div key={award._id} className="flex flex-col items-center p-3">
+                  <img
+                    src={award.image}
+                    alt={award.name || "Award"}
+                    className="w-[90%] sm:w-[80%] h-[160px] sm:h-[200px] md:h-[220px] object-cover rounded-lg shadow-lg transition-transform duration-300 hover:scale-105"
+                  />
+                  <p className="mt-3 text-center text-sm sm:text-base font-medium text-gray-700">
+                    {award.name}
+                  </p>
                 </div>
               ))
             ) : (
               !loading && (
                 <div className="col-span-12 flex justify-center">
-                  <p>No awards found.</p>
+                  <p className="text-gray-500">No awards found.</p>
                 </div>
               )
             )}

@@ -134,18 +134,19 @@ export const ProjectDetails = () => {
       ? fullDescription.slice(0, 500) + "..."
       : fullDescription; // If less than 200 characters, no truncation
 
-  const handleAnchorClick = (e) => {
-    e.preventDefault(); // Prevent default anchor behavior
-    const targetId = e.target.getAttribute("href").substring(1);
-    const targetElement = document.getElementById(targetId);
-
-    if (targetElement) {
-      window.scrollTo({
-        top: targetElement.offsetTop - 130, // Adjust to navbar height
-        behavior: "smooth",
-      });
-    }
-  };
+      const handleAnchorClick = (e, targetId) => {
+        e.preventDefault(); // Prevent default anchor behavior
+      
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 200, // Adjust according to navbar height
+            behavior: "smooth",
+          });
+        }
+      };
+      
 
   const [isSticky, setIsSticky] = useState(false);
 
@@ -251,12 +252,12 @@ export const ProjectDetails = () => {
                 </div>
               </div>
 
-              <div className="p-navbar">
+              <div className="flex flex-wrap gap-2 my-6 border-b pb-2">
                 <div>
                   <Link
                     href="#description"
-                    onClick={handleAnchorClick}
-                    className="px-4 py-2"
+                    onClick={(e) => handleAnchorClick(e, "description")}
+                    className="px-4 py-2 text-gray-700 transition-all duration-300 ease-in-out hover:text-blue-950 hover:font-bold hover:text-lg"
                   >
                     Description
                   </Link>
@@ -264,8 +265,8 @@ export const ProjectDetails = () => {
                 <div>
                   <Link
                     href="#Overview"
-                    onClick={handleAnchorClick}
-                    className="px-4 py-2"
+                    onClick={(e) => handleAnchorClick(e, "Overview")}
+                    className="px-4 py-2 text-gray-700 transition-all duration-300 ease-in-out hover:text-blue-950 hover:font-bold hover:text-lg"
                   >
                     Overview
                   </Link>
@@ -273,8 +274,8 @@ export const ProjectDetails = () => {
                 <div>
                   <Link
                     href="#Project Amenities"
-                    onClick={handleAnchorClick}
-                    className="px-4 py-2"
+                    onClick={(e) => handleAnchorClick(e, "Project Amenities")}
+                    className="px-4 py-2 text-gray-700 transition-all duration-300 ease-in-out hover:text-blue-950 hover:font-bold hover:text-lg"
                   >
                     Project Amenities
                   </Link>
@@ -282,8 +283,8 @@ export const ProjectDetails = () => {
                 <div>
                   <Link
                     href="#location"
-                    onClick={handleAnchorClick}
-                    className="px-4 py-2"
+                    onClick={(e) => handleAnchorClick(e, "location")}
+                    className="px-4 py-2 text-gray-700 transition-all duration-300 ease-in-out hover:text-blue-950 hover:font-bold hover:text-lg"
                   >
                     Location Benefits
                   </Link>
@@ -291,8 +292,8 @@ export const ProjectDetails = () => {
                 <div>
                   <Link
                     href="#video"
-                    onClick={handleAnchorClick}
-                    className="px-4 py-2"
+                    onClick={(e) => handleAnchorClick(e, "video")}
+                    className="px-4 py-2 text-gray-700 transition-all duration-300 ease-in-out hover:text-blue-950 hover:font-bold hover:text-lg"
                   >
                     Video Tour
                   </Link>
@@ -300,8 +301,8 @@ export const ProjectDetails = () => {
                 <div>
                   <Link
                     href="#emi"
-                    onClick={handleAnchorClick}
-                    className="px-4 py-2"
+                    onClick={(e) => handleAnchorClick(e, "emi")}
+                    className="px-4 py-2 text-gray-700 transition-all duration-300 ease-in-out hover:text-blue-950 hover:font-bold hover:text-lg"
                   >
                     EMI Calculator
                   </Link>

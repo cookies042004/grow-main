@@ -71,27 +71,34 @@ export const Home = () => {
           Explore Our Properties
         </h1>
 
-        <div className="max-w-[1280px] mx-auto p-6 md:p-12">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 justify-center">
+        <div className="max-w-[1280px] mx-auto md:p-12">
+          <div
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 
+                 place-items-center"
+          >
             <PropertyCard1
               title="Luxury Living"
               category="luxury"
               image="luxury-living.jpg"
+              className="w-[90%] sm:w-[80%] md:w-[90%] lg:w-full p-4 sm:p-6"
             />
             <PropertyCard1
               title="New Launches"
               category="newLaunches"
               image="new-launches.jpg"
+              className="w-[90%] sm:w-[80%] md:w-[90%] lg:w-full p-4 sm:p-6"
             />
             <PropertyCard1
               title="Affordable Living"
               category="affordable"
               image="affordable.jpg"
+              className="w-[90%] sm:w-[80%] md:w-[90%] lg:w-full p-4 sm:p-6"
             />
             <PropertyCard1
               title="Commercial"
               category="commercial"
               image="commercial.jpg"
+              className="w-[90%] sm:w-[80%] md:w-[90%] lg:w-full p-4 sm:p-6"
             />
           </div>
         </div>
@@ -129,7 +136,7 @@ export const Home = () => {
               </span>
             </marquee>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-6 mt-8">
+          <div className="grid grid-cols-12 sm:grid-cols-2 lg:grid-cols-12 gap-6 mt-8">
             {[
               {
                 Icon: ApartmentIcon,
@@ -225,111 +232,69 @@ export const Home = () => {
 
       {/* How it Works */}
 
-      <div className="bg-gray-50">
-        <div className="mx-auto max-w-[1280px] py-8 my-5">
-          <div className="grid sm:grid-cols-12">
-            <div className="hidden md:flex col-span-12 md:col-span-6 lg:col-span-7 justify-center">
-              <div className="grid sm:grid-cols-12">
-                <div className="col-span-12">
-                  <div className="grid sm:grid-cols-12">
-                    <div className="col-span-8 m-5">
-                      <img
-                        src={findRealEstate}
-                        alt=""
-                        className="rounded-lg h-[250px] w-[1000px] object-fill"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="col-span-12">
-                  <div className="grid sm:grid-cols-12">
-                    <div className="col-span-5 mx-5">
-                      <img
-                        src={realtor}
-                        alt=""
-                        className="rounded-lg h-[260px] w-full object-cover"
-                      />
-                    </div>
-                    <div className="col-span-5">
-                      <img
-                        src={keys}
-                        alt=""
-                        className="rounded-lg h-[260px] w-full object-fill"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-span-12 md:col-span-6  lg:col-span-5 flex flex-col justify-center lg:ps-14">
-              <h1 className="px-5 text-[#1A1A1A] font-roboto  text-2xl lg:text-4xl font-medium text-center lg:text-start mt-4 lg:mt-0">
-                How It works? <br />
-                Find a perfect home
-              </h1>
-              <p className="text-md lg:text-lg px-5 mt-5">
-                Discover your ideal home with ease. Browse listings, get expert
-                advice, and find the perfect match for your lifestyle.
-              </p>
-              <ul className="my-10 flex flex-col gap-10 lg:mx-0 mx-5 ps-6 lg:ps-4">
-                <li>
-                  <div className="flex gap-5">
-                    <div className="relative basis-[10%]">
-                      <img src={Icon1} alt="" className="w-[35px] h-[35px]" />
-                      <div className="bg-[#e7c873b8] absolute h-[30px] w-[30px] rounded-[50%] left-[-8px] top-[8%]"></div>
-                    </div>
-                    <div className="flex-col basis-[90%]">
-                      <h1 className="text-lg lg:text-xl font-medium ">
-                        Find Real Estate
-                      </h1>
-                      <p className="mt-2 text-sm lg:text-[15px]">
-                        Finding your dream property has never been easier. With
-                        Grow Infinity Realtors, you access extensive listings,
-                        and expert guidance for a seamless real estate journey.
-                        Start exploring today and discover your perfect home.
-                      </p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="flex gap-5">
-                    <div className="relative basis-[10%]">
-                      <img src={Icon2} alt="" className="w-[35px] h-[35px]" />
-                      <div className="bg-[#e7c873b8] absolute h-[30px] w-[30px] rounded-[50%] left-[-8px] top-[10%]"></div>
-                    </div>
-                    <div className="flex-col basis-[90%]">
-                      <h1 className="text-lg lg:text-xl font-medium">
-                        Meet Realtor
-                      </h1>
-                      <p className="mt-2 text-sm lg:text-[15px]">
-                        Connect with trusted real estate professionals who
-                        understand your needs and priorities.
-                      </p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="flex gap-5">
-                    <div className="relative basis-[10%]">
-                      <img src={Icon3} alt="" className="w-[35px] h-[35px]" />
-                      <div className="bg-[#e7c873b8] absolute h-[30px] w-[30px] rounded-[50%] left-[-8px] top-[10%]"></div>
-                    </div>
-                    <div className="flex-col basis-[90%]">
-                      <h1 className="text-lg lg:text-xl font-medium">
-                        Take the keys
-                      </h1>
-                      <p className="mt-2 text-sm lg:text-[15px]">
-                        Unlock your future with confidence. Take the Home Keys
-                        and step into your new beginning with expert guidance
-                        and support.
-                      </p>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
+      <div className="bg-gray-50 py-8">
+  <div className="mx-auto max-w-[1280px] px-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+      
+      {/* Left - Images Section */}
+      <div className="hidden md:flex flex-col gap-5">
+        <div className="w-full">
+          <img
+            src={findRealEstate}
+            alt="Find Real Estate"
+            className="rounded-lg w-full h-auto max-h-[350px] object-cover"
+          />
+        </div>
+        <div className="grid grid-cols-2 gap-5">
+          <img
+            src={realtor}
+            alt="Meet Realtor"
+            className="rounded-lg w-full h-[280px] object-cover"
+          />
+          <img
+            src={keys}
+            alt="Take the keys"
+            className="rounded-lg w-full h-auto max-h-[280px] object-cover"
+          />
         </div>
       </div>
+
+      {/* Right - Content Section */}
+      <div className="flex flex-col justify-center lg:ps-14 text-center md:text-left">
+        <h1 className="text-[#1A1A1A] font-roboto text-2xl lg:text-4xl font-medium">
+          How It Works? <br />
+          Find Your Perfect Home
+        </h1>
+        <p className="text-md lg:text-lg mt-5">
+          Discover your ideal home with ease. Browse listings, get expert
+          advice, and find the perfect match for your lifestyle.
+        </p>
+        
+        {/* Steps List */}
+        <ul className="my-10 flex flex-col gap-10">
+          {[
+            { img: Icon1, title: "Find Real Estate", text: "Finding your dream property has never been easier. With Grow Infinity Realtors, you access extensive listings, and expert guidance for a seamless real estate journey. Start exploring today and discover your perfect home." },
+            { img: Icon2, title: "Meet Realtor", text: "Connect with trusted real estate professionals who understand your needs and priorities. Our experienced realtors will guide you through the process, ensuring a smooth transaction and helping you find the best property deals." },
+            { img: Icon3, title: "Take the keys", text: "Unlock your future with confidence. Take the Home Keys and step into your new beginning with expert guidance and support. We ensure a hassle-free closing process so you can start your next chapter worry-free." }
+          ].map((item, index) => (
+            <li key={index} className="flex gap-5 items-start">
+              <div className="relative w-[50px] h-[50px] flex-shrink-0">
+                <div className="bg-[#e7c873b8] absolute h-[35px] w-[35px] rounded-full -left-1 top-1"></div>
+                <img src={item.img} alt="" className="relative w-[35px] h-[35px]" />
+              </div>
+              <div className="flex-1">
+                <h1 className="text-lg lg:text-xl font-medium">{item.title}</h1>
+                <p className="mt-2 text-sm lg:text-[15px]">{item.text}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 
       <Testimonials />
       <Choose />
@@ -359,103 +324,99 @@ export const Home = () => {
 
       {/* Both Boxes */}
 
-      <div className="max-w-[1280px] mx-auto my-5 ">
-        <div className="grid sm:grid-cols-12">
-          {/* Box 1 - Looking for a new home */}
-          <div className="col-span-12 lg:col-span-6 m-5">
-            <div
-              className="bg-[#F9F9F9] font-roboto p-8 lg:p-14 rounded-lg 
-                      transition-all duration-500 hover:translate-x-4 hover:shadow-lg hover:scale-[1.02]"
-            >
-              <div className="grid sm:grid-cols-12">
-                <div className="col-span-12 lg:col-span-9">
-                  <div className="flex flex-col gap-4">
-                    <h4 className="font-medium text-lg lg:text-2xl">
-                      Looking for a new home?
-                    </h4>
-                    <p className="hidden lg:block text-sm lg:text-lg font-normal lg:pe-20 text-justify">
+      <div className="max-w-[1280px] mx-auto my-5">
+      <div className="grid sm:grid-cols-12">
+        {/* Box 1 - Looking for a new home */}
+        <div className="col-span-12 lg:col-span-6 m-5">
+          <div
+            className="bg-[#F9F9F9] font-roboto p-8 lg:p-14 rounded-lg 
+                transition-transform duration-300 hover:translate-x-4 hover:shadow-lg hover:scale-[1.03]"
+          >
+            <div className="grid sm:grid-cols-12">
+              <div className="col-span-12 lg:col-span-9">
+                <div className="flex flex-col h-full justify-between gap-4">
+                  <h4 className="font-medium text-lg lg:text-2xl">
+                    Looking for a new home?
+                  </h4>
+                  <p className="hidden lg:block text-sm lg:text-lg font-normal lg:pe-20 text-justify">
+                    Let us help you find the perfect place to suit your needs
+                    and lifestyle.
+                  </p>
+                  <div className="flex lg:hidden justify-between">
+                    <p className="basis-[60%] text-sm lg:text-lg font-normal lg:pe-20 text-justify">
                       Let us help you find the perfect place to suit your needs
                       and lifestyle.
                     </p>
-                    <div className="flex lg:hidden justify-between">
-                      <p className="basis-[60%] text-sm lg:text-lg font-normal lg:pe-20 text-justify">
-                        Let us help you find the perfect place to suit your
-                        needs and lifestyle.
-                      </p>
-                      <img
-                        src={home}
-                        alt="Home"
-                        className="w-[80px] h-[80px]"
-                      />
-                    </div>
-                    <Link to={"/contact"}>
-                      <button
-                        className="bg-[#03002e] rounded-lg text-white w-[50%] lg:w-[150px] text-sm py-1 lg:py-3 
-                                    flex items-center justify-center gap-2 mt-8 transition-all duration-300 hover:scale-105 border-b-2 border-orange-500"
-                      >
-                        Contact us
-                        <EastIcon size="small" sx={{ fontSize: "15px" }} />
-                      </button>
-                    </Link>
+                    <img
+                      src={home}
+                      alt="Home"
+                      className="w-[80px] h-[80px] object-contain"
+                    />
                   </div>
+                  <Link to={"/contact"}>
+                    <button
+                      className="bg-[#03002e] rounded-lg text-white min-w-[120px] lg:w-[150px] text-sm py-1 lg:py-3 
+                          flex items-center justify-center gap-2 mt-8 transition-all duration-300 hover:scale-105 border-b-2 border-orange-500"
+                    >
+                      Contact us
+                      <EastIcon size="small" sx={{ fontSize: "15px" }} />
+                    </button>
+                  </Link>
                 </div>
-                <div className="col-span-12 lg:col-span-3 hidden lg:flex items-end">
-                  <img src={home} alt="Home" className="w-[130px] h-[130px]" />
-                </div>
+              </div>
+              <div className="col-span-12 lg:col-span-3 hidden lg:flex items-end">
+                <img src={home} alt="Home" className="w-[130px] h-[130px]" />
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Box 2 - Want to sell your home? */}
-          <div className="col-span-12 lg:col-span-6 m-5">
-            <div
-              className="bg-[#FFF8F6] font-roboto p-8 lg:p-14 rounded-lg 
-                      transition-all duration-300 hover:translate-x-4 hover:shadow-lg hover:scale-[1.02]"
-            >
-              <div className="grid sm:grid-cols-12">
-                <div className="col-span-12 lg:col-span-9">
-                  <div className="flex flex-col gap-4">
-                    <h4 className="font-medium text-lg lg:text-2xl">
-                      Want to sell your home?
-                    </h4>
-                    <p className="hidden lg:block text-sm lg:text-lg font-normal lg:pe-20 text-justify">
+        {/* Box 2 - Want to sell your home? */}
+        <div className="col-span-12 lg:col-span-6 m-5">
+          <div
+            className="bg-[#FFF8F6] font-roboto p-8 lg:p-14 rounded-lg 
+                transition-transform duration-300 hover:translate-x-4 hover:shadow-lg hover:scale-[1.03]"
+          >
+            <div className="grid sm:grid-cols-12">
+              <div className="col-span-12 lg:col-span-9">
+                <div className="flex flex-col h-full justify-between gap-4">
+                  <h4 className="font-medium text-lg lg:text-2xl">
+                    Want to sell your home?
+                  </h4>
+                  <p className="hidden lg:block text-sm lg:text-lg font-normal lg:pe-20 text-justify">
+                    Let our experts help you get the best price with a seamless
+                    selling experience.
+                  </p>
+                  <div className="flex lg:hidden justify-between">
+                    <p className="basis-[60%] text-sm lg:text-lg font-normal lg:pe-20 text-justify">
                       Let our experts help you get the best price with a
                       seamless selling experience.
                     </p>
-                    <div className="flex lg:hidden justify-between">
-                      <p className="basis-[60%] text-sm lg:text-lg font-normal lg:pe-20 text-justify">
-                        Let our experts help you get the best price with a
-                        seamless selling experience.
-                      </p>
-                      <img
-                        src={house}
-                        alt="House"
-                        className="w-[80px] h-[80px]"
-                      />
-                    </div>
-                    <Link to={"/contact"}>
-                      <button
-                        className="bg-[#03002e] rounded-lg text-white w-[50%] lg:w-[150px] text-sm py-1 lg:py-3 
-                                    flex items-center justify-center gap-2 mt-8 transition-all duration-300 hover:scale-105 border-b-2 border-orange-500"
-                      >
-                        Contact us
-                        <EastIcon size="small" sx={{ fontSize: "15px" }} />
-                      </button>
-                    </Link>
+                    <img
+                      src={house}
+                      alt="House"
+                      className="w-[80px] h-[80px] object-contain"
+                    />
                   </div>
+                  <Link to={"/contact"}>
+                    <button
+                      className="bg-[#03002e] rounded-lg text-white min-w-[120px] lg:w-[150px] text-sm py-1 lg:py-3 
+                          flex items-center justify-center gap-2 mt-8 transition-all duration-300 hover:scale-105 border-b-2 border-orange-500"
+                    >
+                      Contact us
+                      <EastIcon size="small" sx={{ fontSize: "15px" }} />
+                    </button>
+                  </Link>
                 </div>
-                <div className="col-span-12 lg:col-span-3 hidden lg:flex items-end">
-                  <img
-                    src={house}
-                    alt="House"
-                    className="w-[130px] h-[130px]"
-                  />
-                </div>
+              </div>
+              <div className="col-span-12 lg:col-span-3 hidden lg:flex items-end">
+                <img src={house} alt="House" className="w-[130px] h-[130px]" />
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
       <Marquee />
     </Layout>
