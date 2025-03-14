@@ -32,7 +32,7 @@ export const Services = () => {
 
         {/* Our Services  */}
         <div className="my-5 max-w-[1280px] mx-auto">
-          <h1 className="font-roboto py-3 lg:py-8 text-2xl lg:text-4xl font-medium text-center">
+          <h1 className="font-roboto py-3 lg:py-8 text-2xl lg:text-4xl font-medium text-[#1d2a3b] text-center">
             Our Services
           </h1>
 
@@ -44,7 +44,7 @@ export const Services = () => {
                     sx={{ fontSize: { xs: "30px", lg: "50px" } }}
                   />
                 </i>
-                <h3>RESIDENTIAL</h3>
+                <h3 className="text-[#1d2a3b]">RESIDENTIAL</h3>
                 <p className="px-5 text-center text-sm lg:text-md">
                   These services focus on buying and selling homes, condos,
                   apartments, and other residential properties. They cater to
@@ -62,7 +62,7 @@ export const Services = () => {
                     sx={{ fontSize: { xs: "30px", lg: "50px" } }}
                   />
                 </i>
-                <h3>COMMERCIAL</h3>
+                <h3 className="text-[#1d2a3b]">COMMERCIAL</h3>
                 <p className="px-5 text-center text-sm lg:text-md">
                   Commercial real estate services deal with buying and selling
                   commercial properties like office buildings, retail spaces,
@@ -79,7 +79,7 @@ export const Services = () => {
                 <i>
                   <HomeWorkIcon sx={{ fontSize: { xs: "30px", lg: "50px" } }} />
                 </i>
-                <h3>HOME RENTAL</h3>
+                <h3 className="text-[#1d2a3b]">HOME RENTAL</h3>
                 <p className="px-5 text-center text-sm lg:text-md">
                   Home rental services streamline the rental process, ensuring a
                   convenient and secure experience for both property owners and
@@ -98,7 +98,7 @@ export const Services = () => {
                     sx={{ fontSize: { xs: "30px", lg: "50px" } }}
                   />
                 </i>
-                <h3>HOME LOAN</h3>
+                <h3 className="text-[#1d2a3b]">HOME LOAN</h3>
                 <p className="px-5 text-center text-sm lg:text-md">
                   We offer a comprehensive suite of loan services to make your
                   home buying journey seamless. In addition to helping you find
@@ -116,7 +116,7 @@ export const Services = () => {
                     sx={{ fontSize: { xs: "30px", lg: "50px" } }}
                   />
                 </i>
-                <h3>INVESTMENT</h3>
+                <h3 className="text-[#1d2a3b]">INVESTMENT</h3>
                 <p className="px-5 text-center text-sm lg:text-md">
                   Investment-focused services assist clients in buying and
                   selling properties for investment purposes, such as rental
@@ -134,7 +134,7 @@ export const Services = () => {
                     sx={{ fontSize: { xs: "30px", lg: "50px" } }}
                   />
                 </i>
-                <h3>CONSULTATION</h3>
+                <h3 className="text-[#1d2a3b]">CONSULTATION</h3>
                 <p className="px-5 text-center text-sm lg:text-md">
                   These services offer expert advice to buyers and sellers,
                   helping them make informed decisions, understand market

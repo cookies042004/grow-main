@@ -36,13 +36,8 @@ export const Testimonials = () => {
   return (
     <div className="py-2 lg:py-4 lg:px-16 px-10">
       <div>
-        <h1 className="flex justify-center items-center lg:text-4xl text-2xl text-[#03002e] font-bold py-4">
-          <hr className="border-t-4 border-[#03002e] w-[80px] h-[2px]" /> &nbsp;
-          Testimonials &nbsp;
-          <hr className="border-t-4 border-[#03002e] w-[80px] h-[2px]" />
-        </h1>
-        <h1 className="flex justify-center items-center text-xl lg:text-3xl text-[#03002e]">
-          Words That Speak Louder Than Promises.
+        <h1 className="flex justify-center items-center lg:text-4xl text-2xl text-[#1d2a3b] font-bold py-4">
+          Testimonials
         </h1>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
@@ -115,7 +110,7 @@ export const Testimonials = () => {
                         </p>
                         {testimonial.review.length > 200 && (
                           <button
-                            className="text-blue-600 font-semibold mt-2 cursor-pointer"
+                            className="text-[#1d2a3b] font-semibold mt-2 cursor-pointer"
                             onClick={() => setSelectedReview(testimonial)}
                           >
                             Read More
@@ -130,11 +125,20 @@ export const Testimonials = () => {
           </div>
           <div className="flex flex-col items-center mt-8">
             <div className="flex gap-4 mb-3">
-              <button ref={prevRef} className="p-3 bg-[#03002e] text-white rounded-full">
+              <button
+                ref={prevRef}
+                className="p-3 bg-[#1d2a3b] text-white rounded-full"
+              >
                 <FaChevronLeft size={15} />
               </button>
-              <div ref={paginationRef} className="swiper-pagination-custom py-2"></div>
-              <button ref={nextRef} className="p-3 bg-[#03002e] text-white rounded-full">
+              <div
+                ref={paginationRef}
+                className="swiper-pagination-custom py-2"
+              ></div>
+              <button
+                ref={nextRef}
+                className="p-3 bg-[#1d2a3b] text-white rounded-full"
+              >
                 <FaChevronRight size={15} />
               </button>
             </div>

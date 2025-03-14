@@ -35,7 +35,7 @@ export const News = () => {
 
       {/* Latest News  */}
       <div className="my-5">
-        <h1 className="font-roboto text-3xl lg:text-4xl font-bold lg:font-medium text-center  py-3 lg:py-8">
+        <h1 className="font-roboto text-3xl lg:text-4xl font-bold lg:font-medium text-center text-[#1d2a3b]  py-3 lg:py-8">
           Latest News
         </h1>
 
@@ -45,14 +45,7 @@ export const News = () => {
               <CircularProgress size="30px" />
             </div>
           )}
-          {error && (
-              <div className="col-span-12 flex flex-col items-center">
-                <img src="https://shorturl.at/6C2TM" alt="error" />
-                <p className="text-red-500 mt-2">
-                  Failed to load news. Please try again.
-                </p>
-              </div>
-            )}
+          {error && <p>{error}</p>}
           {news?.map((item) => {
             return (
               <div

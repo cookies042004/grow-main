@@ -57,7 +57,7 @@ export const Brochure = () => {
       </div>
 
       <div>
-        <h1 className="font-roboto text-3xl lg:text-4xl font-medium py-8 text-center">
+        <h1 className="font-roboto text-3xl text-[#1d2a3b] lg:text-4xl font-medium py-8 text-center">
           Our Brochures
         </h1>
 
@@ -68,13 +68,8 @@ export const Brochure = () => {
             </div>
           )}
           {error && (
-              <div className="col-span-12 flex flex-col items-center">
-                <img src="https://shorturl.at/6C2TM" alt="error" />
-                <p className="text-red-500 mt-2">
-                  Failed to load broucher. Please try again.
-                </p>
-              </div>
-            )}
+            <p className="text-center text-red-500">Error: {error.message}</p>
+          )}
 
           {brochures.length > 0 ? (
             <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-20">

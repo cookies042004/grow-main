@@ -23,7 +23,7 @@
   text-align: center;
   transition: all 0.1s ease-in-out;
   color: gray;
-  border-bottom: 1px solid #03002e;
+  border-bottom: 1px solid #1d2a3b;
 }
 
 /* .navbar.sticky{
@@ -50,7 +50,7 @@
 }
 
 .p-navbar a:hover {
-  color: #03002e;
+  color: #1d2a3b;
   /* background-color: #03002a; */
   transform: scale(1.05);
   border-radius: 5px;

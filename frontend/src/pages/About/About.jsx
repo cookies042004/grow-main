@@ -144,7 +144,7 @@ export const About = () => {
               className="col-span-6 md:col-span-6 lg:col-span-4 p-5"
               key={item.number}
             >
-              <div className="text-[#042651] hover:text-white p-6 lg:p-10 font-roboto text-center border-2 rounded-xl flex flex-col items-center justify-center cursor-pointer transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-2xl hover:bg-gradient-to-r from-indigo-900 to-black">
+              <div className="text-[#1d2a3b] hover:text-white p-6 lg:p-10 font-roboto text-center border-2 rounded-xl flex flex-col items-center justify-center cursor-pointer transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-2xl hover:bg-gradient-to-r from-indigo-900 to-black">
                 <h5 className="text-2xl lg:text-4xl font-bold mb-2">
                   {item.number}
                 </h5>
@@ -162,7 +162,7 @@ export const About = () => {
       {/* What we do?  */}
       <div className="bg-gray-50">
         <div className="my-10 max-w-[1280px] mx-auto">
-          <h2 className="font-roboto font-medium text-center text-3xl lg:text-4xl pt-8">
+          <h2 className="font-roboto font-medium text-[#1d2a3b] text-center text-3xl lg:text-4xl pt-8">
             What we do?
           </h2>
           <div className="grid sm:grid-cols-12">
@@ -226,7 +226,7 @@ export const About = () => {
 
           {/* Right Section - Text Content */}
           <div className="col-span-12 md:col-span-6 lg:col-span-5 text-center lg:text-left">
-            <h1 className="text-3xl lg:text-3xl font-bold text-gray-900 leading-tight">
+            <h1 className="text-3xl lg:text-3xl font-bold text-[#1d2a3b] leading-tight">
               How It Works?
               <br /> Find Your Perfect Home
             </h1>
@@ -283,7 +283,7 @@ export const About = () => {
       {/* Meet our directors  */}
       <div className="py-12 px-4 md:px-8">
         <div className="max-w-[1280px] mx-auto">
-          <h1 className="text-center text-[#03002e] text-3xl md:text-4xl font-bold pb-10">
+          <h1 className="text-center text-[#1d2a3b] text-3xl md:text-4xl font-bold pb-10">
             Get to Know Our Team
           </h1>
 

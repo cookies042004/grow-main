@@ -1,23 +1,39 @@
 import { Slider } from "@mui/material";
 import React, { useState, useEffect } from "react";
-import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
-import PhoneIcon from "@mui/icons-material/Phone";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import { Link } from "react-router-dom";
 
+import PhoneIcon from "@mui/icons-material/Phone";
+import { Dvr } from "@mui/icons-material";
+
 export const Calculator = () => {
-  const [loanAmount, setLoanAmount] = useState(10); 
-  const [loanDuration, setLoanDuration] = useState(10);
-  const [interestRate, setInterestRate] = useState(7.5);
+  const [loanAmount, setLoanAmount] = useState(10); // Default loan amount in lakhs
+  const [loanDuration, setLoanDuration] = useState(10); // Default tenure in years
+  const [interestRate, setInterestRate] = useState(7.5); // Default interest rate
 
   const [emi, setEmi] = useState(0);
   const [totalInterest, setTotalInterest] = useState(0);
   const [totalAmount, setTotalAmount] = useState(0);
 
-  useEffect(() => {
-    const principal = loanAmount * 100000; 
-    const monthlyInterestRate = interestRate / (12 * 100);
-    const numberOfPayments = loanDuration * 12;
+  const handleLoanAmountChange = (event, newValue) => {
+    setLoanAmount(newValue);
+  };
 
+  const handleLoanDurationChange = (event, newValue) => {
+    setLoanDuration(newValue);
+  };
+
+  const handleInterestRateChange = (event, newValue) => {
+    setInterestRate(newValue);
+  };
+
+  // Calculate EMI, Interest Amount, and Total Amount Payable
+  useEffect(() => {
+    const principal = loanAmount * 100000; // Convert lakhs to actual amount
+    const monthlyInterestRate = interestRate / (12 * 100); // Monthly interest rate in decimal
+    const numberOfPayments = loanDuration * 12; // Total number of monthly payments
+
+    // EMI calculation
     const emiValue =
       (principal *
         monthlyInterestRate *
@@ -32,106 +48,167 @@ export const Calculator = () => {
     setTotalAmount(totalPayableAmount);
   }, [loanAmount, loanDuration, interestRate]);
 
+  // Formatter for Indian currency format
   const formatToIndianCurrency = (amount) => {
-    return new Intl.NumberFormat("en-IN", { maximumFractionDigits: 2 }).format(amount);
+    return new Intl.NumberFormat("en-IN", {
+      maximumFractionDigits: 2,
+    }).format(amount);
   };
 
-  // Data for Pie Chart
-  const data = [
-    { name: "Principal", value: loanAmount * 100000, color: "#4e54c8" },
-    { name: "Interest", value: totalInterest, color: "#FF6B6B" },
-  ];
-
   return (
-    <div className="max-w-[1200px] mx-auto my-8 bg-white rounded-xl shadow-lg p-8 border relative overflow-hidden">
-      <div className="text-center">
-        <h1 className="text-lg font-semibold text-gray-800">🏠 Home Loan EMI Calculator</h1>
-        <hr className="w-1/3 mx-auto mt-2 border-2 border-indigo-500 rounded-full" />
-      </div>
-
-      {/* Sliders */}
-      <div className="flex flex-col lg:flex-row gap-8 mt-8">
-        <div className="flex flex-col gap-5 flex-1">
-          <SliderComponent 
-            title="Loan Amount" value={loanAmount} unit="Lac" 
-            min={1} max={100} step={1} setValue={setLoanAmount} 
-          />
-          <SliderComponent 
-            title="Tenure (Years)" value={loanDuration} unit="Years" 
-            min={1} max={30} step={1} setValue={setLoanDuration} 
-          />
-          <SliderComponent 
-            title="Interest Rate" value={interestRate} unit="%" 
-            min={0.5} max={15} step={0.1} setValue={setInterestRate} 
+    <div className="max-w-[1280px] mx-auto my-5 bg-white rounded-lg shadow-lg shadow-gray- p-8 lg:p-10 border">
+      <div className="grid grid-cols-1">
+        {/* Header Section */}
+        <div className="col-span-2 mb-6">
+          <h1 className="text-center text-lg font-medium">
+            Home Loan EMI Calculator
+          </h1>
+          <hr
+            className="w-[45%] h-[3px] opacity-100 rounded-full mx-auto border-0 mt-1"
+            style={{
+              background: "linear-gradient(to right, #4e54c8, #8f94fb)",
+              boxShadow: "0px 4px 10px rgba(78, 84, 200, 0.3)",
+            }}
           />
         </div>
 
-        {/* Results & Pie Chart */}
-        <div className="flex-1 flex flex-col items-center bg-gray-50 p-6 rounded-lg shadow-sm">
-          <h2 className="text-sm font-semibold">Monthly EMI</h2>
-          <p className="text-2xl text-blue-600 font-bold">₹{formatToIndianCurrency(emi)}</p>
-
-          <div className="flex justify-around w-full mt-6">
-            <div className="text-center">
-              <h3 className="text-sm font-medium text-gray-600">Principal</h3>
-              <p className="text-lg font-semibold">₹{formatToIndianCurrency(loanAmount * 100000)}</p>
+        {/* Sliders and Results in Rows */}
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* Sliders Section */}
+          <div className="flex flex-col gap-5 flex-1">
+            {/* Loan Amount Slider */}
+            <div className="flex flex-col gap-2">
+              <div className="flex justify-between items-center">
+                <p className="text-xs">Loan Amount</p>
+                <p className="text-gray-600 text-xs">
+                  ₹ <strong>{loanAmount}</strong> L
+                </p>
+              </div>
+              <Slider
+                size="small"
+                sx={{ color: "#1d2a3b" }}
+                value={loanAmount}
+                onChange={handleLoanAmountChange}
+                min={1}
+                max={100}
+                step={1}
+                valueLabelDisplay="auto"
+                valueLabelFormat={(value) => `₹ ${value} Lac`}
+                marks={[
+                  { value: 1, label: "1 L" },
+                  { value: 100, label: "1 Cr" },
+                ]}
+              />
             </div>
-            <div className="text-center">
-              <h3 className="text-sm font-medium text-gray-600">Interest</h3>
-              <p className="text-lg font-semibold">₹{formatToIndianCurrency(totalInterest)}</p>
+
+            {/* Tenure Slider */}
+            <div className="flex flex-col gap-2">
+              <div className="flex justify-between items-center">
+                <p className="text-xs">Tenure (Years)</p>
+                <p className="text-gray-600 text-xs">{loanDuration} Years</p>
+              </div>
+              <Slider
+                size="small"
+                sx={{ color: "#1d2a3b" }}
+                value={loanDuration}
+                onChange={handleLoanDurationChange}
+                min={1}
+                max={30}
+                step={1}
+                valueLabelDisplay="auto"
+                valueLabelFormat={(value) => `${value} Years`}
+                marks={[
+                  { value: 1, label: "1" },
+                  { value: 30, label: "30" },
+                ]}
+              />
+            </div>
+
+            {/* Interest Rate Slider */}
+            <div className="flex flex-col gap-2">
+              <div className="flex justify-between items-center">
+                <p className="text-xs">Interest Rate (% P.A.)</p>
+                <p className="text-gray-600 text-xs">{interestRate}%</p>
+              </div>
+              <Slider
+                size="small"
+                sx={{ color: "#1d2a3b" }}
+                value={interestRate}
+                onChange={handleInterestRateChange}
+                min={0.5}
+                max={15}
+                step={0.1}
+                valueLabelDisplay="auto"
+                valueLabelFormat={(value) => `${value}%`}
+                marks={[
+                  { value: 0.5, label: "0.5%" },
+                  { value: 15, label: "15%" },
+                ]}
+              />
             </div>
           </div>
 
-          {/* Pie Chart */}
-          <div className="w-40 h-40 mt-5">
-            <ResponsiveContainer>
-              <PieChart>
-                <Pie data={data} dataKey="value" cx="50%" cy="50%" outerRadius={60} fill="#8884d8">
-                  {data.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
-                  ))}
-                </Pie>
-              </PieChart>
-            </ResponsiveContainer>
+          {/* Results Section */}
+          <div className="flex flex-col items-end flex-1 gap-5 bg-gray-50 p-5 rounded-lg shadow-sm">
+            <div>
+              <h2 className="text-sm font-semibold">Monthly Home Loan EMI</h2>
+              <p className="text-lg text-end text-blue-600 font-semibold">
+                ₹{formatToIndianCurrency(emi)}
+              </p>
+            </div>
+            <div>
+              <h3 className="text-xs font-medium text-gray-500">
+                Principal Amount
+              </h3>
+              <p className="text-sm text-end font-semibold">
+                ₹{formatToIndianCurrency(loanAmount * 100000)}
+              </p>
+            </div>
+            <div>
+              <h3 className="text-xs font-medium text-gray-500">
+                Interest Amount
+              </h3>
+              <p className="text-sm text-end font-semibold">
+                ₹{formatToIndianCurrency(totalInterest)}
+              </p>
+            </div>
+            <div>
+              <h3 className="text-xs font-medium text-gray-500">
+                Total Amount Payable
+              </h3>
+              <p className="text-sm text-end font-semibold">
+                ₹{formatToIndianCurrency(totalAmount)}
+              </p>
+            </div>
           </div>
         </div>
       </div>
-
-      {/* Contact Section */}
-      <div className="mt-6 flex flex-col lg:flex-row items-center justify-between border-t border-gray-200 pt-4">
-        <div>
-          <h2 className="font-semibold text-lg text-gray-700">Still Confused?</h2>
-          <p className="text-sm text-gray-600">Call us for a free consultation</p>
-        </div>
-        <button className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2 rounded-lg">
+      {/* <button className="bg-blue-950 hover:bg-blue-900 text-white font-medium py-2 px-4 rounded">
           <PhoneIcon />
           <Link to="/"> +91-9990052554</Link>
-        </button>
+        </button> */}
+
+      <div className="flex flex-row items-center gap-3 w-full">
+        <div className="flex flex-row justify-between items-center border border-gray-200 py-2 px-4 mt-6 w-full">
+          {/* Left Content */}
+          <div>
+            <h2 className="font-bold text-xl text-lg text-gray-700">
+              Still Confused?
+            </h2>
+            <p className="font-semibold text-lg text-lg text-gray-600">
+              Give us a call on the given number..
+            </p>
+          </div>
+
+          {/* Right Content (Phone Number) */}
+          <div className="pl-5">
+            <button className="flex items-center gap-1 bg-[#1d2a3b] p-2 rounded-lg px-4 text-white">
+              <PhoneIcon />
+              <Link to="/"> +91-9990052554</Link>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
-
-// Slider Component
-const SliderComponent = ({ title, value, unit, min, max, step, setValue }) => (
-  <div className="flex flex-col gap-2">
-    <div className="flex justify-between items-center">
-      <p className="text-sm">{title}</p>
-      <p className="text-gray-600 text-sm">
-        <strong>{value}</strong> {unit}
-      </p>
-    </div>
-    <Slider
-      size="small"
-      sx={{ color: "#4e54c8" }}
-      value={value}
-      onChange={(e, newValue) => setValue(newValue)}
-      min={min}
-      max={max}
-      step={step}
-      valueLabelDisplay="auto"
-      valueLabelFormat={(value) => `${value} ${unit}`}
-      marks={[{ value: min, label: `${min} ${unit}` }, { value: max, label: `${max} ${unit}` }]}
-    />
-  </div>
-);

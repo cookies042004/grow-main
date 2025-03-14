@@ -59,7 +59,7 @@ export const SearchBar = () => {
                 onClick={() => setProperty(!property)}
               >
                 <HomeOutlinedIcon
-                  sx={{ color: "#03002E", marginRight: "8px" }}
+                  sx={{ color: "#1d2a3b", marginRight: "8px" }}
                 />{" "}
                 {selectedValue}{" "}
                 <svg
@@ -117,7 +117,7 @@ export const SearchBar = () => {
                 type="button"
                 onClick={() => setBhk(!bhk)}
               >
-                <HomeIcon sx={{ color: "#03002E", paddingRight: "5px" }} />{" "}
+                <HomeIcon sx={{ color: "#1d2a3b", paddingRight: "5px" }} />{" "}
                 {bhkValue}{" "}
                 <svg
                   className="w-2.5 h-2.5 ms-3"
@@ -188,7 +188,7 @@ export const SearchBar = () => {
                 type="button"
                 onClick={() => setBhk(!bhk)}
               >
-                <HomeIcon sx={{ color: "#03002E", paddingRight: "5px" }} />{" "}
+                <HomeIcon sx={{ color: "#1d2a3b", paddingRight: "5px" }} />{" "}
                 {bhkValue}{" "}
                 <svg
                   className="w-2.5 h-2.5 ms-3"
@@ -243,7 +243,7 @@ export const SearchBar = () => {
                 <button
                   onClick={handleSearch}
                   type="submit"
-                  className="text-white bg-[#03002E] font-bold text-center text-lg w-full rounded-[8.59px] py-2"
+                  className="text-white bg-[#1d2a3b] font-bold text-center text-lg w-full rounded-[8.59px] py-2"
                   style={{ boxShadow: "0px 5.46px 13.27px 0px #03002E80" }}
                 >
                   Search
@@ -251,7 +251,7 @@ export const SearchBar = () => {
               </div>
             </div>
             <div className="col-span-2 lg:col-span-2">
-              <button className="bg-[#f4f4f4] w-full py-2 text-xs px-2 lg:text-lg rounded-2xl text-[#03002e] font-bold">
+              <button className="bg-[#f4f4f4] w-full py-2 text-xs px-2 lg:text-lg rounded-2xl text-[#1d2a3b] font-bold">
                 Price (₹)
               </button>
             </div>
@@ -262,7 +262,7 @@ export const SearchBar = () => {
                 valueLabelDisplay="auto"
                 min={60} // Minimum value in lakhs (60 lakhs)
                 max={1400} // Maximum value in lakhs (14 crores = 1400 lakhs)
-                sx={{ color: "#03002e" }}
+                sx={{ color: "#1d2a3b" }}
                 valueLabelFormat={(value) => {
                   if (value < 100)
                     return `₹${value} Lac`; // If less than 100, show in Lac

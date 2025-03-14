@@ -133,7 +133,7 @@ export const ContactForm = () => {
                 fullWidth
                 sx={{
                   textTransform: "none",
-                  backgroundColor: "#03002e",
+                  backgroundColor: "#1d2a3b",
                   marginTop: "10px",
                 }}
                 variant="contained"

@@ -26,7 +26,7 @@ export const Event = () => {
       <NavigationBar />
 
       <div className="my-10">
-        <h1 className="font-roboto text-3xl lg:text-4xl font-bold lg:font-medium text-center py-3 lg:py-8">
+        <h1 className="font-roboto text-3xl lg:text-4xl font-bold lg:font-medium text-[#1d2a3b] text-center py-3 lg:py-8">
           Events
         </h1>
         <div className="grid sm:grid-cols-12 max-w-[1280px] mx-auto mt-3 lg:mt-8">
@@ -36,13 +36,10 @@ export const Event = () => {
             </div>
           )}
           {error && (
-              <div className="col-span-12 flex flex-col items-center">
-                <img src="https://shorturl.at/6C2TM" alt="error" />
-                <p className="text-red-500 mt-2">
-                  Failed to load events. Please try again.
-                </p>
-              </div>
-            )}
+            <div className="col-span-12 flex justify-center">
+              <p>Error: {error}</p>
+            </div>
+          )}
           {events &&
             events.map((event) => {
               const imageUrl = `${event.image[0]}`.replace(/\\/g, "/");

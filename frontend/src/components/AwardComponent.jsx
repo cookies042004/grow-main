@@ -19,12 +19,9 @@ export const AwardComponent = () => {
   return (
     <div className="award-section">
       <div className="award-container">
-        <h1 className="award-heading text-center text-3xl lg:text-4xl font-medium mb-6 text-[#03002e]">
+        <h1 className="award-heading text-center text-3xl lg:text-4xl font-medium mb-6 text-[#1d2a3b]">
           Awards
         </h1>
-        <h2 className="award-subheading text-center text-xl lg:text-3xl mb-6 text-[#03002e]">
-          Honoring a legacy of outstanding performance and impact.
-        </h2>
 
         <Swiper
           effect="coverflow"
@@ -41,11 +38,15 @@ export const AwardComponent = () => {
           pagination={{ clickable: true }}
           navigation={true}
           modules={[EffectCoverflow, Pagination, Navigation]}
-          className="award-swiper_container"
+          className="award-swiper_container pb-12"
         >
           {awards.map((award, index) => (
             <SwiperSlide key={index} className="award-swiper-slide">
-              <img src={award.image} alt={`Award ${index + 1}`} className="award-image" />
+              <img
+                src={award.image}
+                alt={`Award ${index + 1}`}
+                className="award-image"
+              />
             </SwiperSlide>
           ))}
         </Swiper>

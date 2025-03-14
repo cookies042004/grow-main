@@ -15,18 +15,34 @@ import brand13 from "../assets/img/Stellar Group Logo.png";
 import brand14 from "../assets/img/Tata.png";
 
 const brands = [
-  brand1, brand2, brand3, brand4, brand5, brand6, brand7,
-  brand8, brand9, brand10, brand11, brand12, brand13, brand14
+  brand1,
+  brand2,
+  brand3,
+  brand4,
+  brand5,
+  brand6,
+  brand7,
+  brand8,
+  brand9,
+  brand10,
+  brand11,
+  brand12,
+  brand13,
+  brand14,
 ];
 
 export const Marquee = () => {
   return (
-    <div className="relative w-full bg-gray-100 py-6 overflow-hidden">
+    <div className="relative w-full py-6 overflow-hidden">
       <div className="marquee">
         <div className="marquee-track">
           {brands.concat(brands).map((brand, index) => (
             <div key={index} className="marquee-item">
-              <img src={brand} alt={`brandlogo${index + 1}`} className="brand-logo" />
+              <img
+                src={brand}
+                alt={`brandlogo${index + 1}`}
+                className="brand-logo"
+              />
             </div>
           ))}
         </div>
@@ -38,7 +54,13 @@ export const Marquee = () => {
           overflow: hidden;
           position: relative;
           width: 100%;
-          mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
+          mask-image: linear-gradient(
+            to right,
+            transparent,
+            white 20%,
+            white 80%,
+            transparent
+          );
         }
 
         .marquee-track {

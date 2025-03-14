@@ -72,14 +72,14 @@ export const Navbar = ({ mobileMenu, setMobileMenu }) => {
           </ul>
           <Link
             to="/brochure"
-            className="hidden lg:block font-dmsans px-10 py-2 bg-[#03002E] text-white rounded-[16.5px] uppercase shadow-md"
+            className="hidden lg:block font-dmsans px-10 py-2 bg-[#1d2a3b] text-white rounded-[16.5px] uppercase shadow-md"
             style={{ boxShadow: "0px 5.46px 13.27px 0px #00000080" }}
           >
             Brochure
           </Link>
           {isMobile && (
             <IconButton
-              sx={{ color: "#1b1364" }}
+              sx={{ color: "#1d2a3b" }}
               size="large"
               aria-label="mobile-menu"
               onClick={() => setMobileMenu(!mobileMenu)}
@@ -102,7 +102,7 @@ export const Navbar = ({ mobileMenu, setMobileMenu }) => {
               <img src={logo} alt="Logo" width={150} />
             </Link> */}
             <IconButton
-              sx={{ color: "#1b1364" }}
+              sx={{ color: "#1d2a3b" }}
               size="large"
               aria-label="close-menu"
               onClick={() => setMobileMenu(false)}
@@ -116,7 +116,7 @@ export const Navbar = ({ mobileMenu, setMobileMenu }) => {
                 <NavLink
                   to={item.path}
                   onClick={handleLinkClick}
-                  className="hover:text-blue-600"
+                  className="hover:text-[#1d2a3b]"
                 >
                   {item.name}
                 </NavLink>

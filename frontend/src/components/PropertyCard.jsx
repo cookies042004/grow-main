@@ -35,7 +35,7 @@ export const PropertyCard = ({
   function toINRCr(amount) {
     // writing code for converting amount in lakhs and crores
     if (amount < 10000000) {
-      return (amount / 100000).toFixed(1) + " Lac";
+      return (amount / 100000).toFixed(1) + " L";
     } else {
       return (amount / 10000000).toFixed(1) + " Cr";
     }
@@ -72,30 +72,30 @@ export const PropertyCard = ({
       {/* Property Details */}
       <div className="mt-3 font-roboto text-sm flex justify-between px-3">
         <div>
-          <p className="font-semibold text-base">{name}</p>
-          <p className="text-gray-700 font-normal text-xs">By {builder}</p>
+          <p className="font-semibold text-base text-[#1d2a3b]">{name}</p>
+          <p className="text-[#1d2a3b] font-normal text-[12px]">By {builder}</p>
         </div>
-        <p className="font-semibold text-[#EB664E] text-lg">₹{toINRCr(price)}*</p>
+        <p className="font-semibold text-[#1d2a3b] text-lg">₹{toINRCr(price)}*</p>
       </div>
 
       {/* Location */}
       <div className="flex items-center mt-3 px-3">
-        <LocationOnIcon sx={{ color: "darkblue", fontSize: "18px" }} />
+        <LocationOnIcon sx={{ color: "#1d2a3b", fontSize: "18px" }} />
         <span className="ml-1 text-xs">{location}</span>
       </div>
 
       {/* Property Features */}
       <div className="grid grid-cols-3 gap-3 mt-5 px-3 font-roboto text-xs">
         <div className="flex items-center gap-1">
-          <HomeIcon sx={{ color: "darkblue", fontSize: "18px" }} />
+          <HomeIcon sx={{ color: "#1d2a3b", fontSize: "18px" }} />
           <span>{unit}</span>
         </div>
         <div className="flex items-center gap-1">
-          <SquareFootIcon sx={{ color: "darkblue", fontSize: "18px" }} />
+          <SquareFootIcon sx={{ color: "#1d2a3b", fontSize: "18px" }} />
           <span>{selectUnit(sizeUnit)}</span>
         </div>
         <div className="flex items-center gap-1">
-          <CurrencyRupeeIcon sx={{ color: "darkblue", fontSize: "18px" }} />
+          <CurrencyRupeeIcon sx={{ color: "#1d2a3b", fontSize: "18px" }} />
           <span>{divide(sizeUnit)}</span>
         </div>
       </div>
@@ -108,7 +108,7 @@ export const PropertyCard = ({
               fullWidth
               variant="outlined"
               sx={{
-                backgroundColor: "#03002e",
+                backgroundColor: "#1d2a3b",
                 color: "#fff",
                 textTransform: "none",
               }}

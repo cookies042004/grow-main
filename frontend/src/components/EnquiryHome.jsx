@@ -71,7 +71,7 @@ export const EnquiryHome = () => {
     <>
       {/* Floating Button to Open Modal */}
       <div
-        className={`hidden lg:block absolute right-0 top-[24%] rounded-lg transition-transform duration-300 ease-in-out ${
+        className={`hidden lg:block fixed right-0 top-[24%] rounded-lg transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-[0]" : "translate-x-[0]"
         }`}
       >
@@ -197,7 +197,7 @@ export const EnquiryHome = () => {
                   <div className="col-span-12">
                     <Button
                       variant="contained"
-                      sx={{ backgroundColor: "#03002E" }}
+                      sx={{ backgroundColor: "#1d2a3b" }}
                       size="large"
                       fullWidth
                       type="submit"

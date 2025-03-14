@@ -212,50 +212,53 @@ export const CommercialDetails = () => {
         <div className="container mx-auto">
           <div className="flex flex-col lg:grid sm:grid-cols-12 gap-6 max-w-[1280px] mt-3 lg:mt-8 mx-auto">
             <div className="col-span-12 lg:col-span-9 bg-white px-3 lg:px-12 py-4 lg:py-8">
-              <div className="shadow-lg pb-2 shadow-gray-400 mb-10">
-                <div className="pt-10 px-10">
+              <div className="shadow-[0px_0px_10px_rgba(0,0,0,0.3)] pb-4 mb-10">
+                {/* Image Carousel */}
+                <div className="pt-6 px-4 sm:px-10">
                   <Carousel galleryImages={images} />
                 </div>
 
-                <div className="border border-gray-300 m-10 mt-5 mb-1 flex flex-col lg:flex-row gap-8 p-1">
-                  {/* Left Section */}
-                  <div className="flex flex-col lg:flex-row items-center lg:items-start gap-3 w-full">
+                {/* Property Info Container */}
+                <div className="border border-gray-300 m-4 sm:m-10 mt-5 mb-1 flex flex-col sm:flex-row gap-4 sm:gap-8 p-3">
+                  {/* Left Section - Property Details */}
+                  <div className="flex flex-row items-center sm:items-start gap-3 w-full">
                     <img
                       src={property?.dp}
                       alt="dealer"
-                      className="h-20 w-20 object-cover"
+                      className="h-16 w-16 sm:h-20 sm:w-20 object-cover"
                     />
                     <div className="flex flex-col">
-                      <h1 className="font-bold text-[#03002a] text-lg lg:text-2xl truncate w-full max-w-[250px]">
+                      <h1 className="font-bold text-[#1d2a3b] lg:px-2 pl-12 text-lg sm:text-xl py-[1px] max-w-[250px]">
                         {property?.name}
                       </h1>
-                      <p className="text-sm text-[#03002a] lg:text-base">
+                      <p className="text-sm text-[#03002a] lg:px-2 pl-10 py-[1px]">
                         By {property?.builder}
                       </p>
-                      <div className="flex items-center ">
-                        <LocationOnIcon className="text-red-600" />
-                        <p className="text-md text-[#03002a]">
+                      <div className="flex items-center lg:px-0 pl-10">
+                        <LocationOnIcon className="text-red-600 text-xs" />
+                        <p className="text-sm text-red-600 py-[1px]">
                           {property?.location}
                         </p>
                       </div>
                     </div>
                   </div>
 
-                  {/* Right Section */}
-                  <div className="flex flex-col items-center lg:items-end w-full lg:w-2/3">
-                    <h5 className="font-semibold text-[#03002a] text-2xl lg:text-4xl">
+                  {/* Right Section - Price & Buttons */}
+                  <div className="flex flex-col items-center sm:items-end w-full sm:w-2/3">
+                    <h5 className="font-semibold text-[#1d2a3b] text-xl sm:text-2xl pr-2">
                       ₹{toINRCr(property?.price)}*
                     </h5>
 
-                    <div className="flex gap-3 w-full lg:w-auto py-1">
-                      <Link to={`/brochure`}>
+                    {/* Buttons - Stack on Small Screens */}
+                    <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto py-2 pr-2">
+                      <Link to={`/brochure`} className="w-full sm:w-auto">
                         <Button
                           startIcon={<PictureAsPdfIcon />}
                           variant="outlined"
                           size="small"
                           color="error"
                           sx={{ textTransform: "none" }}
-                          className="w-full lg:w-auto"
+                          className="w-full sm:w-auto"
                         >
                           Request PDF
                         </Button>
@@ -271,7 +274,7 @@ export const CommercialDetails = () => {
                         href={`https://wa.me/+918750238581?text=Hi I am interested in ${property?.name}, Please share the details.`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full lg:w-auto"
+                        className="w-full sm:w-auto"
                       >
                         WhatsApp Us
                       </Button>
@@ -280,49 +283,39 @@ export const CommercialDetails = () => {
                 </div>
               </div>
 
-              <div className="p-nav">
-                <div>
-                  <a href="#description" onClick={handleAnchorClick}>
-                    Description
-                  </a>
-                </div>
-                <div>
-                  <a href="#Overview" onClick={handleAnchorClick}>
-                    Overview
-                  </a>
-                </div>
-                <div>
-                  <a href="#Project Amenities" onClick={handleAnchorClick}>
-                    Project Amenities
-                  </a>
-                </div>
-                <div>
-                  <a href="#video" onClick={handleAnchorClick}>
-                    Video Tour
-                  </a>
-                </div>
-                <div>
-                  <a href="#emi" onClick={handleAnchorClick}>
-                    EMI Calculator
-                  </a>
-                </div>
+              <div className="flex flex-wrap justify-center sm:justify-start gap-2 sm:gap-4 my-6 border-b pb-2">
+                {[
+                  { href: "#description", label: "Description" },
+                  { href: "#Overview", label: "Overview" },
+                  { href: "#Project Amenities", label: "Project Amenities" },
+                  { href: "#location", label: "Location Benefits" },
+                  { href: "#video", label: "Video Tour" },
+                  { href: "#emi", label: "EMI Calculator" },
+                ].map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={(e) => handleAnchorClick(e, item.label)}
+                    className="px-3 sm:px-4 py-2 text-gray-700 text-base sm:text-lg transition-all duration-300 ease-in-out hover:text-blue-950 hover:font-semibold focus-visible:outline-none"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
               </div>
 
-              <div className="grid sm:grid-cols-12 lg:mx-3 mt-8 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-12 mt-8 gap-6 sm:gap-8">
+                {/* Description */}
                 <div
-                  className="col-span-12 bg-white p-3 shadow-lg shadow-gray-400"
+                  className="col-span-12 bg-white p-6 sm:p-8 shadow-[0px_0px_10px_rgba(0,0,0,0.3)]"
                   id="description"
                 >
-                  <h3 className="text-xl border-b-2 pb-2 font-poppins font-semibold">
+                  <h3 className="text-2xl sm:text-3xl border-b-2 pb-2 font-poppins font-semibold text-[#1d2a3b]">
                     Description
                   </h3>
-                  <div className="mt-4 text-gray-500 text-md lg:leading-9">
-                    {/* Container for description text with transition */}
+                  <div className="mt-4 text-gray-500 text-sm sm:text-md leading-relaxed">
                     <div
-                      className={`overflow-hidden transition-all duration-500 ease-in-out`}
-                      style={{
-                        maxHeight: isExpanded ? "9999px" : "500px", // Use a large value for expanded state
-                      }}
+                      className="overflow-hidden transition-all duration-500 ease-in-out"
+                      style={{ maxHeight: isExpanded ? "9999px" : "500px" }}
                     >
                       <p>
                         {isExpanded ? fullDescription : truncatedDescription}
@@ -334,11 +327,10 @@ export const CommercialDetails = () => {
                       color="secondary"
                       size="small"
                       sx={{
-                        borderRadius: "2px",
+                        borderRadius: "4px",
                         textTransform: "none",
-                        display: "inline-block",
                         marginTop: "10px",
-                        backgroundColor: "#5BC0EB",
+                        backgroundColor: "#1d2a3b",
                       }}
                       onClick={toggleDescription}
                     >
@@ -347,8 +339,9 @@ export const CommercialDetails = () => {
                   </div>
                 </div>
 
+                {/* Overview */}
                 <div
-                  className="col-span-12 bg-white p-6 shadow-lg shadow-gray-400 rounded-lg"
+                  className="col-span-12 bg-white p-6 shadow-[0px_0px_10px_rgba(0,0,0,0.3)]"
                   id="Overview"
                 >
                   <h3 className="text-2xl border-b-2 font-poppins font-semibold pb-3 text-gray-900">
@@ -412,7 +405,7 @@ export const CommercialDetails = () => {
                 </div>
 
                 <div
-                  className="col-span-12 bg-white p-8 shadow-lg shadow-gray-400 rounded-lg"
+                  className="col-span-12 bg-white p-8 shadow-[0px_0px_10px_rgba(0,0,0,0.3)]"
                   id="Project Amenities"
                 >
                   <h3 className="text-3xl border-b-2 font-poppins font-semibold pb-3 text-gray-900">
@@ -448,15 +441,16 @@ export const CommercialDetails = () => {
                   </div>
                 </div>
 
+                {/* Video Tour */}
                 <div
-                  className="col-span-12 bg-white p-6 shadow-lg shadow-gray-400 rounded-lg"
+                  className="col-span-12 bg-white p-6 sm:p-8 shadow-[0px_0px_10px_rgba(0,0,0,0.3)]"
                   id="video"
                 >
-                  <h3 className="text-3xl border-b-2 font-poppins font-semibold">
+                  <h3 className="text-2xl sm:text-3xl border-b-2 pb-2 font-poppins font-semibold text-[#1d2a3b]">
                     Video Tour
                   </h3>
 
-                  <div className="flex rounded-xl items-center justify-center my-3">
+                  <div className="flex items-center justify-center my-3">
                     {video?.length > 0 ? (
                       <video
                         className="w-full max-w-3xl h-auto rounded-lg shadow-md"
@@ -465,11 +459,11 @@ export const CommercialDetails = () => {
                         loop
                       ></video>
                     ) : (
-                      <div className="flex flex-col items-center">
+                      <div className="text-center">
                         <img
                           src={comingsoon}
-                          alt="Video coming soon"
-                          className="object-contain object-center max-w-xs"
+                          alt="Coming Soon"
+                          className="lg:max-w-[30rem]"
                         />
                         <p className="text-gray-500 mt-2">
                           Video coming soon...
@@ -479,17 +473,8 @@ export const CommercialDetails = () => {
                   </div>
                 </div>
 
-                {/* <div className="col-span-12">
-                  <h3 className="text-xl font-poppins font-semibold">
-                    Address
-                  </h3>
-                  <p className="py-3 text-md">{property?.address}</p>
-                </div> */}
-
-                <div
-                  className="col-span-12 bg-white p-6 shadow-lg shadow-gray-400 rounded-lg"
-                  id="emi"
-                >
+                {/* EMI Calculator */}
+                <div className="col-span-12" id="emi">
                   <Calculator />
                 </div>
               </div>
@@ -506,8 +491,8 @@ export const CommercialDetails = () => {
 
       {/* Featured Projects  */}
       <div className="bg-gray-100 p-3">
-        <h1 className="text-center text-black lg:text-4xl text-2xl font-bold py-8 lg:font-medium">
-          New Launches
+        <h1 className="text-center text-[#1d2a3b] lg:text-4xl text-2xl font-bold py-8 lg:font-medium">
+          Recent Listings
         </h1>
         <Card category="New Launches" />
         <div className="flex justify-center my-3">
@@ -517,9 +502,10 @@ export const CommercialDetails = () => {
               variant="contained"
               endIcon={<EastIcon />}
               sx={{
-                backgroundColor: "#03002e",
+                backgroundColor: "#1d2a3b",
                 color: "white",
                 textTransform: "none",
+                borderBottom: "2px solid gray",
               }}
             >
               View all
