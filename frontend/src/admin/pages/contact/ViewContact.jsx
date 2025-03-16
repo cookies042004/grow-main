@@ -30,7 +30,6 @@ export const ViewContact = () => {
           toast.error("Failed to delete contact");
         }
       } catch (err) {
-        console.error(err);
         toast.error("An error occurred while deleting");
       }
     }

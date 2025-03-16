@@ -27,7 +27,6 @@ export const ViewAwards = () => {
       }
     } catch (err) {
       toast.error("Something went wrong. Please try again.");
-      console.error(err);
     }
   };
 

@@ -7,7 +7,6 @@ const slugify = require("slugify")
 
 const getProperty = async (req, res) => {
     try {
-        console.log("Fetching properties...");
         const properties = await Property.find();
 
         if (!properties.length) {
@@ -23,7 +22,6 @@ const getProperty = async (req, res) => {
             properties,
         });
     } catch (error) {
-        console.error("Error fetching properties:", error);
         res.status(500).json({
             success: false,
             message: "Internal Server Error",
@@ -72,7 +70,6 @@ const getSingleProperty = async (req, res) => {
             property,
         });
     } catch (error) {
-        console.log(error);
         res.status(500).json({
             success: false,
             message: "Internal Server Error",
@@ -121,9 +118,6 @@ const createProperty = async (req, res) => {
             });
         }
 
-        console.log("dp", dp);
-
-
         let formattedAmenities = amenities;
         if (typeof amenities === "string") {
             try {
@@ -132,8 +126,6 @@ const createProperty = async (req, res) => {
                 formattedAmenities = amenities.split(",").map((id) => id.trim());
             }
         }
-
-        console.log("Formatted amenities:", formattedAmenities);
 
         const newProperty = new Property({
             title,
@@ -156,15 +148,12 @@ const createProperty = async (req, res) => {
 
         await newProperty.save();
 
-        console.log("Property created successfully", newProperty);
-
         res.status(201).json({
             success: true,
             message: "Property created successfully",
             property: newProperty,
         });
     } catch (error) {
-        console.error("Error is there:", error);
         res.status(500).json({
             success: false,
             message: "Internal Server Error",
@@ -282,15 +271,12 @@ const updateProperty = async (req, res) => {
 
         await property.save();
 
-        console.log("Property updated successfully", property);
-
         res.status(200).json({
             success: true,
             message: "Property updated successfully",
             property,
         });
     } catch (error) {
-        console.error(error);
         res.status(500).json({
             success: false,
             message: "Internal Server Error",
@@ -333,7 +319,6 @@ const deleteProperty = async (req, res) => {
             message: "Property and associated files deleted successfully",
         });
     } catch (error) {
-        console.error(error);
         res.status(500).json({
             success: false,
             message: "Internal Server Error",
@@ -344,7 +329,6 @@ const deleteProperty = async (req, res) => {
 
 // Search Property
 const searchProperty = async (req, res) => {
-    console.log("Search Property Request:", req.query);
     try {
         const {
             query
@@ -375,7 +359,6 @@ const searchProperty = async (req, res) => {
             properties,
         });
     } catch (error) {
-        console.log("Error in searchProperty:", error);
         res.status(500).json({
             success: false,
             message: "Internal Server Error",
@@ -423,7 +406,6 @@ const recentProperty = async (req, res) => {
             properties: recentProperties,
         });
     } catch (error) {
-        console.log("Error in recentProperty:", error);
         res.status(500).json({
             success: false,
             message: "Internal Server Error",

@@ -15,7 +15,7 @@ import {
   Select,
   TextField,
   Typography,
-  IconButton
+  IconButton,
 } from "@mui/material";
 import { useFetchData } from "../../../hooks/useFetchData";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
@@ -33,7 +33,6 @@ export const UpdateProperty = () => {
   const { data, loading, error, refetch } = useFetchData(
     `${process.env.BASE_URL}/api/v1/property/${id}`
   );
-  console.log("DATA IS", data?.property);
 
   // Fetch categories and amenities data
   const {
@@ -53,7 +52,6 @@ export const UpdateProperty = () => {
   } = useFetchData(`${process.env.BASE_URL}/api/v1/amenities`);
 
   const amenities = amenitiesData?.amenity || [];
-  console.log("amenities is", amenities);
 
   // State to manage form data
   const [formData, setFormData] = useState({
@@ -87,7 +85,7 @@ export const UpdateProperty = () => {
   // Ref to the file input element
   const imageInputRef = useRef();
   const videoInputRef = useRef();
-    const dpInputRef = useRef();
+  const dpInputRef = useRef();
 
   // Load property data into formData when property is fetched
   useEffect(() => {
@@ -135,7 +133,6 @@ export const UpdateProperty = () => {
       );
     }
   }, [data]);
-  // console.log("Uploaded videos", uploadedVideos);
 
   // Handle form input changes
   const handleChange = (event) => {
@@ -256,26 +253,25 @@ export const UpdateProperty = () => {
     }
   };
 
-    const handleDescriptionUpload = (event) => {
-      const file = event.target.files[0];
-      let maxSize = 1024 * 1024 * 2; // 2Mb max
-      if (file.size > maxSize) {
-        toast.error(`Dp size should be less than 2Mb`);
+  const handleDescriptionUpload = (event) => {
+    const file = event.target.files[0];
+    let maxSize = 1024 * 1024 * 2; // 2Mb max
+    if (file.size > maxSize) {
+      toast.error(`Dp size should be less than 2Mb`);
+    } else {
+      if (
+        file &&
+        (file.type === "image/jpeg" ||
+          file.type === "image/png" ||
+          file.type === "image/jpg" ||
+          file.type === "image/webp")
+      ) {
+        setUploadedDpImage(file);
       } else {
-        if (
-          file &&
-          (file.type === "image/jpeg" ||
-            file.type === "image/png" ||
-            file.type === "image/jpg" ||
-            file.type === "image/webp")
-        ) {
-          setUploadedDpImage(file);
-        } else {
-          toast.error(`Invalid image file.`);
-        }
+        toast.error(`Invalid image file.`);
       }
-    };
-  
+    }
+  };
 
   const renderDescriptionPreview = () => {
     if (!uploadedDpImage || !(uploadedDpImage instanceof File)) return null; // Ensure it's a valid File
@@ -455,7 +451,6 @@ export const UpdateProperty = () => {
       setUploadedVideos(null);
     } catch (error) {
       setButtonLoading(false);
-      console.error("Error updating property:", error);
       toast.error("Failed to update property.");
     }
   };

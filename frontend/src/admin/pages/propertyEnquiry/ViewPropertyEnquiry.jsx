@@ -18,7 +18,6 @@ export const ViewPropertyEnquiry = () => {
         alert("Enquiry deleted successfully");
         refetch();
       } catch (error) {
-        console.error(error);
         alert("Failed to delete enquiry");
       }
     }

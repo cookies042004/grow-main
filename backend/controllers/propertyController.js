@@ -18,7 +18,6 @@ const getProperty = async (req, res) => {
       properties,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       success: false,
       messsage: "Internal Server Error",
@@ -68,7 +67,6 @@ const getSingleProperty = async (req, res) => {
       property,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       success: false,
       message: "Internal Server Error",
@@ -148,15 +146,12 @@ const createProperty = async (req, res) => {
 
     await newProperty.save();
 
-    console.log("Property created successfully", newProperty);
-
     res.status(201).json({
       success: true,
       message: "Property created successfully",
       property: newProperty,
     });
   } catch (error) {
-    console.error(error);
     res.status(500).json({
       success: false,
       message: "Internal Server Error",
@@ -258,7 +253,6 @@ const updateProperty = async (req, res) => {
       property,
     });
   } catch (error) {
-    console.error(error);
     res.status(500).json({
       success: false,
       message: "Internal Server Error",
@@ -307,7 +301,6 @@ const deleteProperty = async (req, res) => {
       message: "Property and associated files deleted successfully",
     });
   } catch (error) {
-    console.error(error);
     res.status(500).json({
       success: false,
       message: "Internal Server Error",
@@ -318,7 +311,6 @@ const deleteProperty = async (req, res) => {
 
 // Search Property
 const searchProperty = async (req, res) => {
-  console.log("Search Property Request:", req.query);
   try {
     const {
       query
@@ -367,7 +359,6 @@ const searchProperty = async (req, res) => {
       properties,
     });
   } catch (error) {
-    console.log("Error in searchProperty:", error);
     res.status(500).json({
       success: false,
       message: "Internal Server Error",
@@ -415,7 +406,6 @@ const recentProperty = async (req, res) => {
       properties: recentProperties,
     });
   } catch (error) {
-    console.log("Error in recentProperty:", error);
     res.status(500).json({
       success: false,
       message: "Internal Server Error",

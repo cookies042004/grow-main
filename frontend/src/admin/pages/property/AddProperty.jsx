@@ -109,7 +109,6 @@ export const AddProperty = () => {
     const { name, checked } = event.target; // Use name instead of value
 
     if (name === "selectAll") {
-      console.log("Select All");
       if (type === "societyAmenities") setSelectAllSociety(checked);
       if (type === "flatAmenities") setSelectAllFlat(checked);
       if (type === "locationAdvantages") setSelectAllLocation(checked);
@@ -390,7 +389,6 @@ export const AddProperty = () => {
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      console.error("Error adding property:", error);
       toast.error("Failed to add property.", error);
     }
   };

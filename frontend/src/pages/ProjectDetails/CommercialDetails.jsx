@@ -46,8 +46,6 @@ export const CommercialDetails = () => {
         );
         const data = await res.json();
 
-        console.log("data is ", data);
-
         if (data.property) {
           setProperty(data.property); // Store full property data
           setPropertyId(data.property._id); // Store ID
@@ -73,8 +71,6 @@ export const CommercialDetails = () => {
       });
   }, []);
 
-  console.log("amenities", allAmenities);
-
   useEffect(() => {
     if (property?.amenities?.length && Array.isArray(allAmenities)) {
       const matchedAmenities = allAmenities.filter((amenity) =>
@@ -83,10 +79,6 @@ export const CommercialDetails = () => {
       setFilteredAmenities(matchedAmenities);
     }
   }, [property, allAmenities]);
-
-  console.log("filtered,", filteredAmenities);
-
-  console.log("property is ", property);
 
   // Fetch full property details using ID (when propertyId is available)
   const apiUrl = propertyId

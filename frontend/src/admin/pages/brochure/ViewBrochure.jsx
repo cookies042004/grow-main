@@ -47,7 +47,6 @@ export const ViewBrochure = () => {
           toast.error("Failed to delete brochure");
         }
       } catch (err) {
-        console.error(err);
         toast.error("An error occurred while deleting");
       }
     }

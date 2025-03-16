@@ -12,8 +12,7 @@ export const PropertyCard1 = ({ title }) => {
   const submitHandler = () => {
     if(title ===  "Commercial") {
       navigate(`/commercial/${title}`);
-    } else {  
-      console.log("title is:",title)
+    } else {
       navigate(`/property/${title}`);
     }
   };
