@@ -56,7 +56,7 @@ export const Calculator = () => {
   };
 
   return (
-    <div className="max-w-[1280px] mx-auto my-5 bg-white rounded-lg shadow-lg shadow-gray- p-8 lg:p-10 border">
+    <div className="max-w-[1280px] mx-auto my-5 bg-white rounded-lg shadow-lg shadow-gray- p-8 lg:p-10 border z-[99999999]">
       <div className="grid grid-cols-1">
         {/* Header Section */}
         <div className="col-span-2 mb-6">
@@ -188,27 +188,24 @@ export const Calculator = () => {
           <Link to="/"> +91-9990052554</Link>
         </button> */}
 
-      <div className="flex flex-row items-center gap-3 w-full">
-        <div className="flex flex-row justify-between items-center border border-gray-200 py-2 px-4 mt-6 w-full">
-          {/* Left Content */}
-          <div>
-            <h2 className="font-bold text-xl text-lg text-gray-700">
-              Still Confused?
-            </h2>
-            <p className="font-semibold text-lg text-lg text-gray-600">
-              Give us a call on the given number..
-            </p>
-          </div>
+<div className="w-full flex justify-center px-4">
+  <div className="flex flex-col sm:flex-row justify-between items-center border border-gray-200 py-4 px-6 mt-6 w-full max-w-2xl rounded-lg shadow-md bg-white">
+    {/* Left Content */}
+    <div className="text-center sm:text-left">
+      <h2 className="font-bold text-lg text-gray-700">Still Confused?</h2>
+      <p className="font-semibold text-sm text-gray-600">
+        Give us a call on the given number.
+      </p>
+    </div>
 
-          {/* Right Content (Phone Number) */}
-          <div className="pl-5">
-            <button className="flex items-center gap-1 bg-[#1d2a3b] p-2 rounded-lg px-4 text-white">
-              <PhoneIcon />
-              <Link to="/"> +91-9990052554</Link>
-            </button>
-          </div>
-        </div>
-      </div>
+    {/* Right Content (Phone Button) */}
+    <button className="flex items-center gap-2 bg-[#1d2a3b] text-white py-2 px-4 mt-3 sm:mt-0 rounded-lg w-full sm:w-auto justify-center sm:justify-start hover:bg-opacity-90 transition">
+      <PhoneIcon />
+      <Link to="/" className="font-semibold">+91-9990052554</Link>
+    </button>
+  </div>
+</div>
+
     </div>
   );
 };

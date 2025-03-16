@@ -965,6 +965,7 @@ export const AddProperty = () => {
                   </RadioGroup>
                 </FormControl>
               </Box>
+
               <Box
                 sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 2 }}
               >
@@ -1062,10 +1063,18 @@ export const AddProperty = () => {
                 <Button
                   variant="contained"
                   color="secondary"
-                  startIcon={!loading && <AddCircleIcon />} // Conditional rendering for the icon
+                  startIcon={!loading && <AddCircleIcon />}
                   type="submit"
                   size="small"
-                  style={{ textTransform: "none", width: "130px" }}
+                  onClick={handleSubmit}
+                  sx={{
+                    width: "150px",
+                    alignSelf: "center",
+                    textTransform: "none",
+                    borderRadius: "8px",
+                    fontWeight: "500",
+                    ":hover": { backgroundColor: "#d32f2f" },
+                  }}
                 >
                   {loading ? (
                     <CircularProgress size="25px" sx={{ color: "white" }} />

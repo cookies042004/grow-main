@@ -24,6 +24,7 @@
     "framer-motion": "^12.4.4",
     "jquery": "^3.7.1",
     "js-cookie": "^3.0.5",
+    "lottie-react": "^2.4.1",
     "lucide-react": "^0.475.0",
     "num-words": "^1.2.3",
     "number-to-words": "^1.2.4",

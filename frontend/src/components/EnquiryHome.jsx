@@ -71,7 +71,7 @@ export const EnquiryHome = () => {
     <>
       {/* Floating Button to Open Modal */}
       <div
-        className={`hidden lg:block fixed right-0 top-[24%] rounded-lg transition-transform duration-300 ease-in-out ${
+        className={`hidden lg:block fixed right-0 top-[20%] z-[999999] rounded-lg transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-[0]" : "translate-x-[0]"
         }`}
       >

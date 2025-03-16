@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import HomeIcon from "@mui/icons-material/Home";
 import SquareFootIcon from "@mui/icons-material/SquareFoot";
-import { Button } from "@mui/material";
+import { Button, Tooltip } from "@mui/material";
 import CallIcon from "@mui/icons-material/Call";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import DoneIcon from "@mui/icons-material/Done";
 import { Link } from "react-router-dom";
 import { PropertyEnquiryForm } from "./PropertyEnquiryForm";
-import './LatestNews.css'
+import "./LatestNews.css";
 
 export const PropertyCard = ({
   id,
@@ -23,7 +23,7 @@ export const PropertyCard = ({
   price,
   propertyType,
   customcategory,
-  category
+  category,
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -62,20 +62,22 @@ export const PropertyCard = ({
     <div className="border relative p-2 hover:shadow-2xl bg-white transition-all duration-300">
       {/* Property Image */}
       <div className="flex justify-center">
-        <img
-          src={image}
-          alt={name}
-          className="h-[230px] w-full object-cover"
-        />
+        <img src={image} alt={name} className="h-[230px] w-full object-cover" />
       </div>
-  
+
       {/* Property Details */}
       <div className="mt-3 font-roboto text-sm flex justify-between px-3">
-        <div>
-          <p className="font-semibold text-base text-[#1d2a3b]">{name}</p>
+        <div className="flex-1 min-w-0">
+          <Tooltip title={name} arrow>
+            <p className="font-semibold text-base text-[#1d2a3b] truncate cursor-pointer">
+              {name}
+            </p>
+          </Tooltip>
           <p className="text-[#1d2a3b] font-normal text-[12px]">By {builder}</p>
         </div>
-        <p className="font-semibold text-[#1d2a3b] text-lg">₹{toINRCr(price)}*</p>
+        <p className="font-semibold text-[#1d2a3b] text-lg">
+          ₹{toINRCr(price)}*
+        </p>
       </div>
 
       {/* Location */}
@@ -99,7 +101,7 @@ export const PropertyCard = ({
           <span>{divide(sizeUnit)}</span>
         </div>
       </div>
-  
+
       {/* Action Buttons */}
       <div className="mt-5 flex gap-3">
         <div className="flex-1">
@@ -130,10 +132,10 @@ export const PropertyCard = ({
           </Button>
         </div>
       </div>
-  
+
       {/* Property Enquiry Form */}
       <PropertyEnquiryForm id={id} handleClose={handleClose} open={open} />
-  
+
       {/* Property Type Badge */}
       <div className="absolute top-[20px]">
         <Button
@@ -148,5 +150,4 @@ export const PropertyCard = ({
       </div>
     </div>
   );
-  
 };

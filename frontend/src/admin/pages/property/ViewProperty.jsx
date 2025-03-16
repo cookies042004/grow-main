@@ -1,11 +1,19 @@
 import React, { useState } from "react";
-import { Box, Card, CardContent, Button, Typography, Modal } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardContent,
+  Button,
+  Typography,
+  Modal,
+} from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useFetchData } from "../../../hooks/useFetchData";
+import { Margin } from "@mui/icons-material";
 
 export const ViewProperty = () => {
   document.title = "View Property";
@@ -14,9 +22,8 @@ export const ViewProperty = () => {
   const { data, loading, error, refetch } = useFetchData(apiUrl);
   const properties = data?.properties || [];
 
-  console.log(properties)
-
   const [selectedProperty, setSelectedProperty] = useState(null);
+  const [visibleCount, setVisibleCount] = useState(6); // Initially show 6 properties
 
   const handleDelete = async (propertyId) => {
     try {
@@ -38,15 +45,64 @@ export const ViewProperty = () => {
   return (
     <>
       <ToastContainer />
-      <div style={{ display: "flex", justifyContent: "center", marginTop: "20px", fontSize: "2rem", fontFamily: "sans-serif", fontWeight: "bold" }}>
+
+      <div
+        style={{
+          display: "flex",
+          padding: "12px",
+          gap: "5px",
+          marginTop: "15px",
+          marginBottom: "15px",
+        }}
+      >
+        <Link to="/admin/dashboard">
+          <Button
+            variant="contained"
+            color="primary"
+          >
+            Back
+          </Button>
+        </Link>
+        <Link to="/admin/add-property">
+          <Button
+            variant="contained"
+            color="success"
+          >
+            Create New Property
+          </Button>
+        </Link>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: "20px",
+          fontSize: "2rem",
+          fontFamily: "sans-serif",
+          fontWeight: "bold",
+        }}
+      >
         View Property
       </div>
-      <div style={{ padding: "20px", marginTop: "60px", display: "flex", flexWrap: "wrap", gap: "20px", justifyContent: "center" }}>
+
+      {/* Properties List */}
+      <div
+        style={{
+          padding: "20px",
+          marginTop: "60px",
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "20px",
+          justifyContent: "center",
+        }}
+      >
         {loading && <Typography>Loading properties...</Typography>}
         {error && <Typography color="error">Error: {error}</Typography>}
-        {properties.length === 0 && !loading && <Typography>No properties found</Typography>}
+        {properties.length === 0 && !loading && (
+          <Typography>No properties found</Typography>
+        )}
 
-        {properties.map((property) => (
+        {properties.slice(0, visibleCount).map((property) => (
           <Card
             key={property._id}
             style={{
@@ -61,23 +117,59 @@ export const ViewProperty = () => {
             onClick={() => setSelectedProperty(property)}
           >
             <img
-              src={property.image?.[0] ? property.image?.[0] : "/placeholder.jpg"}
+              src={
+                property.image?.[0] ? property.image?.[0] : "/placeholder.jpg"
+              }
               alt={property.name}
               style={{ width: "100%", height: "180px", objectFit: "cover" }}
             />
             <CardContent>
-              <Typography variant="h6" style={{ fontWeight: "lighter", textAlign: "center" }}>{property.category.name}</Typography>
-              <Typography variant="h6" style={{ fontWeight: "bold" }}>{property.name}</Typography>
-              <Typography variant="body2" color="textSecondary">By {property.location}</Typography>
-              <Typography variant="body2" color="primary">₹ {property.price}</Typography>
+              <Typography
+                variant="h6"
+                style={{ fontWeight: "lighter", textAlign: "center" }}
+              >
+                {property.category.name}
+              </Typography>
+              <Typography variant="h6" style={{ fontWeight: "bold" }}>
+                {property.name}
+              </Typography>
+              <Typography variant="body2" color="textSecondary">
+                By {property.location}
+              </Typography>
+              <Typography variant="body2" color="primary">
+                ₹ {property.price}
+              </Typography>
             </CardContent>
           </Card>
         ))}
       </div>
 
+      {/* Load More Button */}
+      {visibleCount < properties.length && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "15px",
+            marginBottom: "15px",
+          }}
+        >
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => setVisibleCount(visibleCount + 6)}
+          >
+            Load More
+          </Button>
+        </div>
+      )}
+
       {/* Modal for Detailed View */}
       {selectedProperty && (
-        <Modal open={!!selectedProperty} onClose={() => setSelectedProperty(null)}>
+        <Modal
+          open={!!selectedProperty}
+          onClose={() => setSelectedProperty(null)}
+        >
           <Box
             style={{
               position: "absolute",
@@ -93,23 +185,63 @@ export const ViewProperty = () => {
               textAlign: "center",
             }}
           >
-            <Typography variant="h5" style={{ fontWeight: "bold", marginBottom: "10px" }}>{selectedProperty.name}</Typography>
+            <Typography
+              variant="h5"
+              style={{ fontWeight: "bold", marginBottom: "10px" }}
+            >
+              {selectedProperty.name}
+            </Typography>
             <img
-              src={selectedProperty.image?.[0] ? selectedProperty.image?.[0] : "/placeholder.jpg"}
+              src={
+                selectedProperty.image?.[0]
+                  ? selectedProperty.image?.[0]
+                  : "/placeholder.jpg"
+              }
               alt={selectedProperty.name}
-              style={{ width: "100%", height: "250px", objectFit: "cover", borderRadius: "10px" }}
+              style={{
+                width: "100%",
+                height: "250px",
+                objectFit: "cover",
+                borderRadius: "10px",
+              }}
             />
-            <Typography variant="body1" style={{ marginTop: "10px" }}>Category: {selectedProperty.category?.name}</Typography>
-            <Typography variant="body1">Builder: {selectedProperty.builder}</Typography>
-            <Typography variant="body1">Location: {selectedProperty.location}</Typography>
-            <Typography variant="body1">Size: {selectedProperty.size} sqft</Typography>
-            <Typography variant="body1">Furnish Type: {selectedProperty.furnishType}</Typography>
-            <Typography variant="body1">Unit: {selectedProperty.unit}</Typography>
-            <Typography variant="body1" style={{ marginBottom: "10px" }}>Price: ₹ {selectedProperty.price}</Typography>
-            
-            <Box style={{ display: "flex", justifyContent: "space-around", marginTop: "20px" }}>
+            <Typography variant="body1" style={{ marginTop: "10px" }}>
+              Category: {selectedProperty.category?.name}
+            </Typography>
+            <Typography variant="body1">
+              Builder: {selectedProperty.builder}
+            </Typography>
+            <Typography variant="body1">
+              Location: {selectedProperty.location}
+            </Typography>
+            <Typography variant="body1">
+              Size: {selectedProperty.size} sqft
+            </Typography>
+            <Typography variant="body1">
+              Furnish Type: {selectedProperty.furnishType}
+            </Typography>
+            <Typography variant="body1">
+              Unit: {selectedProperty.unit}
+            </Typography>
+            <Typography variant="body1" style={{ marginBottom: "10px" }}>
+              Price: ₹ {selectedProperty.price}
+            </Typography>
+
+            <Box
+              style={{
+                display: "flex",
+                justifyContent: "space-around",
+                marginTop: "20px",
+              }}
+            >
               <Link to={`/admin/update-property/${selectedProperty._id}`}>
-                <Button variant="contained" color="primary" startIcon={<EditIcon />}>Edit</Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  startIcon={<EditIcon />}
+                >
+                  Edit
+                </Button>
               </Link>
               <Button
                 variant="contained"

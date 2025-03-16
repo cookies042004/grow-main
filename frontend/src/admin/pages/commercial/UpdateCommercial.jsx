@@ -123,12 +123,14 @@ export const UpdateCommercial = () => {
   // Handle checkbox changes
   const handleCheckboxChange = (event) => {
     const { name, checked } = event.target;
-  
+
     setFormData((prevFormData) => {
-      const currentAmenities = Array.isArray(prevFormData.amenities) ? prevFormData.amenities : [];
-  
+      const currentAmenities = Array.isArray(prevFormData.amenities)
+        ? prevFormData.amenities
+        : [];
+
       let updatedAmenities;
-      
+
       if (name === "selectAll") {
         updatedAmenities = checked ? amenities.map((a) => a._id) : [];
       } else {
@@ -136,16 +138,14 @@ export const UpdateCommercial = () => {
           ? [...currentAmenities, name] // Add checked amenity
           : currentAmenities.filter((id) => id !== name); // Remove unchecked amenity
       }
-      
+
       setTimeout(() => {
         setSelectAll(updatedAmenities.length === amenities.length);
       }, 0);
-  
+
       return { ...prevFormData, amenities: updatedAmenities };
     });
   };
-  
-
 
   // radio button handler
   const handleRadioChange = (event, type) => {
@@ -212,6 +212,7 @@ export const UpdateCommercial = () => {
       }
     }
   };
+  
   const handleDescriptionUpload = (event) => {
     const file = event.target.files[0];
     let maxSize = 1024 * 1024 * 2; // 2Mb max
@@ -546,16 +547,12 @@ export const UpdateCommercial = () => {
               <Box
                 sx={{
                   display: "flex",
+                  gap: 2,
                   flexDirection: "column",
-                  gap: 3,
-                  mt: 3,
-                  p: 3,
-                  border: "1px solid #E0E0E0",
-                  borderRadius: "12px",
-                  backgroundColor: "#fff",
-                  boxShadow: "0 4px 10px rgba(0, 0, 0, 0.08)",
-                  maxWidth: "600px",
-                  margin: "auto",
+                  padding: "12px",
+                  border: "2px solid #ccc",
+                  borderRadius: "8px",
+                  backgroundColor: "#f9f9f9",
                 }}
               >
                 <Typography
@@ -643,16 +640,13 @@ export const UpdateCommercial = () => {
               <Box
                 sx={{
                   display: "flex",
+                  gap: 2,
+                  mt: 2,
                   flexDirection: "column",
-                  gap: 3,
-                  mt: 3,
-                  p: 3,
-                  border: "1px solid #E0E0E0",
-                  borderRadius: "12px",
-                  backgroundColor: "#fff",
-                  boxShadow: "0 4px 10px rgba(0, 0, 0, 0.08)",
-                  maxWidth: "600px",
-                  margin: "auto",
+                  padding: "12px",
+                  border: "2px solid #ccc",
+                  borderRadius: "8px",
+                  backgroundColor: "#f9f9f9",
                 }}
               >
                 <Typography
@@ -726,16 +720,13 @@ export const UpdateCommercial = () => {
               <Box
                 sx={{
                   display: "flex",
+                  gap: 2,
+                  mt: 2,
                   flexDirection: "column",
-                  gap: 3,
-                  mt: 3,
-                  p: 3,
-                  border: "1px solid #E0E0E0",
-                  borderRadius: "12px",
-                  backgroundColor: "#fff",
-                  boxShadow: "0 4px 10px rgba(0, 0, 0, 0.08)",
-                  maxWidth: "600px",
-                  margin: "auto",
+                  padding: "12px",
+                  border: "2px solid #ccc",
+                  borderRadius: "8px",
+                  backgroundColor: "#f9f9f9",
                 }}
               >
                 {/* Title */}
@@ -776,6 +767,7 @@ export const UpdateCommercial = () => {
                   display: "flex",
                   flexWrap: "wrap",
                   gap: "12px",
+                  mt: 2,
                   padding: "10px",
                   borderRadius: "8px",
                   border: "1px solid #ddd",
@@ -817,21 +809,7 @@ export const UpdateCommercial = () => {
                   ))}
               </Box>
 
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 3,
-                  mt: 3,
-                  p: 3,
-                  border: "1px solid #E0E0E0",
-                  borderRadius: "12px",
-                  backgroundColor: "#fff",
-                  boxShadow: "0 4px 10px rgba(0, 0, 0, 0.08)",
-                  maxWidth: "600px",
-                  margin: "auto",
-                }}
-              >
+              <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
                 <Typography
                   variant="h5"
                   sx={{ textAlign: "center", fontWeight: "600", color: "#333" }}

@@ -33,6 +33,7 @@ import { CommercialDetails } from "./pages/ProjectDetails/CommercialDetails.jsx"
 import { SingleProject } from "./pages/SingleProject/SingleProject.jsx";
 import { ViewPropertyEnquiry } from "./admin/pages/propertyEnquiry/ViewPropertyEnquiry.jsx";
 import { PrivacyPolicy } from "./pages/PrivacyPolicy/PrivacyPolicy.jsx";
+import { TermCondition } from "./pages/TermCondition/TermCondition.jsx"
 import { Awards } from "./pages/Awards/Awards.jsx";
 import { AddEvents } from "./admin/pages/events/AddEvents.jsx";
 import { ViewEvents } from "./admin/pages/events/ViewEvents.jsx";
@@ -55,6 +56,7 @@ const App = () => {
       <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
       <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+      <Route path="/terms-conditions" element={<TermCondition />} />
       <Route path="/event" element={<Event />} />
       <Route path="/event/:id" element={<SingleEvent />} />
       <Route path="/project/:slug" element={<ProjectDetails />} />

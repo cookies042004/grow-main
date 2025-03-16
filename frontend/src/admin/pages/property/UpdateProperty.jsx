@@ -15,9 +15,11 @@ import {
   Select,
   TextField,
   Typography,
+  IconButton
 } from "@mui/material";
 import { useFetchData } from "../../../hooks/useFetchData";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import CloseIcon from "@mui/icons-material/Close";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -75,6 +77,7 @@ export const UpdateProperty = () => {
   // State to track uploaded images and brochure
   const [uploadedImages, setUploadedImages] = useState([]);
   const [uploadedVideos, setUploadedVideos] = useState(null);
+  const [uploadedDpImage, setUploadedDpImage] = useState(null);
   // State to manage select all
   const [selectAllSociety, setSelectAllSociety] = useState([]);
   const [selectAllFlat, setSelectAllFlat] = useState([]);
@@ -84,6 +87,7 @@ export const UpdateProperty = () => {
   // Ref to the file input element
   const imageInputRef = useRef();
   const videoInputRef = useRef();
+    const dpInputRef = useRef();
 
   // Load property data into formData when property is fetched
   useEffect(() => {
@@ -112,6 +116,7 @@ export const UpdateProperty = () => {
           ?.map((amenity) => amenity._id),
       });
       setUploadedImages(property.images || []);
+      setUploadedDpImage(property.dp || null);
       // setUploadedVideos(property.video || null  );
       setSizeUnit(property.sizeUnit);
       setSelectAllSociety(
@@ -251,6 +256,75 @@ export const UpdateProperty = () => {
     }
   };
 
+    const handleDescriptionUpload = (event) => {
+      const file = event.target.files[0];
+      let maxSize = 1024 * 1024 * 2; // 2Mb max
+      if (file.size > maxSize) {
+        toast.error(`Dp size should be less than 2Mb`);
+      } else {
+        if (
+          file &&
+          (file.type === "image/jpeg" ||
+            file.type === "image/png" ||
+            file.type === "image/jpg" ||
+            file.type === "image/webp")
+        ) {
+          setUploadedDpImage(file);
+        } else {
+          toast.error(`Invalid image file.`);
+        }
+      }
+    };
+  
+
+  const renderDescriptionPreview = () => {
+    if (!uploadedDpImage || !(uploadedDpImage instanceof File)) return null; // Ensure it's a valid File
+
+    return (
+      <Box
+        sx={{
+          position: "relative",
+          display: "inline-block",
+          width: 100,
+          height: 100,
+          borderRadius: "8px",
+          overflow: "hidden",
+          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.2)",
+          "&:hover .delete-image": { opacity: 1 },
+        }}
+      >
+        <img
+          src={URL.createObjectURL(uploadedDpImage)}
+          alt="Preview"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            borderRadius: "8px",
+          }}
+        />
+        <IconButton
+          className="delete-image"
+          onClick={() => setUploadedDpImage(null)}
+          sx={{
+            position: "absolute",
+            top: 5,
+            right: 5,
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            color: "white",
+            width: 20,
+            height: 20,
+            opacity: 0,
+            transition: "opacity 0.3s ease",
+            "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.7)" },
+          }}
+        >
+          <CloseIcon sx={{ fontSize: 14 }} />
+        </IconButton>
+      </Box>
+    );
+  };
+
   // Function to remove image
   const removeImage = (index) => {
     setUploadedImages((prevImages) =>
@@ -354,7 +428,9 @@ export const UpdateProperty = () => {
       formDataToSend.append("video", uploadedVideos);
     }
 
-    formDataToSend.append("sizeUnit", sizeUnit); //SIZEUNIT ADDED HERE
+    formDataToSend.append("image", uploadedDpImage);
+
+    formDataToSend.append("sizeUnit", sizeUnit);
 
     try {
       const response = await axios.patch(
@@ -386,7 +462,7 @@ export const UpdateProperty = () => {
 
   const inWords = (num) => {
     const price = Number(num);
-    
+
     const ones = [
       "Zero",
       "One",
@@ -427,11 +503,39 @@ export const UpdateProperty = () => {
       if (num === 0) return "";
       if (num < 10) return ones[num];
       if (num < 20) return teens[num - 10];
-      if (num < 100) return tens[Math.floor(num / 10) - 2] + " " + toWords(num % 10);
-      if (num < 1000) return ones[Math.floor(num / 100)] + " " + suffixes[1] + " " + toWords(num % 100);
-      if (num < 100000) return toWords(Math.floor(num / 1000)) + " " + suffixes[2] + " " + toWords(num % 1000);
-      if (num < 10000000) return toWords(Math.floor(num / 100000)) + " " + suffixes[3] + " " + toWords(num % 100000);
-      return toWords(Math.floor(num / 10000000)) + " " + suffixes[4] + " " + toWords(num % 10000000);
+      if (num < 100)
+        return tens[Math.floor(num / 10) - 2] + " " + toWords(num % 10);
+      if (num < 1000)
+        return (
+          ones[Math.floor(num / 100)] +
+          " " +
+          suffixes[1] +
+          " " +
+          toWords(num % 100)
+        );
+      if (num < 100000)
+        return (
+          toWords(Math.floor(num / 1000)) +
+          " " +
+          suffixes[2] +
+          " " +
+          toWords(num % 1000)
+        );
+      if (num < 10000000)
+        return (
+          toWords(Math.floor(num / 100000)) +
+          " " +
+          suffixes[3] +
+          " " +
+          toWords(num % 100000)
+        );
+      return (
+        toWords(Math.floor(num / 10000000)) +
+        " " +
+        suffixes[4] +
+        " " +
+        toWords(num % 10000000)
+      );
     };
 
     return toWords(price);
@@ -584,8 +688,11 @@ export const UpdateProperty = () => {
                   style={{ width: "50%" }}
                 />
 
-                <FormControl variant="outlined" size="small" 
-                    style={{ width: "10%" }}>
+                <FormControl
+                  variant="outlined"
+                  size="small"
+                  style={{ width: "10%" }}
+                >
                   <InputLabel id="size-input-label">Unit Type</InputLabel>
                   <Select
                     labelId="size-input-label"
@@ -600,19 +707,20 @@ export const UpdateProperty = () => {
                   </Select>
                 </FormControl>
 
-                  <TextField
-                    label="Enter Price (in digits)*"
-                    variant="outlined"
-                    color="secondary"
-                    size="small"
-                    name="price"
-                    value={formData.price}
-                    onChange={handleChange}
-                    style={{ width: "50%" }}
-                  />
-                  <Typography variant="body2">
-                    Price in words: {formData.price ? inWords(Number(formData.price)) : "N/A"}
-                  </Typography>
+                <TextField
+                  label="Enter Price (in digits)*"
+                  variant="outlined"
+                  color="secondary"
+                  size="small"
+                  name="price"
+                  value={formData.price}
+                  onChange={handleChange}
+                  style={{ width: "50%" }}
+                />
+                <Typography variant="body2">
+                  Price in words:{" "}
+                  {formData.price ? inWords(Number(formData.price)) : "N/A"}
+                </Typography>
               </Box>
 
               <Box
@@ -948,13 +1056,50 @@ export const UpdateProperty = () => {
                   </Typography>
                 </FormControl>
 
+                <FormControl
+                  sx={{ display: "flex", flexDirection: "column", gap: 1 }}
+                >
+                  <FormLabel>Upload Dealer Logo's</FormLabel>
+                  <input
+                    accept="image/*"
+                    style={{ display: "none" }}
+                    id="description-upload-input"
+                    type="file"
+                    ref={dpInputRef}
+                    onChange={handleDescriptionUpload}
+                  />
+                  <label htmlFor="description-upload-input">
+                    <Button
+                      variant="outlined"
+                      component="span"
+                      size="small"
+                      sx={{
+                        textTransform: "none",
+                        borderRadius: "8px",
+                        ":hover": { backgroundColor: "#f5f5f5" },
+                      }}
+                    >
+                      Enter Property DP
+                    </Button>
+                  </label>
+                  <Box sx={{ mt: 2 }}>{renderDescriptionPreview()}</Box>
+                </FormControl>
+
                 <Button
                   variant="contained"
                   color="secondary"
-                  startIcon={!buttonLoading && <AddCircleIcon />} // Conditional rendering for the icon
+                  startIcon={!loading && <AddCircleIcon />}
                   type="submit"
                   size="small"
-                  style={{ textTransform: "none", width: "150px" }}
+                  onClick={handleSubmit}
+                  sx={{
+                    width: "150px",
+                    alignSelf: "center",
+                    textTransform: "none",
+                    borderRadius: "8px",
+                    fontWeight: "500",
+                    ":hover": { backgroundColor: "#d32f2f" },
+                  }}
                 >
                   {buttonLoading ? (
                     <CircularProgress size="25px" sx={{ color: "white" }} />

@@ -66,8 +66,38 @@ const getTotalPropertyEnquiry = async (req, res) => {
   }
 };
 
+const deleteEnquiryContacts = async (req, res) => {
+  try {
+    const contactId = req.params.id;
+
+    const deletedContact = await propertyEnquiry.findByIdAndDelete(contactId);
+
+    if (!deletedContact) {
+      return res.status(404).json({
+        success: false,
+        message: "Contact not found",
+      });
+    }
+
+    const contact = await propertyEnquiry.find();
+
+    res.status(200).json({
+      success: true,
+      message: "Contact deleted successfully",
+      contact,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(200).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
+
 module.exports = {
   createPropertyEnquiry,
   getPropertyEnquiry,
   getTotalPropertyEnquiry,
+  deleteEnquiryContacts
 };

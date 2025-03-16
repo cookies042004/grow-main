@@ -5,7 +5,7 @@
     Calculate as CalculateIcon,
     Cancel as CancelIcon,
   } from "@mui/icons-material";
-  import { Calculator } from "./Calculator";
+  import { CalculatorHome } from "./CalculatorHome";
   import { Link } from "react-router-dom";
 
   export const Layout = ({ children }) => {
@@ -142,7 +142,7 @@
                 </div>
 
                 {/* Calculator Component */}
-                {calculator && <Calculator />}
+                {calculator && <CalculatorHome  />}
               </div>
             </>
           )}

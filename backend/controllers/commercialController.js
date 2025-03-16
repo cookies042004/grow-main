@@ -32,9 +32,6 @@ const getProperty = async (req, res) => {
     }
 };
 
-
-
-
 // Get By Name
 const getByName = async (req, res) => {
     try {

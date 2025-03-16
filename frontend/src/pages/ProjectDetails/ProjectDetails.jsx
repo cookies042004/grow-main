@@ -141,7 +141,7 @@ export const ProjectDetails = () => {
 
     if (targetElement) {
       window.scrollTo({
-        top: targetElement.offsetTop - 200, // Adjust according to navbar height
+        top: targetElement.offsetTop - 100, // Adjust according to navbar height
         behavior: "smooth",
       });
     }
@@ -190,24 +190,24 @@ export const ProjectDetails = () => {
                 </div>
 
                 {/* Property Info Container */}
-                <div className="border border-gray-300 m-4 sm:m-10 mt-5 mb-1 flex flex-col sm:flex-row gap-4 sm:gap-8 p-3">
+                <div className="border border-gray-300 sm:m-10 mt-5 mb-1 flex flex-col sm:flex-row gap-4 sm:gap-8 p-3 bg-gray-100">
                   {/* Left Section - Property Details */}
                   <div className="flex flex-row items-center sm:items-start gap-3 w-full">
                     <img
                       src={property?.dp}
                       alt="dealer"
-                      className="h-16 w-16 sm:h-20 sm:w-20 object-cover"
+                      className="h-16 w-16 sm:h-20 sm:w-20 object-cover rounded-full"
                     />
                     <div className="flex flex-col">
-                      <h1 className="font-bold text-[#1d2a3b] lg:px-2 pl-12 text-lg sm:text-xl py-[1px] max-w-[250px]">
+                      <h1 className="font-bold text-[#1d2a3b] lg:px-2 text-lg sm:text-xl pl-1 py-[1px] max-w-[250px]">
                         {property?.name}
                       </h1>
-                      <p className="text-sm text-[#03002a] lg:px-2 pl-10 py-[1px]">
+                      <p className="text-sm text-[#03002a] lg:px-2 pl-1 py-[1px]">
                         By {property?.builder}
                       </p>
-                      <div className="flex items-center lg:px-0 pl-10">
-                        <LocationOnIcon className="text-red-600 text-xs" />
-                        <p className="text-sm text-red-600 py-[1px]">
+                      <div className="flex items-center lg:px-0">
+                        <LocationOnIcon className="text-red-600 text-base" />
+                        <p className="text-base text-red-600 py-[1px]">
                           {property?.location}
                         </p>
                       </div>
@@ -221,7 +221,7 @@ export const ProjectDetails = () => {
                     </h5>
 
                     {/* Buttons - Stack on Small Screens */}
-                    <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto py-2 pr-2">
+                    <div className="flex flex-row sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto py-2 pr-2">
                       <Link to={`/brochure`} className="w-full sm:w-auto">
                         <Button
                           startIcon={<PictureAsPdfIcon />}
@@ -256,12 +256,12 @@ export const ProjectDetails = () => {
 
               <div className="flex flex-wrap justify-center sm:justify-start gap-2 sm:gap-4 my-6 border-b pb-2">
                 {[
-                  { href: "#description", label: "Description" },
+                  { href: "#Description", label: "Description" },
                   { href: "#Overview", label: "Overview" },
                   { href: "#Project Amenities", label: "Project Amenities" },
-                  { href: "#location", label: "Location Benefits" },
-                  { href: "#video", label: "Video Tour" },
-                  { href: "#emi", label: "EMI Calculator" },
+                  { href: "#Location Benefits", label: "Location Benefits" },
+                  { href: "#Video Tour", label: "Video Tour" },
+                  { href: "#Emi Calculator", label: "Emi Calculator" },
                 ].map((item) => (
                   <Link
                     key={item.href}
@@ -278,7 +278,7 @@ export const ProjectDetails = () => {
                 {/* Description */}
                 <div
                   className="col-span-12 bg-white p-6 sm:p-8 shadow-[0px_0px_10px_rgba(0,0,0,0.3)]"
-                  id="description"
+                  id="Description"
                 >
                   <h3 className="text-2xl sm:text-3xl border-b-2 pb-2 font-poppins font-semibold text-[#1d2a3b]">
                     Description
@@ -387,31 +387,31 @@ export const ProjectDetails = () => {
                         Society Amenities
                       </h3>
                     </div>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 p-3">
-                      {property?.amenities?.some(
+                    <div className="grid grid-cols-5 sm:grid-cols-5 lg:grid-cols-10 p-3 gap-2">
+                      {property?.amenities?.filter(
                         (item) => item.type === "society_amenity"
-                      ) ? (
+                      ).length ? (
                         property.amenities
                           .filter((item) => item.type === "society_amenity")
                           .map((item) => (
                             <div
                               key={item._id}
-                              className="flex items-center gap-1"
+                              className="flex flex-col items-center"
                             >
                               <img
-                                src={item.image}
-                                alt={item.name}
-                                className="h-6 sm:h-7 w-6 sm:w-7"
+                                src={item.image || "/default-image.png"}
+                                alt={item.name || "Item Image"}
+                                className="h-8 w-8 object-cover rounded"
                               />
-                              <p className="text-sm sm:text-lg font-semibold text-gray-600">
-                                {item.name}
+                              <p className="text-xs text-gray-600 text-center">
+                                {item.name || "Unnamed"}
                               </p>
                             </div>
                           ))
                       ) : (
-                        <div className="col-span-full text-center text-gray-500">
+                        <p className="col-span-full text-center text-gray-500">
                           No society amenities available
-                        </div>
+                        </p>
                       )}
                     </div>
                   </div>
@@ -423,31 +423,31 @@ export const ProjectDetails = () => {
                         Flat Amenities
                       </h3>
                     </div>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 p-3">
-                      {property?.amenities?.some(
+                    <div className="grid grid-cols-5 sm:grid-cols-3 lg:grid-cols-10 p-3 gap-2">
+                      {property?.amenities?.filter(
                         (item) => item.type === "flat_amenity"
-                      ) ? (
+                      ).length ? (
                         property.amenities
                           .filter((item) => item.type === "flat_amenity")
                           .map((item) => (
                             <div
                               key={item._id}
-                              className="flex items-center gap-2"
+                              className="flex flex-col items-center text-center"
                             >
                               <img
-                                src={item.image}
-                                alt={item.name}
-                                className="h-6 sm:h-7 w-6 sm:w-7"
+                                src={item.image || "/default-image.png"}
+                                alt={item.name || "Flat Amenity"}
+                                className="h-8 w-8 object-cover rounded"
                               />
-                              <p className="text-sm sm:text-lg font-semibold text-gray-600">
-                                {item.name}
+                              <p className="text-xs text-gray-600 text-center">
+                                {item.name || "Unnamed"}
                               </p>
                             </div>
                           ))
                       ) : (
-                        <div className="col-span-full text-center text-gray-500">
+                        <p className="col-span-full text-center text-gray-500">
                           No flat amenities available
-                        </div>
+                        </p>
                       )}
                     </div>
                   </div>
@@ -456,7 +456,7 @@ export const ProjectDetails = () => {
                 {/* Location Benefits */}
                 <div
                   className="col-span-12 bg-white p-6 sm:p-8 shadow-[0px_0px_10px_rgba(0,0,0,0.3)]"
-                  id="location"
+                  id="Location Benefits"
                 >
                   <h3 className="text-2xl sm:text-3xl border-b-2 pb-2 font-poppins font-semibold text-[#1d2a3b]">
                     Location Benefits
@@ -494,7 +494,7 @@ export const ProjectDetails = () => {
                 {/* Video Tour */}
                 <div
                   className="col-span-12 bg-white p-6 sm:p-8 shadow-[0px_0px_10px_rgba(0,0,0,0.3)]"
-                  id="video"
+                  id="Video Tour"
                 >
                   <h3 className="text-2xl sm:text-3xl border-b-2 pb-2 font-poppins font-semibold text-[#1d2a3b]">
                     Video Tour
@@ -524,7 +524,7 @@ export const ProjectDetails = () => {
                 </div>
 
                 {/* EMI Calculator */}
-                <div className="col-span-12" id="emi">
+                <div className="col-span-12" id="Emi Calculator">
                   <Calculator />
                 </div>
               </div>

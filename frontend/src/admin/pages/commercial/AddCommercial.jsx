@@ -99,15 +99,19 @@ export const AddCommercial = () => {
   // Handle checkbox changes
   const handleCheckboxChange = (event) => {
     const { name, checked } = event.target;
-  
+
     setFormData((prevFormData) => {
-      const currentAmenities = Array.isArray(prevFormData.amenities) ? prevFormData.amenities : [];
-  
+      const currentAmenities = Array.isArray(prevFormData.amenities)
+        ? prevFormData.amenities
+        : [];
+
       if (name === "selectAll") {
-        const allSelected = checked ? amenities.map((amenity) => amenity._id) : [];
-        
+        const allSelected = checked
+          ? amenities.map((amenity) => amenity._id)
+          : [];
+
         setSelectAll(checked);
-  
+
         return { ...prevFormData, amenities: allSelected };
       } else {
         const updatedAmenities = checked
@@ -115,13 +119,11 @@ export const AddCommercial = () => {
           : currentAmenities.filter((id) => id !== name);
 
         setSelectAll(updatedAmenities.length === amenities.length);
-  
+
         return { ...prevFormData, amenities: updatedAmenities };
       }
     });
   };
-  
-  
 
   // dynamic amenity type mapping
   const getAmenityType = (type) => {
@@ -449,15 +451,11 @@ export const AddCommercial = () => {
                 sx={{
                   display: "flex",
                   flexDirection: "column",
-                  gap: 3,
-                  mt: 3,
-                  p: 3,
-                  border: "1px solid #E0E0E0",
-                  borderRadius: "12px",
-                  backgroundColor: "#fff",
-                  boxShadow: "0 4px 10px rgba(0, 0, 0, 0.08)",
-                  maxWidth: "600px",
-                  margin: "auto",
+                  gap: 2,
+                  padding: "12px",
+                  border: "2px solid #ccc",
+                  borderRadius: "8px",
+                  backgroundColor: "#f9f9f9",
                 }}
               >
                 <Typography
@@ -546,15 +544,12 @@ export const AddCommercial = () => {
                 sx={{
                   display: "flex",
                   flexDirection: "column",
-                  gap: 3,
-                  mt: 3,
-                  p: 3,
-                  border: "1px solid #E0E0E0",
-                  borderRadius: "12px",
-                  backgroundColor: "#fff",
-                  boxShadow: "0 4px 10px rgba(0, 0, 0, 0.08)",
-                  maxWidth: "600px",
-                  margin: "auto",
+                  gap: 2,
+                  mt: 2,
+                  padding: "12px",
+                  border: "2px solid #ccc",
+                  borderRadius: "8px",
+                  backgroundColor: "#f9f9f9",
                 }}
               >
                 <Typography
@@ -629,15 +624,13 @@ export const AddCommercial = () => {
                 sx={{
                   display: "flex",
                   flexDirection: "column",
-                  gap: 3,
-                  mt: 3,
-                  p: 3,
-                  border: "1px solid #E0E0E0",
-                  borderRadius: "12px",
-                  backgroundColor: "#fff",
-                  boxShadow: "0 4px 10px rgba(0, 0, 0, 0.08)",
-                  maxWidth: "600px",
-                  margin: "auto",
+                  gap: 2,
+                  mt: 2,
+                  flexDirection: "column",
+                  padding: "12px",
+                  border: "2px solid #ccc",
+                  borderRadius: "8px",
+                  backgroundColor: "#f9f9f9",
                 }}
               >
                 {/* Title */}
@@ -676,11 +669,15 @@ export const AddCommercial = () => {
               <Box
                 sx={{
                   display: "flex",
+                  flexDirection: "row",
                   flexWrap: "wrap",
-                  gap: "12px",
-                  padding: "10px",
+                  gap: 2,
+                  mt: 2,
+                  padding: "12px",
+                  border: "2px solid #ccc",
                   borderRadius: "8px",
-                  border: "1px solid #ddd",
+                  backgroundColor: "#f9f9f9",
+                  alignItems: "center",
                 }}
               >
                 {/* Select All Checkbox */}
@@ -694,6 +691,7 @@ export const AddCommercial = () => {
                     />
                   }
                   label="Select All"
+                  sx={{ minWidth: "150px" }} // Ensures alignment
                 />
 
                 {/* Individual Amenities */}
@@ -713,27 +711,16 @@ export const AddCommercial = () => {
                     label={amenity.name}
                     sx={{
                       backgroundColor: "#f5f5f5",
-                      padding: "8px 12px",
+                      padding: "6px 10px",
                       borderRadius: "6px",
+                      minWidth: "150px", // Ensures proper spacing
                     }}
                   />
                 ))}
               </Box>
 
               <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 3,
-                  mt: 3,
-                  p: 3,
-                  border: "1px solid #E0E0E0",
-                  borderRadius: "12px",
-                  backgroundColor: "#fff",
-                  boxShadow: "0 4px 10px rgba(0, 0, 0, 0.08)",
-                  maxWidth: "600px",
-                  margin: "auto",
-                }}
+                sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 2 }}
               >
                 <Typography
                   variant="h5"

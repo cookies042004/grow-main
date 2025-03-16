@@ -28,14 +28,22 @@ const getProperty = async (req, res) => {
 };
 
 // Get By Name
-const getByName = async(req,res) => {
+const getByName = async (req, res) => {
   try {
-    const property = await Property.findOne({ slug: req.params.slug });
-    if (!property) return res.status(404).json({ message: "Property not found" });
+    const property = await Property.findOne({
+      slug: req.params.slug
+    });
+    if (!property) return res.status(404).json({
+      message: "Property not found"
+    });
 
-    res.status(200).json({ property });
+    res.status(200).json({
+      property
+    });
   } catch (error) {
-    res.status(500).json({ message: "Server Error" });
+    res.status(500).json({
+      message: "Server Error"
+    });
   }
 }
 
@@ -95,32 +103,30 @@ const createProperty = async (req, res) => {
     const video = [];
     const dp = [];
 
-    if(req.files['images']){
+    if (req.files['images']) {
       req.files['images'].forEach((file) => {
         image.push(file.path);
       })
     }
 
-    if(req.files['video']){
+    if (req.files['video']) {
       req.files['video'].forEach((file) => {
         video.push(file.path);
       })
     }
 
-    if(req.files['image']){
+    if (req.files['image']) {
       req.files['image'].forEach((file) => {
         dp.push(file.path);
       })
     }
-
-    console.log("dp", dp);
 
     // const propertyImages = req.files.propertyImages.map((file) => file.path);
     // const brochure = req.files.brochure[0].path;
 
     const newProperty = new Property({
       category,
-      propertyType, 
+      propertyType,
       name,
       builder,
       unit,
@@ -182,18 +188,28 @@ const updateProperty = async (req, res) => {
 
     const property = await Property.findById(propertyId);
     if (!property) {
-      return res.status(404).json({ success: false, message: "Property not found" });
+      return res.status(404).json({
+        success: false,
+        message: "Property not found"
+      });
     }
 
     const newImages = [];
     const newVideos = [];
+    const dp = [];
 
     if (req.files && req.files.images) {
       req.files.images.forEach((file) => newImages.push(file.path));
     }
 
-    if(req.files && req.files.video){
+    if (req.files && req.files.video) {
       req.files.video.forEach((file) => newVideos.push(file.path));
+    }
+
+    if (req.files['image']) {
+      req.files['image'].forEach((file) => {
+        dp.push(file.path);
+      });
     }
 
     if (newImages.length > 0 && property.image && property.image.length > 0) {
@@ -229,6 +245,7 @@ const updateProperty = async (req, res) => {
       address,
       furnishType,
       amenities,
+      dp,
       image: newImages.length > 0 ? newImages : property.image,
       video: newVideos.length > 0 ? newVideos : property.video,
     });
@@ -242,7 +259,11 @@ const updateProperty = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ success: false, message: "Internal Server Error", error: error.message });
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+      error: error.message
+    });
   }
 };
 
@@ -299,7 +320,9 @@ const deleteProperty = async (req, res) => {
 const searchProperty = async (req, res) => {
   console.log("Search Property Request:", req.query);
   try {
-    const { query } = req.query;
+    const {
+      query
+    } = req.query;
     if (!query) {
       return res.status(400).json({
         success: false,
@@ -311,14 +334,23 @@ const searchProperty = async (req, res) => {
     const searchRegex = new RegExp(query, "i");
 
     const properties = await Property.find({
-      $or: [
-        { name: searchRegex },
-        { location: searchRegex },
-        { address: searchRegex },
-        { city: searchRegex },
-        { state: searchRegex },
-      ],
-    })
+        $or: [{
+            name: searchRegex
+          },
+          {
+            location: searchRegex
+          },
+          {
+            address: searchRegex
+          },
+          {
+            city: searchRegex
+          },
+          {
+            state: searchRegex
+          },
+        ],
+      })
       .populate("category", "name")
       .populate("amenities", "name type");
 
@@ -348,9 +380,16 @@ const searchProperty = async (req, res) => {
 const getTotalProperties = async (req, res) => {
   try {
     const totalProperties = await Property.countDocuments({}); // Assuming you are using MongoDB
-    res.status(200).json({ success: true, totalProperties });
+    res.status(200).json({
+      success: true,
+      totalProperties
+    });
   } catch (error) {
-    res.status(500).json({ success: false, message: "Server error", error });
+    res.status(500).json({
+      success: false,
+      message: "Server error",
+      error
+    });
   }
 };
 
@@ -358,7 +397,9 @@ const getTotalProperties = async (req, res) => {
 const recentProperty = async (req, res) => {
   try {
     const recentProperties = await Property.find()
-      .sort({ createdAt: -1 }) // Sort by createdAt in descending order (latest first)
+      .sort({
+        createdAt: -1
+      }) // Sort by createdAt in descending order (latest first)
       .limit(6); // Limit to 5 properties
 
     if (recentProperties.length === 0) {

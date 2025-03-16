@@ -6,13 +6,11 @@ export const PrivacyPolicy = () => {
   return (
     <Layout>
       {/* Banner Section */}
-      <div className="privacybanner flex justify-center items-center">
-        <div className="grid sm:grid-cols-12">
-          <div className="col-span-12 text-center lg:mt-20">
-            <h1 className="font-dmsans font-medium text-white text-3xl lg:text-4xl capitalize">
-              Privacy Policy
-            </h1>
-          </div>
+      <div className="privacybanner flex justify-center items-center bg-gray-800 py-12">
+        <div className="text-center">
+          <h1 className="font-dmsans font-semibold text-white text-4xl capitalize">
+            Privacy Policy
+          </h1>
         </div>
       </div>
 

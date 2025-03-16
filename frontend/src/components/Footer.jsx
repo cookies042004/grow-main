@@ -6,123 +6,126 @@ import instagram from "../assets/icons/instagram.png";
 import youtube from "../assets/icons/youtube.png";
 import footerLogo from "../assets/img/Grow Infinity Logo White.png";
 import PhoneIcon from "@mui/icons-material/Phone";
+import EmailIcon from "@mui/icons-material/Email";
 
 import "./Footer.css";
 
 export const Footer = () => {
   return (
-    <footer className="bg-[#1d2a3b]">
-      <div className="px-4 pt-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-5">
-        <div className="grid gap-16 row-gap-10 mb-8 lg:grid-cols-6">
-          <div className="md:max-w-md lg:col-span-2">
-            <div className="flex justify-start bg-gray-700">
-              <img
-                src={footerLogo}
-                alt=""
-                className="h-[70px] w-[180px] lg:w-[250px] object-contain "
-              />
-            </div>
-            <div className="mt-5 lg:max-w-sm">
-              <p className="text-sm text-[#d1cfda] text-justify leading-5 lg:leading-6">
-                Grow infinity realtors is an accomplished real estate agent
-                firm. Drawing from their years of experience they brings a
-                strategic yet personal approach to the home buying, selling, and
-                renting process.
-              </p>
-            </div>
+    <footer className="bg-[#1d2a3b] text-white">
+      <div className="px-5 pt-10 mx-auto max-w-screen-xl md:px-10 lg:px-9">
+        <div className="grid gap-10 mb-8 lg:grid-cols-6">
+          <div className="lg:col-span-2 flex flex-col items-center lg:items-start text-center lg:text-left">
+            <img
+              src={footerLogo}
+              alt="Grow Infinity Realtors Logo"
+              className="h-[70px] w-[200px] lg:w-[250px] object-contain"
+            />
+            <p className="mt-5 text-sm text-[#d1cfda] leading-6">
+              Grow Infinity Realtors is an accomplished real estate firm.
+              Drawing from years of experience, they bring a strategic yet
+              personal approach to home buying, selling, and renting.
+            </p>
           </div>
-          <div className="grid grid-cols-3 gap-16 row-gap-8 lg:col-span-4 md:grid-cols-14">
+
+          <div className="grid grid-cols-2 gap-10 lg:col-span-4 md:grid-cols-3">
             <div>
-              <p className="font-semibold text-xl tracking-wide text-white">
-                Operational Zones
-              </p>
-              <ul className="mt-2 space-y-2 text-[#d1cfda] ">
-                <li className="my-2">Sector-150</li>
-                <li className="my-2">Ghaziabad</li>
-                <li className="my-2">Noida Expressway</li>
-                <li className="my-2">Yamuna Expressway</li>
-                <li className="my-2">Siddharth Vihar</li>
-                <li className="my-2">Noida Extension</li>
+              <p className="font-semibold text-lg">Operational Zones</p>
+              <ul className="mt-2 space-y-2 text-[#d1cfda]">
+                <li>Sector-150</li>
+                <li>Ghaziabad</li>
+                <li>Noida Expressway</li>
+                <li>Yamuna Expressway</li>
+                <li>Siddharth Vihar</li>
+                <li>Noida Extension</li>
               </ul>
             </div>
+
             <div>
-              <p className="font-semibold text-xl tracking-wide text-white">
-                Key Links
-              </p>
+              <p className="font-semibold text-lg">Key Links</p>
               <ul className="mt-2 space-y-2 text-[#d1cfda]">
                 <li>
                   <Link to="/privacy-policy">Privacy Policy</Link>
                 </li>
-                <li>Terms & conditions</li>
-                <li>Business</li>
-                <li>Entertainment</li>
                 <li>
-                  <Link to="/Contact">Contact us</Link>
+                  <Link to="/terms-conditions">Terms & Conditions</Link>
+                </li>
+                <li>
+                  <Link to="/business">Business</Link>
+                </li>
+                <li>
+                  <Link to="/entertainment">Entertainment</Link>
+                </li>
+                <li>
+                  <Link to="/contact">Contact Us</Link>
                 </li>
               </ul>
             </div>
 
             <div>
-              <p className="font-semibold text-xl tracking-wide text-white">
-                Let’s Connect
-              </p>
-              <ul className="mt-2 space-y-2 text-[#d1cfda]">
-                <li className="my-2">
+              <p className="font-semibold text-lg">Let’s Connect</p>
+              <ul className="mt-2 space-y-3 text-[#d1cfda]">
+                <li className="text-sm">
                   Plot No. BL-34, II Floor, Near Fitness Gym, Sector-116, Noida,
                   Uttar Pradesh-201305
                 </li>
-
-                <li className="my-2 text-gray-300">
+                <li className="flex items-center text-gray-300">
+                  <EmailIcon />
+                  <a
+                    href="mailto:growinfinityrealtor1@gmail.com"
+                    className="ml-2"
+                  >
+                    growinfinityrealtor1@gmail.com
+                  </a>
+                </li>
+                <li className="flex items-center text-gray-300">
                   <PhoneIcon />
-                  <Link to="+tel:+919990052554" target="_blank">
-                    {" "}
+                  <a href="tel:+919990052554" className="ml-2">
                     +91-9990052554
-                  </Link>
+                  </a>
                 </li>
               </ul>
             </div>
           </div>
         </div>
 
-        <div className="flex flex-col justify-between pt-5 pb-3 border-t border-white sm:flex-row">
-          <p className="text-sm text-white">
+        {/* ✅ COPYRIGHT & SOCIALS */}
+        <div className="flex flex-col items-center justify-between pt-5 pb-3 border-t border-white sm:flex-row">
+          <p className="text-sm text-center sm:text-left">
             © {new Date().getFullYear()} Grow Infinity Realtors. All Rights
             Reserved.
           </p>
-          <div className="flex items-center mt-4 space-x-6 sm:mt-0">
-            {/* Twitter */}
-            <Link to="#" target="_blank">
-              <div className="w-[30px] h-[30px]">
-                <img src={twitter} alt="twitter_logo" />
-              </div>
-            </Link>
 
-            {/* Instagram */}
-            <Link
-              to="https://www.instagram.com/growinfinityrealtors_official/"
+          {/* ✅ SOCIAL MEDIA ICONS */}
+          <div className="flex items-center mt-4 space-x-5 sm:mt-0">
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              <img src={twitter} alt="Twitter" className="w-[25px] h-[25px]" />
+            </a>
+            <a
+              href="https://www.instagram.com/growinfinityrealtors_official/"
               target="_blank"
+              rel="noopener noreferrer"
             >
-              <div className="w-[30px] h-[30px]">
-                <img src={instagram} alt="instagram_logo" />
-              </div>
-            </Link>
-
-            {/* Facebook */}
-            <Link
-              to="https://www.facebook.com/p/Grow-Infinity-Realtors-100092248133482/?_rdr"
+              <img
+                src={instagram}
+                alt="Instagram"
+                className="w-[25px] h-[25px]"
+              />
+            </a>
+            <a
+              href="https://www.facebook.com/p/Grow-Infinity-Realtors-100092248133482/?_rdr"
               target="_blank"
+              rel="noopener noreferrer"
             >
-              <div className="w-[30px] h-[30px]">
-                <img src={facebook} alt="facebook_logo" />
-              </div>
-            </Link>
-
-            {/* YouTube */}
-            <Link to="#" target="_blank">
-              <div className="w-[30px] h-[30px]">
-                <img src={youtube} alt="youtube_logo" />
-              </div>
-            </Link>
+              <img
+                src={facebook}
+                alt="Facebook"
+                className="w-[25px] h-[25px]"
+              />
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              <img src={youtube} alt="YouTube" className="w-[25px] h-[25px]" />
+            </a>
           </div>
         </div>
       </div>

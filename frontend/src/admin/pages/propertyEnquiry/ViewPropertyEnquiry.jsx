@@ -1,37 +1,27 @@
 import React, { useState } from "react";
-import {
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  TablePagination,
-  Button,
-} from "@mui/material";
 import { useFetchData } from "../../../hooks/useFetchData";
-import CircularProgress from "@mui/material/CircularProgress";
 import { AdminLayout } from "../../components/AdminLayout";
+import { Card, CardContent, Typography, Button, CircularProgress } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import axios from "axios";
 
 export const ViewPropertyEnquiry = () => {
   document.title = "View Property Enquiry";
   const apiUrl = `${process.env.BASE_URL}/api/v1/property-enquiry`;
   const { data, loading, error, refetch } = useFetchData(apiUrl);
-  const propertyEnquiries = data.propertyEnquiries;
+  const propertyEnquiries = data?.propertyEnquiries || [];
 
-  const [page, setPage] = useState(0); // Current page
-  const [rowsPerPage, setRowsPerPage] = useState(5); // Rows per page
-
-  // Handle pagination change (page number)
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  // Handle rows per page change
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
+  const handleDelete = async (id) => {
+    if (window.confirm("Are you sure you want to delete this enquiry?")) {
+      try {
+        await axios.delete(`${apiUrl}/${id}`);
+        alert("Enquiry deleted successfully");
+        refetch();
+      } catch (error) {
+        console.error(error);
+        alert("Failed to delete enquiry");
+      }
+    }
   };
 
   return (
@@ -44,136 +34,72 @@ export const ViewPropertyEnquiry = () => {
             <h2 className="text-2xl font-bold text-center sm:text-left text-blue-600">
               View Property Enquiries
             </h2>
-            <div className="flex gap-4">
-              <Button
-                variant="contained"
-                color="primary"
-                size="small"
-                onClick={refetch}
-                sx={{ textTransform: "none" }}
-              >
-                Refresh
-              </Button>
-            </div>
+            <Button variant="contained" color="primary" size="small" onClick={refetch}>
+              Refresh
+            </Button>
           </div>
 
-          {/* Paper Container */}
-          <Paper sx={{ marginTop: "20px" }}>
-            {/* Loading State */}
-            {loading && (
-              <div className="flex justify-center py-10">
-                <CircularProgress size="large" color="secondary" />
-              </div>
-            )}
+          {/* Loading State */}
+          {loading && (
+            <div className="flex justify-center py-10">
+              <CircularProgress size="large" color="secondary" />
+            </div>
+          )}
 
-            {/* Error Message */}
-            {error && (
-              <div className="text-center text-red-500 py-4">
-                <p>{error}</p>
-              </div>
-            )}
+          {/* Error Message */}
+          {error && (
+            <div className="text-center text-red-500 py-4">
+              <p>{error}</p>
+            </div>
+          )}
 
-            {/* Table Content */}
-            {propertyEnquiries && (
-              <>
-                <TableContainer>
-                  <Table>
-                    {/* Table Header */}
-                    <TableHead>
-                      <TableRow className="bg-blue-100">
-                        <TableCell className="font-semibold text-gray-700">
-                          S No.
-                        </TableCell>
-                        <TableCell className="font-semibold text-gray-700">
-                          Name
-                        </TableCell>
-                        <TableCell className="font-semibold text-gray-700">
-                          Email
-                        </TableCell>
-                        <TableCell className="font-semibold text-gray-700">
-                          Mobile
-                        </TableCell>
-                        <TableCell className="font-semibold text-gray-700">
-                          Property Name
-                        </TableCell>
-                        <TableCell className="font-semibold text-gray-700">
-                          Reason
-                        </TableCell>
-                        <TableCell className="font-semibold text-gray-700">
-                          Dealer
-                        </TableCell>
-                        <TableCell className="font-semibold text-gray-700">
-                          Date
-                        </TableCell>
-                      </TableRow>
-                    </TableHead>
+          {/* No Enquiries Found */}
+          {!loading && propertyEnquiries.length === 0 && (
+            <div className="text-center text-gray-600 py-10 text-lg">
+              No property enquiries found.
+            </div>
+          )}
 
-                    {/* Table Body */}
-                    <TableBody>
-                      {propertyEnquiries
-                        .slice(
-                          page * rowsPerPage,
-                          page * rowsPerPage + rowsPerPage
-                        )
-                        .map((propertyEnquiry, i) => (
-                          <TableRow
-                            key={propertyEnquiry._id}
-                            className={`${
-                              i % 2 === 0 ? "bg-gray-50" : "bg-white"
-                            } hover:bg-gray-200`}
-                          >
-                            <TableCell className="text-gray-600">
-                              {i + 1}
-                            </TableCell>
-                            <TableCell className="text-gray-600">
-                              {propertyEnquiry.name}
-                            </TableCell>
-                            <TableCell className="text-gray-600">
-                              {propertyEnquiry.email}
-                            </TableCell>
-                            <TableCell className="text-gray-600">
-                              {propertyEnquiry.mobile}
-                            </TableCell>
-                            <TableCell className="text-gray-600">
-                              {propertyEnquiry.property.name}
-                            </TableCell>
-                            <TableCell className="text-gray-600">
-                              {propertyEnquiry.reason}
-                            </TableCell>
-                            <TableCell className="text-gray-600">
-                              {propertyEnquiry.dealer}
-                            </TableCell>
-                            <TableCell>
-                              {new Date(propertyEnquiry.createdAt).toLocaleDateString()}
-                            </TableCell>
-                          </TableRow>
-                        ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-
-                {/* Pagination */}
-                <TablePagination
-                  rowsPerPageOptions={[5, 10, 25]}
-                  component="div"
-                  count={propertyEnquiries.length} // Total number of contacts
-                  rowsPerPage={rowsPerPage}
-                  page={page}
-                  onPageChange={handleChangePage}
-                  onRowsPerPageChange={handleChangeRowsPerPage}
-                  sx={{
-                    ".MuiTablePagination-toolbar": {
-                      justifyContent: "center",
-                    },
-                    ".MuiTablePagination-selectLabel, .MuiTablePagination-input":
-                      {
-                        fontSize: "0.9rem",
-                      },
-                  }}
-                />
-              </>
-            )}
-          </Paper>
+          {/* Enquiries List */}
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
+            {propertyEnquiries.map((enquiry, index) => (
+              <Card key={enquiry._id} sx={{ boxShadow: 3 }}>
+                <CardContent>
+                  <Typography variant="h6" fontWeight="bold">
+                    {index + 1}. {enquiry.name}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    <strong>Email:</strong> {enquiry.email}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    <strong>Mobile:</strong> {enquiry.mobile}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    <strong>Property:</strong> {enquiry.property?.name || "N/A"}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    <strong>Reason:</strong> {enquiry.reason}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    <strong>Dealer:</strong> {enquiry.dealer}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    <strong>Date:</strong> {new Date(enquiry.createdAt).toLocaleDateString()}
+                  </Typography>
+                  <Button
+                    variant="contained"
+                    color="error"
+                    size="small"
+                    startIcon={<DeleteIcon />}
+                    sx={{ mt: 2 }}
+                    onClick={() => handleDelete(enquiry._id)}
+                  >
+                    Delete
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </div>
     </>
