@@ -33,7 +33,10 @@ export const NavigationBar = () => {
           if (index === pathSegments.length - 1 && id) {
             // Replace the ID with the event name
             return (
-              <span key={index} className="font-medium text-xs lg:text-sm capitalize">
+              <span
+                key={index}
+                className="font-medium text-xs lg:text-sm capitalize"
+              >
                 / {eventName || "Loading..."}
               </span>
             );
@@ -41,7 +44,10 @@ export const NavigationBar = () => {
 
           // Render other segments as they are (e.g., "/event")
           return (
-            <span key={index} className="font-medium text-xs lg:text-sm capitalize">
+            <span
+              key={index}
+              className="font-medium text-xs lg:text-sm capitalize"
+            >
               / {item}
             </span>
           );

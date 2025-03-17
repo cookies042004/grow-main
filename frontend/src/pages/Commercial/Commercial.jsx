@@ -5,16 +5,22 @@ import { useFetchData } from "../../hooks/useFetchData";
 import { CommercialCard } from "../../components/CommercialCard";
 import { CircularProgress } from "@mui/material";
 
+import { ClipLoader } from "react-spinners";
+
 export const Commercial = () => {
   const { id } = useParams();
   const apiUrl = `${process.env.BASE_URL}/api/v1/commercial`;
   const { data, loading, error, refetch } = useFetchData(apiUrl);
   const properties = data.properties || [];
 
-  console.log("single")
+  console.log("single");
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <ClipLoader color="#1d2a3b" size={50} />
+      </div>
+    );
   }
 
   if (error) {
@@ -52,27 +58,26 @@ export const Commercial = () => {
           </div>
         )}
         {properties &&
-          properties
-            .map((property) => {
-              return (
-                <div className="col-span-12 lg:col-span-3 m-3">
-                  <CommercialCard
-                    key={property._id}
-                    id={property._id}
-                    name={property.title}
-                    slug={property.slug}
-                    image={property.image[0]}
-                    location={property.location}
-                    builder={property.builder}
-                    unit={property.unit}
-                    size={property.size}
-                    sizeUnit={property.sizeUnit}
-                    price={property.price}
-                    propertyType={property.propertyType}
-                  />
-                </div>
-              );
-            })}
+          properties.map((property) => {
+            return (
+              <div className="col-span-12 lg:col-span-3 m-3">
+                <CommercialCard
+                  key={property._id}
+                  id={property._id}
+                  name={property.title}
+                  slug={property.slug}
+                  image={property.image[0]}
+                  location={property.location}
+                  builder={property.builder}
+                  unit={property.unit}
+                  size={property.size}
+                  sizeUnit={property.sizeUnit}
+                  price={property.price}
+                  propertyType={property.propertyType}
+                />
+              </div>
+            );
+          })}
       </div>
     </Layout>
   );

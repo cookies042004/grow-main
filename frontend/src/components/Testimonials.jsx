@@ -45,13 +45,32 @@ export const Testimonials = () => {
           <h1 className="text-xl lg:text-3xl items-left text-[#1A1A1A] my-4 font-medium">
             What our customers are saying?
           </h1>
-          <p className="text-[#1A1A1A] text-md lg:text-lg text-justify my-5 lg:pe-20">
+          <p className="text-[#1A1A1A] text-md lg:text-lg mt-5 lg:pe-16">
             Don't just take our word for it—hear directly from those who have
-            experienced our services. Our customers' stories reflect the
+            experienced our services. Our customer's stories reflect the
             dedication, expertise, and care we put into every transaction. Read
             their testimonials and see why we're the trusted choice for all your
             real estate needs.
           </p>
+          <div className="flex justify-end lg:justify-start gap-10 mt-12">
+            <div>
+              <h3 className="font-bold text-[#1A1A1A] text-sm lg:text-2xl">
+                2k+
+              </h3>
+              <p className="text-md lg:text-lg">Happy People</p>
+            </div>
+            <div>
+              <h3 className="font-bold text-[#1A1A1A] text-sm lg:text-2xl">
+                4.88
+              </h3>
+              <p className="text-md lg:text-lg">Overall rating</p>
+              <div className="flex mt-3">
+                {[...Array(5)].map((_, i) => (
+                  <StarIcon key={i} sx={{ color: "#e7c874" }} />
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
         <div className="relative my-14 w-full flex flex-col items-center">
           <div className="w-full max-w-xl p-4 bg-white transform shadow-[0px_0px_10px_5px_rgba(0,0,0,0.4)]">
@@ -110,7 +129,7 @@ export const Testimonials = () => {
                         </p>
                         {testimonial.review.length > 200 && (
                           <button
-                            className="text-[#1d2a3b] font-semibold mt-2 cursor-pointer"
+                            className="text-[#1d2a3b] font-semibold mt-5 cursor-pointer"
                             onClick={() => setSelectedReview(testimonial)}
                           >
                             Read More
@@ -160,7 +179,7 @@ export const Testimonials = () => {
             </div>
             <p className="mt-4">{selectedReview.review}</p>
             <button
-              className="mt-4 px-4 py-2 bg-red-500 text-white rounded"
+              className="mt-4 px-4 py-2 bg-[#1d2a3b]  text-white rounded"
               onClick={() => setSelectedReview(null)}
             >
               Close

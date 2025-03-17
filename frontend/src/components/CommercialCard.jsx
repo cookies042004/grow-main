@@ -8,7 +8,7 @@ import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import DoneIcon from "@mui/icons-material/Done";
 import { Link } from "react-router-dom";
 import { PropertyEnquiryForm } from "./PropertyEnquiryForm";
-import './LatestNews.css'
+import "./LatestNews.css";
 
 export const CommercialCard = ({
   id,
@@ -23,7 +23,7 @@ export const CommercialCard = ({
   price,
   propertyType,
   customcategory,
-  category
+  category,
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -62,48 +62,46 @@ export const CommercialCard = ({
     <div className="border relative p-2 hover:shadow-2xl bg-white transition-all duration-300">
       {/* Property Image */}
       <div className="flex justify-center">
-        <img
-          src={image}
-          alt={name}
-          className="h-[230px] w-full object-cover"
-        />
+        <img src={image} alt={name} className="h-[230px] w-full object-cover" />
       </div>
-  
+
       {/* Property Details */}
       <div className="mt-3 font-roboto text-sm flex justify-between">
-        <p className="font-semibold ps-3 text-sm">
+        <p className="font-semibold ps-3 text-[#1d2a3b] text-sm">
           {name} <br />
-          <span className="text-gray-700 font-normal text-xs">By {builder}</span>
+          <span className="text-gray-700 font-normal text-xs">
+            By {builder}
+          </span>
         </p>
-        <p className="font-semibold text-[#EB664E] text-lg">
+        <p className="font-semibold text-[#1d2a3b] text-lg">
           ₹{toINRCr(price)}*
         </p>
       </div>
-  
+
       {/* Location */}
       <div className="flex items-center mt-3">
         <LocationOnIcon
-          sx={{ color: "darkblue", fontSize: "18px", paddingBottom: "3px" }}
+          sx={{ color: "#1d2a3b", fontSize: "18px", paddingBottom: "3px" }}
         />
         <p className="text-xs">{location}</p>
       </div>
-  
+
       {/* Additional Info */}
       <div className="flex gap-3 justify-between mt-5 font-roboto">
         <div className="flex gap-1 items-center">
-          <HomeIcon sx={{ color: "darkblue", fontSize: "18px" }} />
+          <HomeIcon sx={{ color: "#1d2a3b", fontSize: "18px" }} />
           <p className="text-xs">{unit}</p>
         </div>
         <div className="flex gap-1 items-center">
-          <SquareFootIcon sx={{ color: "darkblue", fontSize: "18px" }} />
+          <SquareFootIcon sx={{ color: "#1d2a3b", fontSize: "18px" }} />
           <p className="text-xs">{selectUnit(sizeUnit)}</p>
         </div>
         <div className="flex gap-1 items-center">
-          <CurrencyRupeeIcon sx={{ color: "darkblue", fontSize: "18px" }} />
+          <CurrencyRupeeIcon sx={{ color: "#1d2a3b", fontSize: "18px" }} />
           <p className="text-xs">{divide(sizeUnit)}</p>
         </div>
       </div>
-  
+
       {/* Action Buttons */}
       <div className="mt-5 flex gap-3">
         <div className="flex-1">
@@ -112,7 +110,7 @@ export const CommercialCard = ({
               fullWidth
               variant="outlined"
               sx={{
-                backgroundColor: "#03002e",
+                backgroundColor: "#1d2a3b",
                 color: "#fff",
                 textTransform: "none",
               }}
@@ -134,10 +132,10 @@ export const CommercialCard = ({
           </Button>
         </div>
       </div>
-  
+
       {/* Property Enquiry Form */}
       <PropertyEnquiryForm id={id} handleClose={handleClose} open={open} />
-  
+
       {/* Property Type Badge */}
       <div className="absolute top-[20px]">
         <Button
@@ -152,5 +150,4 @@ export const CommercialCard = ({
       </div>
     </div>
   );
-  
 };

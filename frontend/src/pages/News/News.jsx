@@ -24,9 +24,9 @@ export const News = () => {
       <div className="newsbanner flex items-center justify-center">
         <div className="grid sm:grid-cols-12">
           <div className="col-span-12 text-center mt-10 lg:mt-20">
-            <h1 className="font-dmsans font-medium text-white text-3xl lg:text-4xl ">
+            {/* <h1 className="font-dmsans font-medium text-white text-3xl lg:text-4xl ">
               News
-            </h1>
+            </h1> */}
           </div>
         </div>
       </div>
@@ -35,7 +35,7 @@ export const News = () => {
 
       {/* Latest News  */}
       <div className="my-5">
-        <h1 className="font-roboto text-3xl lg:text-4xl font-bold lg:font-medium text-center text-[#1d2a3b]  py-3 lg:py-8">
+        <h1 className="font-roboto text-2xl lg:text-4xl font-bold lg:font-medium text-center text-[#1d2a3b]  py-3 lg:py-8">
           Latest News
         </h1>
 

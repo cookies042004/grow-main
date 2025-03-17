@@ -16,7 +16,7 @@ export const SingleProject = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <ClipLoader color="#3498db" size={50} />
+        <ClipLoader color="#1d2a3b" size={50} />
       </div>
     );
   }

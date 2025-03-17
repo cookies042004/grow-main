@@ -98,7 +98,7 @@ export const Contact = () => {
         {/* Contact Hero  */}
         <div className="contactbanner flex items-center justify-center">
           <div className="grid sm:grid-cols-12">
-            <div className="col-span-12 text-center mt-10 lg:mt-20 flex justify-center items-center">
+            <div className="col-span-12 text-center mt-40 flex justify-center items-center">
               <h1 className="font-dmsans text-3xl lg:text-4xl font-medium text-white">
                 Contact Us
               </h1>

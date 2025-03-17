@@ -26,7 +26,7 @@ export const Event = () => {
       <NavigationBar />
 
       <div className="my-10">
-        <h1 className="font-roboto text-3xl lg:text-4xl font-bold lg:font-medium text-[#1d2a3b] text-center py-3 lg:py-8">
+        <h1 className="font-roboto text-2xl lg:text-4xl font-bold lg:font-medium text-[#1d2a3b] text-center py-3 lg:py-8">
           Events
         </h1>
         <div className="grid sm:grid-cols-12 max-w-[1280px] mx-auto mt-3 lg:mt-8">

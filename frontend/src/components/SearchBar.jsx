@@ -251,7 +251,7 @@ export const SearchBar = () => {
               </div>
             </div>
             <div className="col-span-2 lg:col-span-2">
-              <button className="bg-[#f4f4f4] w-full py-2 text-xs px-2 lg:text-lg rounded-2xl text-[#1d2a3b] font-bold">
+              <button className="bg-[#f4f4f4] w-full py-2 text-xs px-2 lg:text-lg rounded-2xl font-bold">
                 Price (₹)
               </button>
             </div>

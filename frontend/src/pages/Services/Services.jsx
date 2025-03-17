@@ -19,13 +19,13 @@ export const Services = () => {
       <div className="bg-[#a79d900c]">
         {/* Service Hero  */}
         <div className="servicebanner flex items-center justify-center">
-          <div className="grid sm:grid-cols-12">
+          {/* <div className="grid sm:grid-cols-12">
             <div className="col-span-12 text-center mt-10 lg:mt-20">
               <h1 className="font-dmsans font-medium text-white text-3xl lg:text-4xl">
                 Services
               </h1>
             </div>
-          </div>
+          </div> */}
         </div>
 
         <NavigationBar />

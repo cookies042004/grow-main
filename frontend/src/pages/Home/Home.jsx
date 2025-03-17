@@ -65,7 +65,7 @@ export const Home = () => {
         <Calculator />
       </div> */}
 
-      {/* Explore Our Properties */}
+      {/* Discover Your Dream Home */}
       <div className="bg-white">
         <h1 className="text-center text-[#1d2a3b] text-2xl lg:text-4xl font-bold lg:font-medium py-6">
           Discover Your Dream Home
@@ -73,33 +73,43 @@ export const Home = () => {
 
         <div className="max-w-[1280px] mx-auto md:p-12">
           <div
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 
-                 place-items-center"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5 
+         place-items-center"
           >
-            <PropertyCard1
-              title="Luxury Living"
-              category="luxury"
-              image="luxury-living.jpg"
-              className="w-[90%] sm:w-[80%] md:w-[90%] lg:w-full p-4 sm:p-6"
-            />
-            <PropertyCard1
-              title="New Launches"
-              category="newLaunches"
-              image="new-launches.jpg"
-              className="w-[90%] sm:w-[80%] md:w-[90%] lg:w-full p-4 sm:p-6"
-            />
-            <PropertyCard1
-              title="Affordable Living"
-              category="affordable"
-              image="affordable.jpg"
-              className="w-[90%] sm:w-[80%] md:w-[90%] lg:w-full p-4 sm:p-6"
-            />
-            <PropertyCard1
-              title="Commercial"
-              category="commercial"
-              image="commercial.jpg"
-              className="w-[90%] sm:w-[80%] md:w-[90%] lg:w-full p-4 sm:p-6"
-            />
+            {[
+              {
+                title: "Luxury Living",
+                category: "luxury",
+                image: "luxury-living.jpg",
+              },
+              {
+                title: "New Launches",
+                category: "newLaunches",
+                image: "new-launches.jpg",
+              },
+              {
+                title: "Affordable Living",
+                category: "affordable",
+                image: "affordable.jpg",
+              },
+              {
+                title: "Commercial",
+                category: "commercial",
+                image: "commercial.jpg",
+              },
+            ].map((property, index) => (
+              <PropertyCard1
+                key={index}
+                title={property.title}
+                category={property.category}
+                image={property.image}
+                className="w-[90%] sm:w-[80%] md:w-[90%] lg:w-full p-4 sm:p-6 
+          transition-transform duration-300 ease-in-out 
+          shadow-lg hover:shadow-2xl hover:-translate-y-3 hover:scale-105 
+          hover:rotate-[2deg] hover:bg-gray-100 
+          rounded-2xl bg-white transform-gpu"
+              />
+            ))}
           </div>
         </div>
       </div>
@@ -114,7 +124,7 @@ export const Home = () => {
         }}
       >
         <div className="max-w-[1280px] mx-auto py-10">
-          <h1 className="text-xl text-center lg:text-4xl font-poppins font-bold py-4">
+          <h1 className="text-2xl text-center lg:text-4xl font-poppins font-bold py-4">
             More than{" "}
             <span className="text-red-500 transition-transform transform hover:text-200">
               10 Years
@@ -124,7 +134,7 @@ export const Home = () => {
           <div className="relative w-full overflow-hidden">
             <marquee
               direction="left"
-              className="text-sm py-3 lg:py-5 text-center lg:text-lg font-poppins font-medium lg:me-10 me-0 px-3 lg:px-0"
+              className="text-sm py-3 lg:py-5 text-center lg:text-lg font-medium lg:me-10 me-0 px-3 lg:px-0"
             >
               <span className="transition-all duration-300 hover:text-xl hover:font-bold">
                 Over the years,{" "}
@@ -206,8 +216,8 @@ export const Home = () => {
       </div>
 
       {/* Recent Listings  */}
-      <div className="bg-white">
-        <h1 className="text-center text-[#1d2a3b]  lg:text-4xl text-2xl font-bold mb-8 pt-2 lg:font-medium">
+      <div className="bg-white  max-w-[1280px] mx-auto">
+        <h1 className="text-center text-[#1d2a3b] lg:text-4xl text-2xl font-bold mb-8 pt-2 lg:font-medium">
           Recent Listings
         </h1>
         <Card category="Affordable Living" />
@@ -316,7 +326,7 @@ export const Home = () => {
       <Choose />
 
       {/* Awards Segment  */}
-      <div className="bg-gray-50 py-5">
+      <div className="bg-gray-50 py-5 max-w-[1480px] mx-auto">
         <AwardComponent />
 
         <div className="flex justify-center m-8">

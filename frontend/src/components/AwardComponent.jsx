@@ -2,6 +2,7 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
 import { useFetchData } from "../hooks/useFetchData";
+import { ClipLoader } from "react-spinners";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
@@ -13,7 +14,13 @@ export const AwardComponent = () => {
   const { data, loading, error } = useFetchData(apiUrl);
   const awards = data?.awards || [];
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <ClipLoader color="#1d2a3b" size={50} />
+      </div>
+    );
+  }
   if (error) return <p>Error fetching data.</p>;
 
   return (

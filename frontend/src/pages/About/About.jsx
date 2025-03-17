@@ -10,7 +10,7 @@ import { Testimonials } from "../../components/Testimonials";
 
 import founder from "../../assets/img/ankitgoyal.jpeg";
 import coFounder from "../../assets/img/tushargupta.jpg";
-import whatwedo from "../../assets/img/17.png";
+import whatwedo from "../../assets/img/17.jpg";
 import { NavigationBar } from "../../components/NavigationBar";
 import { AwardComponent } from "../../components/AwardComponent";
 import { Button } from "@mui/material";
@@ -59,7 +59,7 @@ export const About = () => {
 
       {/* welcome to grow infinity  */}
       <div className="my-8 mx-auto max-w-[1280px]">
-        <h1 className="font-roboto text-xl lg:text-4xl text-center font-medium lg:mt-16">
+        <h1 className="text-2xl lg:text-4xl text-center font-medium lg:mt-16">
           <span className="text-gray-500">Welcome To </span>
           Grow Infinity Realtors
         </h1>
@@ -99,7 +99,7 @@ export const About = () => {
       </div>
 
       <div className="my-5 max-w-[1280px] mx-auto">
-        <h1 className="text-center text-xl lg:text-4xl font-roboto font-medium py-3 lg:py-8">
+        <h1 className="text-center text-2xl lg:text-4xl font-roboto font-medium py-3 lg:py-8">
           <span className="text-gray-500">Stress-Free</span> Step to Your Dream
           Home
         </h1>
@@ -162,18 +162,18 @@ export const About = () => {
       {/* What we do?  */}
       <div className="bg-gray-50">
         <div className="my-10 max-w-[1280px] mx-auto">
-          <h2 className="font-roboto font-medium text-[#1d2a3b] text-center text-3xl lg:text-4xl pt-8">
+          <h2 className="font-roboto font-medium text-[#1d2a3b] text-center text-3xl lg:text-4xl py-8">
             What we do?
           </h2>
           <div className="grid sm:grid-cols-12">
-            <div className="col-span-12 lg:col-span-6 flex justify-center">
+            <div className="col-span-12 lg:col-span-6 flex justify-center pb-10">
               <img
                 src={whatwedo}
                 alt=""
                 className="w-[300px] lg:w-[600px] border"
               />
             </div>
-            <div className="col-span-12 lg:col-span-6 flex flex-col justify-center">
+            <div className="col-span-12 lg:col-span-6 flex flex-col justify-center pb-10">
               <p className="font-poppins text-sm px-8 lg:text-lg lg:leading-9 text-justify text-gray-700">
                 At Grow Infinity Realtors, we take immense pride in our
                 unwavering commitment to providing personalized real estate
@@ -197,80 +197,80 @@ export const About = () => {
         </div>
       </div>
       {/* Mission  */}
-      <div className="mx-auto max-w-[1280px] my-16 px-6 lg:px-12">
-        <div className="grid sm:grid-cols-12 gap-12 items-center">
-          {/* Left Section - Images */}
-          <div className="hidden md:flex col-span-12 md:col-span-6 lg:col-span-7 justify-center">
-            <div className="grid sm:grid-cols-12 gap-6">
-              <div className="col-span-12 flex justify-center">
+      <div className="bg-gray-50 py-8">
+        <div className="mx-auto max-w-[1280px] px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            {/* Left - Images Section */}
+            <div className="hidden md:flex flex-col gap-5">
+              <div className="w-full">
                 <img
                   src={findRealEstate}
                   alt="Find Real Estate"
-                  className="rounded-lg object-cover shadow-lg w-full max-h-[300px]"
+                  className="rounded-lg w-full h-auto max-h-[350px] object-cover"
                 />
               </div>
-              <div className="col-span-12 grid sm:grid-cols-2 gap-6">
+              <div className="grid grid-cols-2 gap-5">
                 <img
                   src={realtor}
-                  alt="Realtor"
-                  className="rounded-lg object-cover shadow-md w-full max-h-[250px]"
+                  alt="Meet Realtor"
+                  className="rounded-lg w-full h-[280px] object-cover"
                 />
                 <img
                   src={keys}
-                  alt="Keys"
-                  className="rounded-lg object-cover shadow-md w-full max-h-[215px]"
+                  alt="Take the keys"
+                  className="rounded-lg w-full h-auto max-h-[280px] object-cover"
                 />
               </div>
             </div>
-          </div>
 
-          {/* Right Section - Text Content */}
-          <div className="col-span-12 md:col-span-6 lg:col-span-5 text-center lg:text-left">
-            <h1 className="text-3xl lg:text-3xl font-bold text-[#1d2a3b] leading-tight">
-              How It Works?
-              <br /> Find Your Perfect Home
-            </h1>
-            <p className="text-lg text-gray-600 mt-4">
-              Discover your ideal home with ease. Browse listings, get expert
-              advice, and find the perfect match for your lifestyle.
-            </p>
+            {/* Right - Content Section */}
+            <div className="flex flex-col justify-center lg:ps-14 text-center md:text-left">
+              <h1 className="text-[#1A1A1A] font-roboto text-2xl lg:text-4xl font-medium">
+                How It Works? <br />
+                Find Your Perfect Home
+              </h1>
+              <p className="text-md lg:text-lg mt-5">
+                Discover your ideal home with ease. Browse listings, get expert
+                advice, and find the perfect match for your lifestyle.
+              </p>
 
-            {/* Steps List */}
-            <div className="mt-8 space-y-6">
-              {[
-                {
-                  icon: Icon1,
-                  title: "Find Real Estate",
-                  description:
-                    "Access extensive listings and expert guidance for a seamless real estate journey.",
-                },
-                {
-                  icon: Icon2,
-                  title: "Meet Realtor",
-                  description:
-                    "Connect with trusted real estate professionals who understand your needs and priorities.",
-                },
-                {
-                  icon: Icon3,
-                  title: "Take the Keys",
-                  description:
-                    "Unlock your future with confidence. Step into your new beginning with expert support.",
-                },
-              ].map((step, index) => (
-                <div key={index} className="flex items-start gap-4">
-                  <div className="relative w-12 h-12 flex justify-center items-center bg-[#e7c873b8] rounded-full">
-                    <img src={step.icon} alt={step.title} className="w-8 h-8" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900">
-                      {step.title}
-                    </h3>
-                    <p className="text-gray-600 text-md mt-1">
-                      {step.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
+              {/* Steps List */}
+              <ul className="my-10 flex flex-col gap-10">
+                {[
+                  {
+                    img: Icon1,
+                    title: "Find Real Estate",
+                    text: "Finding your dream property has never been easier. With Grow Infinity Realtors, you access extensive listings, and expert guidance for a seamless real estate journey. Start exploring today and discover your perfect home.",
+                  },
+                  {
+                    img: Icon2,
+                    title: "Meet Realtor",
+                    text: "Connect with trusted real estate professionals who understand your needs and priorities. Our experienced realtors will guide you through the process, ensuring a smooth transaction and helping you find the best property deals.",
+                  },
+                  {
+                    img: Icon3,
+                    title: "Take the keys",
+                    text: "Unlock your future with confidence. Take the Home Keys and step into your new beginning with expert guidance and support. We ensure a hassle-free closing process so you can start your next chapter worry-free.",
+                  },
+                ].map((item, index) => (
+                  <li key={index} className="flex gap-5 items-start">
+                    <div className="relative w-[50px] h-[50px] flex-shrink-0">
+                      <div className="bg-[#e7c873b8] absolute h-[35px] w-[35px] rounded-full -left-1 top-1"></div>
+                      <img
+                        src={item.img}
+                        alt=""
+                        className="relative w-[35px] h-[35px]"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <h1 className="text-lg lg:text-xl font-medium">
+                        {item.title}
+                      </h1>
+                      <p className="mt-2 text-sm lg:text-[15px]">{item.text}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
@@ -283,7 +283,7 @@ export const About = () => {
       {/* Meet our directors  */}
       <div className="py-12 px-4 md:px-8">
         <div className="max-w-[1280px] mx-auto">
-          <h1 className="text-center text-[#1d2a3b] text-3xl md:text-4xl font-bold pb-10">
+          <h1 className="text-center text-[#1d2a3b] text-2xl lg:text-4xl font-medium pb-10">
             Get to Know Our Team
           </h1>
 
@@ -340,7 +340,7 @@ export const About = () => {
                 backgroundColor: "#03002e",
                 color: "white",
                 textTransform: "none",
-                borderBottom: "2px solid orange",
+                borderBottom: "2px solid gray",
               }}
             >
               View all

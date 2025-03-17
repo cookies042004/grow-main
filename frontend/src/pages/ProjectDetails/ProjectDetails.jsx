@@ -536,7 +536,7 @@ export const ProjectDetails = () => {
       </div>
 
       {/* Featured Projects  */}
-      <div className="bg-gray-100 p-3">
+      <div className="bg-white p-3 max-w-[1280px] mx-auto">
         <h1 className="text-center text-[#1d2a3b] lg:text-4xl text-2xl font-bold py-8 lg:font-medium">
           Recent Listings
         </h1>

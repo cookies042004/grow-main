@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import luxuryLiving from "../assets/img/luxury-living.jpg";
 import newLaunches from "../assets/img/new-launches.jpg";
@@ -6,11 +5,10 @@ import affordable from "../assets/img/affordable.jpg";
 import commercial from "../assets/img/commercial.jpg";
 
 export const PropertyCard1 = ({ title }) => {
-  const [hovered, setHovered] = useState(false);
   const navigate = useNavigate();
 
   const submitHandler = () => {
-    if(title ===  "Commercial") {
+    if (title === "Commercial") {
       navigate(`/commercial/${title}`);
     } else {
       navigate(`/property/${title}`);
