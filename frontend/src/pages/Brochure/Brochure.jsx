@@ -80,56 +80,50 @@ export const Brochure = () => {
         </h1>
       </div>
 
-      <div>
-        <h1 className="font-roboto text-2xl text-[#1d2a3b] lg:text-4xl font-medium py-8 text-center">
-          Our Brochures
-        </h1>
+      <div className="max-w-[1280px] mx-auto px-6">
+        {loading && (
+          <div className="flex justify-center">
+            <CircularProgress />
+          </div>
+        )}
+        {error && (
+          <p className="text-center text-red-500">Error: {error.message}</p>
+        )}
 
-        <div className="max-w-[1280px] mx-auto px-6">
-          {loading && (
-            <div className="flex justify-center">
-              <CircularProgress />
-            </div>
-          )}
-          {error && (
-            <p className="text-center text-red-500">Error: {error.message}</p>
-          )}
-
-          {brochures.length > 0 ? (
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-20">
-              {brochures.map((brochure) => (
-                <div
-                  key={brochure._id}
-                  className="relative group border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
-                >
-                  <img
-                    src={brochure.image}
-                    alt={brochure.name}
-                    className="h-64 w-full object-contain"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <motion.button
-                      whileHover={{ scale: 1.1 }}
-                      animate={{ y: [0, -5, 0] }}
-                      transition={{ repeat: Infinity, duration: 1.5 }}
-                      onClick={() => handleOpen(brochure)}
-                      className="bg-white text-black px-4 py-2 rounded-md flex items-center gap-2"
-                    >
-                      <PictureAsPdfIcon size={30} color="red" /> Request PDF
-                    </motion.button>
-                  </div>
-                  <h4 className="text-center text-xl font-semibold py-3">
-                    {brochure.name.length > 20
-                      ? `${brochure.name.substring(0, 20)}...`
-                      : brochure.name}
-                  </h4>
+        {brochures.length > 0 ? (
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-20">
+            {brochures.map((brochure) => (
+              <div
+                key={brochure._id}
+                className="relative group border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
+              >
+                <img
+                  src={brochure.image}
+                  alt={brochure.name}
+                  className="h-64 w-full object-contain"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    animate={{ y: [0, -5, 0] }}
+                    transition={{ repeat: Infinity, duration: 1.5 }}
+                    onClick={() => handleOpen(brochure)}
+                    className="bg-white text-black px-4 py-2 rounded-md flex items-center gap-2"
+                  >
+                    <PictureAsPdfIcon size={30} color="red" /> Request PDF
+                  </motion.button>
                 </div>
-              ))}
-            </div>
-          ) : (
-            <p className="text-center text-gray-600">No brochures available.</p>
-          )}
-        </div>
+                <h4 className="text-center text-xl font-semibold py-3">
+                  {brochure.name.length > 20
+                    ? `${brochure.name.substring(0, 20)}...`
+                    : brochure.name}
+                </h4>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="text-center text-gray-600">No brochures available.</p>
+        )}
       </div>
 
       <Modal
@@ -161,15 +155,6 @@ export const Brochure = () => {
                 onChange={handleChange}
               />
               <TextField
-                label="Email"
-                name="email"
-                type="email"
-                fullWidth
-                required
-                value={formData.email}
-                onChange={handleChange}
-              />
-              <TextField
                 label="Phone"
                 name="phone"
                 type="tel"
@@ -178,8 +163,17 @@ export const Brochure = () => {
                 value={formData.phone}
                 onChange={handleChange}
               />
+              <TextField
+                label="Email"
+                name="email"
+                type="email"
+                fullWidth
+                // required
+                value={formData.email}
+                onChange={handleChange}
+              />
 
-              <FormControl fullWidth required>
+              <FormControl fullWidth>
                 <InputLabel>Reason</InputLabel>
                 <Select
                   label="Reason"
@@ -192,7 +186,7 @@ export const Brochure = () => {
                 </Select>
               </FormControl>
 
-              <FormControl fullWidth required>
+              <FormControl fullWidth>
                 <InputLabel>Are you a dealer?</InputLabel>
                 <Select
                   label="Are you a dealer"
@@ -207,9 +201,13 @@ export const Brochure = () => {
 
               <Button
                 type="submit"
-                variant="contained"
-                color="primary"
                 fullWidth
+                sx={{
+                  backgroundColor: "#1d2a3b",
+                  color: "white",
+                  textTransform: "none",
+                  borderBottom: "2px solid gray",
+                }}
               >
                 Submit Request
               </Button>

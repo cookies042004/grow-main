@@ -26,7 +26,7 @@ export const AwardComponent = () => {
   return (
     <div className="award-section">
       <div className="award-container">
-        <h1 className="award-heading text-center text-3xl lg:text-4xl font-medium mb-6 text-[#1d2a3b]">
+        <h1 className="award-heading text-center text-2xl lg:text-4xl font-medium mb-6 text-[#1d2a3b]">
           Awards
         </h1>
 

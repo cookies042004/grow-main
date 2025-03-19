@@ -244,7 +244,7 @@ export const SearchBar = () => {
                   onClick={handleSearch}
                   type="submit"
                   className="text-white bg-[#1d2a3b] font-bold text-center text-lg w-full rounded-[8.59px] py-2"
-                  style={{ boxShadow: "0px 5.46px 13.27px 0px #03002E80" }}
+                  style={{ boxShadow: "0px 5.46px 13.27px 0px #1d2a3b" }}
                 >
                   Search
                 </button>
@@ -303,8 +303,8 @@ export const SearchBar = () => {
                 <button
                   onClick={handleSearch}
                   type="submit"
-                  className="text-white text-sm lg:text-lg bg-[#03002E]  w-full rounded-[8.59px] py-[4px] lg:py-2 px-10"
-                  style={{ boxShadow: "0px 5.46px 13.27px 0px #03002E80" }}
+                  className="text-white text-sm lg:text-lg bg-[#1d2a3b]  w-full rounded-[8.59px] py-[4px] lg:py-2 px-10"
+                  style={{ boxShadow: "0px 5.46px 13.27px 0px #1d2a3b" }}
                 >
                   Search
                 </button>

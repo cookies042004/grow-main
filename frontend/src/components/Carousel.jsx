@@ -172,7 +172,7 @@ const Carousel = ({ galleryImages }) => {
 
             {galleryImages.length > 4 && (
               <div
-                className="relative w-15 lg:w-40 h-16 lg:h-20 rounded-lg cursor-pointer overflow-hidden"
+                className="relative w-12 lg:w-40 h-16 lg:h-20 rounded-lg cursor-pointer overflow-hidden"
                 onClick={() => setModalImageIndex(4)}
               >
                 <img
@@ -180,11 +180,11 @@ const Carousel = ({ galleryImages }) => {
                   alt="More"
                   className="w-full h-full object-cover blur-sm brightness-75"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-center justify-center pointer-events-none">
-                  {/* <p className="text-white text-lg lg:text-2xl font-semibold">
+                {/* <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-center justify-center pointer-events-none">
+                  <p className="text-white text-lg lg:text-2xl font-semibold">
                   +{galleryImages.length - 3} Photos
-                </p> */}
-                </div>
+                </p>
+                </div> */}
               </div>
             )}
           </div>

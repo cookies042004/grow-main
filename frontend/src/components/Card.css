@@ -1,65 +1,80 @@
-/* Remove default Slick.js arrows */
-.slick-prev:before, 
-.slick-next:before,
-.slick-prev::after,
-.slick-next::after {
-  content: none !important; /* Ensures no text or symbols */
-  display: none !important; /* Completely hides default icons */
-}
-
-/* Wrapper for slider items */
-.slider-item-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* Wrapper for the slider */
+.slider-wrapper {
   position: relative;
-  padding: 30px;
+  padding-bottom: 40px; /* Space for arrows */
 }
 
-/* Individual slide items */
-.slider-item {
-  transition: transform 0s ease-in-out;
-}
-
-/* Custom Next Arrow */
-.slick-next {
-  right: 4px;
+/* Custom arrow styles */
+.arrow {
+  position: absolute;
+  bottom: -50px; /* Position below the slider */
+  transform: translateY(-20%);
+  cursor: pointer;
   z-index: 10;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
   width: 40px;
   height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  transition: background-color 0.3s ease;
-}
-
-.slick-next:hover {
-  background-color: rgba(0, 0, 0, 0.8); /* Darker on hover */
-}
-
-/* Custom Previous Arrow */
-.slick-prev {
-  left: 4px;
-  z-index: 10;
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
+  color: white;
   transition: background-color 0.3s ease;
 }
 
-.slick-prev:hover {
+.arrow:hover {
   background-color: rgba(0, 0, 0, 0.8); /* Darker on hover */
+}
+
+/* Positioning for desktop */
+.next {
+  right: 45%;
+}
+
+.prev {
+  left: 45%;
 }
 
 /* Disabled state for arrows */
-.slick-prev.slick-disabled, 
+.slick-prev.slick-disabled,
 .slick-next.slick-disabled {
-  background-color: rgba(0, 0, 0, 0.2); /* Lighter background */
+  background-color: rgba(0, 0, 0, 0.2);
   cursor: not-allowed;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .next {
+    right: 42%;
+  }
+  .prev {
+    left: 42%;
+  }
+}
+
+@media (max-width: 768px) {
+  .next {
+    right: 42%;
+  }
+  .prev {
+    left: 42%;
+  }
+}
+
+@media (max-width: 550px) {
+  .next {
+    right: 35%;
+  }
+  .prev {
+    left: 35%;
+  }
+}
+
+@media (max-width: 400px) {
+  .next {
+    right: 33%;
+  }
+  .prev {
+    left: 33%;
+  }
 }

@@ -46,6 +46,8 @@ export const CommercialDetails = () => {
         );
         const data = await res.json();
 
+        console.log("data is ", data);
+
         if (data.property) {
           setProperty(data.property); // Store full property data
           setPropertyId(data.property._id); // Store ID
@@ -71,6 +73,8 @@ export const CommercialDetails = () => {
       });
   }, []);
 
+  console.log("amenities", allAmenities);
+
   useEffect(() => {
     if (property?.amenities?.length && Array.isArray(allAmenities)) {
       const matchedAmenities = allAmenities.filter((amenity) =>
@@ -79,6 +83,10 @@ export const CommercialDetails = () => {
       setFilteredAmenities(matchedAmenities);
     }
   }, [property, allAmenities]);
+
+  console.log("filtered,", filteredAmenities);
+
+  console.log("property is ", property);
 
   // Fetch full property details using ID (when propertyId is available)
   const apiUrl = propertyId
@@ -162,7 +170,7 @@ export const CommercialDetails = () => {
 
     if (targetElement) {
       window.scrollTo({
-        top: targetElement.offsetTop - 100, // Adjust according to navbar height
+        top: targetElement.offsetTop - 200, // Adjust according to navbar height
         behavior: "smooth",
       });
     }
@@ -211,22 +219,22 @@ export const CommercialDetails = () => {
                 </div>
 
                 {/* Property Info Container */}
-                <div className="border border-gray-300 sm:m-10 mt-5 mb-1 flex flex-col sm:flex-row gap-4 sm:gap-8 p-3 bg-gray-100">
+                <div className="border border-gray-300 m-4 sm:m-10 mt-5 mb-1 flex flex-col sm:flex-row gap-4 sm:gap-8 p-3">
                   {/* Left Section - Property Details */}
                   <div className="flex flex-row items-center sm:items-start gap-3 w-full">
                     <img
                       src={property?.dp}
                       alt="dealer"
-                      className="h-16 w-16 sm:h-20 sm:w-20 object-cover rounded-full"
+                      className="h-16 w-16 sm:h-20 sm:w-20 object-cover"
                     />
                     <div className="flex flex-col">
-                      <h1 className="font-bold text-[#1d2a3b] lg:px-2 pl-5 text-2xl sm:text-xl py-[1px] max-w-[250px]">
-                        {property?.title}
+                      <h1 className="font-bold text-[#1d2a3b] lg:px-2 pl-16 text-lg sm:text-xl py-[1px] max-w-[250px]">
+                        {property?.name}
                       </h1>
-                      <p className="text-sm text-[#03002a] lg:px-2 pl-5 py-[1px]">
+                      <p className="text-sm text-[#03002a] lg:px-2 lg:pl-10 pl-14  py-[1px]">
                         By {property?.builder}
                       </p>
-                      <div className="flex items-center lg:px-0 pl-4">
+                      <div className="flex items-center lg:px-0 lg:pl-8 pl-14">
                         <LocationOnIcon className="text-red-600 text-xs" />
                         <p className="text-sm text-red-600 py-[1px]">
                           {property?.location}
@@ -242,7 +250,7 @@ export const CommercialDetails = () => {
                     </h5>
 
                     {/* Buttons - Stack on Small Screens */}
-                    <div className="flex flex-row sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto py-2 pr-2">
+                    <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto py-2 pr-2">
                       <Link to={`/brochure`} className="w-full sm:w-auto">
                         <Button
                           startIcon={<PictureAsPdfIcon />}
@@ -275,13 +283,14 @@ export const CommercialDetails = () => {
                 </div>
               </div>
 
-              <div className="flex flex-wrap justify-center sm:justify-start gap-2 sm:gap-4 my-6 border-b pb-2">
+              <div className="flex flex-wrap justify-center sm:justify-center gap-2 sm:gap-8 my-6 border-b pb-2">
                 {[
                   { href: "#Description", label: "Description" },
-                  { href: "#Overview", label: "Overview" },
+                  { href: "#Project Overview", label: "Project Overview" },
                   { href: "#Project Amenities", label: "Project Amenities" },
+                  // { href: "#Location Benefits", label: "Location Benefits" },
                   { href: "#Video Tour", label: "Video Tour" },
-                  { href: "#Emi Calculator", label: "Emi Calculator" },
+                  { href: "#EMI Calculator", label: "EMI Calculator" },
                 ].map((item) => (
                   <Link
                     key={item.href}
@@ -333,7 +342,7 @@ export const CommercialDetails = () => {
                 {/* Overview */}
                 <div
                   className="col-span-12 bg-white p-6 shadow-[0px_0px_10px_rgba(0,0,0,0.3)]"
-                  id="Overview"
+                  id="Project Overview"
                 >
                   <h3 className="text-2xl border-b-2 font-poppins font-semibold pb-3 text-gray-900">
                     Project Overview
@@ -395,6 +404,7 @@ export const CommercialDetails = () => {
                   </div>
                 </div>
 
+                {/* Project Amenities */}
                 <div
                   className="col-span-12 bg-white p-8 shadow-[0px_0px_10px_rgba(0,0,0,0.3)]"
                   id="Project Amenities"
@@ -404,28 +414,29 @@ export const CommercialDetails = () => {
                   </h3>
 
                   {/* Society Amenities */}
-                  <div className="p-3 bg-gray-50 shadow-md rounded-lg">
-                    <div className="grid grid-cols-5 sm:grid-cols-5 lg:grid-cols-10 gap-2">
+                  <div className="p-6 bg-gray-50 shadow-md mt-5 rounded-lg">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
                       {filteredAmenities.length ? (
                         filteredAmenities.map((item) => (
                           <div
                             key={item._id}
-                            className="flex flex-col items-center"
+                            className="flex items-center gap-4 p-3 border rounded-lg bg-white shadow-sm 
+                       hover:shadow-md transition-all duration-300 flex-wrap"
                           >
                             <img
-                              src={item.image || "/default-image.png"}
-                              alt={item.name || "Amenity"}
-                              className="h-8 w-8 object-cover rounded"
+                              src={item.image}
+                              alt={item.name}
+                              className="h-8 w-8 object-contain"
                             />
-                            <p className="text-xs text-gray-600 text-center">
-                              {item.name || "Unnamed"}
+                            <p className="text-lg font-semibold text-gray-700 break-words leading-tight">
+                              {item.name}
                             </p>
                           </div>
                         ))
                       ) : (
-                        <p className="col-span-full text-center text-gray-500">
-                          No amenities available
-                        </p>
+                        <div className="col-span-full text-center text-gray-500 font-medium">
+                          No society amenities available
+                        </div>
                       )}
                     </div>
                   </div>
@@ -464,7 +475,7 @@ export const CommercialDetails = () => {
                 </div>
 
                 {/* EMI Calculator */}
-                <div className="col-span-12" id="Emi Calculator">
+                <div className="col-span-12" id="EMI Calculator">
                   <Calculator />
                 </div>
               </div>
@@ -480,7 +491,7 @@ export const CommercialDetails = () => {
       </div>
 
       {/* Featured Projects  */}
-      <div className="bg-white p-3 max-w-[1280px] mx-auto">
+      <div className="p-3 max-w-[1280px] mx-auto">
         <h1 className="text-center text-[#1d2a3b] lg:text-4xl text-2xl font-bold py-8 lg:font-medium">
           Recent Listings
         </h1>

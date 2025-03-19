@@ -38,7 +38,7 @@ export const Awards = () => {
 
         {/* Awards Section */}
         <div className="my-10 px-4 sm:px-8 lg:px-16">
-          <h2 className="text-center text-[#03002e] text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold py-4">
+          <h2 className="text-center text-[#1d2a3b] text-2xl sm:text-2xl md:text-3xl lg:text-4xl font-bold py-4">
             Recognizing Excellence
           </h2>
 
@@ -56,26 +56,27 @@ export const Awards = () => {
               </div>
             )}
 
-            {awards.length > 0 ? (
-              awards.map((award) => (
-                <div key={award._id} className="flex flex-col items-center p-3">
-                  <img
-                    src={award.image}
-                    alt={award.name || "Award"}
-                    className="w-[90%] sm:w-[80%] h-[160px] sm:h-[200px] md:h-[220px] object-cover rounded-lg shadow-lg transition-transform duration-300 hover:scale-105"
-                  />
-                  <p className="mt-3 text-center text-sm sm:text-base font-medium text-gray-700">
-                    {award.name}
-                  </p>
-                </div>
-              ))
-            ) : (
-              !loading && (
-                <div className="col-span-12 flex justify-center">
-                  <p className="text-gray-500">No awards found.</p>
-                </div>
-              )
-            )}
+            {awards.length > 0
+              ? awards.map((award) => (
+                  <div
+                    key={award._id}
+                    className="flex flex-col items-center p-3"
+                  >
+                    <img
+                      src={award.image}
+                      alt={award.name || "Award"}
+                      className="w-[280px] sm:w-[200px] md:w-[220px] h-[280px] sm:h-[200px] md:h-[220px] object-cover rounded-lg shadow-lg transition-transform duration-300 hover:scale-105"
+                    />
+                    <p className="mt-3 text-center text-sm sm:text-base font-medium text-gray-700">
+                      {award.name}
+                    </p>
+                  </div>
+                ))
+              : !loading && (
+                  <div className="col-span-12 flex justify-center">
+                    <p className="text-gray-500">No awards found.</p>
+                  </div>
+                )}
           </div>
         </div>
       </Layout>

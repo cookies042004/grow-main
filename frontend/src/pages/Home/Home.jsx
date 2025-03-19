@@ -165,7 +165,7 @@ export const Home = () => {
                 Icon: AspectRatioIcon,
                 count: 10,
                 suffix: "+",
-                label: "Years of Experience",
+                label: "Years Experience",
               },
               {
                 Icon: AccessibilityNewIcon,
@@ -326,10 +326,10 @@ export const Home = () => {
       <Choose />
 
       {/* Awards Segment  */}
-      <div className="bg-gray-50 py-5 max-w-[1480px] mx-auto">
+      <div className="bg-gray-50 lg:py-5 max-w-[1520px] mx-auto">
         <AwardComponent />
 
-        <div className="flex justify-center m-8">
+        <div className="flex justify-center lg:m-8 pb-5 lg:pb-0">
           <Link to="/awards">
             <Button
               size="large"

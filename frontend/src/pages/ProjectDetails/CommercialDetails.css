@@ -19,31 +19,17 @@
 
 .p-navbar {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   text-align: center;
   transition: all 0.1s ease-in-out;
   color: gray;
   border-bottom: 1px solid #1d2a3b;
 }
 
-/* .navbar.sticky{
-  background-color: white;
-  position: fixed;  
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 15%;
-  z-index: 1000;
-  border-bottom: none;
-  padding: 10px;
-} */
-
 .p-navbar a {
   text-decoration: none;
-  /* color: #03002a; */
   font-size: 1rem;
   font-weight: 600;
-  /* padding: 10px; */
   display: block;
   width: 100%;
   transition: all 0.3s ease-in-out;
@@ -51,7 +37,6 @@
 
 .p-navbar a:hover {
   color: #1d2a3b;
-  /* background-color: #03002a; */
   transform: scale(1.05);
   border-radius: 5px;
 }

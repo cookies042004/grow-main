@@ -4,28 +4,28 @@
   justify-content: center;
   align-items: center;
   min-height: 50vh; /* Increased height for better layout */
-  padding: 30px 0;
+  padding: 10px 0;
   width: 100%;
   background: #f8f8f8; /* Light background for contrast */
 }
 
 .swiper-3d {
-  perspective: 1200px; /* Better depth effect */
+  perspective: 800px; /* Better depth effect */
 }
 
 .award-container {
   width: 100%;
   max-width: 1400px;
   text-align: center;
-  padding: 0 20px;
+  padding: 0 10px;
 }
 
-.award-heading {
+/* .award-heading {
   font-size: 1.8rem;
-  color: #03002e;
+  color: #1d2a3b;
   font-weight: bold;
   margin-bottom: 20px;
-}
+} */
 
 @media (min-width: 768px) {
   .award-heading {
@@ -43,8 +43,7 @@
 .award-swiper_container {
   width: 100%;
   max-width: 90%;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 20px;
 }
 
 /* Award Card Styling */
@@ -62,41 +61,53 @@
 }
 
 .award-swiper-slide img {
-  width: 100%;
-  height: 100%;
+  width: 100%;  /* Full width within card */
+  height: 400px; /* Maintain aspect ratio */
+  max-height: 100%; /* Prevent overflow */
   object-fit: cover;
   border-radius: 10px;
 }
 
+/* Hover Effect */
 .award-swiper-slide:hover {
   transform: scale(1.05);
 }
 
 /* Responsive Fix */
-@media (max-width: 576px) {
+@media (max-width: 400px) {
   .award-swiper-slide {
-    width: 220px;
-    height: 300px;
+    width: 200px;  /* Adjust to screen size */
+    height: 200px; /* Flexible height */
+  }}
+
+  @media (max-width: 576px) {
+  .award-swiper-slide {
+    width: 200px;  /* Adjust to screen size */
+    height: 200px; /* Flexible height */
+  }
+
+  .award-swiper-slide img {
+    width: 100%; /* Ensure it stretches with the card */
   }
 }
 
 @media (min-width: 768px) {
   .award-swiper-slide {
-    width: 350px;
-    height: 400px;
+    width: 380px; /* Increased width */
+    height: 380px;
   }
 }
 
 @media (min-width: 1024px) {
   .award-swiper-slide {
-    width: 400px;
-    height: 450px;
+    width: 400px; /* Wider on larger screens */
+    height: 400px;
   }
 }
 
 /* Swiper Pagination */
 .award-swiper_pagination {
-  background: #03002e !important;
+  background: #1d2a3b !important;
   width: 10px;
   height: 10px;
   opacity: 0.8;

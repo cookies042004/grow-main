@@ -9,7 +9,7 @@ export const Choose = () => {
     <>
       {/* Why choose us?  */}
       <div className="my-5 py-5 max-w-[1280px] mx-auto ">
-        <h1 className="text-2xl lg:text-4xl font-bold pt-6 lg:font-medium text-[#1d2a3b] text-center lg:text-[#1d2a3b]">
+        <h1 className="text-2xl lg:text-4xl font-bold pt-6 lg:font-medium text-[#1d2a3b] text-center lg:text-[#1d2a3b] max-w-[400px] lg:max-w-[1280px]">
           Why Choose Grow Infinity Realtors?
         </h1>
 

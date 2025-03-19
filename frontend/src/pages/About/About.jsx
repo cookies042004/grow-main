@@ -144,7 +144,7 @@ export const About = () => {
               className="col-span-6 md:col-span-6 lg:col-span-4 p-5"
               key={item.number}
             >
-              <div className="text-[#1d2a3b] hover:text-white p-6 lg:p-10 font-roboto text-center border-2 rounded-xl flex flex-col items-center justify-center cursor-pointer transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-2xl hover:bg-gradient-to-r from-indigo-900 to-black">
+              <div className="text-[#1d2a3b] hover:text-white p-6 lg:p-10 font-roboto text-center border-2 rounded-xl flex flex-col items-center justify-center cursor-pointer transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-2xl hover:bg-gradient-to-r from-gray-600 to-black">
                 <h5 className="text-2xl lg:text-4xl font-bold mb-2">
                   {item.number}
                 </h5>
@@ -198,7 +198,7 @@ export const About = () => {
       </div>
       {/* Mission  */}
       <div className="bg-gray-50 py-8">
-        <div className="mx-auto max-w-[1280px] px-4">
+        <div className="max-w-[400px] mx-auto lg:max-w-[1280px] px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             {/* Left - Images Section */}
             <div className="hidden md:flex flex-col gap-5">

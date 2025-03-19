@@ -136,11 +136,7 @@ p {
 
 .service-info-1:hover::before {
   height: 100%;
-  background: linear-gradient(
-    to bottom,
-    rgba(3, 0, 46, 0.8) 0%,
-    rgba(3, 0, 46, 1) 100%
-  ); /* Darker linear gradient */
+  background: linear-gradient(to bottom, rgb(86, 86, 86), black);
 }
 
 
@@ -172,15 +168,15 @@ p {
 }
 
 .service-info-1 i {
-  color: #03002e;
+  color: #1d2a3b;
 }
 
 .service-info-1::before {
-  background: #03002e;
+  background: #1d2a3b;
 }
 
 .read-more {
-  color: #03002e;
+  color: #1d2a3b;
 }
 
 /*! CSS Used from: Embedded */

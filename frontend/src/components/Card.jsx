@@ -6,6 +6,25 @@ import "./Card.css";
 import { useFetchData } from "../hooks/useFetchData";
 import { PropertyCard } from "./PropertyCard";
 import { CircularProgress } from "@mui/material";
+import { MdArrowBack, MdArrowForward } from "react-icons/md";
+
+const NextArrow = ({ onClick }) => (
+  <div
+    className="arrow next bg-[#1d2a3b] text-white rounded-full p-1"
+    onClick={onClick}
+  >
+    <MdArrowForward size={24} />
+  </div>
+);
+
+const PrevArrow = ({ onClick }) => (
+  <div
+    className="arrow prev bg-[#1d2a3b] text-white rounded-full p-1"
+    onClick={onClick}
+  >
+    <MdArrowBack size={24} />
+  </div>
+);
 
 export const Card = ({ category }) => {
   const settings = {
@@ -16,6 +35,9 @@ export const Card = ({ category }) => {
     autoplaySpeed: 3000,
     slidesToShow: 4,
     slidesToScroll: 1,
+    arrows: true,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
     responsive: [
       {
         breakpoint: 1024,
@@ -58,17 +80,19 @@ export const Card = ({ category }) => {
       )}
 
       {properties.length > 0 ? (
-        <Slider {...settings}>
-          {properties
-            .filter((property) => property.category.name === category)
-            .map((property) => (
-              <PropertyCard
-                key={property._id}
-                {...property}
-                image={property.image[0]}
-              />
-            ))}
-        </Slider>
+        <div className="slider-wrapper">
+          <Slider {...settings}>
+            {properties
+              .filter((property) => property.category.name === category)
+              .map((property) => (
+                <PropertyCard
+                  key={property._id}
+                  {...property}
+                  image={property.image[0]}
+                />
+              ))}
+          </Slider>
+        </div>
       ) : (
         !loading && (
           <p className="text-center text-gray-500">No properties found.</p>

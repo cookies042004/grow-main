@@ -202,7 +202,7 @@ export const Contact = () => {
                   </div>
                   <div className="col-span-12 flex justify-center">
                     <Button
-                      className="bg-gradient-to-r from-indigo-900 to-black"
+                      className="bg-gradient-to-r from-gray-600 to-black"
                       type="submit"
                       onClick={handleSubmit}
                       endIcon={<EastOutlinedIcon />}
@@ -239,7 +239,7 @@ export const Contact = () => {
             <div className="grid sm:grid-cols-12 py-10">
               <div className="col-span-12 md:col-span-6 lg:col-span-4 flex justify-center bg-white m-5 px-3 lg:px-4 py-4 lg:py-6 rounded-[24px] shadow-lg">
                 <div className="flex flex-col gap-3 lg:gap-5 justify-center items-center">
-                  <div className="flex items-center justify-center p-5 bg-gradient-to-r from-indigo-900 to-black rounded-[50%] h-[50px] w-[50px] lg:h-[70px] lg:w-[70px]">
+                  <div className="flex items-center justify-center p-5 bg-gradient-to-r from-gray-600 to-black rounded-[50%] h-[50px] w-[50px] lg:h-[70px] lg:w-[70px]">
                     <EmailIcon
                       sx={{
                         fontSize: { sm: "20px", lg: "40px" },
@@ -261,7 +261,7 @@ export const Contact = () => {
               </div>
               <div className="col-span-12 md:col-span-6 lg:col-span-4 flex justify-center bg-white m-5 px-3 lg:px-4 py-4 lg:py-6 rounded-[24px] shadow-lg">
                 <div className="flex flex-col gap-3 lg:gap-5  justify-center items-center">
-                  <div className="flex items-center justify-center p-5 bg-gradient-to-r from-indigo-900 to-black rounded-[50%] h-[50px] w-[50px] lg:h-[70px] lg:w-[70px]">
+                  <div className="flex items-center justify-center p-5 bg-gradient-to-r from-gray-600 to-black rounded-[50%] h-[50px] w-[50px] lg:h-[70px] lg:w-[70px]">
                     <LocationOnIcon
                       sx={{
                         fontSize: { sm: "20px", lg: "40px" },
@@ -282,7 +282,7 @@ export const Contact = () => {
               </div>
               <div className="col-span-12 md:col-span-6 lg:col-span-4 flex justify-center bg-white m-5 px-2 lg:px-4 py-4 lg:py-6 rounded-[24px] shadow-lg">
                 <div className="flex flex-col gap-3 lg:gap-5  justify-center items-center">
-                  <div className="flex items-center justify-center p-3 lg:p-5 bg-gradient-to-r from-indigo-900 to-black rounded-[50%] h-[50px] w-[50px] lg:h-[70px] lg:w-[70px]">
+                  <div className="flex items-center justify-center p-3 lg:p-5 bg-gradient-to-r from-gray-600 to-black rounded-[50%] h-[50px] w-[50px] lg:h-[70px] lg:w-[70px]">
                     <LocalPhoneIcon
                       sx={{
                         fontSize: { sm: "20px", lg: "40px" },
