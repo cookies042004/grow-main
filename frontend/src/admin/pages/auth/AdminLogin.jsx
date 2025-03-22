@@ -61,8 +61,8 @@ export const AdminLogin = () => {
       if (response.data.success) {
         Cookies.set("adminToken", response.data.token, {
           expires: 1,
-          secure: true,
-          sameSite: "Strict",
+          secure: false,
+          sameSite: "Lax",
         });
         navigate("/admin/dashboard");
         setLoading(false);

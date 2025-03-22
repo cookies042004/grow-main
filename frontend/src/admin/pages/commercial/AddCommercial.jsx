@@ -626,7 +626,6 @@ export const AddCommercial = () => {
                   flexDirection: "column",
                   gap: 2,
                   mt: 2,
-                  flexDirection: "column",
                   padding: "12px",
                   border: "2px solid #ccc",
                   borderRadius: "8px",
