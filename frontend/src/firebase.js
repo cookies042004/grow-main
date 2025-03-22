@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBgw81HICGQ9gN5ItZngqvytntzyW8S5eY",
+    // apiKey: "AIzaSyBgw81HICGQ9gN5ItZngqvytntzyW8S5eY",
     authDomain: "growinfinity-4701b.firebaseapp.com",
     projectId: "growinfinity-4701b",
     storageBucket: "growinfinity-4701b.firebasestorage.app",
