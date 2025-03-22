@@ -8,6 +8,8 @@ import {
 import { CalculatorHome } from "./CalculatorHome";
 import { Link } from "react-router-dom";
 import gif from "../assets/img/Animation-icon.gif";
+import GoogleLogo from "../assets/img/google.jpg";
+import WhatsAppLogo from "../assets/img/whatsapp.jpg";
 
 export const Layout = ({ children }) => {
   const [hoverReview, setHoverReview] = useState(false);
@@ -50,7 +52,7 @@ export const Layout = ({ children }) => {
                   className="w-12 h-12 rounded-full shadow-lg hover:scale-110 transition-transform transform bg-gradient-to-r from-gray-600 to-black flex items-center justify-center"
                 >
                   <img
-                    src="/src/assets/img/whatsapp.jpg"
+                    src={WhatsAppLogo}
                     alt="WhatsApp"
                     className="w-8 h-8 rounded-full object-cover"
                   />
@@ -84,7 +86,7 @@ export const Layout = ({ children }) => {
                   className="w-12 h-12 rounded-full shadow-lg hover:scale-110 transition-transform transform bg-gradient-to-r from-gray-600 to-black flex items-center justify-center"
                 >
                   <img
-                    src="/src/assets/img/google.jpg"
+                    src={GoogleLogo}
                     alt="Google"
                     className="w-8 h-8 rounded-full object-cover"
                   />
