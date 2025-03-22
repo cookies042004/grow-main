@@ -21,7 +21,15 @@ export const AwardComponent = () => {
       </div>
     );
   }
-  if (error) return <p>Error fetching data.</p>;
+  if (error)
+    return (
+      <div className="col-span-12 flex flex-col items-center">
+        <img src="https://shorturl.at/6C2TM" alt="error" />
+        <p className="text-red-500 mt-2">
+          Failed to load Awards. Please try again.
+        </p>
+      </div>
+    );
 
   return (
     <div className="award-section">

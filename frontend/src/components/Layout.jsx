@@ -7,6 +7,7 @@ import {
 } from "@mui/icons-material";
 import { CalculatorHome } from "./CalculatorHome";
 import { Link } from "react-router-dom";
+import gif from "../assets/img/Animation-icon.gif";
 
 export const Layout = ({ children }) => {
   const [hoverReview, setHoverReview] = useState(false);
@@ -156,7 +157,7 @@ export const Layout = ({ children }) => {
             <CancelIcon sx={{ fontSize: "30px", color: "#fff" }} />
           ) : (
             <img
-              src="/src/assets/img/Animation-icon.gif" // Add your GIF file here
+              src={gif}
               alt="Toggle Menu"
               className="w-full h-full rounded-full object-cover bg-gradient-to-r from-gray-600 to-black"
             />
