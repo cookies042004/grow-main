@@ -193,7 +193,7 @@ export const ProjectDetails = () => {
                     <img
                       src={property?.dp}
                       alt="dealer"
-                      className="h-16 w-16 sm:h-20 sm:w-20 object-contain"
+                      className="h-16 w-16 sm:h-20 sm:w-20 object-contain border border-r-2"
                     />
                     <div className="flex flex-col">
                       <h1 className="flex items-center justify-center sm:justify-start font-bold text-[#1d2a3b] text-lg sm:text-xl py-[1px] sm:pl-2">
