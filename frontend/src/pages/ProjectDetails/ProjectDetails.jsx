@@ -187,7 +187,7 @@ export const ProjectDetails = () => {
                 </div>
 
                 {/* Property Info Container */}
-                <div className="border border-gray-300 m-4 sm:m-10 mt-5 mb-1 flex flex-col sm:flex-row gap-4 sm:gap-8 p-3 items-center sm:items-start">
+                <div className="border border-gray-300 m-4 sm:mx-10 mt-5 mb-1 flex flex-col sm:flex-row gap-4 sm:gap-8 p-3 items-center sm:items-start">
                   {/* Left Section - Property Details */}
                   <div className="flex sm:flex-row flex-col items-center sm:items-start gap-3 w-full">
                     <img
