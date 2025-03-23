@@ -75,7 +75,7 @@ export const Card = ({ category }) => {
       )}
       {error && (
         <div className="col-span-12 flex flex-col items-center">
-          <img src="https://shorturl.at/6C2TM" alt="error" />
+          <img src="https://shorturl.at/6C2TM" alt="error" loading="lazy" />
         </div>
       )}
 

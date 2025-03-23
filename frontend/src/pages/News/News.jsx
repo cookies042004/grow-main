@@ -7,6 +7,7 @@ import { useFetchData } from "../../hooks/useFetchData";
 import { Link } from "react-router-dom";
 import { NavigationBar } from "../../components/NavigationBar";
 import { CircularProgress } from "@mui/material";
+import newsBanner from "../../assets/img/newsbanner.jpg";
 
 export const News = () => {
   const apiUrl = `${process.env.BASE_URL}/api/v1/news`;
@@ -21,15 +22,27 @@ export const News = () => {
   return (
     <Layout>
       {/* News Hero  */}
-      <div className="newsbanner flex items-center justify-center">
-        <div className="grid sm:grid-cols-12">
-          <div className="col-span-12 text-center mt-10 lg:mt-20">
-            {/* <h1 className="font-dmsans font-medium text-white text-3xl lg:text-4xl ">
-              News
-            </h1> */}
-          </div>
-        </div>
-      </div>
+      <div className="newsbanner flex items-center justify-center relative">
+  {/* Lazy-loaded Background Image */}
+  <img
+    src={newsBanner}
+    alt="News Banner"
+    className="absolute inset-0 w-full h-full object-cover"
+    loading="lazy"
+  />
+
+  {/* Overlay Effect */}
+  <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+
+  {/* Content */}
+  <div className="grid sm:grid-cols-12 relative z-10">
+    <div className="col-span-12 text-center mt-10 lg:mt-20">
+      {/* <h1 className="font-dmsans font-medium text-white text-3xl lg:text-4xl">
+        News
+      </h1> */}
+    </div>
+  </div>
+</div>
 
       <NavigationBar />
 

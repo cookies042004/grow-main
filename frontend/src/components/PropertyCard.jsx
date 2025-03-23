@@ -62,7 +62,7 @@ export const PropertyCard = ({
     <div className="border relative p-2 hover:shadow-2xl bg-white transition-all duration-300">
       {/* Property Image */}
       <div className="flex justify-center">
-        <img src={image} alt={name} className="h-[230px] w-full object-cover" />
+        <img src={image} alt={name} loading="lazy" className="h-[230px] w-full object-cover" />
       </div>
 
       {/* Property Details */}

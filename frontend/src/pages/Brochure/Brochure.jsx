@@ -87,10 +87,15 @@ export const Brochure = () => {
           </div>
         )}
         {error && (
-          <p className="text-center text-red-500">Error: {error.message}</p>
+          <div className="col-span-12 flex flex-col items-center">
+          <img src="https://shorturl.at/6C2TM" alt="error" />
+          <p className="text-red-500 mt-2">
+            Failed to load brochures. Please try again.
+          </p>
+        </div>
         )}
 
-        {brochures.length > 0 ? (
+        {brochures.length > 0 && (
           <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-20">
             {brochures.map((brochure) => (
               <div
@@ -121,8 +126,6 @@ export const Brochure = () => {
               </div>
             ))}
           </div>
-        ) : (
-          <p className="text-center text-gray-600">No brochures available.</p>
         )}
       </div>
 

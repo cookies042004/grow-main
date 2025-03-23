@@ -24,6 +24,7 @@ import keys from "../../assets/img/keys.jpeg";
 import Icon1 from "../../assets/img/Icon.png";
 import Icon2 from "../../assets/img/Icon (1).png";
 import Icon3 from "../../assets/img/Icon (2).png";
+import aboutBanner from "../../assets/img/aboutbanner.jpg";
 
 export const About = () => {
   const teamMembers = [
@@ -45,8 +46,20 @@ export const About = () => {
   return (
     <Layout>
       {/* About Hero  */}
-      <div className="aboutbanner flex items-center justify-center">
-        <div className="grid sm:grid-cols-12">
+      <div className="aboutbanner flex items-center justify-center relative">
+        {/* Lazy-loaded image */}
+        <img
+          src={aboutBanner}
+          alt="About Us and us"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+        />
+
+        {/* Overlay Effect */}
+        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+
+        {/* Content */}
+        <div className="grid sm:grid-cols-12 relative z-10">
           <div className="col-span-12 text-center mt-10 lg:mt-20">
             <h1 className="font-dmsans text-center font-medium text-white text-3xl lg:text-4xl">
               About Us
@@ -93,6 +106,7 @@ export const About = () => {
               src={aboutImg}
               alt="about-welcome-image"
               className="h-[280px] lg:h-[400px] w-[480px] mx-5"
+              loading="lazy"
             />
           </div>
         </div>
@@ -171,6 +185,7 @@ export const About = () => {
                 src={whatwedo}
                 alt=""
                 className="w-[300px] lg:w-[600px] border"
+                loading="lazy"
               />
             </div>
             <div className="col-span-12 lg:col-span-6 flex flex-col justify-center pb-10">
@@ -207,6 +222,7 @@ export const About = () => {
                   src={findRealEstate}
                   alt="Find Real Estate"
                   className="rounded-lg w-full h-auto max-h-[350px] object-cover"
+                  loading="lazy"
                 />
               </div>
               <div className="grid grid-cols-2 gap-5">
@@ -214,11 +230,13 @@ export const About = () => {
                   src={realtor}
                   alt="Meet Realtor"
                   className="rounded-lg w-full h-[280px] object-cover"
+                  loading="lazy"
                 />
                 <img
                   src={keys}
                   alt="Take the keys"
                   className="rounded-lg w-full h-auto max-h-[280px] object-cover"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -260,6 +278,7 @@ export const About = () => {
                         src={item.img}
                         alt=""
                         className="relative w-[35px] h-[35px]"
+                        loading="lazy"
                       />
                     </div>
                     <div className="flex-1">
@@ -300,6 +319,7 @@ export const About = () => {
                         src={member.image}
                         alt={member.name}
                         className="rounded-3xl h-[220px] lg:h-[350px] w-full md:w-[220px] lg:w-[250px] object-cover transform hover:scale-105 transition-transform duration-300"
+                        loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-0 hover:opacity-30 rounded-3xl transition-opacity duration-300"></div>
                     </div>

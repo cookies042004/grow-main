@@ -72,14 +72,15 @@ const Carousel = ({ galleryImages }) => {
   return (
     <div className="grid gap-6">
       <div className="flex w-full relative gap-2 flex-col md:flex-row">
-        <div className="w-full md:w-5/6 relative">
-          <div className="overflow-hidden transition-transform duration-500">
+        <div className="w-full h-[300p  x] md:w-5/6 relative">
+          <div className="overflow-hidden bg-black h-[300px] transition-transform duration-500">
             <img
               src={galleryImages[activeIndex]}
               className="block w-full object-cover cursor-pointer transition-transform duration-500 hover:scale-105"
               alt="Main"
               onClick={() => openModal(activeIndex)}
               style={{ maxHeight: "400px" }}
+              loading="lazy"
             />
           </div>
         </div>
@@ -92,16 +93,18 @@ const Carousel = ({ galleryImages }) => {
             View More
           </button>
         )}
+
         <div className="hidden rounded-xl lg:block w-2/4">
           <div className="flex flex-col gap-2.5 bg-white/90 backdrop-blur-lg">
             <div>
               <img
                 src={galleryImages[(activeIndex + 1) % galleryImages.length]}
-                className="w-full h-[150px] object-cover cursor-pointer hover:scale-y-105 transition-transform duration-500"
+                className="w-full h-[140px] object-cover cursor-pointer hover:scale-y-105 transition-transform duration-500"
                 alt="Next"
                 onClick={() =>
                   openModal((activeIndex + 1) % galleryImages.length)
                 }
+                loading="lazy"
               />
             </div>
 
@@ -111,6 +114,7 @@ const Carousel = ({ galleryImages }) => {
                 className="w-full h-[149px] blur-sm object-cover cursor-pointer hover:scale-x-105 hover:scale-y-105 transition-transform duration-500 brightness-75"
                 alt="More"
                 onClick={() => openModal(galleryImages.length - 1)}
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-center justify-center pointer-events-none">
                 <p className="text-white text-3xl font-semibold">
@@ -125,7 +129,7 @@ const Carousel = ({ galleryImages }) => {
       {isModalOpen && modalImageIndex !== null && (
         <div className="fixed inset-0 flex items-center justify-center bg-black z-[1000]">
           {/* Background Overlay to ensure proper layout */}
-          <div className="absolute inset-[-70px] flex justify-center items-center">
+          <div className="absolute inset-0 flex justify-center items-center">
             <motion.img
               key={modalImageIndex}
               src={galleryImages[modalImageIndex]}
@@ -152,41 +156,36 @@ const Carousel = ({ galleryImages }) => {
           </button>
 
           {/* Thumbnail Previews */}
-          <div className="absolute bottom-8 right-2 lg:right-[-80px] flex gap-3">
-            {galleryImages.slice(0, 3).map((img, index) => (
-              <motion.div
-                key={index}
-                className={`relative w-20 lg:w-40 h-16 lg:h-20 rounded-lg cursor-pointer overflow-hidden ${
-                  modalImageIndex === index ? "border-2 border-white" : ""
-                }`}
-                whileHover={{ scale: 1.1 }}
-                onClick={() => setModalImageIndex(index)}
-              >
-                <img
-                  src={img}
-                  alt={`Thumbnail ${index + 1}`}
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-            ))}
-
-            {galleryImages.length > 4 && (
-              <div
-                className="relative w-12 lg:w-40 h-16 lg:h-20 rounded-lg cursor-pointer overflow-hidden"
-                onClick={() => setModalImageIndex(4)}
-              >
-                <img
-                  src={galleryImages[3]}
-                  alt="More"
-                  className="w-full h-full object-cover blur-sm brightness-75"
-                />
-                {/* <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-center justify-center pointer-events-none">
-                  <p className="text-white text-lg lg:text-2xl font-semibold">
-                  +{galleryImages.length - 3} Photos
-                </p>
-                </div> */}
-              </div>
-            )}
+          <div className="absolute bottom-8 right-2 lg:right-[-80px] overflow-hidden w-[320px] lg:w-[720px]">
+            <motion.div
+              key={modalImageIndex}
+              className="flex gap-3"
+              initial={{ x: 40, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.4 }}
+            >
+              {galleryImages
+                .slice(
+                  Math.max(0, modalImageIndex - 1),
+                  Math.min(galleryImages.length, modalImageIndex + 3)
+                )
+                .map((img, index) => (
+                  <motion.div
+                    key={index}
+                    className={`relative w-20 lg:w-40 h-16 lg:h-20 rounded-lg cursor-pointer overflow-hidden ${
+                      modalImageIndex === index ? "border-2 border-white" : ""
+                    }`}
+                    whileHover={{ scale: 1.1 }}
+                    onClick={() => setModalImageIndex(index)}
+                  >
+                    <img
+                      src={img}
+                      alt={`Thumbnail ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </motion.div>
+                ))}
+            </motion.div>
           </div>
 
           {/* Close Button */}
@@ -194,7 +193,7 @@ const Carousel = ({ galleryImages }) => {
             className="absolute text-black top-6 right-6 md:top-4 md:right-4 bg-white/50 py-1 px-3 lg:px-4 lg:p-2 font-medium rounded-full z-[60]"
             onClick={closeModal}
           >
-            X
+            ✖
           </button>
         </div>
       )}

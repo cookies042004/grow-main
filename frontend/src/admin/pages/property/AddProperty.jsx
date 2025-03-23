@@ -21,7 +21,8 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import "./AddProperty.css";
-import { toWords } from "number-to-words";
+import Lottie from "lottie-react";
+import successAnimation from "../../../assets/img/success.json";
 
 export const AddProperty = () => {
   document.title = "Add Property";
@@ -353,7 +354,18 @@ export const AddProperty = () => {
       );
 
       if (response.status === 201) {
-        toast.success("Property added successfully!");
+        // toast.success("Property added successfully!");
+        <div className="flex flex-col items-center">
+          <Lottie
+            animationData={successAnimation}
+            loop={false}
+            style={{ width: 150, height: 150 }}
+          />
+          <h2 className="text-2xl font-bold text-center">Success!</h2>
+          <p className="text-center text-gray-600">
+            Your request has been submitted.
+          </p>
+        </div>;
         setFormData({
           category: "",
           name: "",

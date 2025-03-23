@@ -12,21 +12,28 @@ import AutoGraphIcon from "@mui/icons-material/AutoGraph";
 import PhoneCallbackIcon from "@mui/icons-material/PhoneCallback";
 import StorefrontIcon from "@mui/icons-material/Storefront";
 import { NavigationBar } from "../../components/NavigationBar";
+import serviceBanner from "../../assets/img/servicebanner.jpg";
 
 export const Services = () => {
   return (
     <Layout>
       <div className="bg-[#a79d900c]">
         {/* Service Hero  */}
-        <div className="servicebanner flex items-center justify-center">
-          {/* <div className="grid sm:grid-cols-12">
-            <div className="col-span-12 text-center mt-10 lg:mt-20">
-              <h1 className="font-dmsans font-medium text-white text-3xl lg:text-4xl">
-                Services
-              </h1>
-            </div>
-          </div> */}
-        </div>
+        <div className="servicebanner flex items-center justify-center relative">
+                {/* Lazy-loaded Background Image */}
+                <img
+                  src={serviceBanner}
+                  alt="Event Banner"
+                  className="absolute inset-0 w-full h-full object-cover"
+                  loading="lazy"
+                />  
+              
+                {/* Content */}
+                <div className="grid sm:grid-cols-12 relative z-10">
+                  <div className="col-span-12 text-center mt-10 lg:mt-20">
+                  </div>
+                </div>
+              </div>
 
         <NavigationBar />
 

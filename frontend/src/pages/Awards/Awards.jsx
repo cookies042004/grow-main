@@ -51,9 +51,12 @@ export const Awards = () => {
             )}
 
             {error && (
-              <div className="col-span-12 flex justify-center text-red-500">
-                <p>Something went wrong while loading the awards.</p>
-              </div>
+              <div className="col-span-12 flex flex-col items-center">
+              <img src="https://shorturl.at/6C2TM" alt="error" />
+              <p className="text-red-500 mt-2">
+                Failed to load awards. Please try again.
+              </p>
+            </div>
             )}
 
             {awards.length > 0

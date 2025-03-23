@@ -31,7 +31,7 @@ export const PropertyCard1 = ({ title }) => {
       // onMouseLeave={() => setHovered(false)}
       onClick={submitHandler}
     >
-      <img src={getImage} alt={title} className="w-full h-full object-cover" />
+      <img src={getImage} alt={title} loading="lazy" className="w-full h-full object-cover" />
       <div
         className={`absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white transition-opacity duration-100 `}
       >

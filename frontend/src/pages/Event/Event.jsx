@@ -5,6 +5,7 @@ import { NavigationBar } from "../../components/NavigationBar";
 import { Link } from "react-router-dom";
 import { useFetchData } from "../../hooks/useFetchData";
 import { CircularProgress } from "@mui/material";
+import eventBanner from "../../assets/img/eventBanner.jpg";
 
 export const Event = () => {
   const apiUrl = `${process.env.BASE_URL}/api/v1/events`;
@@ -13,10 +14,22 @@ export const Event = () => {
 
   return (
     <Layout>
-      <div className="eventbanner flex justify-center items-center">
-        <div className="grid sm:grid-cols-12">
+            <div className="eventbanner flex items-center justify-center relative">
+        {/* Lazy-loaded Background Image */}
+        <img
+          src={eventBanner}
+          alt="Event Banner"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+        />
+      
+        {/* Overlay Effect */}
+        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+      
+        {/* Content */}
+        <div className="grid sm:grid-cols-12 relative z-10">
           <div className="col-span-12 text-center mt-10 lg:mt-20">
-            <h1 className="font-dmsans font-medium text-white text-3xl lg:text-4xl capitalize">
+            <h1 className="font-dmsans font-medium text-white text-3xl lg:text-4xl">
               Events
             </h1>
           </div>
