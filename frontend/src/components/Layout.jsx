@@ -54,7 +54,7 @@ export const Layout = ({ children }) => {
                   <img
                     src={WhatsAppLogo}
                     alt="WhatsApp"
-                    className="w-8 h-8 rounded-full object-cover"
+                    className="w-10 h-10 rounded-full object-cover"
                   />
                 </Link>
 
@@ -88,7 +88,7 @@ export const Layout = ({ children }) => {
                   <img
                     src={GoogleLogo}
                     alt="Google"
-                    className="w-8 h-8 rounded-full object-cover"
+                    className="w-10 h-10 rounded-full object-cover"
                   />
                 </Link>
 
@@ -116,9 +116,9 @@ export const Layout = ({ children }) => {
               >
                 <div className="w-12 h-12 rounded-full shadow-lg hover:scale-110 transition-transform transform bg-gradient-to-r from-gray-600 to-black flex items-center justify-center">
                   {calculator ? (
-                    <CancelIcon sx={{ fontSize: "30px", color: "#fff" }} />
+                    <CancelIcon sx={{ fontSize: "45px", color: "#fff" }} />
                   ) : (
-                    <CalculateIcon sx={{ fontSize: "30px", color: "#fff" }} />
+                    <CalculateIcon sx={{ fontSize: "35px", color: "#fff" }} />
                   )}
                 </div>
                 {/* Expanding Text on Hover */}
@@ -130,7 +130,7 @@ export const Layout = ({ children }) => {
                   }`}
                 ></div>
                 {calculator ? (
-                  ""
+                  <div className="fixed inset-0 bg-black bg-opacity-80"></div>
                 ) : (
                   <div
                     className={` absolute right-16 bg-gradient-to-r from-gray-600 to-black text-white text-sm px-4 py-3 rounded-full shadow-lg transition-all duration-100 ${
@@ -156,7 +156,7 @@ export const Layout = ({ children }) => {
           className="w-12 h-12 rounded-full shadow-lg hover:scale-110 transition-transform transform bg-gradient-to-r from-gray-600 to-black flex items-center justify-center"
         >
           {isOpen ? (
-            <CancelIcon sx={{ fontSize: "30px", color: "#fff" }} />
+            <CancelIcon sx={{ fontSize: "40px", color: "#fff" }} />
           ) : (
             <img
               src={gif}

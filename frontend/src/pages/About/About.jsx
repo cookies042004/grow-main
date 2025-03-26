@@ -3,8 +3,8 @@ import { Layout } from "../../components/Layout";
 
 import "./About.css";
 
-import aboutImg from "../../assets/img/aboutImg.png";
-import aboutImg2 from "../../assets/img/aboutImg2.png";
+import aboutImg from "../../assets/img/aboutImg.jpg";
+import aboutImg2 from "../../assets/img/aboutImg2.jpg";
 import { Choose } from "../../components/Choose";
 import { Testimonials } from "../../components/Testimonials";
 
@@ -20,7 +20,7 @@ import { Link } from "react-router-dom";
 import bgImage from "../../assets/img/img4.jpg";
 import findRealEstate from "../../assets/img/find real estate.jpg";
 import realtor from "../../assets/img/meet realtor.jpeg";
-import keys from "../../assets/img/keys.jpeg";
+import keys from "../../assets/img/keys.jpg";
 import Icon1 from "../../assets/img/Icon.png";
 import Icon2 from "../../assets/img/Icon (1).png";
 import Icon3 from "../../assets/img/Icon (2).png";
@@ -78,8 +78,8 @@ export const About = () => {
         </h1>
 
         <div className="grid sm:grid-cols-12 my-6">
-          <div className="col-span-12 lg:col-span-6 flex flex-col mt-3 lg:mt-6 items-start gap-3">
-            <p className="font-poppins text-sm lg:text-lg lg:leading-9 text-justify text-gray-700 px-8">
+          <div className="col-span-12 lg:col-span-6 flex flex-col mt-3 lg:mt-6 items-start gap-3 px-8">
+            <p className="font-sans text-sm lg:text-lg lg:leading-9 text-justify text-gray-700">
               Grow Infinity Realtors is a highly regarded and accomplished real
               estate agency with a proven track record of success. Leveraging
               years of experience in the industry, the firm combines a strategic
@@ -89,15 +89,15 @@ export const About = () => {
               Grow Infinity Realtors takes the time to understand their unique
               needs and aspirations.
             </p>
-            <p className="font-poppins text-sm lg:text-lg lg:leading-9 text-justify text-gray-700 px-8">
+            <p className="font-poppins text-sm lg:text-lg lg:leading-9 text-justify text-gray-700">
               Grow Infinity Realtors is a highly regarded and accomplished real
               estate agency with a proven track record of success. Leveraging
               years of experience in the industry
             </p>
-            <p className="font-poppins text-sm lg:text-lg lg:leading-9 text-justify text-gray-700 px-8">
+            <p className="font-poppins text-sm lg:text-lg lg:leading-9 text-justify text-gray-700">
               Grow Infinity Realtors is a highly regarded and accomplished real
               estate agency with a proven track record of success. Leveraging
-              years of experience in the industry
+              years of experience in the industry.
             </p>
           </div>
 
@@ -105,7 +105,7 @@ export const About = () => {
             <img
               src={aboutImg}
               alt="about-welcome-image"
-              className="h-[280px] lg:h-[400px] w-[480px] mx-5"
+              className="h-[280px] lg:h-[480px] w-[500px]"
               loading="lazy"
             />
           </div>
@@ -173,10 +173,11 @@ export const About = () => {
           ))}
         </div>
       </div>
+
       {/* What we do?  */}
       <div className="bg-gray-50">
         <div className="my-10 max-w-[1280px] mx-auto">
-          <h2 className="font-roboto font-medium text-[#1d2a3b] text-center text-3xl lg:text-4xl py-8">
+          <h2 className="font-sans font-medium text-[#1d2a3b] text-center text-3xl lg:text-4xl py-8">
             What we do?
           </h2>
           <div className="grid sm:grid-cols-12">
@@ -184,12 +185,13 @@ export const About = () => {
               <img
                 src={whatwedo}
                 alt=""
-                className="w-[300px] lg:w-[600px] border"
+                className="w-[300px] lg:w-[500px] lg:h-[450px] border"
                 loading="lazy"
               />
             </div>
+
             <div className="col-span-12 lg:col-span-6 flex flex-col justify-center pb-10">
-              <p className="font-poppins text-sm px-8 lg:text-lg lg:leading-9 text-justify text-gray-700">
+              <p className="font-sans text-sm px-8 lg:text-lg lg:leading-8 text-justify text-gray-700">
                 At Grow Infinity Realtors, we take immense pride in our
                 unwavering commitment to providing personalized real estate
                 solutions tailored specifically to meet the unique needs and
@@ -211,39 +213,14 @@ export const About = () => {
           </div>
         </div>
       </div>
+
       {/* Mission  */}
       <div className="bg-gray-50 py-8">
-        <div className="max-w-[400px] mx-auto lg:max-w-[1280px] px-4">
+        <div className="mx-auto max-w-[1280px]">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             {/* Left - Images Section */}
-            <div className="hidden md:flex flex-col gap-5">
-              <div className="w-full">
-                <img
-                  src={findRealEstate}
-                  alt="Find Real Estate"
-                  className="rounded-lg w-full h-auto max-h-[350px] object-cover"
-                  loading="lazy"
-                />
-              </div>
-              <div className="grid grid-cols-2 gap-5">
-                <img
-                  src={realtor}
-                  alt="Meet Realtor"
-                  className="rounded-lg w-full h-[280px] object-cover"
-                  loading="lazy"
-                />
-                <img
-                  src={keys}
-                  alt="Take the keys"
-                  className="rounded-lg w-full h-auto max-h-[280px] object-cover"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-
-            {/* Right - Content Section */}
             <div className="flex flex-col justify-center lg:ps-14 text-center md:text-left">
-              <h1 className="text-[#1A1A1A] font-roboto text-2xl lg:text-4xl font-medium">
+              <h1 className="text-[#1A1A1A] font-sans text-center text-2xl lg:text-4xl font-medium">
                 How It Works? <br />
                 Find Your Perfect Home
               </h1>
@@ -278,7 +255,6 @@ export const About = () => {
                         src={item.img}
                         alt=""
                         className="relative w-[35px] h-[35px]"
-                        loading="lazy"
                       />
                     </div>
                     <div className="flex-1">
@@ -291,6 +267,29 @@ export const About = () => {
                 ))}
               </ul>
             </div>
+
+            {/* Right - Content Section */}
+            <div className="hidden md:flex flex-col gap-5">
+              <div className="w-full">
+                <img
+                  src={findRealEstate}
+                  alt="Find Real Estate"
+                  className="rounded-lg h-auto max-h-[320px] object-cover"
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-5">
+                <img
+                  src={realtor}
+                  alt="Meet Realtor"
+                  className="rounded-lg w-full h-[280px] object-cover"
+                />
+                <img
+                  src={keys}
+                  alt="Take the keys"
+                  className="rounded-lg w-full h-auto max-h-[280px] object-cover"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -302,8 +301,8 @@ export const About = () => {
       {/* Meet our directors  */}
       <div className="py-12 px-4 md:px-8">
         <div className="max-w-[1280px] mx-auto">
-          <h1 className="text-center text-[#1d2a3b] text-2xl lg:text-4xl font-medium pb-10">
-            Get to Know Our Team
+          <h1 className="text-center text-[#1d2a3b] text-3xl lg:text-4xl font-sans font-medium pb-10">
+          Dreamers, Doers, Disruptors – Our Founders!
           </h1>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mx-auto">
@@ -357,7 +356,7 @@ export const About = () => {
               variant="contained"
               endIcon={<EastIcon />}
               sx={{
-                backgroundColor: "#03002e",
+                backgroundColor: "#1d2b3a",
                 color: "white",
                 textTransform: "none",
                 borderBottom: "2px solid gray",

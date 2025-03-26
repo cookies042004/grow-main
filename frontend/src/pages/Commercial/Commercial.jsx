@@ -1,19 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import { Layout } from "../../components/Layout";
 import { useParams } from "react-router-dom";
 import { useFetchData } from "../../hooks/useFetchData";
 import { CommercialCard } from "../../components/CommercialCard";
-import { CircularProgress } from "@mui/material";
-
+import { CircularProgress, Pagination, PaginationItem } from "@mui/material";
 import { ClipLoader } from "react-spinners";
+import { Navigation } from "../../components/Navigation";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 export const Commercial = () => {
   const { id } = useParams();
   const apiUrl = `${process.env.BASE_URL}/api/v1/commercial`;
-  const { data, loading, error, refetch } = useFetchData(apiUrl);
+  const { data, loading, error } = useFetchData(apiUrl);
   const properties = data.properties || [];
 
-  console.log("single");
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8; // Show 8 properties per page
+
+  // Calculate total pages
+  const totalPages = Math.ceil(properties.length / itemsPerPage);
+
+  // Get the current page's properties
+  const paginatedProperties = properties.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  // Handle page change
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
+  };
 
   if (loading) {
     return (
@@ -27,13 +45,6 @@ export const Commercial = () => {
     return <div>Error: {error}</div>;
   }
 
-  const capitalizeWords = (str) => {
-    return str
-      .split(" ") // Split the string into words
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize the first letter of each word
-      .join(" "); // Join the words back together
-  };
-
   return (
     <Layout>
       <div className="projectbanner flex justify-center items-center">
@@ -46,6 +57,8 @@ export const Commercial = () => {
         </div>
       </div>
 
+      <Navigation />
+
       <div className="grid sm:grid-cols-12 max-w-[1280px] mx-auto my-10">
         {loading && (
           <div className="col-span-12 items-center flex justify-center">
@@ -57,28 +70,42 @@ export const Commercial = () => {
             <p>Something went wrong: {error}</p>
           </div>
         )}
-        {properties &&
-          properties.map((property) => {
-            return (
-              <div className="col-span-12 lg:col-span-3 m-3">
-                <CommercialCard
-                  key={property._id}
-                  id={property._id}
-                  name={property.title}
-                  slug={property.slug}
-                  image={property.image[0]}
-                  location={property.location}
-                  builder={property.builder}
-                  unit={property.unit}
-                  size={property.size}
-                  sizeUnit={property.sizeUnit}
-                  price={property.price}
-                  propertyType={property.propertyType}
-                />
-              </div>
-            );
-          })}
+        {paginatedProperties.map((property) => (
+          <div key={property._id} className="col-span-12 lg:col-span-3 m-3">
+            <CommercialCard
+              id={property._id}
+              name={property.title}
+              slug={property.slug}
+              image={property.image[0]}
+              location={property.location}
+              builder={property.builder}
+              unit={property.unit}
+              size={property.size}
+              sizeUnit={property.sizeUnit}
+              price={property.price}
+              propertyType={property.propertyType}
+            />
+          </div>
+        ))}
       </div>
+
+      {/* Pagination Component */}
+      {totalPages > 1 && (
+        <div className="flex justify-center my-5">
+          <Pagination
+            count={totalPages}
+            page={currentPage}
+            onChange={handlePageChange}
+            renderItem={(item) => (
+              <PaginationItem
+                slots={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
+                {...item}
+              />
+            )}
+            color="primary"
+          />
+        </div>
+      )}
     </Layout>
   );
 };

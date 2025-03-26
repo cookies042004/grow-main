@@ -54,10 +54,10 @@ export const Navbar = ({ mobileMenu, setMobileMenu }) => {
         className={`fixed z-[10] top-0 shadow-lg transition-all duration-500 w-full ${
           isSticky
             ? "bg-white p-1 shadow-md"
-            : "lg:w-[90%] lg:left-[5%] lg:top-[8%] lg:rounded-[25px] bg-[#FFFFFF80]"
+            : "lg:w-[90%] lg:left-[5%] lg:top-[8%] lg:rounded-[15px] bg-[#FFFFFF80]"
         }`}
       >
-        <div className="flex items-center justify-between p-2">
+        <div className="flex items-center justify-between pr-4">
           <Link to="/">
             <img src={logo} alt="Logo" width={isSticky ? 200 : 200} />
           </Link>
@@ -72,7 +72,7 @@ export const Navbar = ({ mobileMenu, setMobileMenu }) => {
           </ul>
           <Link
             to="/brochure"
-            className="hidden lg:block font-dmsans px-10 py-2 bg-[#1d2a3b] text-white rounded-[16.5px] uppercase shadow-md"
+            className="hidden lg:block font-dmsans px-10 py-2 bg-[#1d2a3b] text-white rounded-[10px] uppercase shadow-md"
             style={{ boxShadow: "0px 5.46px 13.27px 0px #00000080" }}
           >
             Brochure

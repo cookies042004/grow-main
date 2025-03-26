@@ -10,7 +10,7 @@ import { MdArrowBack, MdArrowForward } from "react-icons/md";
 
 const NextArrow = ({ onClick }) => (
   <div
-    className="arrow next bg-[#1d2a3b] text-white rounded-full p-1"
+    className="arrow next bg-[#1d2a3b] text-white rounded-full p-1 cursor-pointer"
     onClick={onClick}
   >
     <MdArrowForward size={24} />
@@ -19,14 +19,14 @@ const NextArrow = ({ onClick }) => (
 
 const PrevArrow = ({ onClick }) => (
   <div
-    className="arrow prev bg-[#1d2a3b] text-white rounded-full p-1"
+    className="arrow prev bg-[#1d2a3b] text-white rounded-full p-1 cursor-pointer"
     onClick={onClick}
   >
     <MdArrowBack size={24} />
   </div>
 );
 
-export const Card = ({ category }) => {
+export const TCard = () => {
   const settings = {
     dots: true,
     infinite: false,
@@ -39,43 +39,31 @@ export const Card = ({ category }) => {
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 550,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
+      { breakpoint: 1024, settings: { slidesToShow: 3 } },
+      { breakpoint: 768, settings: { slidesToShow: 2, slidesToScroll: 2 } },
+      { breakpoint: 550, settings: { slidesToShow: 1, slidesToScroll: 1 } },
     ],
   };
 
-  const apiUrl = `${process.env.BASE_URL}/api/v1/property`;
-  const { data, loading, error } = useFetchData(apiUrl);
-  const properties = data?.properties || [];
+  const residentialApi = `${process.env.BASE_URL}/api/v1/property`;
 
-  
+  const { data: resData, loading, error } = useFetchData(residentialApi);
+
+  const properties = resData?.properties || [];
+
+  console.log("Filtered Properties:", properties);
+
+  const isLoading = loading;
+  const hasError = error;
 
   return (
     <div className="card-container">
-      {loading && (
+      {isLoading && (
         <div className="flex justify-center">
           <CircularProgress size="30px" />
         </div>
       )}
-      {error && (
+      {hasError && (
         <div className="col-span-12 flex flex-col items-center">
           <img src="https://shorturl.at/6C2TM" alt="error" loading="lazy" />
         </div>
@@ -84,11 +72,17 @@ export const Card = ({ category }) => {
         <div className="slider-wrapper">
           <Slider {...settings}>
             {properties
-              .filter((property) => property.category.name === category)
+              .filter(
+                (property) =>
+                  property.propertyType === "Trending" &&
+                  ["Luxury Living", "Affordable Living", "New Launches"].includes(
+                    property?.category?.name
+                  )
+              )
               .map((property) => (
-                <PropwertyCard
+                <PropertyCard
                   key={property._id}
-                  category={property?.category || { name: "Unknown" }}
+                  category={property?.category?.name || "Unknown"}
                   {...property}
                   image={property.image[0]}
                 />
@@ -96,10 +90,9 @@ export const Card = ({ category }) => {
           </Slider>
         </div>
       ) : (
-        !loading && (
-          <p className="text-center text-gray-500">No properties found.</p>
-        )
+        !isLoading && <p className="text-center text-gray-500">No properties found.</p>
       )}
     </div>
   );
 };
+    

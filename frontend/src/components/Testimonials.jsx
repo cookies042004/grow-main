@@ -36,35 +36,44 @@ export const Testimonials = () => {
   return (
     <div className="py-2 lg:py-4 lg:px-16 px-10">
       <div>
-        <h1 className="flex justify-center items-center lg:text-4xl text-2xl text-[#1d2a3b] font-bold py-4">
+        <h1 className="flex justify-center items-center lg:text-4xl text-2xl text-[#1d2a3b] font-medium py-4">
           Testimonials
         </h1>
       </div>
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-        <div className="flex flex-col items-center m-3 lg:m-5 px-5 lg:px-7 font-roboto lg:pe-20">
-          <h1 className="text-xl lg:text-3xl items-left text-[#1A1A1A] my-4 font-medium">
-            What our customers are saying?
+        <div className="flex flex-col items-center lg:items-start text-center lg:text-left m-4 lg:m-8 px-6 lg:px-10 font-roboto">
+          {/* Title */}
+          <h1 className="text-2xl lg:text-3xl font-medium text-[#1A1A1A] mb-6 leading-snug">
+            What Our Customers Are Saying
           </h1>
-          <p className="text-[#1A1A1A] text-md lg:text-lg mt-5 lg:pe-16">
+
+          {/* Description */}
+          <p className="text-[#444] text-base lg:text-lg leading-relaxed max-w-xl">
             Don't just take our word for it—hear directly from those who have
-            experienced our services. Our customer's stories reflect the
-            dedication, expertise, and care we put into every transaction. Read
-            their testimonials and see why we're the trusted choice for all your
-            real estate needs.
+            experienced our services. Our customer stories reflect our
+            dedication, expertise, and care. Read their testimonials and see why
+            we're the trusted choice for all your real estate
+            needs.
           </p>
-          <div className="flex justify-end lg:justify-start gap-10 mt-12">
-            <div>
-              <h3 className="font-bold text-[#1A1A1A] text-sm lg:text-2xl">
+
+          {/* Stats Section */}
+          <div className="mt-10 flex gap-10">
+            <div className="text-center lg:text-left">
+              <h3 className="text-4xl font-bold text-[#1A1A1A] bg-gradient-to-r from-[#e7c874] to-[#f1d488] text-transparent bg-clip-text">
                 2k+
               </h3>
-              <p className="text-md lg:text-lg">Happy People</p>
+              <p className="text-gray-600 text-lg">Happy Clients</p>
             </div>
-            <div>
-              <h3 className="font-bold text-[#1A1A1A] text-sm lg:text-2xl">
+
+            <div className="text-center lg:text-left">
+              <h3 className="text-4xl font-bold text-[#1A1A1A] bg-gradient-to-r from-[#e7c874] to-[#f1d488] text-transparent bg-clip-text">
                 4.88
               </h3>
-              <p className="text-md lg:text-lg">Overall rating</p>
-              <div className="flex mt-3">
+              <p className="text-gray-600 text-lg">Overall Rating</p>
+
+              {/* Star Rating */}
+              <div className="flex justify-center lg:justify-start mt-3">
                 {[...Array(5)].map((_, i) => (
                   <StarIcon key={i} sx={{ color: "#e7c874" }} />
                 ))}
@@ -72,6 +81,7 @@ export const Testimonials = () => {
             </div>
           </div>
         </div>
+
         <div className="relative my-14 w-full flex flex-col items-center">
           <div className="w-full max-w-xl p-4 bg-white transform shadow-[0px_0px_10px_5px_rgba(0,0,0,0.4)]">
             {loading && <CircularProgress size={30} className="mx-auto" />}
@@ -96,7 +106,7 @@ export const Testimonials = () => {
                 <SwiperSlide key={testimonial._id}>
                   <div className="font-roboto">
                     <div className="flex-col items-center gap-4 testimonial-item">
-                      <div className="relative flex items-center gap-5">
+                      <div className="relative flex items-center gap-5 px-4">
                         <div className="border border-gray-300 p-1 lg:p-1 rounded-full">
                           <img
                             src={testimonial.image}
@@ -122,14 +132,14 @@ export const Testimonials = () => {
                       </div>
 
                       <div className="mt-5 h-[170px] overflow-hidden">
-                        <p className="text-sm lg:text-lg text-justify font-roboto font-medium text-[#1A1A1A] lg:leading-[1.5]">
+                        <p className="text-sm lg:text-lg text-justify font-roboto font-medium text-[#1A1A1A] lg:leading-[1.5] px-4">
                           {testimonial.review.length > 200
                             ? testimonial.review.slice(0, 200) + "..."
                             : testimonial.review}
                         </p>
                         {testimonial.review.length > 200 && (
                           <button
-                            className="text-[#1d2a3b] font-semibold mt-5 cursor-pointer"
+                            className="text-[#1d2a3b] font-semibold mt-5 cursor-pointer px-4"
                             onClick={() => setSelectedReview(testimonial)}
                           >
                             Read More

@@ -27,6 +27,7 @@ import comingsoon from "../../assets/img/comingsoon.jpg";
 import { RecentProperty } from "../../components/RecentProperty";
 import { ContactForm } from "../../components/ContactForm";
 import Carousel from "../../components/Carousel";
+import { NavigationProject } from "../../components/NavigationProject";
 
 export const CommercialDetails = () => {
   const { slug } = useParams(); // Get slug from URL
@@ -198,15 +199,17 @@ export const CommercialDetails = () => {
   return (
     <Layout>
       {/* Project Details Hero */}
-      <div className="detailsbanner flex items-center justify-center">
+      <div className="detailsbannercom flex items-center justify-center">
         <div className="grid sm:grid-cols-12">
           <div className="col-span-12 text-center lg:mt-20">
-            <h1 className="ffont-dmsans font-medium text-white text-3xl lg:text-4xl">
+            <h1 className="ffont-dmsans font-bold text-white text-3xl lg:text-4xl">
               Property Details
             </h1>
           </div>
         </div>
       </div>
+
+      <NavigationProject />
 
       <div className="bg-gray-100 lg:p-3" style={{ scrollBehavior: "smooth" }}>
         <div className="container mx-auto">
@@ -296,7 +299,7 @@ export const CommercialDetails = () => {
                     key={item.href}
                     href={item.href}
                     onClick={(e) => handleAnchorClick(e, item.label)}
-                    className="px-3 sm:px-4 py-2 text-gray-700 text-base sm:text-lg transition-all duration-300 ease-in-out hover:text-blue-950 hover:font-semibold focus-visible:outline-none"
+                    className="px-3 sm:px-4 py-2 text-gray-700 text-sm sm:text-sm transition-all duration-300 ease-in-out hover:text-blue-950 hover:font-semibold focus-visible:outline-none"
                   >
                     {item.label}
                   </Link>
@@ -306,7 +309,7 @@ export const CommercialDetails = () => {
               <div className="grid grid-cols-1 sm:grid-cols-12 mt-8 gap-6 sm:gap-8">
                 {/* Description */}
                 <div
-                  className="col-span-12 bg-white p-6 sm:p-8 shadow-[0px_0px_10px_rgba(0,0,0,0.3)]"
+                  className="col-span-12 bg-white p-6 sm:p-8 rounded-lg shadow-lg shadow-gray-"
                   id="Description"
                 >
                   <h3 className="text-2xl sm:text-3xl border-b-2 pb-2 font-poppins font-semibold text-[#1d2a3b]">
@@ -341,7 +344,7 @@ export const CommercialDetails = () => {
 
                 {/* Overview */}
                 <div
-                  className="col-span-12 bg-white p-6 shadow-[0px_0px_10px_rgba(0,0,0,0.3)]"
+                  className="col-span-12 bg-white p-6 rounded-lg shadow-lg shadow-gray-"
                   id="Project Overview"
                 >
                   <h3 className="text-2xl border-b-2 font-poppins font-semibold pb-3 text-gray-900">
@@ -406,7 +409,7 @@ export const CommercialDetails = () => {
 
                 {/* Project Amenities */}
                 <div
-                  className="col-span-12 bg-white p-8 shadow-[0px_0px_10px_rgba(0,0,0,0.3)]"
+                  className="col-span-12 bg-white p-8 rounded-lg shadow-lg shadow-gray-"
                   id="Project Amenities"
                 >
                   <h3 className="text-3xl border-b-2 font-poppins font-semibold pb-3 text-gray-900">
@@ -444,7 +447,7 @@ export const CommercialDetails = () => {
 
                 {/* Video Tour */}
                 <div
-                  className="col-span-12 bg-white p-6 sm:p-8 shadow-[0px_0px_10px_rgba(0,0,0,0.3)]"
+                  className="col-span-12 bg-white p-6 sm:p-8 rounded-lg shadow-lg shadow-gray-"
                   id="Video Tour"
                 >
                   <h3 className="text-2xl sm:text-3xl border-b-2 pb-2 font-poppins font-semibold text-[#1d2a3b]">

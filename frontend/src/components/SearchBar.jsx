@@ -54,13 +54,11 @@ export const SearchBar = () => {
               <button
                 id="dropdownDefaultButton"
                 data-dropdown-toggle="dropdown"
-                className="text-black bg-[#F4F4F4] font-bold text-lg px-5 w-full py-1 lg:py-2.5 text-center justify-between lg:justify-start inline-flex items-center rounded-[17.56px]"
+                className="font-sans text-black bg-[#F4F4F4] font-medium text-lg px-5 w-full py-1 lg:py-2 text-center justify-between lg:justify-start inline-flex items-center rounded-[13.27px]"
                 type="button"
                 onClick={() => setProperty(!property)}
               >
-                <HomeOutlinedIcon
-                  sx={{ color: "#1d2a3b", marginRight: "8px" }}
-                />{" "}
+                <HomeOutlinedIcon sx={{ color: "", marginRight: "5px" }} />{" "}
                 {selectedValue}{" "}
                 <svg
                   className="w-2.5 h-2.5 ms-3 flex-end"
@@ -113,12 +111,11 @@ export const SearchBar = () => {
               <button
                 id="dropdownBhkButton"
                 data-dropdown-toggle="dropdownBhk"
-                className="text-black w-full bg-[#F4F4F4] font-medium text-sm px-5 py-1 lg:py-2.5 text-center inline-flex justify-between lg:justify-start items-center rounded-[17.56px]"
+                className="text-black w-full bg-[#F4F4F4] font-medium text-sm px-5 py-1 lg:py-2.5 text-center inline-flex justify-between lg:justify-start items-center rounded-[13.27px]"
                 type="button"
                 onClick={() => setBhk(!bhk)}
               >
-                <HomeIcon sx={{ color: "#1d2a3b", paddingRight: "5px" }} />{" "}
-                {bhkValue}{" "}
+                <HomeIcon sx={{ color: "", paddingRight: "5px" }} /> {bhkValue}{" "}
                 <svg
                   className="w-2.5 h-2.5 ms-3"
                   aria-hidden="true"
@@ -172,7 +169,7 @@ export const SearchBar = () => {
                 <input
                   type="text"
                   placeholder="Your desired location, project, city goes here"
-                  className="bg-[#F4F4F4] rounded-[17.56px] font-light p-2 lg:p-3 w-full outline-none"
+                  className="bg-[#F4F4F4] rounded-[13.27px] font-light px-5 py-1 lg:py-2.5 w-full outline-none"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   required
@@ -184,14 +181,13 @@ export const SearchBar = () => {
               <button
                 id="dropdownBhkButton"
                 data-dropdown-toggle="dropdownBhk"
-                className="text-black text-sm  w-full bg-[#F4F4F4] font-bold  px-2 py-3 text-center inline-flex justify-between lg:justify-start items-center rounded-[17.56px]"
+                className="font-sans text-black bg-[#F4F4F4] font-medium text-lg px-4 w-full py-1 lg:py-2 text-center justify-between lg:justify-center inline-flex items-center rounded-[13.27px]"
                 type="button"
                 onClick={() => setBhk(!bhk)}
               >
-                <HomeIcon sx={{ color: "#1d2a3b", paddingRight: "5px" }} />{" "}
-                {bhkValue}{" "}
+                <HomeIcon sx={{ color: "", paddingRight: "5px" }} /> {bhkValue}{" "}
                 <svg
-                  className="w-2.5 h-2.5 ms-3"
+                  className="w-2.5 h-2.5 ms-2"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -243,7 +239,7 @@ export const SearchBar = () => {
                 <button
                   onClick={handleSearch}
                   type="submit"
-                  className="text-white bg-[#1d2a3b] font-bold text-center text-lg w-full rounded-[8.59px] py-2"
+                  className="font-sans text-white bg-[#1d2a3b] font-medium text-center text-lg w-full rounded-[13.27px] py-2 lg:py-2"
                   style={{ boxShadow: "0px 5.46px 13.27px 0px #1d2a3b" }}
                 >
                   Search
@@ -251,7 +247,7 @@ export const SearchBar = () => {
               </div>
             </div>
             <div className="col-span-2 lg:col-span-2">
-              <button className="bg-[#f4f4f4] w-full py-2 text-xs px-2 lg:text-lg rounded-2xl font-bold">
+              <button className="bg-[#f4f4f4] font-sans w-full py-2 text-xs lg:text-lg rounded-[13.27px] font-medium text-black">
                 Price (₹)
               </button>
             </div>
@@ -280,7 +276,7 @@ export const SearchBar = () => {
                   <p className="text-xs text-center text-gray-700 font-roboto font-medium">
                     Price Range From:
                   </p>
-                  <p className="text-md text-center  font-roboto font-bold">
+                  <p className="text-md text-center  font-sans font-bold">
                     {value[0] < 100
                       ? `₹ ${value[0]} Lac`
                       : `₹ ${(value[0] / 100).toFixed(2)} Cr`}
@@ -290,7 +286,7 @@ export const SearchBar = () => {
                   <p className="text-xs text-center text-gray-700 font-roboto font-medium">
                     Price Range To:
                   </p>
-                  <p className="text-md text-center  font-roboto font-bold">
+                  <p className="text-md text-center  font-sans font-bold">
                     {value[1] < 100
                       ? `₹ ${value[1]} Lac`
                       : `₹ ${(value[1] / 100).toFixed(2)} Cr`}

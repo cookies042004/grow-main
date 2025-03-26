@@ -51,10 +51,10 @@ export const Footer = () => {
                   <Link to="/terms-conditions">Terms & Conditions</Link>
                 </li>
                 <li>
-                  <Link to="/business">Business</Link>
+                  <Link to="/about">Business</Link>
                 </li>
                 <li>
-                  <Link to="/entertainment">Entertainment</Link>
+                  <Link to="/awards">Entertainment</Link>
                 </li>
                 <li>
                   <Link to="/contact">Contact Us</Link>
@@ -88,16 +88,13 @@ export const Footer = () => {
             </div>
           </div>
         </div>
-
-        {/* ✅ COPYRIGHT & SOCIALS */}
+        
         <div className="flex flex-col items-center justify-between pt-5 pb-3 border-t border-white sm:flex-row">
           <p className="text-sm text-center sm:text-left">
             © {new Date().getFullYear()} Grow Infinity Realtors. All Rights
             Reserved.
           </p>
-
-          {/* ✅ SOCIAL MEDIA ICONS */}
-          <div className="flex items-center mt-4 space-x-5 sm:mt-0">
+          <div className="flex items-center mt-4 mb-5 space-x-5 sm:mt-0">
             <a href="#" target="_blank" rel="noopener noreferrer">
               <img src={twitter} alt="Twitter" className="w-[25px] h-[25px]" />
             </a>

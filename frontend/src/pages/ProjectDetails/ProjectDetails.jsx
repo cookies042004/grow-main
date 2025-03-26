@@ -6,7 +6,7 @@ import { useFetchData } from "../../hooks/useFetchData";
 
 import "./ProjectDetails.css";
 import { Link } from "react-router-dom";
-import { Card } from "../../components/Card";
+import { TCard } from "../../components/TCard";
 import { Marquee } from "../../components/Marquee";
 import { Button } from "@mui/material";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
@@ -24,6 +24,7 @@ import comingsoon from "../../assets/img/comingsoon.jpg";
 import { RecentProperty } from "../../components/RecentProperty";
 import { ContactForm } from "../../components/ContactForm";
 import Carousel from "../../components/Carousel";
+import { NavigationProject } from "../../components/NavigationProject";
 
 export const ProjectDetails = () => {
   const { slug } = useParams(); // Get slug from URL
@@ -176,6 +177,8 @@ export const ProjectDetails = () => {
         </div>
       </div>
 
+      <NavigationProject />
+
       <div className="bg-gray-100 lg:p-3" style={{ scrollBehavior: "smooth" }}>
         <div className="container mx-auto">
           <div className="flex flex-col lg:grid sm:grid-cols-12 gap-6 max-w-[1280px] mt-3 lg:mt-8 mx-auto">
@@ -218,7 +221,7 @@ export const ProjectDetails = () => {
                     </h5>
 
                     {/* Buttons - Stack on Small Screens */}
-                    <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto py-2">
+                    <div className="flex flex-col sm:flex-row gap-1 sm:gap-3 w-full sm:w-auto py-2">
                       <Link to={`/brochure`} className="w-full sm:w-auto">
                         <Button
                           startIcon={<PictureAsPdfIcon />}
@@ -226,9 +229,9 @@ export const ProjectDetails = () => {
                           size="small"
                           color="error"
                           sx={{ textTransform: "none" }}
-                          className="w-full sm:w-auto"
+                          className="w-full sm:w-auto text-sm sm:text-sm"
                         >
-                          Request PDF
+                          Request Pdf
                         </Button>
                       </Link>
 
@@ -251,7 +254,7 @@ export const ProjectDetails = () => {
                 </div>
               </div>
 
-              <div className="flex flex-wrap justify-center sm:justify-start gap-2 sm:gap-4 my-6 border-b pb-2">
+              <div className="flex flex-wrap  justify-center sm:justify-start gap-2 sm:gap-4 my-6 border-b pb-2">
                 {[
                   { href: "#Description", label: "Description" },
                   { href: "#Project Overview", label: "Project Overview" },
@@ -264,7 +267,7 @@ export const ProjectDetails = () => {
                     key={item.href}
                     href={item.href}
                     onClick={(e) => handleAnchorClick(e, item.label)}
-                    className="px-3 sm:px-4 py-2 text-gray-700 text-base sm:text-lg transition-all duration-300 ease-in-out hover:text-gray-800 hover:font-semibold focus-visible:outline-none"
+                    className="px-3 sm:px-4 py-2 text-gray-700 text-sm sm:text-sm transition-all duration-300 ease-in-out hover:text-gray-800 hover:font-semibold focus-visible:outline-none"
                   >
                     {item.label}
                   </Link>
@@ -274,7 +277,7 @@ export const ProjectDetails = () => {
               <div className="grid grid-cols-1 sm:grid-cols-12 mt-8 gap-6 sm:gap-8">
                 {/* Description */}
                 <div
-                  className="col-span-12 bg-white p-6 sm:p-8 shadow-[0px_0px_10px_rgba(0,0,0,0.3)]"
+                  className="col-span-12 bg-white p-6 sm:p-8 rounded-lg shadow-lg shadow-gray-"
                   id="Description"
                 >
                   <h3 className="text-2xl sm:text-3xl border-b-2 pb-2 font-poppins font-semibold text-[#1d2a3b]">
@@ -309,7 +312,7 @@ export const ProjectDetails = () => {
 
                 {/* Overview */}
                 <div
-                  className="col-span-12 bg-white p-6 sm:p-8 shadow-[0px_0px_10px_rgba(0,0,0,0.3)]"
+                  className="col-span-12 bg-white p-6 sm:p-8 rounded-lg shadow-lg shadow-gray-"
                   id="Project Overview"
                 >
                   <h3 className="text-2xl sm:text-3xl border-b-2 pb-2 font-poppins font-semibold text-[#1d2a3b]">
@@ -370,7 +373,7 @@ export const ProjectDetails = () => {
 
                 {/* Project Amenities */}
                 <div
-                  className="col-span-12 bg-white p-6 sm:p-8 shadow-[0px_0px_10px_rgba(0,0,0,0.3)]"
+                  className="col-span-12 bg-white p-6 sm:p-8 rounded-lg shadow-lg shadow-gray-"
                   id="Project Amenities"
                 >
                   <h3 className="text-2xl sm:text-3xl border-b-2 pb-2 font-poppins font-semibold text-[#1d2a3b]">
@@ -452,7 +455,7 @@ export const ProjectDetails = () => {
 
                 {/* Location Benefits */}
                 <div
-                  className="col-span-12 bg-white p-6 sm:p-8 shadow-[0px_0px_10px_rgba(0,0,0,0.3)]"
+                  className="col-span-12 bg-white p-6 sm:p-8 rounded-lg shadow-lg shadow-gray-"
                   id="Location Benefits"
                 >
                   <h3 className="text-2xl sm:text-3xl border-b-2 pb-2 font-poppins font-semibold text-[#1d2a3b]">
@@ -490,7 +493,7 @@ export const ProjectDetails = () => {
 
                 {/* Video Tour */}
                 <div
-                  className="col-span-12 bg-white p-6 sm:p-8 shadow-[0px_0px_10px_rgba(0,0,0,0.3)]"
+                  className="col-span-12 bg-white p-6 sm:p-8 rounded-lg shadow-lg shadow-gray-"
                   id="Video Tour"
                 >
                   <h3 className="text-2xl sm:text-3xl border-b-2 pb-2 font-poppins font-semibold text-[#1d2a3b]">
@@ -541,7 +544,7 @@ export const ProjectDetails = () => {
         <h1 className="text-center text-[#1d2a3b] lg:text-4xl text-2xl font-bold py-8 lg:font-medium">
           Recent Listings
         </h1>
-        <Card category="New Launches" />
+        <TCard category={["New Launches","Affordable Living","New Launches","Commercial" ]}/>
         <div className="flex justify-center my-3">
           <Link to={"/property/new-launches"}>
             <Button

@@ -19,7 +19,7 @@ import Icon3 from "../../assets/img/Icon (2).png";
 import home from "../../assets/img/home.png";
 import house from "../../assets/img/house.png";
 import EastIcon from "@mui/icons-material/East";
-import { Card } from "../../components/Card";
+import { TCard } from "../../components/TCard";
 import { PropertyCard1 } from "../../components/PropertyCard1";
 import { Button } from "@mui/material";
 import { Marquee } from "../../components/Marquee";
@@ -27,7 +27,7 @@ import { Marquee } from "../../components/Marquee";
 import { Calculator } from "../../components/Calculator";
 import { SearchBar } from "../../components/SearchBar";
 import findRealEstate from "../../assets/img/find real estate.jpg";
-import keys from "../../assets/img/keys.jpeg";
+import keys from "../../assets/img/keys.jpg";
 import realtor from "../../assets/img/meet realtor.jpeg";
 import bgImage from "/src/assets/img/img4.jpg";
 import EnquiryHome from "../../components/EnquiryHome";
@@ -67,11 +67,11 @@ export const Home = () => {
 
       {/* Discover Your Dream Home */}
       <div className="bg-white">
-        <h1 className="text-center text-[#1d2a3b] text-2xl lg:text-4xl font-bold lg:font-medium py-6">
+        <h1 className="text-center text-[#1d2a3b] text-2xl lg:text-4xl font-sans font-medium py-6">
           Discover Your Dream Home
         </h1>
 
-        <div className="max-w-[1280px] mx-auto md:p-12">
+        <div className="max-w-[1280px] mx-auto md:p-5">
           <div
             className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5 
          place-items-center"
@@ -134,7 +134,7 @@ export const Home = () => {
           <div className="relative w-full overflow-hidden">
             <marquee
               direction="left"
-              className="text-sm py-3 lg:py-5 text-center lg:text-lg font-medium lg:me-10 me-0 px-3 lg:px-0"
+              className="text-sm py-3 lg:py-5 text-center lg:text-lg font-medium font-sans lg:me-10 me-0 px-3 lg:px-0"
             >
               <span className="transition-all duration-300 hover:text-xl hover:font-bold">
                 Over the years,{" "}
@@ -146,7 +146,7 @@ export const Home = () => {
               </span>
             </marquee>
           </div>
-          <div className="grid grid-cols-12 sm:grid-cols-2 lg:grid-cols-12 gap-6 mt-8">
+          <div className="grid grid-cols-12 sm:grid-cols-2 md:grid-cols-12 lg:grid-cols-12">
             {[
               {
                 Icon: ApartmentIcon,
@@ -176,7 +176,7 @@ export const Home = () => {
             ].map((item, index) => (
               <div
                 key={index}
-                className="basis-1/4 col-span-6 md:col-span-6 lg:col-span-3 rounded-[17.07px] m-8 hover:text-white transition-all ease-in-out experience-card"
+                className="basis-1/4 col-span-6 md:col-span-6 lg:col-span-3 rounded-[17.07px] m-4 hover:text-white transition-all ease-in-out experience-card" 
                 style={{ animationDelay: `${index * 0.3}s` }}
               >
                 <div
@@ -193,7 +193,7 @@ export const Home = () => {
                     className={`experience-icon ${item.color}`}
                   />
                   <div className="flex flex-col gap-1 my-4">
-                    <p className="font-poppins font-semibold text-xl lg:text-2xl text-center">
+                    <p className="font-poppins font-semibold text-2xl lg:text-2xl text-center">
                       <span
                         className="purecounter"
                         data-purecounter-start="0"
@@ -204,7 +204,7 @@ export const Home = () => {
                       </span>
                       {item.suffix && <span>{item.suffix}</span>}
                     </p>
-                    <p className="font-poppins font-medium text-sm lg:text-lg">
+                    <p className="font-poppins font-medium text-lg lg:text-lg">
                       {item.label}
                     </p>
                   </div>
@@ -217,16 +217,15 @@ export const Home = () => {
 
       {/* Recent Listings  */}
       <div className="bg-white  max-w-[1280px] mx-auto">
-        <h1 className="text-center text-[#1d2a3b] lg:text-4xl text-2xl font-bold mb-8 pt-2 lg:font-medium">
-          Recent Listings
+        <h1 className="text-center text-[#1d2a3b] lg:text-4xl text-2xl font-medium font-sans mb-8 pt-2 lg:font-medium">
+          Trending Properties
         </h1>
-        <Card category="Affordable Living" />
+        <TCard category={["Affordable Living", "Luxury Living","New Launches"]} />
         <div className="flex justify-center py-8">
           <Link to={"/property/affordable-living"}>
             <Button
               size="large"
               variant="contained"
-              endIcon={<EastIcon />}
               sx={{
                 backgroundColor: "#1d2a3b",
                 color: "white",
@@ -246,31 +245,8 @@ export const Home = () => {
         <div className="mx-auto max-w-[1280px] px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             {/* Left - Images Section */}
-            <div className="hidden md:flex flex-col gap-5">
-              <div className="w-full">
-                <img
-                  src={findRealEstate}
-                  alt="Find Real Estate"
-                  className="rounded-lg w-full h-auto max-h-[350px] object-cover"
-                />
-              </div>
-              <div className="grid grid-cols-2 gap-5">
-                <img
-                  src={realtor}
-                  alt="Meet Realtor"
-                  className="rounded-lg w-full h-[280px] object-cover"
-                />
-                <img
-                  src={keys}
-                  alt="Take the keys"
-                  className="rounded-lg w-full h-auto max-h-[280px] object-cover"
-                />
-              </div>
-            </div>
-
-            {/* Right - Content Section */}
             <div className="flex flex-col justify-center lg:ps-14 text-center md:text-left">
-              <h1 className="text-[#1A1A1A] font-roboto text-2xl lg:text-4xl font-medium">
+              <h1 className="text-[#1A1A1A] text-center text-2xl lg:text-4xl font-sans font-medium">
                 How It Works? <br />
                 Find Your Perfect Home
               </h1>
@@ -317,9 +293,33 @@ export const Home = () => {
                 ))}
               </ul>
             </div>
+
+            {/* Right - Content Section */}
+            <div className="hidden md:flex flex-col gap-5">
+              <div className="w-full">
+                <img
+                  src={findRealEstate}
+                  alt="Find Real Estate"
+                  className="rounded-lg h-auto max-h-[320px] object-cover"
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-5">
+                <img
+                  src={realtor}
+                  alt="Meet Realtor"
+                  className="rounded-lg w-full h-[280px] object-cover"
+                />
+                <img
+                  src={keys}
+                  alt="Take the keys"
+                  className="rounded-lg w-full h-auto max-h-[280px] object-cover"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
       <div className="bg-[#FFF8F6]">
         <Testimonials />
       </div>
@@ -361,15 +361,15 @@ export const Home = () => {
               <div className="grid sm:grid-cols-12">
                 <div className="col-span-12 lg:col-span-9">
                   <div className="flex flex-col h-full justify-between gap-4">
-                    <h4 className="font-medium text-lg lg:text-2xl">
+                    <h4 className="font-medium text-2xl lg:text-3xl">
                       Looking for a new home?
                     </h4>
-                    <p className="hidden lg:block text-sm lg:text-lg font-normal lg:pe-20 text-justify">
+                    <p className="hidden lg:block text-sm font-sans lg:pe-20 text-justify">
                       Let us help you find the perfect place to suit your needs
                       and lifestyle.
                     </p>
                     <div className="flex lg:hidden justify-between">
-                      <p className="basis-[60%] text-sm lg:text-lg font-normal lg:pe-20 text-justify">
+                      <p className="basis-[60%] text-sm font-sans lg:pe-20 text-justify">
                         Let us help you find the perfect place to suit your
                         needs and lifestyle.
                       </p>
@@ -385,7 +385,7 @@ export const Home = () => {
                           flex items-center justify-center gap-2 mt-8 transition-all duration-300 hover:scale-105 border-b-2 border-gray-400"
                       >
                         Contact us
-                        <EastIcon size="small" sx={{ fontSize: "15px" }} />
+                        <EastIcon size="small" sx={{ fontSize: "25px" }} />
                       </button>
                     </Link>
                   </div>
@@ -406,10 +406,10 @@ export const Home = () => {
               <div className="grid sm:grid-cols-12">
                 <div className="col-span-12 lg:col-span-9">
                   <div className="flex flex-col h-full justify-between gap-4">
-                    <h4 className="font-medium text-lg lg:text-2xl">
+                    <h4 className="font-medium text-2xl lg:text-3xl">
                       Want to sell your home?
                     </h4>
-                    <p className="hidden lg:block text-sm lg:text-lg font-normal lg:pe-20 text-justify">
+                    <p className="hidden lg:block text-sm font-sans lg:pe-20 text-justify">
                       Let our experts help you get the best price with a
                       seamless selling experience.
                     </p>
@@ -430,7 +430,7 @@ export const Home = () => {
                           flex items-center justify-center gap-2 mt-8 transition-all duration-300 hover:scale-105 border-b-2 border-gray-400"
                       >
                         Contact us
-                        <EastIcon size="small" sx={{ fontSize: "15px" }} />
+                        <EastIcon size="small" sx={{ fontSize: "25px" }} />
                       </button>
                     </Link>
                   </div>

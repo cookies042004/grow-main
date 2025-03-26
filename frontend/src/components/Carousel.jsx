@@ -134,29 +134,27 @@ const Carousel = ({ galleryImages }) => {
               key={modalImageIndex}
               src={galleryImages[modalImageIndex]}
               alt={`Image ${modalImageIndex + 1}`}
-              className="w-full h-full object-contain"
-              initial={{ opacity: 0 }}
+              className="w-[500px] h-[450px] object-contain"
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
             />
           </div>
 
           {/* Navigation Buttons */}
           <button
             onClick={prevModalSlide}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/50 p-1 lg:p-1 rounded-full"
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white p-1 lg:p-1 rounded-full"
           >
             <ChevronLeft size={32} />
           </button>
           <button
             onClick={nextModalSlide}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/50 p-1 lg:p-1 rounded-full"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white p-1 lg:p-1 rounded-full"
           >
             <ChevronRight size={32} />
           </button>
 
           {/* Thumbnail Previews */}
-          <div className="absolute bottom-8 right-2 lg:right-[-80px] overflow-hidden w-[320px] lg:w-[720px]">
+          <div className="absolute bottom-8 right-2 overflow-hidden w-[320px] lg:w-[800px]">
             <motion.div
               key={modalImageIndex}
               className="flex gap-3"
@@ -164,33 +162,28 @@ const Carousel = ({ galleryImages }) => {
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.4 }}
             >
-              {galleryImages
-                .slice(
-                  Math.max(0, modalImageIndex - 1),
-                  Math.min(galleryImages.length, modalImageIndex + 3)
-                )
-                .map((img, index) => (
-                  <motion.div
-                    key={index}
-                    className={`relative w-20 lg:w-40 h-16 lg:h-20 rounded-lg cursor-pointer overflow-hidden ${
-                      modalImageIndex === index ? "border-2 border-white" : ""
-                    }`}
-                    whileHover={{ scale: 1.1 }}
-                    onClick={() => setModalImageIndex(index)}
-                  >
-                    <img
-                      src={img}
-                      alt={`Thumbnail ${index + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                  </motion.div>
-                ))}
+              {galleryImages.map((img, index) => (
+                <motion.div
+                  key={index}
+                  className={`relative w-20 lg:w-40 h-16 lg:h-20 rounded-lg cursor-pointer overflow-hidden ${
+                    modalImageIndex === index ? "border-4 border-white" : ""
+                  }`}
+                  whileHover={{ scale: 1.1 }}
+                  onClick={() => setModalImageIndex(index)}
+                >
+                  <img
+                    src={img}
+                    alt={`Thumbnail ${index + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </motion.div>
+              ))}
             </motion.div>
           </div>
 
           {/* Close Button */}
           <button
-            className="absolute text-black top-6 right-6 md:top-4 md:right-4 bg-white/50 py-1 px-3 lg:px-4 lg:p-2 font-medium rounded-full z-[60]"
+            className="absolute text-black top-6 right-6 md:top-4 md:right-4 py-1 px-3 lg:px-4 lg:p-2 font-medium rounded-full z-[60]"
             onClick={closeModal}
           >
             ✖

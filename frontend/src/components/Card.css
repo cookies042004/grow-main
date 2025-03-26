@@ -1,22 +1,20 @@
 /* Wrapper for the slider */
 .slider-wrapper {
   position: relative;
-  padding-bottom: 40px; /* Space for arrows */
+  padding-bottom: -0px; /* Space for arrows */
 }
 
 /* Custom arrow styles */
 .arrow {
   position: absolute;
-  bottom: -50px; /* Position below the slider */
-  transform: translateY(-20%);
+  bottom: -76px;
+  transform: translateY(-22%);
   cursor: pointer;
-  z-index: 10;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 50%;
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
   color: white;
   transition: background-color 0.3s ease;
@@ -28,11 +26,11 @@
 
 /* Positioning for desktop */
 .next {
-  right: 45%;
+  right: 42%;
 }
 
 .prev {
-  left: 45%;
+  left: 42%;
 }
 
 /* Disabled state for arrows */
@@ -45,36 +43,36 @@
 /* Responsive adjustments */
 @media (max-width: 1024px) {
   .next {
-    right: 42%;
+    right: 38%;
   }
   .prev {
-    left: 42%;
+    left: 38%;
   }
 }
 
 @media (max-width: 768px) {
   .next {
-    right: 42%;
+    right: 38%;
   }
   .prev {
-    left: 42%;
+    left: 38%;
   }
 }
 
 @media (max-width: 550px) {
   .next {
-    right: 35%;
+    right: 30%;
   }
   .prev {
-    left: 35%;
+    left: 30%;
   }
 }
 
 @media (max-width: 400px) {
   .next {
-    right: 33%;
+    right: 25%;
   }
   .prev {
-    left: 33%;
+    left: 25%;
   }
 }

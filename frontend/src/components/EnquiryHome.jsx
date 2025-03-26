@@ -5,6 +5,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import PhoneIcon from "@mui/icons-material/Phone";
 import MessageIcon from "@mui/icons-material/Message";
 import MarkunreadIcon from "@mui/icons-material/Markunread";
+import EmailIcon from '@mui/icons-material/Email';
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -71,7 +72,7 @@ export const EnquiryHome = () => {
     <>
       {/* Floating Button to Open Modal */}
       <div
-        className={`hidden lg:block fixed right-0 top-[20%] z-[999999] rounded-lg transition-transform duration-300 ease-in-out ${
+        className={`hidden lg:block fixed right-0 top-[35%] z-[999999] rounded-lg transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-[0]" : "translate-x-[0]"
         }`}
       >
@@ -82,7 +83,7 @@ export const EnquiryHome = () => {
             onClick={() => setIsOpen(!isOpen)}
           >
             <p
-              className="font-medium uppercase py-1"
+              className="font-bold uppercase text-[16px] py-1 pb-2"
               style={{
                 writingMode: "vertical-rl",
                 transform: "rotate(180deg)",
@@ -100,7 +101,7 @@ export const EnquiryHome = () => {
                   transform: "rotate(270deg)",
                 }}
               >
-                📧
+                <EmailIcon sx={{ fontSize: "20px", color: "red" }} />
               </span>
             )}
           </div>
@@ -108,7 +109,7 @@ export const EnquiryHome = () => {
 
         {/* Sliding Enquiry Form */}
         {isOpen && (
-          <div className="fixed right-0 top-0 bg-white shadow-lg w-[450px] p-4 z-50 rounded-3xl">
+          <div className="fixed right-0 top-[-80%] bg-white shadow-lg w-[450px] p-4 z-50 rounded-3xl">
             {/* Header */}
             <div className="flex justify-between items-center border-b pb-3">
               <div>

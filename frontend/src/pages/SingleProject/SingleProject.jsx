@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Layout } from "../../components/Layout";
 import "./SingleProject.css";
 import { useParams } from "react-router-dom";
 import { useFetchData } from "../../hooks/useFetchData";
 import { PropertyCard } from "../../components/PropertyCard";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Pagination, PaginationItem } from "@mui/material";
 import { ClipLoader } from "react-spinners";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { Navigation } from "../../components/Navigation";
 
 export const SingleProject = () => {
   const { id } = useParams();
   const apiUrl = `${process.env.BASE_URL}/api/v1/property`;
-  const { data, loading, error, refetch } = useFetchData(apiUrl);
+  const { data, loading, error } = useFetchData(apiUrl);
   const properties = data.properties || [];
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
 
   if (loading) {
     return (
@@ -25,24 +31,38 @@ export const SingleProject = () => {
     return <div>Error: {error}</div>;
   }
 
+  // Capitalize words function
   const capitalizeWords = (str) => {
     return str
-      .split(" ") // Split the string into words
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize the first letter of each word
-      .join(" "); // Join the words back together
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
   };
+
+  // Filter properties based on category
+  const filteredProperties = properties.filter(
+    (property) => property.category?.name === capitalizeWords(id.replace("-", " "))
+  );
+
+  // Pagination calculations
+  const totalPages = Math.ceil(filteredProperties.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedProperties = filteredProperties.slice(startIndex, endIndex);
 
   return (
     <Layout>
       <div className="projectbanner flex justify-center items-center">
         <div className="grid sm:grid-cols-12">
           <div className="col-span-12 text-center lg:mt-20">
-            <h1 className="font-dmsans font-medium text-white text-3xl lg:text-4xl capitalize">
+            <h1 className="font-dmsans font-bold text-white text-3xl lg:text-4xl capitalize">
               {id.replace("-", " ")}
             </h1>
           </div>
         </div>
       </div>
+
+      <Navigation />
 
       <div className="grid sm:grid-cols-12 max-w-[1280px] mx-auto my-10">
         {loading && (
@@ -55,33 +75,42 @@ export const SingleProject = () => {
             <p>Something went wrong: {error}</p>
           </div>
         )}
-        {properties &&
-          properties
-            .filter(
-              (property) =>
-                property.category.name == capitalizeWords(id.replace("-", " "))
-            )
-            .map((property) => {
-              return (
-                <div className="col-span-12 lg:col-span-3 m-3">
-                  <PropertyCard
-                    key={property._id}
-                    id={property._id}
-                    name={property.name}
-                    slug={property.slug}
-                    image={property.image[0]}
-                    location={property.location}
-                    builder={property.builder}
-                    unit={property.unit}
-                    size={property.size}
-                    sizeUnit={property.sizeUnit}
-                    price={property.price}
-                    propertyType={property.propertyType}
-                  />
-                </div>
-              );
-            })}
+
+        {paginatedProperties.map((property) => (
+          <div key={property._id} className="col-span-12 lg:col-span-3 m-3">
+            <PropertyCard
+              id={property._id}
+              name={property.name}
+              slug={property.slug}
+              image={property.image[0]}
+              location={property.location}
+              builder={property.builder}
+              unit={property.unit}
+              size={property.size}
+              sizeUnit={property.sizeUnit}
+              price={property.price}
+              propertyType={property.propertyType}
+            />
+          </div>
+        ))}
       </div>
+
+      {/* MUI Pagination */}
+      {totalPages > 1 && (
+        <div className="flex justify-center m-6">
+          <Pagination
+            count={totalPages}
+            page={currentPage}
+            onChange={(event, page) => setCurrentPage(page)}
+            renderItem={(item) => (
+              <PaginationItem
+                slots={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
+                {...item}
+              />
+            )}
+          />
+        </div>
+      )}
     </Layout>
   );
 };
