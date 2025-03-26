@@ -51,7 +51,7 @@ export const Navbar = ({ mobileMenu, setMobileMenu }) => {
     <>
       {/* Navbar */}
       <nav
-        className={`fixed z-[10] top-0 shadow-lg transition-all duration-500 w-full ${
+        className={`fixed z-[20] top-0 shadow-lg transition-all duration-500 w-full ${
           isSticky
             ? "bg-white p-1 shadow-md"
             : "lg:w-[90%] lg:left-[5%] lg:top-[8%] lg:rounded-[15px] bg-[#FFFFFF80]"

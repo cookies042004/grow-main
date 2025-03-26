@@ -4,54 +4,52 @@ import axios from "axios";
 
 export const NavigationBar = () => {
   const location = useLocation();
-  const { id } = useParams(); // Grabs the event ID from the URL
+  const { id } = useParams(); // Get event ID from URL
   const [eventName, setEventName] = useState("");
 
-  // Fetch event name when the ID is available
+  // Fetch event name when ID changes
   useEffect(() => {
     if (id) {
       axios
         .get(`${process.env.BASE_URL}/api/v1/events/${id}`)
         .then((response) => {
-          setEventName(response.data.event.title); // Set event name
+          if (response.data?.event?.title) {
+            setEventName(response.data.event.title);
+          }
         })
-        .catch((error) => {
-          console.error("Error fetching event details:", error);
-        });
+        .catch((error) => console.error("Error fetching event:", error));
     }
   }, [id]);
 
-  const path = location.pathname; // Get the full path (e.g., '/about')
-  const pathSegments = path.split("/").filter(Boolean); // Split the path and remove empty segments
+  const path = location.pathname;
+  const pathSegments = path.split("/").filter(Boolean);
+
+  // Convert raw paths into readable names
+  const formatPath = (segment) => {
+    const pathMap = {
+      events: "Events",
+      about: "About Us",
+      contact: "Contact",
+      services: "Services",
+    };
+    return pathMap[segment] || segment;
+  };
 
   return (
-    <div className="max-w-[1280px] mx-5 my-10">
-      <div className="bg-gray-100 p-3 lg:p-4 shadow-lg capitalize rounded-lg text-xs lg:text-sm">
-        Home{" "}
-        {pathSegments.map((item, index) => {
-          // Check if we're at the last segment (event ID)
-          if (index === pathSegments.length - 1 && id) {
-            // Replace the ID with the event name
-            return (
-              <span
-                key={index}
-                className="font-medium text-xs lg:text-sm capitalize"
-              >
-                / {eventName || "Loading..."}
-              </span>
-            );
-          }
+    <div className="w-full p-4 flex justify-center">
+      <div className="w-full max-w-[1280px] mx-auto my-5 bg-gray-100 p-3 lg:p-4 shadow-md rounded-lg text-xs lg:text-sm">
+        <span className="text-gray-600">Home</span>
 
-          // Render other segments as they are (e.g., "/event")
-          return (
-            <span
-              key={index}
-              className="font-medium text-xs lg:text-sm capitalize"
-            >
-              / {item}
-            </span>
-          );
-        })}
+        {pathSegments.map((segment, index) => (
+          <span key={index} className="font-medium text-gray-700">
+            {" → "}
+            {index === pathSegments.length - 1 && id ? (
+              <span>{eventName || "Loading..."}</span>
+            ) : (
+              formatPath(segment)
+            )}
+          </span>
+        ))}
       </div>
     </div>
   );

@@ -1,0 +1,79 @@
+/* Wrapper for the slider */
+.slider-wrapper {
+    position: relative;
+    padding-bottom: -0px; /* Space for arrows */
+  }
+  
+  /* Custom arrow styles */
+  .arrow {
+    position: absolute;
+    bottom: -76px;
+    transform: translateY(-22%);
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    color: white;
+    transition: background-color 0.3s ease;
+  }
+  
+  .arrow:hover {
+    background-color: rgba(0, 0, 0, 0.8); /* Darker on hover */
+  }
+  
+  /* Positioning for desktop */
+  .next {
+    right: 42%;
+  }
+  
+  .prev {
+    left: 42%;
+  }
+  
+  /* Disabled state for arrows */
+  .slick-prev.slick-disabled,
+  .slick-next.slick-disabled {
+    background-color: rgba(0, 0, 0, 0.2);
+    cursor: not-allowed;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    .next {
+      right: 38%;
+    }
+    .prev {
+      left: 38%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .next {
+      right: 38%;
+    }
+    .prev {
+      left: 38%;
+    }
+  }
+  
+  @media (max-width: 550px) {
+    .next {
+      right: 30%;
+    }
+    .prev {
+      left: 30%;
+    }
+  }
+  
+  @media (max-width: 400px) {
+    .next {
+      right: 25%;
+    }
+    .prev {
+      left: 25%;
+    }
+  }
+  

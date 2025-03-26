@@ -222,38 +222,38 @@ export const CommercialDetails = () => {
                 </div>
 
                 {/* Property Info Container */}
-                <div className="border border-gray-300 m-4 sm:m-10 mt-5 mb-1 flex flex-col sm:flex-row gap-4 sm:gap-8 p-3">
+                <div className="border border-gray-300 m-4 sm:mx-10 mt-5 mb-1 flex flex-col sm:flex-row gap-4 sm:gap-8 p-3 items-center sm:items-start shadow-sm">
                   {/* Left Section - Property Details */}
-                  <div className="flex flex-row items-center sm:items-start gap-3 w-full">
-                    <img
-                      src={property?.dp}
-                      alt="dealer"
-                      className="h-16 w-16 sm:h-20 sm:w-20 object-cover"
-                    />
-                    <div className="flex flex-col">
-                      <h1 className="font-bold text-[#1d2a3b] lg:px-2 pl-16 text-lg sm:text-xl py-[1px] max-w-[250px]">
-                        {property?.name}
+                  <div className="flex sm:flex-row flex-col items-center sm:items-start gap-3 w-full">
+                    <div className="border border-black overflow-hidden">
+                      <img
+                        src={property?.dp}
+                        alt="dealer"
+                        className="h-16 w-16 sm:h-20 sm:w-20 object-contain"
+                      />
+                    </div>
+                    <div className="flex flex-col text-center sm:text-left">
+                      <h1 className="font-bold text-[#1d2a3b] text-lg sm:text-xl py-[1px] sm:pl-2">
+                        {property?.title}
                       </h1>
-                      <p className="text-sm text-[#03002a] lg:px-2 lg:pl-10 pl-14  py-[1px]">
+                      <p className="text-sm text-[#03002a] py-[1px] sm:pl-2">
                         By {property?.builder}
                       </p>
-                      <div className="flex items-center lg:px-0 lg:pl-8 pl-14">
-                        <LocationOnIcon className="text-red-600 text-xs" />
-                        <p className="text-sm text-red-600 py-[1px]">
-                          {property?.location}
-                        </p>
+                      <div className="flex items-center justify-center sm:justify-start text-red-600">
+                        <LocationOnIcon className="text-xs" />
+                        <p className="text-sm py-[1px]">{property?.location}</p>
                       </div>
                     </div>
                   </div>
 
                   {/* Right Section - Price & Buttons */}
                   <div className="flex flex-col items-center sm:items-end w-full sm:w-2/3">
-                    <h5 className="font-semibold text-[#1d2a3b] text-xl sm:text-2xl pr-2">
+                    <h5 className="font-semibold text-[#1d2a3b] text-xl sm:text-2xl">
                       ₹{toINRCr(property?.price)}*
                     </h5>
 
                     {/* Buttons - Stack on Small Screens */}
-                    <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto py-2 pr-2">
+                    <div className="flex flex-row sm:flex-row gap-1 sm:gap-3 w-full sm:w-auto py-2">
                       <Link to={`/brochure`} className="w-full sm:w-auto">
                         <Button
                           startIcon={<PictureAsPdfIcon />}
@@ -261,7 +261,7 @@ export const CommercialDetails = () => {
                           size="small"
                           color="error"
                           sx={{ textTransform: "none" }}
-                          className="w-full sm:w-auto"
+                          className="w-full sm:w-auto text-sm"
                         >
                           Request PDF
                         </Button>
@@ -274,10 +274,10 @@ export const CommercialDetails = () => {
                         color="success"
                         sx={{ textTransform: "none" }}
                         component="a"
-                        href={`https://wa.me/+918750238581?text=Hi I am interested in ${property?.name}, Please share the details.`}
+                        href={`https://wa.me/+918750238581?text=Hi I am interested in ${property?.title}, Please share the details.`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full sm:w-auto"
+                        className="w-full sm:w-auto text-sm"
                       >
                         WhatsApp Us
                       </Button>
@@ -312,7 +312,7 @@ export const CommercialDetails = () => {
                   className="col-span-12 bg-white p-6 sm:p-8 rounded-lg shadow-lg shadow-gray-"
                   id="Description"
                 >
-                  <h3 className="text-2xl sm:text-3xl border-b-2 pb-2 font-poppins font-semibold text-[#1d2a3b]">
+                  <h3 className="text-2xl sm:text-2xl border-b-2 pb-2 font-sans font-semibold text-[#1d2a3b]">
                     Description
                   </h3>
                   <div className="mt-4 text-gray-500 text-sm sm:text-md leading-relaxed">
@@ -347,7 +347,7 @@ export const CommercialDetails = () => {
                   className="col-span-12 bg-white p-6 rounded-lg shadow-lg shadow-gray-"
                   id="Project Overview"
                 >
-                  <h3 className="text-2xl border-b-2 font-poppins font-semibold pb-3 text-gray-900">
+                  <h3 className="text-2xl border-b-2 font-sans font-semibold pb-3 text-gray-900">
                     Project Overview
                   </h3>
                   <hr className="mb-4 border-gray-300" />
@@ -412,26 +412,25 @@ export const CommercialDetails = () => {
                   className="col-span-12 bg-white p-8 rounded-lg shadow-lg shadow-gray-"
                   id="Project Amenities"
                 >
-                  <h3 className="text-3xl border-b-2 font-poppins font-semibold pb-3 text-gray-900">
+                  <h3 className="text-2xl border-b-2 font-sans font-semibold pb-3 text-gray-900">
                     Project Amenities
                   </h3>
 
                   {/* Society Amenities */}
                   <div className="p-6 bg-gray-50 shadow-md mt-5 rounded-lg">
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
+                    <div className="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-5 gap-6 mt-6">
                       {filteredAmenities.length ? (
                         filteredAmenities.map((item) => (
                           <div
                             key={item._id}
-                            className="flex items-center gap-4 p-3 border rounded-lg bg-white shadow-sm 
-                       hover:shadow-md transition-all duration-300 flex-wrap"
+                            className="flex items-center gap-4 transition-all duration-300"
                           >
                             <img
                               src={item.image}
                               alt={item.name}
-                              className="h-8 w-8 object-contain"
+                              className="h-8 w-5 object-contain"
                             />
-                            <p className="text-lg font-semibold text-gray-700 break-words leading-tight">
+                            <p className="text-sm font-medium text-gray-700 break-words leading-tight">
                               {item.name}
                             </p>
                           </div>
@@ -450,7 +449,7 @@ export const CommercialDetails = () => {
                   className="col-span-12 bg-white p-6 sm:p-8 rounded-lg shadow-lg shadow-gray-"
                   id="Video Tour"
                 >
-                  <h3 className="text-2xl sm:text-3xl border-b-2 pb-2 font-poppins font-semibold text-[#1d2a3b]">
+                  <h3 className="text-2xl sm:text-2xl border-b-2 pb-2 font-sans font-semibold text-[#1d2a3b]">
                     Video Tour
                   </h3>
 
@@ -495,11 +494,11 @@ export const CommercialDetails = () => {
 
       {/* Featured Projects  */}
       <div className="p-3 max-w-[1280px] mx-auto">
-        <h1 className="text-center text-[#1d2a3b] lg:text-4xl text-2xl font-bold py-8 lg:font-medium">
-          Recent Listings
+        <h1 className="text-center text-[#1d2a3b] lg:text-3xl text-2xl font-medium py-8">
+          Trending Properties
         </h1>
         <Card category="New Launches" />
-        <div className="flex justify-center my-3">
+        <div className="flex justify-center my-8">
           <Link to={"/property/new-launches"}>
             <Button
               size="large"

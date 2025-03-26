@@ -183,7 +183,7 @@ const Carousel = ({ galleryImages }) => {
 
           {/* Close Button */}
           <button
-            className="absolute text-black top-6 right-6 md:top-4 md:right-4 py-1 px-3 lg:px-4 lg:p-2 font-medium rounded-full z-[60]"
+            className="absolute text-gray-400 top-6 right-6 md:top-4 md:right-4 py-1 px-3 lg:px-4 lg:p-2 font-medium rounded-full z-[60]"
             onClick={closeModal}
           >
             ✖

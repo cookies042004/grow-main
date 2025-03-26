@@ -73,6 +73,9 @@ export const CalculatorHome = () => {
       {/* Call to Action */}
       <div className="flex flex-col items-center">
         <p className="text-center text-xs font-medium">Still Confused?</p>
+        <p className="font-semibold text-sm text-gray-600">
+        Give us a call on the given number.
+      </p>
         <button className="flex items-center gap-2 bg-[#1d2a3b] text-white py-1 px-3 mt-1 rounded-lg text-xs hover:bg-opacity-90">
           <PhoneIcon fontSize="small" />
           <Link to="/" className="font-semibold">

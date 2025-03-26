@@ -4,57 +4,46 @@ import axios from "axios";
 
 export const Navigation = () => {
   const location = useLocation();
-  const { slug } = useParams(); // Grabs the event ID from the URL
-  const [eventName, setEventName] = useState("");
+  const { slug } = useParams(); // Get the property slug from URL
+  const [categoryName, setCategoryName] = useState("");
 
-  // Fetch event name when the ID is available
+  // Fetch category name when slug changes
   useEffect(() => {
     if (slug) {
       axios
-        .get(`${process.env.BASE_URL}/api/v1/property/${slug}`)
+        .get(`${process.env.REACT_APP_BASE_URL}/api/v1/property/${slug}`)
         .then((response) => {
-          const decoded = decodeURIComponent(
-            response.data.property.category.name
-          );
-          setEventName(decoded); // Set event name
+          const category = response.data?.property?.category?.name;
+          if (category) setCategoryName(decodeURIComponent(category));
         })
-        .catch((error) => {
-          console.error("Error fetching event details:", error);
-        });
+        .catch((error) => console.error("Error fetching property details:", error));
     }
   }, [slug]);
 
-  const path = location.pathname; // Get the full path (e.g., '/about')
-  const pathSegments = path.split("/").filter(Boolean); // Split the path and remove empty segments
-  console.log("path", pathSegments);
+  const path = location.pathname;
+  const pathSegments = path.split("/").filter(Boolean);
+
+  // Convert raw paths into readable names
+  const formatPath = (segment) => {
+    const pathMap = {
+      properties: "Properties",
+      about: "About Us",
+      contact: "Contact",
+    };
+    return pathMap[segment] || segment;
+  };
 
   return (
-    <div className="max-w-[1280px] mx-5 my-10">
-      <div className="bg-gray-100 p-3 lg:p-4 shadow-lg capitalize rounded-lg text-xs lg:text-sm">
-        Home{" "}
-        {pathSegments.map((item, index) => {
-          const decodedItem = decodeURIComponent(item); // Decode each segment
+    <div className="w-full flex justify-center">
+      <div className="w-full max-w-[1280px] mx-5 my-5 bg-gray-100 p-3 lg:p-4 shadow-md rounded-lg text-xs lg:text-sm">
+        <span className="text-gray-600">Home</span>
 
-          if (index === pathSegments.length - 1 && slug) {
-            return (
-              <span
-                key={index}
-                className="font-medium text-xs lg:text-sm capitalize"
-              >
-                / {eventName || ""}
-              </span>
-            );
-          }
-
-          return (
-            <span
-              key={index}
-              className="font-medium text-xs lg:text-sm capitalize"
-            >
-              / {decodedItem}
-            </span>
-          );
-        })}
+        {pathSegments.map((segment, index) => (
+          <span key={index} className="font-medium text-gray-700">
+            {" → "}
+            {index === pathSegments.length - 1 && slug ? categoryName || "Loading..." : formatPath(decodeURIComponent(segment))}
+          </span>
+        ))}
       </div>
     </div>
   );

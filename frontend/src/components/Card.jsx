@@ -86,7 +86,7 @@ export const Card = ({ category }) => {
             {properties
               .filter((property) => property.category.name === category)
               .map((property) => (
-                <PropwertyCard
+                <PropertyCard
                   key={property._id}
                   category={property?.category || { name: "Unknown" }}
                   {...property}
