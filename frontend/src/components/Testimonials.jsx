@@ -133,8 +133,8 @@ export const Testimonials = () => {
 
                       <div className="mt-5 h-[170px] overflow-hidden">
                         <p className="text-sm lg:text-lg text-justify font-roboto font-medium text-[#1A1A1A] lg:leading-[1.5] px-4">
-                          {testimonial.review.length > 200
-                            ? testimonial.review.slice(0, 200) + "..."
+                          {testimonial.review.length > 150
+                            ? testimonial.review.slice(0, 150) + "..."
                             : testimonial.review}
                         </p>
                         {testimonial.review.length > 200 && (
