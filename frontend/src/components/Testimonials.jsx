@@ -60,14 +60,14 @@ export const Testimonials = () => {
           {/* Stats Section */}
           <div className="mt-10 flex gap-10">
             <div className="text-center lg:text-left">
-              <h3 className="text-4xl font-bold text-[#1A1A1A] bg-gradient-to-r from-[#e7c874] to-[#f1d488] text-transparent bg-clip-text">
+              <h3 className="text-4xl font-bold text-[#1A1A1A] bg-gradient-to-r from-[#ffb700] to-[#ffb700] text-transparent bg-clip-text">
                 2k+
               </h3>
               <p className="text-gray-600 text-lg">Happy Clients</p>
             </div>
 
             <div className="text-center lg:text-left">
-              <h3 className="text-4xl font-bold text-[#1A1A1A] bg-gradient-to-r from-[#e7c874] to-[#f1d488] text-transparent bg-clip-text">
+              <h3 className="text-4xl font-bold text-[#1A1A1A] bg-gradient-to-r from-[#ffb700] to-[#ffb700] text-transparent bg-clip-text">
                 4.88
               </h3>
               <p className="text-gray-600 text-lg">Overall Rating</p>
@@ -75,7 +75,7 @@ export const Testimonials = () => {
               {/* Star Rating */}
               <div className="flex justify-center lg:justify-start mt-3">
                 {[...Array(5)].map((_, i) => (
-                  <StarIcon key={i} sx={{ color: "#e7c874" }} />
+                  <StarIcon key={i} sx={{ color: "#ffb700" }} />
                 ))}
               </div>
             </div>

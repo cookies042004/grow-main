@@ -77,7 +77,7 @@ export const SingleProject = () => {
         )}
 
         {paginatedProperties.map((property) => (
-          <div key={property._id} className="col-span-12 lg:col-span-3 m-3">
+          <div key={property._id} className="col-span-12 md:col-span-5 lg:col-span-3 m-3">
             <PropertyCard
               id={property._id}
               name={property.name}

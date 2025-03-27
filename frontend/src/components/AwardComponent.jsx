@@ -21,21 +21,15 @@ export const AwardComponent = () => {
       </div>
     );
   }
-  if (error)
-    return (
-      <div className="col-span-12 flex flex-col items-center">
-        <img src="https://shorturl.at/6C2TM" alt="Error loading awards" className="w-40" />
-        <p className="text-red-500 mt-2 text-lg">Failed to load Awards. Please try again.</p>
-      </div>
-    );
+  if (error) return <p>Error fetching data.</p>;
 
   return (
-    <div className="award-section py-12 px-6">
-      <div className="award-container max-w-6xl mx-auto text-center">
-        <h1 className="text-3xl lg:text-4xl font-medium font-sans text-[#1d2a3b] mb-8">
+    <div className="award-section">
+      <div className="award-container">
+        <h1 className="award-heading text-center text-2xl lg:text-4xl font-medium mb-6 text-[#1d2a3b]">
           Awards & Achievements
         </h1>
-        
+
         <Swiper
           effect="coverflow"
           grabCursor={true}
@@ -45,7 +39,7 @@ export const AwardComponent = () => {
           coverflowEffect={{
             rotate: 0,
             stretch: 0,
-            depth: 150,
+            depth: 100,
             modifier: 2.5,
           }}
           pagination={{ clickable: true }}
@@ -55,17 +49,11 @@ export const AwardComponent = () => {
         >
           {awards.map((award, index) => (
             <SwiperSlide key={index} className="award-swiper-slide">
-              <div className="relative overflow-hidden rounded-3xl shadow-lg">
-                <img
-                  src={award.image}
-                  alt={award.title || `Award ${index + 1}`}
-                  className="w-full h-64 object-cover rounded-3xl"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4 text-white rounded-3xl">
-                  {/* <h3 className="text-lg font-semibold">{award.title || "Award"}</h3>  */}
-                </div>
-              </div>
+              <img
+                src={award.image}
+                alt={`Award ${index + 1}`}
+                className="award-image"
+              />
             </SwiperSlide>
           ))}
         </Swiper>

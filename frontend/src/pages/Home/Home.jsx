@@ -244,8 +244,8 @@ export const Home = () => {
       <div className="bg-gray-50 py-8">
         <div className="mx-auto max-w-[1280px] px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-            {/* Left - Images Section */}
-            <div className="flex flex-col justify-center lg:ps-14 text-center md:text-left">
+            {/* Left - Content Section */}
+            <div className="flex flex-col justify-center text-center md:text-left">
               <h1 className="text-[#1A1A1A] text-center text-2xl lg:text-4xl font-sans font-medium">
                 How It Works? <br />
                 Find Your Perfect Home
@@ -294,7 +294,7 @@ export const Home = () => {
               </ul>
             </div>
 
-            {/* Right - Content Section */}
+            {/* Right - Image Section */}
             <div className="hidden md:flex flex-col gap-5">
               <div className="w-full">
                 <img
@@ -326,7 +326,7 @@ export const Home = () => {
       <Choose />
 
       {/* Awards Segment  */}
-      <div className="bg-gray-50 lg:py-5 max-w-[1520px] mx-auto">
+     <div className="bg-gray-50 lg:py-5 max-w-[1520px] mx-auto">
         <AwardComponent />
 
         <div className="flex justify-center lg:m-8 pb-5 lg:pb-0">

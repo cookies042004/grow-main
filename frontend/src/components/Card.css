@@ -26,11 +26,11 @@
 
 /* Positioning for desktop */
 .next {
-  right: 42%;
+  right: 40%;
 }
 
 .prev {
-  left: 42%;
+  left: 40%;
 }
 
 /* Disabled state for arrows */
@@ -41,38 +41,83 @@
 }
 
 /* Responsive adjustments */
-@media (max-width: 1024px) {
+@media (max-width: 1300px) {
   .next {
-    right: 38%;
+    right: 42%;
   }
   .prev {
-    left: 38%;
+    left: 42%;
+  }
+}
+
+@media (max-width: 1124px) {
+  .next {
+    right: 40%;
+  }
+  .prev {
+    left: 40%;
+  }
+}
+
+@media (max-width: 1023px) {
+  .next {
+    right: 24%;
+  }
+  .prev {
+    left: 24%;
+  }
+}
+
+@media (max-width: 920px) {
+  .next {
+    right: 39%;
+  }
+  .prev {
+    left: 39%;
+  }
+}
+
+@media (max-width: 860px) {
+  .next {
+    right: 37%;
+  }
+  .prev {
+    left: 37%;
   }
 }
 
 @media (max-width: 768px) {
   .next {
-    right: 38%;
+    right: 37%;
   }
   .prev {
-    left: 38%;
+    left: 37%;
   }
 }
 
 @media (max-width: 550px) {
   .next {
-    right: 30%;
+    right: 31%;
   }
   .prev {
-    left: 30%;
+    left: 31%;
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 435px) {
   .next {
-    right: 25%;
+    right: 24%;
   }
   .prev {
-    left: 25%;
+    left: 24%;
+  }
+}
+
+@media (max-width: 350px) {
+  .next {
+    right: 22%;
+  }
+  .prev {
+    left: 22%;
   }
 }

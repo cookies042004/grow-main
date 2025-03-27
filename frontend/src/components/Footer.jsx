@@ -139,7 +139,7 @@ export const Footer = () => {
         </div>
 
         {/* Footer Bottom Section */}
-        <div className="flex flex-col items-center justify-start pt-5 pb-3 border-t border-white sm:flex-row">
+        <div className="flex flex-col items-center justify-center pt-5 pb-3 border-t border-white sm:flex-row">
           <p className="text-sm text-center sm:text-left">
             © {new Date().getFullYear()} Grow Infinity Realtors. All Rights
             Reserved.

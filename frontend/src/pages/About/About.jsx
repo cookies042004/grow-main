@@ -101,11 +101,11 @@ export const About = () => {
             </p>
           </div>
 
-          <div className="col-span-12 lg:col-span-6 flex items-center justify-center mt-8 lg:mt-0 lg:justify-end ">
+          <div className="col-span-12 lg:col-span-6 flex items-center justify-center mt-8 lg:mt-0 lg:justify-end px-8">
             <img
               src={aboutImg}
               alt="about-welcome-image"
-              className="h-[280px] lg:h-[480px] w-[300px]"
+              className="h-[280px] lg:h-[480px] w-[500px] object-contain"
               loading="lazy"
             />
           </div>
@@ -219,7 +219,7 @@ export const About = () => {
         <div className="mx-auto max-w-[1280px]">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             {/* Left - Images Section */}
-            <div className="flex flex-col justify-center lg:ps-14 text-center md:text-left">
+            <div className="flex flex-col justify-center text-center md:text-left">
               <h1 className="text-[#1A1A1A] font-sans text-center text-3xl lg:text-4xl font-medium">
                 How It Works? <br />
                 Find Your Perfect Home

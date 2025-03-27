@@ -49,7 +49,7 @@ export const PropertyCard = ({
   };
 
   return (
-    <div className="border relative p-2 hover:shadow-2xl bg-white transition-all duration-300">
+    <div className="border relative p-2 bg-white transition-all duration-300 hover:shadow-[rgba(0,0,0,0.16)_0px_3px_6px,rgba(0,0,0,0.23)_0px_3px_6px]">
       {/* Property Image */}
       <div className="flex justify-center">
         <img src={image} alt={name} className="h-[230px] w-full object-cover" />
@@ -100,7 +100,7 @@ export const PropertyCard = ({
               backgroundColor: "#1d2a3b",
               color: "#fff",
               textTransform: "none",
-              fontSize: { xs:"14px",sm:"13px",md: "14px" },
+              fontSize: { xs:"14px",sm:"12px",md: "14px" },
             }}
             onClick={handlePropertyNavigation}
           >
@@ -115,7 +115,7 @@ export const PropertyCard = ({
             variant="contained"
             color="success"
             startIcon={<CallIcon />}
-            sx={{ color: "#fff", textTransform: "none",fontSize: { xs:"14px",sm:"13px",md: "14px" }, }}
+            sx={{ color: "#fff", textTransform: "none",fontSize: { xs:"14px",sm:"12px",md: "14px" }, }}
             
           >
             Enquiry

@@ -10,7 +10,7 @@ export const RecentProperty = () => {
 
   return (
     <div className="bg-white p-5">
-      <h1 className="text-xl text-center font-medium">Recent Property</h1>
+      <h1 className="text-xl text-center font-medium">Latest Properties</h1>
       <div className="grid sm:grid-cols-12 gap-6 mt-5">
         {properties &&
           properties.map((property) => {
