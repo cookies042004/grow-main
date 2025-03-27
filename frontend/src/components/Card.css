@@ -121,3 +121,12 @@
     left: 22%;
   }
 }
+
+@media (max-width: 350px) {
+  .next {
+    right: 20%;
+  }
+  .prev {
+    left: 20%;
+  }
+}
