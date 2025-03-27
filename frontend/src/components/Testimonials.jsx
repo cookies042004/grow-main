@@ -36,7 +36,7 @@ export const Testimonials = () => {
   return (
     <div className="py-2 lg:py-4 lg:px-16 px-10">
       <div>
-        <h1 className="flex justify-center items-center lg:text-4xl text-2xl text-[#1d2a3b] font-medium py-4">
+        <h1 className="flex justify-center items-center lg:text-4xl text-3xl text-[#1d2a3b] font-medium py-4">
           Testimonials
         </h1>
       </div>

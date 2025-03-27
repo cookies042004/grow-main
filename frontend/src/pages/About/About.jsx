@@ -78,7 +78,7 @@ export const About = () => {
         </h1>
 
         <div className="grid sm:grid-cols-12 my-6">
-          <div className="col-span-12 lg:col-span-6 flex flex-col mt-3 lg:mt-6 items-start gap-3 px-8">
+          <div className="col-span-12 lg:col-span-6 flex flex-col mt-3 lg:mt-6 items-start gap-3 px-5">
             <p className="font-sans text-sm lg:text-lg lg:leading-9 text-justify text-gray-700">
               Grow Infinity Realtors is a highly regarded and accomplished real
               estate agency with a proven track record of success. Leveraging
@@ -105,7 +105,7 @@ export const About = () => {
             <img
               src={aboutImg}
               alt="about-welcome-image"
-              className="h-[280px] lg:h-[480px] w-[500px]"
+              className="h-[280px] lg:h-[480px] w-[300px]"
               loading="lazy"
             />
           </div>
@@ -113,7 +113,7 @@ export const About = () => {
       </div>
 
       <div className="my-5 max-w-[1280px] mx-auto">
-        <h1 className="text-center text-2xl lg:text-4xl font-roboto font-medium py-3 lg:py-8">
+        <h1 className="text-center text-2xl lg:text-4xl font-sans font-medium py-3 lg:py-8 m-2">
           <span className="text-gray-500">Stress-Free</span> Step to Your Dream
           Home
         </h1>
@@ -191,7 +191,7 @@ export const About = () => {
             </div>
 
             <div className="col-span-12 lg:col-span-6 flex flex-col justify-center pb-10">
-              <p className="font-sans text-sm px-8 lg:text-lg lg:leading-8 text-justify text-gray-700">
+              <p className="font-sans text-sm px-5 lg:text-lg lg:leading-8 text-justify text-gray-700">
                 At Grow Infinity Realtors, we take immense pride in our
                 unwavering commitment to providing personalized real estate
                 solutions tailored specifically to meet the unique needs and
@@ -220,17 +220,17 @@ export const About = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             {/* Left - Images Section */}
             <div className="flex flex-col justify-center lg:ps-14 text-center md:text-left">
-              <h1 className="text-[#1A1A1A] font-sans text-center text-2xl lg:text-4xl font-medium">
+              <h1 className="text-[#1A1A1A] font-sans text-center text-3xl lg:text-4xl font-medium">
                 How It Works? <br />
                 Find Your Perfect Home
               </h1>
-              <p className="text-md lg:text-lg mt-5">
+              <p className="text-md lg:text-lg mt-5 m-5">
                 Discover your ideal home with ease. Browse listings, get expert
                 advice, and find the perfect match for your lifestyle.
               </p>
 
               {/* Steps List */}
-              <ul className="my-10 flex flex-col gap-10">
+              <ul className="my-10 flex flex-col gap-10 m-5">
                 {[
                   {
                     img: Icon1,
