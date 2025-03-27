@@ -15,6 +15,7 @@ export const Footer = () => {
     <footer className="bg-[#1d2a3b] text-white">
       <div className="px-5 pt-10 mx-auto max-w-screen-xl md:px-10 lg:px-9">
         <div className="grid gap-10 mb-8 lg:grid-cols-6">
+          {/* Left Section - Logo & About */}
           <div className="lg:col-span-2 flex flex-col items-center lg:items-start text-center lg:text-left">
             <img
               src={footerLogo}
@@ -28,7 +29,9 @@ export const Footer = () => {
             </p>
           </div>
 
+          {/* Right Sections - Links, Contact, Follow Us */}
           <div className="grid grid-cols-2 gap-10 lg:col-span-4 md:grid-cols-3">
+            {/* Operational Zones */}
             <div>
               <p className="font-semibold text-lg">Operational Zones</p>
               <ul className="mt-2 space-y-2 text-[#d1cfda]">
@@ -41,6 +44,7 @@ export const Footer = () => {
               </ul>
             </div>
 
+            {/* Key Links */}
             <div>
               <p className="font-semibold text-lg">Key Links</p>
               <ul className="mt-2 space-y-2 text-[#d1cfda]">
@@ -62,6 +66,7 @@ export const Footer = () => {
               </ul>
             </div>
 
+            {/* Contact Section */}
             <div>
               <p className="font-semibold text-lg">Let’s Connect</p>
               <ul className="mt-2 space-y-3 text-[#d1cfda]">
@@ -85,45 +90,60 @@ export const Footer = () => {
                   </a>
                 </li>
               </ul>
+              
+
+            {/* Follow Us Section (Properly Aligned) */}
+            <div className="flex flex-col mt-5">
+              <p className="font-semibold text-lg mb-2">Follow Us</p>
+              <div className="flex space-x-5">
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  <img
+                    src={twitter}
+                    alt="Twitter"
+                    className="w-[25px] h-[25px]"
+                  />
+                </a>
+                <a
+                  href="https://www.instagram.com/growinfinityrealtors_official/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src={instagram}
+                    alt="Instagram"
+                    className="w-[25px] h-[25px]"
+                  />
+                </a>
+                <a
+                  href="https://www.facebook.com/p/Grow-Infinity-Realtors-100092248133482/?_rdr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src={facebook}
+                    alt="Facebook"
+                    className="w-[25px] h-[25px]"
+                  />
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  <img
+                    src={youtube}
+                    alt="YouTube"
+                    className="w-[25px] h-[25px]"
+                  />
+                </a>
+              </div>
+            </div>
             </div>
           </div>
         </div>
-        
-        <div className="flex flex-col items-center justify-between pt-5 pb-3 border-t border-white sm:flex-row">
+
+        {/* Footer Bottom Section */}
+        <div className="flex flex-col items-center justify-start pt-5 pb-3 border-t border-white sm:flex-row">
           <p className="text-sm text-center sm:text-left">
             © {new Date().getFullYear()} Grow Infinity Realtors. All Rights
             Reserved.
           </p>
-          <div className="flex items-center mt-4 mb-5 space-x-5 sm:mt-0">
-            <a href="#" target="_blank" rel="noopener noreferrer">
-              <img src={twitter} alt="Twitter" className="w-[25px] h-[25px]" />
-            </a>
-            <a
-              href="https://www.instagram.com/growinfinityrealtors_official/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src={instagram}
-                alt="Instagram"
-                className="w-[25px] h-[25px]"
-              />
-            </a>
-            <a
-              href="https://www.facebook.com/p/Grow-Infinity-Realtors-100092248133482/?_rdr"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src={facebook}
-                alt="Facebook"
-                className="w-[25px] h-[25px]"
-              />
-            </a>
-            <a href="#" target="_blank" rel="noopener noreferrer">
-              <img src={youtube} alt="YouTube" className="w-[25px] h-[25px]" />
-            </a>
-          </div>
         </div>
       </div>
     </footer>
