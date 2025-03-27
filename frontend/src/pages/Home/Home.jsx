@@ -287,7 +287,7 @@ export const Home = () => {
                       <h1 className="text-lg lg:text-xl font-medium">
                         {item.title}
                       </h1>
-                      <p className="mt-2 text-sm lg:text-[15px]">{item.text}</p>
+                      <p className="m-2 text-sm lg:text-[15px]">{item.text}</p>
                     </div>
                   </li>
                 ))}
