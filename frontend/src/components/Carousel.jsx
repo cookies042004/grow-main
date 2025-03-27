@@ -72,11 +72,11 @@ const Carousel = ({ galleryImages }) => {
   return (
     <div className="grid gap-6">
       <div className="flex w-full relative gap-2 flex-col md:flex-row">
-        <div className="w-full h-[300p  x] md:w-5/6 relative">
+        <div className="w-full h-[300px] md:w-5/6 relative">
           <div className="overflow-hidden bg-black h-[300px] transition-transform duration-500">
             <img
               src={galleryImages[activeIndex]}
-              className="block w-full object-cover cursor-pointer transition-transform duration-500 hover:scale-105"
+              className="block w-full h-full object-cover cursor-pointer transition-transform duration-500 hover:scale-105"
               alt="Main"
               onClick={() => openModal(activeIndex)}
               style={{ maxHeight: "400px" }}
@@ -183,7 +183,7 @@ const Carousel = ({ galleryImages }) => {
 
           {/* Close Button */}
           <button
-            className="absolute text-gray-400 top-6 right-6 md:top-4 md:right-4 py-1 px-3 lg:px-4 lg:p-2 font-medium rounded-full z-[60]"
+            className="absolute text-gray-400 top-6 right-6 md:top-4 md:right-4 py-1 px-3 lg:px-4 lg:p-2 font-medium"
             onClick={closeModal}
           >
             ✖
