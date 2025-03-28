@@ -7,7 +7,7 @@
 /* Custom arrow styles */
 .arrow {
   position: absolute;
-  bottom: -76px;
+  bottom: -50px;
   transform: translateY(-22%);
   cursor: pointer;
   width: 30px;
@@ -18,6 +18,28 @@
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
   color: white;
   transition: background-color 0.3s ease;
+}
+
+.slick-dots {
+  position: absolute;
+  bottom: -37px;
+  display: flex !important;
+  justify-content: center;
+  gap: 8px;
+  list-style: none;
+}
+
+.slick-dots li {
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  background-color: rgb(174, 174, 174);
+  border-radius: 50%;
+  transition: background-color 0.3s ease-in-out;
+  cursor: pointer;
+}
+.slick-dots li.slick-active {
+  background-color: blue !important;
 }
 
 .arrow:hover {

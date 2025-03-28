@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 50vh; /* Increased height for better layout */
+  min-height: 0vh; /* Increased height for better layout */
   padding: 10px 0;
   width: 100%;
   background: #f8f8f8; /* Light background for contrast */
@@ -43,7 +43,7 @@
 .award-swiper_container {
   width: 100%;
   max-width: 90%;
-  padding-top: 20px;
+  padding-top: 30px;
 }
 
 /* Award Card Styling */
@@ -125,4 +125,131 @@
 .pagination-bullet-active {
   background: #ff5733 !important;
   opacity: 1;
+}
+
+/* Custom arrow styles */
+.arrow {
+  position: absolute;
+  bottom: -53px;
+  transform: translateY(-22%);
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.arrow:hover {
+  background-color: rgba(0, 0, 0, 0.8); /* Darker on hover */
+}
+
+/* Positioning for desktop */
+.next {
+  right: 40%;
+}
+
+.prev {
+  left: 40%;
+}
+
+/* Disabled state for arrows */
+.slick-prev.slick-disabled,
+.slick-next.slick-disabled {
+  background-color: rgba(0, 0, 0, 0.2);
+  cursor: not-allowed;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1300px) {
+  .next {
+    right: 42%;
+  }
+  .prev {
+    left: 42%;
+  }
+}
+
+@media (max-width: 1124px) {
+  .next {
+    right: 40%;
+  }
+  .prev {
+    left: 40%;
+  }
+}
+
+@media (max-width: 1023px) {
+  .next {
+    right: 24%;
+  }
+  .prev {
+    left: 24%;
+  }
+}
+
+@media (max-width: 920px) {
+  .next {
+    right: 39%;
+  }
+  .prev {
+    left: 39%;
+  }
+}
+
+@media (max-width: 860px) {
+  .next {
+    right: 37%;
+  }
+  .prev {
+    left: 37%;
+  }
+}
+
+@media (max-width: 768px) {
+  .next {
+    right: 37%;
+  }
+  .prev {
+    left: 37%;
+  }
+}
+
+@media (max-width: 550px) {
+  .next {
+    right: 31%;
+  }
+  .prev {
+    left: 31%;
+  }
+}
+
+@media (max-width: 435px) {
+  .next {
+    right: 24%;
+  }
+  .prev {
+    left: 24%;
+  }
+}
+
+@media (max-width: 380px) {
+  .next {
+    right: 20%;
+  }
+  .prev {
+    left: 20%;
+  }
+}
+
+@media (max-width: 350px) {
+  .next {
+    right: 20%;
+  }
+  .prev {
+    left: 20%;
+  }
 }

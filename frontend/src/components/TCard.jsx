@@ -38,11 +38,13 @@ export const TCard = () => {
     arrows: true,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+    customPaging: (i) => <div className="custom-dot"></div>, 
+    dotsClass: "slick-dots custom-dots",
     responsive: [
       { breakpoint: 1024, settings: { slidesToShow: 3 } },
       { breakpoint: 768, settings: { slidesToShow: 2, slidesToScroll: 2 } },
-      { breakpoint: 550, settings: { slidesToShow: 1, slidesToScroll: 1 } },
-    ],
+      { breakpoint: 550, settings: { slidesToShow: 1, slidesToScroll: 1 } },
+    ],
   };
 
   const residentialApi = `${process.env.BASE_URL}/api/v1/property`;
@@ -50,8 +52,6 @@ export const TCard = () => {
   const { data: resData, loading, error } = useFetchData(residentialApi);
 
   const properties = resData?.properties || [];
-
-  console.log("Filtered Properties:", properties);
 
   const isLoading = loading;
   const hasError = error;
@@ -79,6 +79,7 @@ export const TCard = () => {
                     property?.category?.name
                   )
               )
+              .slice(0,10)
               .map((property) => (
                 <PropertyCard
                   key={property._id}

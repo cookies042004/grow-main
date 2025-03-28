@@ -96,7 +96,7 @@ export const EnquiryForm = ({ handleClose, open }) => {
                   <PersonIcon sx={{ color: "gray", margin: 1 }} />
                   <input
                     type="text"
-                    name="firstName"
+                    name="Name"
                     className="outline-none p-3 rounded-lg w-full"
                     placeholder="First Name"
                     value={formData.firstName}
@@ -104,17 +104,6 @@ export const EnquiryForm = ({ handleClose, open }) => {
                     required
                   />
                 </div>
-              </div>
-              <div className="col-span-6">
-                <input
-                  type="text"
-                  name="lastName"
-                  className="outline-none p-3 rounded-lg w-full border bg-white"
-                  placeholder="Last Name"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  required
-                />
               </div>
               <div className="col-span-12">
                 <input
@@ -155,7 +144,7 @@ export const EnquiryForm = ({ handleClose, open }) => {
               <div className="col-span-12">
                 <Button
                   variant="contained"
-                  sx={{ backgroundColor: "#03002E" }}
+                  sx={{ backgroundColor: "#1d2a3b" }}
                   size="large"
                   fullWidth
                   type="submit"

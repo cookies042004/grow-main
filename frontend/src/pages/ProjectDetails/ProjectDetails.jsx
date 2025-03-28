@@ -543,28 +543,11 @@ export const ProjectDetails = () => {
       </div>
 
       {/* Featured Projects  */}
-      <div className="p-3 max-w-[1280px] mx-auto">
+      <div className="p-3 max-w-[1280px] mx-auto my-14">
         <h1 className="text-center text-[#1d2a3b] lg:text-3xl text-2xl font-medium py-8 lg:font-medium">
           Trending Properties
         </h1>
         <TCard category={["New Launches","Affordable Living","New Launches","Commercial" ]}/>
-        <div className="flex justify-center my-8">
-          <Link to={"/property/new-launches"}>
-            <Button
-              size="large"
-              variant="contained"
-              endIcon={<EastIcon />}
-              sx={{
-                backgroundColor: "#1d2a3b",
-                color: "white",
-                textTransform: "none",
-                borderBottom: "2px solid gray",
-              }}
-            >
-              View all
-            </Button>
-          </Link>
-        </div>
       </div>
 
       <Marquee />

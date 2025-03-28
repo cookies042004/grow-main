@@ -6,7 +6,7 @@ import { useFetchData } from "../../hooks/useFetchData";
 import axios from "axios";
 import "./CommercialDetails.css";
 import { Link } from "react-router-dom";
-import { Card } from "../../components/Card";
+import { TCard } from "../../components/TCard";
 import { Marquee } from "../../components/Marquee";
 import { Button } from "@mui/material";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
@@ -493,28 +493,11 @@ export const CommercialDetails = () => {
       </div>
 
       {/* Featured Projects  */}
-      <div className="p-3 max-w-[1280px] mx-auto">
+      <div className="p-3 max-w-[1280px] mx-auto my-14">
         <h1 className="text-center text-[#1d2a3b] lg:text-3xl text-2xl font-medium py-8">
           Trending Properties
         </h1>
-        <Card category="New Launches" />
-        <div className="flex justify-center my-8">
-          <Link to={"/property/new-launches"}>
-            <Button
-              size="large"
-              variant="contained"
-              endIcon={<EastIcon />}
-              sx={{
-                backgroundColor: "#1d2a3b",
-                color: "white",
-                textTransform: "none",
-                borderBottom: "2px solid gray",
-              }}
-            >
-              View all
-            </Button>
-          </Link>
-        </div>
+        <TCard category={["New Launches","Affordable Living","New Launches","Commercial" ]}/>
       </div>
 
       <Marquee />

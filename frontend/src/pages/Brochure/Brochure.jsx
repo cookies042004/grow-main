@@ -7,10 +7,6 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
-import InputLabel from "@mui/material/InputLabel";
-import FormControl from "@mui/material/FormControl";
 import axios from "axios";
 import { motion } from "framer-motion";
 import Lottie from "lottie-react";
@@ -25,13 +21,12 @@ export const Brochure = () => {
     name: "",
     email: "",
     phone: "",
-    reason: "",
-    dealer: "",
   });
+  const [error, setError] = useState("");
 
   const apiUrl = `${process.env.BASE_URL}/api/v1/brochures`;
   const enquiryApi = `${process.env.BASE_URL}/api/v1/property-enquiry`;
-  const { data, loading, error } = useFetchData(apiUrl);
+  const { data, loading, error: fetchError } = useFetchData(apiUrl);
   const brochures = data?.brochure || [];
 
   const handleOpen = (brochure) => {
@@ -42,25 +37,37 @@ export const Brochure = () => {
   const handleClose = () => {
     setOpen(false);
     setSelectedBrochure(null);
-    setFormData({ name: "", email: "", phone: "", reason: "", dealer: "" });
+    setFormData({ name: "", email: "", phone: "" });
     setSuccess(false);
+    setError("");
   };
 
+  const validatePhoneNumber = (phone) => /^[6-9]\d{9}$/.test(phone);
+
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!selectedBrochure) return;
+    setError("");
+
+    if (!formData.name || !formData.phone || !formData.email) {
+      setError("All fields are required.");
+      return;
+    }
+
+    if (!validatePhoneNumber(formData.phone)) {
+      setError("Invalid phone number. It should be a 10-digit number starting with 6-9.");
+      return;
+    }
 
     const requestData = {
       name: formData.name,
       email: formData.email,
       mobile: formData.phone,
       property: selectedBrochure._id,
-      reason: formData.reason,
-      dealer: formData.dealer,
     };
 
     try {
@@ -68,7 +75,7 @@ export const Brochure = () => {
       setSuccess(true);
       setTimeout(() => handleClose(), 3000);
     } catch (err) {
-      alert("Failed to submit enquiry.");
+      setError("Failed to submit enquiry. Please try again.");
     }
   };
 
@@ -86,13 +93,13 @@ export const Brochure = () => {
             <CircularProgress />
           </div>
         )}
-        {error && (
+        {fetchError && (
           <div className="col-span-12 flex flex-col items-center">
-          <img src="https://shorturl.at/6C2TM" alt="error" />
-          <p className="text-red-500 mt-2">
-            Failed to load brochures. Please try again.
-          </p>
-        </div>
+            <img src="https://shorturl.at/6C2TM" alt="error" />
+            <p className="text-red-500 mt-2">
+              Failed to load brochures. Please try again.
+            </p>
+          </div>
         )}
 
         {brochures.length > 0 && (
@@ -129,91 +136,21 @@ export const Brochure = () => {
         )}
       </div>
 
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="enquiry-form-title"
-      >
+      <Modal open={open} onClose={handleClose} aria-labelledby="enquiry-form-title">
         <Box className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-md w-96 shadow-lg">
           {success ? (
             <div className="flex flex-col items-center">
-              <Lottie
-                animationData={successAnimation}
-                loop={false}
-                style={{ width: 150, height: 150 }}
-              />
+              <Lottie animationData={successAnimation} loop={false} style={{ width: 150, height: 150 }} />
               <h2 className="text-2xl font-bold text-center">Success!</h2>
-              <p className="text-center text-gray-600">
-                Your request has been submitted.
-              </p>
+              <p className="text-center text-gray-600">Your request has been submitted.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
-              <TextField
-                label="Name"
-                name="name"
-                fullWidth
-                required
-                value={formData.name}
-                onChange={handleChange}
-              />
-              <TextField
-                label="Phone"
-                name="phone"
-                type="tel"
-                fullWidth
-                required
-                value={formData.phone}
-                onChange={handleChange}
-              />
-              <TextField
-                label="Email"
-                name="email"
-                type="email"
-                fullWidth
-                // required
-                value={formData.email}
-                onChange={handleChange}
-              />
-
-              <FormControl fullWidth>
-                <InputLabel>Reason</InputLabel>
-                <Select
-                  label="Reason"
-                  name="reason"
-                  value={formData.reason}
-                  onChange={handleChange}
-                >
-                  <MenuItem value="investment">Investment</MenuItem>
-                  <MenuItem value="business">Business</MenuItem>
-                </Select>
-              </FormControl>
-
-              <FormControl fullWidth>
-                <InputLabel>Are you a dealer?</InputLabel>
-                <Select
-                  label="Are you a dealer"
-                  name="dealer"
-                  value={formData.dealer}
-                  onChange={handleChange}
-                >
-                  <MenuItem value="yes">Yes</MenuItem>
-                  <MenuItem value="no">No</MenuItem>
-                </Select>
-              </FormControl>
-
-              <Button
-                type="submit"
-                fullWidth
-                sx={{
-                  backgroundColor: "#1d2a3b",
-                  color: "white",
-                  textTransform: "none",
-                  borderBottom: "2px solid gray",
-                }}
-              >
-                Submit Request
-              </Button>
+              {error && <p className="text-red-500 text-center">{error}</p>}
+              <TextField label="Name" name="name" fullWidth required value={formData.name} onChange={handleChange} />
+              <TextField label="Phone" name="phone" type="tel" fullWidth required value={formData.phone} onChange={handleChange} />
+              <TextField label="Email" name="email" type="email" fullWidth required value={formData.email} onChange={handleChange} />
+              <Button type="submit" fullWidth sx={{ backgroundColor: "#1d2a3b", color: "white" }}>Submit Request</Button>
             </form>
           )}
         </Box>

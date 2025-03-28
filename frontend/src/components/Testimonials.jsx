@@ -34,55 +34,45 @@ export const Testimonials = () => {
   }, [swiperInstance]);
 
   return (
-    <div className="py-2 lg:py-4 lg:px-16 px-10">
+    <div className="py-2 lg:py-4 lg:px-10 px-10">
       <div>
-        <h1 className="flex justify-center items-center lg:text-4xl text-3xl text-[#1d2a3b] font-medium py-4">
+        <h1 className="flex justify-center items-center lg:text-4xl text-2xl text-[#1d2a3b] font-medium py-4">
           Testimonials
         </h1>
       </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-        <div className="flex flex-col items-center lg:items-start text-center lg:text-left m-4 lg:m-8 px-6 lg:px-10 font-roboto">
-          {/* Title */}
-          <h1 className="text-2xl lg:text-3xl font-medium text-[#1A1A1A] mb-6 leading-snug">
-            What Our Customers Are Saying
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-28 max-w-[1280px] mx-auto">
+        <div className="flex flex-col items-center m-3 lg:m-5 px-5 lg:px-7 font-roboto lg:pe-20">
+          <h1 className="text-xl lg:text-3xl items-left text-[#1A1A1A] my-4 px-[-80px] font-medium">
+            What our customers are saying?
           </h1>
-
-          {/* Description */}
-          <p className="text-[#444] text-base lg:text-lg leading-relaxed max-w-xl">
+          <p className="text-[#1A1A1A] text-md lg:text-lg mt-5">
             Don't just take our word for it—hear directly from those who have
-            experienced our services. Our customer stories reflect our
-            dedication, expertise, and care. Read their testimonials and see why
-            we're the trusted choice for all your real estate
-            needs.
+            experienced our services. Our customer's stories reflect the
+            dedication, expertise, and care we put into every transaction. Read
+            their testimonials and see why we're the trusted choice for all your
+            real estate needs.
           </p>
-
-          {/* Stats Section */}
-          <div className="mt-10 flex gap-10">
-            <div className="text-center lg:text-left">
-              <h3 className="text-4xl font-bold text-[#1A1A1A] bg-gradient-to-r from-[#ffb700] to-[#ffb700] text-transparent bg-clip-text">
+          <div className="flex justify-end lg:justify-start gap-10 mt-12">
+            <div>
+              <h3 className="font-bold text-[#1d2b3a] text-sm lg:text-2xl">
                 2k+
               </h3>
-              <p className="text-gray-600 text-lg">Happy Clients</p>
+              <p className="text-md lg:text-lg">Happy People</p>
             </div>
-
-            <div className="text-center lg:text-left">
-              <h3 className="text-4xl font-bold text-[#1A1A1A] bg-gradient-to-r from-[#ffb700] to-[#ffb700] text-transparent bg-clip-text">
+            <div>
+              <h3 className="font-bold text-[#1d2b3a] text-sm lg:text-2xl">
                 4.88
               </h3>
-              <p className="text-gray-600 text-lg">Overall Rating</p>
-
-              {/* Star Rating */}
-              <div className="flex justify-center lg:justify-start mt-3">
+              <p className="text-md lg:text-lg">Overall rating</p>
+              <div className="flex mt-3">
                 {[...Array(5)].map((_, i) => (
-                  <StarIcon key={i} sx={{ color: "#ffb700" }} />
+                  <StarIcon key={i} sx={{ color: "#e7c874" }} />
                 ))}
               </div>
             </div>
           </div>
         </div>
-
-        <div className="relative my-14 w-full flex flex-col items-center">
+        <div className="relative my-12 w-full flex flex-col items-center">
           <div className="w-full max-w-xl p-4 bg-white transform shadow-[0px_0px_10px_5px_rgba(0,0,0,0.4)]">
             {loading && <CircularProgress size={30} className="mx-auto" />}
             {error && (
@@ -132,8 +122,8 @@ export const Testimonials = () => {
                       </div>
 
                       <div className="mt-5 h-[170px] overflow-hidden">
-                        <p className="text-sm lg:text-lg text-justify font-roboto font-medium text-[#1A1A1A] lg:leading-[1.5] px-4">
-                          {testimonial.review.length > 150
+                        <p className="text-sm lg:text-lg px-4 text-justify font-roboto font-medium text-[#1A1A1A] lg:leading-[1.5]">
+                          {testimonial.review.length > 200
                             ? testimonial.review.slice(0, 150) + "..."
                             : testimonial.review}
                         </p>
@@ -156,17 +146,17 @@ export const Testimonials = () => {
             <div className="flex gap-4 mb-3">
               <button
                 ref={prevRef}
-                className="p-3 bg-[#1d2a3b] text-white rounded-full"
+                className="w-[30px] h-[30px] p-2 bg-[#1d2a3b] text-white rounded-full"
               >
                 <FaChevronLeft size={15} />
               </button>
               <div
                 ref={paginationRef}
-                className="swiper-pagination-custom py-2"
+                className="swiper-pagination-custom"
               ></div>
               <button
                 ref={nextRef}
-                className="p-3 bg-[#1d2a3b] text-white rounded-full"
+                className="w-[30px] h-[30px] p-2 bg-[#1d2a3b] text-white rounded-full"
               >
                 <FaChevronRight size={15} />
               </button>

@@ -18,7 +18,6 @@ const createAwards = async (req, res) => {
       awards,
     });
   } catch (error) {
-    console.log(error);
     res.status(400).json({ success: false, message: error.message });
   }
 };
@@ -33,7 +32,6 @@ const getAwards = async (req, res) => {
       awards,
     });
   } catch (err) {
-    console.log(err);
     res.status(500).json({
       success: false,
       message: "Internal Server Error",

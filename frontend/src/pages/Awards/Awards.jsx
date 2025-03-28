@@ -3,7 +3,10 @@ import { toast, ToastContainer } from "react-toastify";
 import { Layout } from "../../components/Layout";
 import { NavigationBar } from "../../components/NavigationBar";
 import { useFetchData } from "../../hooks/useFetchData";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Pagination, PaginationItem } from "@mui/material";
+import { ClipLoader } from "react-spinners";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import awardsBanner from "../../assets/img/awardsbanner.jpg";
 import { FaArrowLeft, FaArrowRight, FaTimes } from "react-icons/fa";
 
@@ -14,6 +17,8 @@ export const Awards = () => {
   
   const [modalOpen, setModalOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const awardsPerPage = 9;
 
   const openModal = (index) => {
     setCurrentIndex(index);
@@ -31,6 +36,11 @@ export const Awards = () => {
   const prevImage = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + awards.length) % awards.length);
   };
+
+  const indexOfLastAward = currentPage * awardsPerPage;
+  const indexOfFirstAward = indexOfLastAward - awardsPerPage;
+  const currentAwards = awards.slice(indexOfFirstAward, indexOfLastAward);
+  const totalPages = Math.ceil(awards.length / awardsPerPage);
 
   return (
     <>
@@ -54,8 +64,11 @@ export const Awards = () => {
         <NavigationBar />
 
         {/* Awards Section */}
-        <div className="my-10 px-4 sm:px-8 lg:px-16">
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="my-10 px-4 sm:px-8 lg:px-8">
+        <h1 className="font-sans lg:pb-8 text-2xl lg:text-4xl font-medium text-[#1d2a3b] text-center">
+            Awards & Achievements
+          </h1>
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
             {loading && (
               <div className="col-span-2 flex justify-center">
                 <CircularProgress size="30px" />
@@ -69,8 +82,8 @@ export const Awards = () => {
               </div>
             )}
 
-            {awards.length > 0
-              ? awards.map((award, index) => (
+            {currentAwards.length > 0
+              ? currentAwards.map((award, index) => (
                   <div key={award._id} className="flex flex-col items-center p-3">
                     <img
                       src={award.image}
@@ -89,12 +102,31 @@ export const Awards = () => {
                   </div>
                 )}
           </div>
+          {/* Pagination */}
+           {awards.length > awardsPerPage && (
+                  <div className="flex justify-center m-6">
+                    <Pagination
+                      count={totalPages}
+                      page={currentPage}
+                      onChange={(event, page) => setCurrentPage(page)}
+                      renderItem={(item) => (
+                        <PaginationItem
+                          slots={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
+                          {...item}
+                        />
+                      )}
+                    />
+                  </div>
+                )}
         </div>
       </Layout>
 
       {/* Modal for Image Preview */}
       {modalOpen && awards.length > 0 && (
         <div className="fixed inset-0 flex items-center justify-center bg-black z-50">
+          <div className="absolute top-5 left-5 text-white text-lg">
+            {currentIndex + 1} / {awards.length}  
+          </div>
           <button
             className="absolute top-5 right-5 text-white text-xl z-50"
             onClick={closeModal}

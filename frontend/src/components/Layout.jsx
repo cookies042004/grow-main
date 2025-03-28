@@ -49,7 +49,7 @@ export const Layout = ({ children }) => {
                   to="https://wa.me/+918750238581?text=Hello!%20I%20would%20like%20to%20inquire%20about%20your%20services"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-full shadow-lg hover:scale-110 transition-transform transform bg-gradient-to-r from-gray-600 to-black flex items-center justify-center"
+                  className="w-12 h-12 rounded-full shadow-lg hover:scale-110 transition-transform transform bg-gradient-to-r from-gray-600 to-gray-800 flex items-center justify-center"
                 >
                   <img
                     src={WhatsAppLogo}
@@ -60,7 +60,7 @@ export const Layout = ({ children }) => {
 
                 {/* Expanding Text on Hover */}
                 <div
-                  className={`absolute right-16 bg-gradient-to-r from-gray-600 to-black text-white text-sm px-4 py-3 rounded-full shadow-lg transition-all duration-100 ${
+                  className={`absolute right-16 bg-gradient-to-r from-gray-600 to-gray-800 text-white text-sm px-4 py-3 rounded-full shadow-lg transition-all duration-100 ${
                     hoverWhatsapp
                       ? "opacity-100 w-[150px]"
                       : "opacity-0 w-0 overflow-hidden"
@@ -83,7 +83,7 @@ export const Layout = ({ children }) => {
                   to="https://www.google.com/search?q=grow+infinity+realtors&rlz=1C1ONGR_enIN1124IN1124&oq=grow+infinity+realtors&gs_lcrp=EgZjaHJvbWUqDwgAECMYJxjjAhiABBiKBTIPCAAQIxgnGOMCGIAEGIoFMhUIARAuGCcYrwEYxwEYgAQYigUYjgUyBwgCEAAYgAQyCggDEAAYgAQYogQyCggEEAAYgAQYogQyBggFEEUYPDIGCAYQRRg8MgYIBxBFGDzSAQg3NjY2ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8#lrd=0x2f7b6f8aa4bbbca1:0xcd4a6a4f021202d4,3,,,,"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-full shadow-lg hover:scale-110 transition-transform transform bg-gradient-to-r from-gray-600 to-black flex items-center justify-center"
+                  className="w-12 h-12 rounded-full shadow-lg hover:scale-110 transition-transform transform bg-gradient-to-r from-gray-600 to-gray-800 flex items-center justify-center"
                 >
                   <img
                     src={GoogleLogo}
@@ -94,7 +94,7 @@ export const Layout = ({ children }) => {
 
                 {/* Expanding Text on Hover */}
                 <div
-                  className={`absolute right-16 bg-gradient-to-r from-gray-600 to-black text-white text-sm px-4 py-3 rounded-full shadow-lg transition-all duration-100 ${
+                  className={`absolute right-16 bg-gradient-to-r from-gray-600 to-gray-800 text-white text-sm px-4 py-3 rounded-full shadow-lg transition-all duration-100 ${
                     hoverReview
                       ? "opacity-100 w-[200px]"
                       : "opacity-0 w-0 overflow-hidden"
@@ -114,7 +114,7 @@ export const Layout = ({ children }) => {
                 onMouseLeave={() => setHoverCalc(false)}
                 onClick={() => setCalculator(!calculator)}
               >
-                <div className="w-12 h-12 rounded-full shadow-lg hover:scale-110 transition-transform transform bg-gradient-to-r from-gray-600 to-black flex items-center justify-center">
+                <div className="w-12 h-12 rounded-full shadow-lg hover:scale-110 transition-transform transform bg-gradient-to-r from-gray-600 to-gray-800 flex items-center justify-center">
                   {calculator ? (
                     <CancelIcon sx={{ fontSize: "45px", color: "#fff" }} />
                   ) : (
@@ -123,7 +123,7 @@ export const Layout = ({ children }) => {
                 </div>
                 {/* Expanding Text on Hover */}
                 <div
-                  className={`hidden absolute right-16 bg-gradient-to-r from-gray-600 to-black text-white text-sm px-4 py-3 rounded-full shadow-lg transition-all duration-100 ${
+                  className={`hidden absolute right-16 bg-gradient-to-r from-gray-600 to-gray-800 text-white text-sm px-4 py-3 rounded-full shadow-lg transition-all duration-100 ${
                     hoverCalc
                       ? "opacity-100 w-[120px]"
                       : "opacity-0 w-0 overflow-hidden"
@@ -133,7 +133,7 @@ export const Layout = ({ children }) => {
                   <div className="fixed inset-0 bg-black bg-opacity-80"></div>
                 ) : (
                   <div
-                    className={` absolute right-16 bg-gradient-to-r from-gray-600 to-black text-white text-sm px-4 py-3 rounded-full shadow-lg transition-all duration-100 ${
+                    className={` absolute right-16 bg-gradient-to-r from-gray-600 to-gray-800 text-white text-sm px-4 py-3 rounded-full shadow-lg transition-all duration-100 ${
                       hoverCalc
                         ? "opacity-100 w-[120px]"
                         : "opacity-0 w-0 overflow-hidden"
@@ -153,7 +153,7 @@ export const Layout = ({ children }) => {
         {/* Toggle Floating Buttons */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="w-12 h-12 rounded-full shadow-lg hover:scale-110 transition-transform transform bg-gradient-to-r from-gray-600 to-black flex items-center justify-center"
+          className="w-12 h-12 rounded-full shadow-lg hover:scale-110 transition-transform transform bg-gradient-to-r from-gray-600 to-gray-800 flex items-center justify-center"
         >
           {isOpen ? (
             <CancelIcon sx={{ fontSize: "40px", color: "#fff" }} />
@@ -161,7 +161,7 @@ export const Layout = ({ children }) => {
             <img
               src={gif}
               alt="Toggle Menu"
-              className="w-full h-full rounded-full object-cover bg-gradient-to-r from-gray-600 to-black"
+              className="w-full h-full rounded-full object-cover bg-gradient-to-r from-gray-600 to-gray-800"
             />
           )}
         </button>

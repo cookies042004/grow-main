@@ -312,9 +312,7 @@ const deleteProperty = async (req, res) => {
 // Search Property
 const searchProperty = async (req, res) => {
   try {
-    const {
-      query
-    } = req.query;
+    const { query, bhk } = req.query;
     if (!query) {
       return res.status(400).json({
         success: false,
@@ -322,27 +320,26 @@ const searchProperty = async (req, res) => {
       });
     }
 
-    // Use a regular expression for case-insensitive search
+    // Use regex for case-insensitive search
     const searchRegex = new RegExp(query, "i");
 
-    const properties = await Property.find({
-        $or: [{
-            name: searchRegex
-          },
-          {
-            location: searchRegex
-          },
-          {
-            address: searchRegex
-          },
-          {
-            city: searchRegex
-          },
-          {
-            state: searchRegex
-          },
-        ],
-      })
+    let filter = {
+      $or: [
+        { name: searchRegex },
+        { location: searchRegex },
+        { address: searchRegex },
+        { city: searchRegex },
+        { state: searchRegex },
+      ],
+    };
+
+    // Handle BHK filtering
+    if (bhk) {
+      const formattedBHK = bhk.replace(/\s+/g, ""); // Remove spaces if any
+      filter.unit = new RegExp(`^${formattedBHK}$`, "i"); // Exact match for "2BHK"
+    }
+
+    const properties = await Property.find(filter)
       .populate("category", "name")
       .populate("amenities", "name type");
 

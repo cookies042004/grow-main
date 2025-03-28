@@ -27,16 +27,26 @@ export const SearchBar = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
+  
     if (!searchQuery) {
       return alert("Please enter name or location");
     }
+  
     try {
-      navigate(`/search/${searchQuery}`);
+      let formattedBHK = bhkValue ? bhkValue.replace(/\s+/g, "") : "";
+      let searchUrl = `/search?query=${encodeURIComponent(searchQuery)}`;
+      
+      if (formattedBHK) {
+        searchUrl += `&bhk=${encodeURIComponent(formattedBHK)}`;
+      }
+  
+      navigate(searchUrl);
     } catch (error) {
       console.log(error);
     }
   };
-
+  
+  
   const [value, setValue] = useState([60, 1400]);
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -54,7 +64,7 @@ export const SearchBar = () => {
               <button
                 id="dropdownDefaultButton"
                 data-dropdown-toggle="dropdown"
-                className="font-sans text-black bg-[#F4F4F4] font-medium text-lg px-5 w-full py-1 lg:py-2 text-center justify-between lg:justify-start inline-flex items-center rounded-[13.27px]"
+                className="font-sans text-[#1d2a3b] bg-[#F4F4F4] font-medium text-lg px-5 w-full py-1 lg:py-2 text-center justify-between lg:justify-start inline-flex items-center rounded-[13.27px]"
                 type="button"
                 onClick={() => setProperty(!property)}
               >
@@ -107,15 +117,16 @@ export const SearchBar = () => {
                 </ul>
               </div>
             </div>
+
             <div className="block lg:hidden col-span-6 lg:col-span-2 md:col-span-3">
               <button
                 id="dropdownBhkButton"
                 data-dropdown-toggle="dropdownBhk"
-                className="text-black w-full bg-[#F4F4F4] font-medium text-sm px-5 py-1 lg:py-2.5 text-center inline-flex justify-between lg:justify-start items-center rounded-[13.27px]"
+                className="text-[#1d2a3b] lg:text-[#1d2a3b] w-full bg-[#F4F4F4] font-medium text-sm px-5 py-1 lg:py-2.5 text-center inline-flex justify-between lg:justify-start items-center rounded-[13.27px]"
                 type="button"
                 onClick={() => setBhk(!bhk)}
               >
-                <HomeIcon sx={{ color: "", paddingRight: "5px" }} /> {bhkValue}{" "}
+                <HomeIcon sx={{ color: "[#1d2a3b]", paddingRight: "5px" }} /> {bhkValue}{" "}
                 <svg
                   className="w-2.5 h-2.5 ms-3"
                   aria-hidden="true"
@@ -143,7 +154,7 @@ export const SearchBar = () => {
                 }
               >
                 <ul
-                  className="py-2 text-sm text-gray-700 dark:text-gray-200"
+                  className="py-2 text-sm text-[#1d2a3b] dark:text-gray-200"
                   aria-labelledby="dropdownBhkButton"
                 >
                   {bhkOptions.map((option) => (
@@ -176,12 +187,13 @@ export const SearchBar = () => {
                 />
               </div>
             </div>
+
             {/* BHK Dropdown */}
             <div className="hidden lg:block col-span-6 lg:col-span-2 md:col-span-3">
               <button
                 id="dropdownBhkButton"
                 data-dropdown-toggle="dropdownBhk"
-                className="font-sans text-black bg-[#F4F4F4] font-medium text-lg px-4 w-full py-1 lg:py-2 text-center justify-between lg:justify-center inline-flex items-center rounded-[13.27px]"
+                className="font-sans text-[#1d2a3b] bg-[#F4F4F4] font-medium text-lg px-4 w-full py-1 lg:py-2 text-center justify-between lg:justify-center inline-flex items-center rounded-[13.27px]"
                 type="button"
                 onClick={() => setBhk(!bhk)}
               >
@@ -246,11 +258,13 @@ export const SearchBar = () => {
                 </button>
               </div>
             </div>
+
             <div className="col-span-2 lg:col-span-2">
-              <button className="bg-[#f4f4f4] font-sans w-full py-2 text-xs lg:text-lg rounded-[13.27px] font-medium text-black">
+              <button className="bg-[#f4f4f4] font-sans w-full py-2 text-xs lg:text-lg rounded-[13.27px] font-medium text-[#1d2a3b]">
                 Price (₹)
               </button>
             </div>
+
             <div className="col-span-10 lg:col-span-6 flex justify-center mx-8 items-center">
               <Slider
                 value={value}
@@ -270,23 +284,24 @@ export const SearchBar = () => {
                 ]}
               />
             </div>
+
             <div className="hidden lg:block col-span-12 lg:col-span-4">
               <div className="grid sm:grid-cols-12 gap-3">
                 <div className="col-span-6 lg:col-span-6">
-                  <p className="text-xs text-center text-gray-700 font-roboto font-medium">
+                  <p className="text-xs text-center text-gray-700 font-sans font-medium">
                     Price Range From:
                   </p>
-                  <p className="text-md text-center  font-sans font-bold">
+                  <p className="text-md text-center text-[#1d2a3b]  font-sans font-bold">
                     {value[0] < 100
                       ? `₹ ${value[0]} Lac`
                       : `₹ ${(value[0] / 100).toFixed(2)} Cr`}
                   </p>
                 </div>
                 <div className="col-span-6 lg:col-span-6">
-                  <p className="text-xs text-center text-gray-700 font-roboto font-medium">
+                  <p className="text-xs text-center text-gray-700 font-sans font-medium">
                     Price Range To:
                   </p>
-                  <p className="text-md text-center  font-sans font-bold">
+                  <p className="text-md text-center text-[#1d2a3b]  font-sans font-bold">
                     {value[1] < 100
                       ? `₹ ${value[1]} Lac`
                       : `₹ ${(value[1] / 100).toFixed(2)} Cr`}
@@ -294,6 +309,7 @@ export const SearchBar = () => {
                 </div>
               </div>
             </div>
+
             <div className="block lg:hidden col-span-12 lg:col-span-2 md:col-span-12  hover:scale-150">
               <div>
                 <button
@@ -306,6 +322,7 @@ export const SearchBar = () => {
                 </button>
               </div>
             </div>
+            
           </div>
         </div>
       </div>

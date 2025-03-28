@@ -24,8 +24,6 @@ const createAmenity = async (req, res) => {
       image: imageToSave
     });
 
-    console.log("Amenity Image is ",image);
-
     await amenity.save();
 
     res.status(201).json({
@@ -34,7 +32,6 @@ const createAmenity = async (req, res) => {
       amenity,
     });
   } catch (error) {
-    console.log(error);
     res.status(400).json({ success: false, message: error.message });
   }
 };
@@ -49,7 +46,6 @@ const getAmenity = async (req, res) => {
       amenity,
     });
   } catch (err) {
-    console.log(err);
     res.status(500).json({
       success: false,
       message: "Internal Server Error",
@@ -75,7 +71,6 @@ const getSingleAmenity = async (req, res) => {
       amenity,
     });
   } catch (err) {
-    console.log(err);
     res.status(500).json({
       success: false,
       message: "Internal Server Error",
@@ -132,7 +127,6 @@ const updateAmenity = async (req, res) => {
       amenity: updatedAmenity,
     });
   } catch (err) {
-    console.log(err);
     res.status(500).json({
       success: false,
       message: "Internal Server Error",
@@ -199,7 +193,6 @@ const deleteAmenity = async (req, res) => {
       amenities,
     });
   } catch (err) {
-    console.error(err);
     res.status(500).json({
       success: false,
       message: "Internal Server Error",

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Checkbox, Typography } from "@mui/material";
+import { Button, Checkbox, Typography, IconButton } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import MarkunreadIcon from "@mui/icons-material/Markunread";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
@@ -11,6 +11,7 @@ import Box from "@mui/material/Box";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import CloseIcon from "@mui/icons-material/Close";
 
 export const PropertyEnquiryForm = ({ id, handleClose, open }) => {
   const [formData, setFormData] = useState({
@@ -32,7 +33,7 @@ export const PropertyEnquiryForm = ({ id, handleClose, open }) => {
     width: "90%", // 90% of the screen width
     maxWidth: 600, // Maximum width of 600px
     bgcolor: "#f3f3fe",
-    borderRadius: "40px",
+    borderRadius: "20px",
     boxShadow: 24,
     py: 2,
     px: 1,
@@ -49,16 +50,16 @@ export const PropertyEnquiryForm = ({ id, handleClose, open }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate form
-    if (
-      !formData.firstName ||
-      !formData.lastName ||
-      !formData.email ||
-      !formData.mobile ||
-      !formData.reason ||
-      !formData.dealer
-    ) {
-      setError("All fields are required.");
+    // Phone number regex validation (Indian format: 10-digit number starting with 6-9)
+    const phoneRegex = /^[6-9]\d{9}$/;
+    if (!phoneRegex.test(formData.mobile)) {
+      setError("Please enter a valid 10-digit mobile number starting with 6-9.");
+      return;
+    }
+
+    // Validate required fields
+    if (!formData.firstName || !formData.mobile || !formData.reason || !formData.dealer) { 
+      setError("All fileds are required.");
       return;
     }
 
@@ -87,13 +88,9 @@ export const PropertyEnquiryForm = ({ id, handleClose, open }) => {
           reason: "",
           dealer: "",
         });
-        // Successfully sent the enquiry
         handleClose(); // Close the modal on success
       } else {
-        console.log(response.data);
-        setError(
-          "There was an issue submitting your enquiry. Please try again."
-        );
+        setError("There was an issue submitting your enquiry. Please try again.");
       }
     } catch (error) {
       console.log(error);
@@ -111,11 +108,14 @@ export const PropertyEnquiryForm = ({ id, handleClose, open }) => {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-        sx={{
-          borderRadius: "40px",
-        }}
       >
         <Box sx={style}>
+          <IconButton
+            onClick={handleClose}
+            sx={{ position: "absolute", top: 8, right: 8, color: "black" }}
+          >
+            <CloseIcon />
+          </IconButton>
           <h1 className="font-roboto text-center text-2xl lg:text-4xl py-2">
             Contact Us
           </h1>
@@ -125,31 +125,18 @@ export const PropertyEnquiryForm = ({ id, handleClose, open }) => {
           {error && <Typography color="error">{error}</Typography>}
           <form className="mx-3 lg:mx-8 mt-6" onSubmit={handleSubmit}>
             <div className="grid sm:grid-cols-12 gap-3">
-              <div className="col-span-6">
+              <div className="col-span-12">
                 <div className="flex border rounded-lg items-center bg-white">
                   <div className="flex justify-center ps-3">
-                    <PersonIcon size="large" sx={{ color: "gray" }} />
+                    <PersonIcon sx={{ color: "gray" }} />
                   </div>
                   <input
                     type="text"
                     name="firstName"
                     className="outline-none p-3 rounded-lg w-full"
-                    placeholder="First Name"
+                    placeholder="Name"
                     value={formData.firstName}
                     onChange={handleChange}
-                    required
-                  />
-                </div>
-              </div>
-              <div className="col-span-6">
-                <div className="flex border rounded-lg items-center bg-white">
-                  <input
-                    type="text"
-                    name="lastName"
-                    value={formData.lastName}
-                    onChange={handleChange}
-                    className="outline-none p-3 rounded-lg w-full"
-                    placeholder="Last Name"
                     required
                   />
                 </div>
@@ -159,7 +146,6 @@ export const PropertyEnquiryForm = ({ id, handleClose, open }) => {
                   <div className="flex justify-center ps-3">
                     <MarkunreadIcon sx={{ color: "gray" }} />
                   </div>
-
                   <input
                     type="email"
                     name="email"
@@ -167,7 +153,6 @@ export const PropertyEnquiryForm = ({ id, handleClose, open }) => {
                     onChange={handleChange}
                     className="outline-none p-3 rounded-lg w-full"
                     placeholder="Email Address"
-                    required
                   />
                 </div>
               </div>
@@ -180,99 +165,45 @@ export const PropertyEnquiryForm = ({ id, handleClose, open }) => {
                     type="tel"
                     name="mobile"
                     value={formData.mobile}
-                    onChange={handleChange}
+                    onChange={(e) => {
+                      const value = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
+                      setFormData({ ...formData, mobile: value });
+                    }}
                     className="outline-none p-3 rounded-lg w-full"
                     placeholder="Phone"
                     required
                   />
                 </div>
               </div>
+
               <div className="col-span-12 lg:col-span-6">
-                <FormLabel
-                  size="small"
-                  id="demo-row-radio-buttons-group-label"
-                  sx={{ fontWeight: "bold" }}
-                >
+                <FormLabel sx={{ fontWeight: "bold" }}>
                   Your reason to buy is?
                 </FormLabel>
-                <RadioGroup
-                  row
-                  name="reason"
-                  value={formData.reason}
-                  onChange={handleChange}
-                  required
-                  aria-labelledby="demo-row-radio-buttons-group-label"
-                  // name="row-radio-buttons-group"
-                  size="small"
-                >
-                  <FormControlLabel
-                    size="small"
-                    value="investment"
-                    control={<Radio size="small" />}
-                    label="Investment"
-                  />
-                  <FormControlLabel
-                    value="business"
-                    size="small"
-                    control={<Radio size="small" />}
-                    label="Business use"
-                  />
+                <RadioGroup row name="reason" value={formData.reason} onChange={handleChange}>
+                  <FormControlLabel value="investment" control={<Radio size="small" />} label="Investment" />
+                  <FormControlLabel value="business" control={<Radio size="small" />} label="Business use" />
                 </RadioGroup>
               </div>
+
               <div className="col-span-12 lg:col-span-6">
-                <FormLabel
-                  id="demo-row-radio-buttons-group-label"
-                  sx={{ fontWeight: "bold" }}
-                >
+                <FormLabel sx={{ fontWeight: "bold" }}>
                   Are you a property dealer?
                 </FormLabel>
-                <RadioGroup
-                  row
-                  aria-labelledby="demo-row-radio-buttons-group-label"
-                  name="dealer"
-                  size="small"
-                  required
-                  onChange={handleChange}
-                >
-                  <FormControlLabel
-                    value="yes"
-                    control={<Radio size="small" />}
-                    label="Yes"
-                    size="small"
-                  />
-                  <FormControlLabel
-                    size="small"
-                    value="no"
-                    control={<Radio size="small" />}
-                    label="No"
-                  />
+                <RadioGroup row name="dealer" size="small" onChange={handleChange}>
+                  <FormControlLabel value="yes" control={<Radio size="small" />} label="Yes" />
+                  <FormControlLabel value="no" control={<Radio size="small" />} label="No" />
                 </RadioGroup>
               </div>
+
               <div className="col-span-12">
                 <FormControlLabel
                   control={<Checkbox size="small" defaultChecked />}
-                  label={
-                    <Typography variant="body2" sx={{ fontSize: "0.78rem" }}>
-                      I agree to be contacted by Grow infinity agents via
-                      whatsapp, SMS, Call, Email etc.
-                    </Typography>
-                  }
+                  label={<Typography variant="body2" sx={{ fontSize: "0.78rem" }}>I agree to be contacted by Grow Infinity agents.</Typography>}
                 />
               </div>
               <div className="col-span-12">
-                <Button
-                  variant="contained"
-                  sx={{
-                    background: "#03002E",
-                    textTransform: "none",
-                    padding: { xs: "5px", sm: "5px", md: "10px" },
-                    marginTop: "5px",
-                    marginBottom: "15px",
-                  }}
-                  size="large"
-                  fullWidth
-                  type="submit"
-                >
+                <Button variant="contained" sx={{ background: "#1d2a3b" }} size="large" fullWidth type="submit">
                   Send
                 </Button>
               </div>

@@ -32,6 +32,7 @@ import realtor from "../../assets/img/meet realtor.jpeg";
 import bgImage from "/src/assets/img/img4.jpg";
 import EnquiryHome from "../../components/EnquiryHome";
 import { AwardComponent } from "../../components/AwardComponent";
+import { hover } from "framer-motion";
 
 export const Home = () => {
   return (
@@ -40,7 +41,7 @@ export const Home = () => {
 
       <div className="homeBanner overflow-hidden relative h-screen flex flex-col items-center lg:items-start justify-center lg:ps-24 ">
         <div className="text-center">
-          <h1 className="text-2xl lg:text-4xl font-medium mt-14 lg:mt-24">
+          <h1 className="text-2xl text-[#1d2a3b] lg:text-4xl font-medium mt-14 lg:mt-24">
             Find your next{" "}
             <Typewriter
               words={["best cozy place", "dream home", "office"]}
@@ -50,7 +51,7 @@ export const Home = () => {
           </h1>
         </div>
         <div className="my-5 lg:my-10">
-          <p className="font-dmsans text-center font-normal text-sm lg:text-lg lg:text-left px-5 lg:px-0">
+          <p className="font-dmsans text-center text-[#1d2a3b] font-normal text-sm lg:text-lg lg:text-left px-5 lg:px-0">
             Find the best places around you at the cheapest and affordable
             prices.
           </p>
@@ -146,6 +147,7 @@ export const Home = () => {
               </span>
             </marquee>
           </div>
+
           <div className="grid grid-cols-12 sm:grid-cols-2 md:grid-cols-12 lg:grid-cols-12">
             {[
               {
@@ -159,7 +161,7 @@ export const Home = () => {
                 count: 1500,
                 suffix: "+",
                 label: "Happy Users",
-                color: "text-yellow-200",
+                // color: "text-yellow-200",
               },
               {
                 Icon: AspectRatioIcon,
@@ -171,7 +173,7 @@ export const Home = () => {
                 Icon: AccessibilityNewIcon,
                 count: 30,
                 label: "Employees",
-                color: "text-yellow-200",
+                // color: "text-yellow-200",
               },
             ].map((item, index) => (
               <div
@@ -190,7 +192,7 @@ export const Home = () => {
                       paddingBottom: "10px",
                       transition: "color 0.3s ease-in-out",
                     }}
-                    className={`experience-icon ${item.color}`}
+                    className={`experience-icon ${item.color} hover:text-yellow-200`}
                   />
                   <div className="flex flex-col gap-1 my-4">
                     <p className="font-poppins font-semibold text-2xl lg:text-2xl text-center">
@@ -204,7 +206,7 @@ export const Home = () => {
                       </span>
                       {item.suffix && <span>{item.suffix}</span>}
                     </p>
-                    <p className="font-poppins font-medium text-lg lg:text-lg">
+                    <p className="font-sans font-medium text-lg lg:text-lg">
                       {item.label}
                     </p>
                   </div>
@@ -212,31 +214,16 @@ export const Home = () => {
               </div>
             ))}
           </div>
+          
         </div>
       </div>
 
       {/* Recent Listings  */}
-      <div className="bg-white  max-w-[1280px] mx-auto">
+      <div className="bg-white  max-w-[1280px] mx-auto mb-20">
         <h1 className="text-center text-[#1d2a3b] lg:text-4xl text-2xl font-medium font-sans mb-8 pt-2 lg:font-medium">
           Trending Properties
         </h1>
         <TCard category={["Affordable Living", "Luxury Living","New Launches"]} />
-        <div className="flex justify-center py-8">
-          <Link to={"/property/affordable-living"}>
-            <Button
-              size="large"
-              variant="contained"
-              sx={{
-                backgroundColor: "#1d2a3b",
-                color: "white",
-                textTransform: "none",
-                borderBottom: "2px solid gray",
-              }}
-            >
-              View all
-            </Button>
-          </Link>
-        </div>
       </div>
 
       {/* How it Works */}
@@ -244,19 +231,42 @@ export const Home = () => {
       <div className="bg-gray-50 py-8">
         <div className="mx-auto max-w-[1280px] px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-            {/* Left - Content Section */}
+
+            {/* Right - content Section */}
+            <div className="hidden md:flex flex-col gap-5">
+              <div className="w-full">
+                <img
+                  src={findRealEstate}
+                  alt="Find Real Estate"
+                  className="rounded-lg h-auto max-h-[320px] object-cover"
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-5">
+                <img
+                  src={realtor}
+                  alt="Meet Realtor"
+                  className="rounded-lg w-full h-[280px] object-cover"
+                />
+                <img
+                  src={keys}
+                  alt="Take the keys"
+                  className="rounded-lg w-full h-auto max-h-[280px] object-cover"
+                />
+              </div>
+            </div>
+            {/* Left - image Section */}
             <div className="flex flex-col justify-center text-center md:text-left">
-              <h1 className="text-[#1A1A1A] text-center text-2xl lg:text-4xl font-sans font-medium">
+              <h1 className="text-[#1d2a3b] text-center text-2xl lg:text-4xl font-sans font-medium">
                 How It Works? <br />
                 Find Your Perfect Home
               </h1>
-              <p className="text-md lg:text-lg mt-5">
+              <p className="text-md text-[#1d2a3b] lg:text-lg mt-5">
                 Discover your ideal home with ease. Browse listings, get expert
                 advice, and find the perfect match for your lifestyle.
               </p>
 
               {/* Steps List */}
-              <ul className="my-10 flex flex-col gap-10">
+              <ul className="my-10 text-[#1d2a3b] flex flex-col gap-10">
                 {[
                   {
                     img: Icon1,
@@ -293,29 +303,6 @@ export const Home = () => {
                 ))}
               </ul>
             </div>
-
-            {/* Right - Image Section */}
-            <div className="hidden md:flex flex-col gap-5">
-              <div className="w-full">
-                <img
-                  src={findRealEstate}
-                  alt="Find Real Estate"
-                  className="rounded-lg h-auto max-h-[320px] object-cover"
-                />
-              </div>
-              <div className="grid grid-cols-2 gap-5">
-                <img
-                  src={realtor}
-                  alt="Meet Realtor"
-                  className="rounded-lg w-full h-[280px] object-cover"
-                />
-                <img
-                  src={keys}
-                  alt="Take the keys"
-                  className="rounded-lg w-full h-auto max-h-[280px] object-cover"
-                />
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -329,7 +316,7 @@ export const Home = () => {
      <div className="bg-gray-50 lg:py-5 max-w-[1520px] mx-auto">
         <AwardComponent />
 
-        <div className="flex justify-center lg:m-8 pb-5 lg:pb-0">
+        <div className="flex justify-center pb-5 lg:pb-5">
           <Link to="/awards">
             <Button
               size="large"

@@ -55,10 +55,10 @@ export const Footer = () => {
                   <Link to="/terms-conditions">Terms & Conditions</Link>
                 </li>
                 <li>
-                  <Link to="/about">Business</Link>
+                  <Link to="/about">About Us</Link>
                 </li>
                 <li>
-                  <Link to="/awards">Entertainment</Link>
+                  <Link to="/awards">Awards & Achievements</Link>
                 </li>
                 <li>
                   <Link to="/contact">Contact Us</Link>

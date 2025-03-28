@@ -9,7 +9,7 @@ const propertyEnquirySchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      required: true,
+      required: false,
     },
     mobile: {
       type: Number,
@@ -18,17 +18,17 @@ const propertyEnquirySchema = new mongoose.Schema(
     property: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Brochure",
-      required: true,
+      required: false,
     },
     reason: {
       type: String,
       enum: ["investment", "business"],
-      required: true,
+      required: false,
     },
     dealer: {
       type: String,
       enum: ["yes", "no"],
-      required: true,
+      required: false,
     },
   },
   { timestamps: true }
