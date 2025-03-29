@@ -31,7 +31,7 @@ export const Services = () => {
                 {/* Content */}
                 <div className="grid sm:grid-cols-12 relative z-10">
                   <div className="col-span-12 text-center mt-10 lg:mt-20">
-                    <h1 className="text-3xl lg:text-5xl font-bold text-white">Services</h1>
+                    <h1 className="text-3xl lg:text-4xl font-bold text-white">Services</h1>
                   </div>
                 </div>
               </div>

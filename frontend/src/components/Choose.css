@@ -267,3 +267,20 @@ a {
 :disabled * {
   pointer-events: none;
 }
+
+@media screen and (max-width: 1250px) {
+  .service-info-2 {
+    height: auto;
+  }
+  .service-info-2 h5 {
+    font-size: 16px;
+  }
+  .service-info-2 p {
+    font-size: 14px;
+  }
+  .service-info-2 .number {
+    font-size: 50px;
+    right: 10px;
+    bottom: -10px;
+ }
+}

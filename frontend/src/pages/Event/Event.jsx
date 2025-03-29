@@ -23,8 +23,8 @@ export const Event = () => {
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/80 flex items-center justify-center">
-          <div className="text-center text-white relative z-10">
-            <h1 className="font-dmsans font-semibold text-4xl mb-4">
+          <div className="text-center text-white relative z-10 mt-10">
+            <h1 className="font-sans font-bold text-3xl lg:text-4xl">
               Events
             </h1>
           </div>

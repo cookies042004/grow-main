@@ -35,7 +35,7 @@ export const News = () => {
         {/* Content */}
         <div className="grid sm:grid-cols-12 relative z-10">
           <div className="col-span-12 text-center mt-10 lg:mt-20">
-            <h1 className="font-dmsans font-medium text-white text-3xl lg:text-4xl">
+            <h1 className="font-sans font-bold text-white text-3xl lg:text-4xl">
               Latest News
             </h1>
           </div>

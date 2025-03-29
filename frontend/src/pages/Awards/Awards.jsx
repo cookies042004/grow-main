@@ -56,7 +56,7 @@ export const Awards = () => {
             backgroundRepeat: "no-repeat",
           }}
         >
-          <h1 className="text-white text-2xl sm:text-3xl md:text-4xl font-medium">
+          <h1 className="text-white text-3xl lg:text-4xl mt-10 font-sans font-bold">
             Awards & Achievements
           </h1>
         </div>
@@ -68,7 +68,7 @@ export const Awards = () => {
         <h1 className="font-sans lg:pb-8 text-2xl lg:text-4xl font-medium text-[#1d2a3b] text-center">
             Awards & Achievements
           </h1>
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-14 p-9">
             {loading && (
               <div className="col-span-2 flex justify-center">
                 <CircularProgress size="30px" />

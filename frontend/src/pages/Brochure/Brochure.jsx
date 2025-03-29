@@ -149,7 +149,7 @@ export const Brochure = () => {
               {error && <p className="text-red-500 text-center">{error}</p>}
               <TextField label="Name" name="name" fullWidth required value={formData.name} onChange={handleChange} />
               <TextField label="Phone" name="phone" type="tel" fullWidth required value={formData.phone} onChange={handleChange} />
-              <TextField label="Email" name="email" type="email" fullWidth required value={formData.email} onChange={handleChange} />
+              <TextField label="Email" name="email" type="email" fullWidth value={formData.email} onChange={handleChange} />
               <Button type="submit" fullWidth sx={{ backgroundColor: "#1d2a3b", color: "white" }}>Submit Request</Button>
             </form>
           )}

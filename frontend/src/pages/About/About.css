@@ -1,9 +1,16 @@
 .aboutbanner {
+  background: radial-gradient(
+      34.28% 34.28% at 50% 50%,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.5) 99.83%
+    ),
+    url("../../assets/img/aboutbanner.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   height: 420px;
-  position: relative;
-  overflow: hidden;
+  backdrop-filter: blur(10px);
 }
-
 
 @media screen and (max-width: 768px) {
   .aboutbanner {
@@ -13,5 +20,18 @@
 @media screen and (max-width: 500px) {
   .aboutbanner {
     height: 240px !important;
+  }
+}
+
+/* directors */
+
+@media screen and (max-width: 1180px) {
+  .directors {
+    height: 380px !important;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .directors {
+    height: 260px !important;
   }
 }

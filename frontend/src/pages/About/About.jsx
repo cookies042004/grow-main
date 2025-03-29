@@ -44,25 +44,14 @@ export const About = () => {
         "Driving innovation and excellence in real estate by redefining spaces, enhancing communities, and setting new industry benchmarks. Through visionary leadership and a commitment to quality, we create transformative environments that inspire, elevate lifestyles, and shape the future of modern living with integrity, sustainability, and excellence.",
     },
   ];
+
   return (
     <Layout>
       {/* About Hero  */}
-      <div className="aboutbanner flex items-center justify-center relative">
-        {/* Lazy-loaded image */}
-        <img
-          src={aboutBanner}
-          alt="About Us and us"
-          className="absolute inset-0 w-full h-full object-cover"
-          loading="lazy"
-        />
-
-        {/* Overlay Effect */}
-        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-
-        {/* Content */}
-        <div className="grid sm:grid-cols-12 relative z-10">
-          <div className="col-span-12 text-center mt-10 lg:mt-20">
-            <h1 className="font-dmsans text-center font-medium text-white text-3xl lg:text-4xl">
+      <div className="aboutbanner flex items-center justify-center">
+        <div className="grid sm:grid-cols-12">
+          <div className="col-span-12 text-center mt-10">
+            <h1 className="font-sans text-center font-bold text-white text-3xl lg:text-4xl">
               About Us
             </h1>
           </div>
@@ -79,26 +68,9 @@ export const About = () => {
         </h1>
 
         <div className="grid sm:grid-cols-12 my-6">
-          <div className="col-span-12 lg:col-span-6 flex flex-col mt-3 lg:mt-6 items-start gap-3 pl-8">
-            <p className="font-sans text-sm lg:text-lg lg:leading-9 text-justify text-gray-700">
-              Grow Infinity Realtors is a highly regarded and accomplished real
-              estate agency with a proven track record of success. Leveraging
-              years of experience in the industry, the firm combines a strategic
-              approach with a personalized touch to guide clients through every
-              step of the home buying, and selling process. Whether clients are
-              looking to purchase their first home or sell an existing property,
-              Grow Infinity Realtors takes the time to understand their unique
-              needs and aspirations.
-            </p>
-            <p className="font-poppins text-sm lg:text-lg lg:leading-9 text-justify text-gray-700">
-              Grow Infinity Realtors is a highly regarded and accomplished real
-              estate agency with a proven track record of success. Leveraging
-              years of experience in the industry
-            </p>
-            <p className="font-poppins text-sm lg:text-lg lg:leading-9 text-justify text-gray-700">
-              Grow Infinity Realtors is a highly regarded and accomplished real
-              estate agency with a proven track record of success. Leveraging
-              years of experience in the industry.
+          <div className="col-span-12 lg:col-span-6 flex flex-col mt-3 lg:mt-6 items-start gap-3">
+            <p className="font-poppins text-sm lg:text-lg lg:leading-9 text-justify text-gray-700 px-8">
+            Grow Infinity Realtors is a well-established and highly regarded real estate agent firm based in Noida, known for its expertise in helping clients buy and sell properties. With years of industry experience, the firm combines strategic market insights with a personalized approach, ensuring that every client receives tailored solutions to meet their unique real estate needs. Over the years, Grow Infinity has earned a stellar reputation for delivering a smooth and hassle-free experience, assisting individuals and families in securing their dream homes with confidence. Our mission is to work closely with clients, understanding their specific property requirements, and guiding them through every step of the process while prioritizing their best interests. Through dedication, professionalism, and an unwavering commitment to customer satisfaction, we strive to make every real estate transaction a rewarding and fulfilling experience.
             </p>
           </div>
 
@@ -113,7 +85,7 @@ export const About = () => {
       </div>
 
       <div className="my-5 max-w-[1280px] mx-auto">
-        <h1 className="text-center text-2xl lg:text-4xl font-sans font-medium py-3 lg:py-8 m-2">
+        <h1 className="text-center text-2xl lg:text-4xl font-roboto font-medium py-3 lg:py-8">
           <span className="text-gray-500">Stress-Free</span> Step to Your Dream
           Home
         </h1>
@@ -177,20 +149,19 @@ export const About = () => {
       {/* What we do?  */}
       <div className="bg-gray-50">
         <div className="my-10 max-w-[1280px] mx-auto">
-          <h2 className="font-sans font-medium text-[#1d2a3b] text-center text-3xl lg:text-4xl py-8">
-            What we do?
+          <h2 className="font-roboto font-medium text-[#1d2a3b] text-center text-3xl lg:text-4xl py-8">
+            What We Do?
           </h2>
           <div className="grid sm:grid-cols-12">
-          <div className="col-span-12 lg:col-span-6 flex justify-center">
+            <div className="col-span-12 lg:col-span-6 flex justify-center">
               <img
                 src={whatwedo}
                 alt=""
                 className="my-5 w-[300px] lg:w-[450px] lg:h-[410px] object-cover"
               />
             </div>
-
-            <div className="col-span-12 lg:col-span-6 flex flex-col justify-evenly pb-10">
-              <p className="font-sans text-sm pr-8 lg:text-lg lg:leading-8 text-justify text-gray-700">
+            <div className="col-span-12 lg:col-span-6 flex flex-col justify-center pb-10">
+              <p className="font-poppins text-sm px-8 lg:text-lg lg:leading-8 text-justify text-gray-700">
                 At Grow Infinity Realtors, we take immense pride in our
                 unwavering commitment to providing personalized real estate
                 solutions tailored specifically to meet the unique needs and
@@ -215,12 +186,14 @@ export const About = () => {
 
       {/* Mission  */}
       <div className="bg-gradient-to-r from-[#0e1d3499] to-[#0e1d34cc] text-white mt-10 mb-10 py-5 px-8">
-        <div className="grid sm:grid-cols-12 flex-col-reverse max-w-[1280px] mx-auto my-8">
-          <div className="col-span-12 lg:col-span-6 flex flex-col justify-start">
-            <h2 className="font-inter font-semibold text-center text-3xl lg:text-left lg:text-4xl mb-4 flex items-center justify-center lg:justify-start">
-              Our Mission
-            </h2>
-            <p className="font-inter font-normal text-sm lg:text-lg lg:leading-9 my-3 text-justify">
+        <div className="lg:py-5">
+          <h2 className="font-sans font-medium text-center text-3xl lg:text-left lg:text-4xl mb-4 flex items-center justify-center lg:justify-center">
+            Our Mission
+          </h2>
+        </div>
+        <div className="grid sm:grid-cols-12 flex-col-reverse max-w-[1280px] mx-auto">
+          <div className="col-span-12 lg:col-span-6 flex flex-col justify-center">
+            <p className="font-sans font-medium text-sm lg:text-lg lg:leading-9 my-3 text-justify">
               Our mission is to deliver seamless, rewarding experiences for
               every client, ensuring that each real estate transaction is not
               only smooth but also transparent and successful. We believe that
@@ -230,7 +203,7 @@ export const About = () => {
               professionalism are the foundation of our company, and these core
               values guide everything we do.
             </p>
-            <p className="font-inter font-normal text-sm lg:text-lg lg:leading-9 my-3 text-justify">
+            <p className="font-sans font-medium text-sm lg:text-lg lg:leading-9 my-3 text-justify">
               We prioritize building meaningful, long-term relationships with
               our clients, ensuring that their needs are always met with honesty
               and respect. By maintaining an unwavering commitment to excellence
@@ -240,11 +213,12 @@ export const About = () => {
               all their real estate needs, today and in the future.
             </p>
           </div>
-          <div className="col-span-12 lg:col-span-6 lg:flex items-center justify-end mt-3">
+
+          <div className="col-span-12 lg:col-span-6 flex items-center justify-center mt-8 lg:mt-0 lg:justify-end">
             <img
               src={about}
               alt="About us"
-              className="h-[250px] lg:h-[400px] w-full lg:w-[503px] border-4 border-white shadow-lg transition-transform transform hover:scale-105"
+              className="mb-5 w-[400px] lg:w-[450px] lg:h-[410px] object-cover"
             />
           </div>
         </div>
@@ -254,43 +228,36 @@ export const About = () => {
         <Choose />
       </div>
 
-      {/* Meet our directors  */}
       <div className="py-12 px-4 md:px-8">
         <div className="max-w-[1280px] mx-auto">
-          <h1 className="text-center text-[#1d2a3b] text-3xl lg:text-4xl font-sans font-medium pb-10">
-          Dreamers, Doers, Disruptors – Our Founders!
+          <h1 className="text-center text-[#1d2a3b] text-3xl lg:text-4xl font-medium pb-10">
+          Visionaries Who Inspire
           </h1>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mx-auto">
+          <div className="flex flex-wrap justify-center gap-10 mx-auto">
             {teamMembers.map((member, index) => (
-              <div className="p-4 md:p-6" key={index}>
-                <div className="director-card bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden">
-                  <div
-                    className={`flex flex-col md:flex-row items-center md:items-start gap-6 p-6`}
-                  >
-                    {/* Image Section */}
-                    <div className="relative w-full md:w-auto">
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        className="rounded-3xl h-[220px] lg:h-[350px] w-full md:w-[220px] lg:w-[250px] object-cover transform hover:scale-105 transition-transform duration-300"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-0 hover:opacity-30 rounded-3xl transition-opacity duration-300"></div>
-                    </div>
+              <div className="p-4 sm:p-6" key={index}>
+                <div className="relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden flex flex-col items-center text-center p-6 w-80">
+                  {/* Image Section */}
+                  <div className="relative w-32 h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden border-4 border-[#1d2a3b]">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
 
-                    {/* Text Section */}
-                    <div className="flex-1 md:text-left">
-                      <h3 className="text-[#03002e] text-lg lg:text-2xl font-bold font-roboto">
-                        {member.name}
-                      </h3>
-                      <h5 className="text-gray-500 text-sm lg:text-md pb-3 font-roboto">
-                        {member.role}
-                      </h5>
-                      <p className="hidden md:block text-gray-600 text-sm lg:text-md font-light">
-                        {member.tagline}
-                      </p>
-                    </div>
+                  {/* Text Section */}
+                  <div className="mt-4">
+                    <h3 className="text-[#03002e] text-lg sm:text-xl lg:text-2xl font-bold font-roboto">
+                      {member.name}
+                    </h3>
+                    <h5 className="text-gray-500 text-xs sm:text-sm lg:text-md pb-2 font-roboto">
+                      {member.role}
+                    </h5>
+                    <p className="text-gray-600 text-xs sm:text-sm lg:text-md font-light">
+                      {member.tagline}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -298,6 +265,8 @@ export const About = () => {
           </div>
         </div>
       </div>
+
+
 
       <div className="bg-gray-50 py-5">
         {/* Award Images Section */}
