@@ -202,7 +202,7 @@ export const CommercialDetails = () => {
       <div className="detailsbannercom flex items-center justify-center">
         <div className="grid sm:grid-cols-12">
           <div className="col-span-12 text-center lg:mt-20">
-            <h1 className="ffont-dmsans font-bold text-white text-3xl lg:text-4xl">
+            <h1 className="font-sans font-bold text-white text-3xl lg:text-4xl">
               Property Details
             </h1>
           </div>

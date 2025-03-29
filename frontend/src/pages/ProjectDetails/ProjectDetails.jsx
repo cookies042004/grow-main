@@ -169,8 +169,8 @@ export const ProjectDetails = () => {
       {/* Project Details Hero */}
       <div className="detailsbanner flex items-center justify-center">
         <div className="grid sm:grid-cols-12">
-          <div className="col-span-12 text-center lg:mt-20">
-            <h1 className="ffont-dmsans font-medium text-white text-3xl lg:text-4xl">
+          <div className="col-span-12 text-center mt-20">
+            <h1 className="ffont-sans font-bold text-white text-3xl lg:text-4xl">
               Property Details
             </h1>
           </div>

@@ -237,7 +237,8 @@ export const About = () => {
           <div className="flex flex-wrap justify-center gap-10 mx-auto">
             {teamMembers.map((member, index) => (
               <div className="p-4 sm:p-6" key={index}>
-                <div className="relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden flex flex-col items-center text-center p-6 w-80">
+                <div className="relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden flex flex-col items-center text-center p-6 md:w-[550px] lg:w-[550px]">
+                  {/* Background Image */}
                   {/* Image Section */}
                   <div className="relative w-32 h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden border-4 border-[#1d2a3b]">
                     <img
