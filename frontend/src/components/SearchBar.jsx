@@ -193,7 +193,7 @@ export const SearchBar = () => {
               <button
                 id="dropdownBhkButton"
                 data-dropdown-toggle="dropdownBhk"
-                className="font-sans text-[#1d2a3b] bg-[#F4F4F4] font-medium text-lg px-4 w-full py-1 lg:py-2 text-center justify-between lg:justify-center inline-flex items-center rounded-[13.27px]"
+                className="font-sans text-[#1d2a3b] bg-[#F4F4F4] font-medium text-sm w-full py-1 lg:py-2 text-center justify-between lg:justify-center inline-flex items-center rounded-[13.27px]"
                 type="button"
                 onClick={() => setBhk(!bhk)}
               >
