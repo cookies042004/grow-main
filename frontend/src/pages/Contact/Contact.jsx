@@ -109,7 +109,7 @@ export const Contact = () => {
         <div className="max-w-[1280px] mx-auto">
           <div className="grid sm:grid-cols-12 my-5 lg:my-10">
             <div className="col-span-12 lg:col-span-6 p-3 m-5">
-              <h1 className="text-2xl lg:text-4xl font-medium font-roboto text-[#1d2a3b] text-center">
+              <h1 className="text-2xl lg:text-4xl font-medium font-sans text-[#1d2a3b] text-center">
                 Let's Get In Touch
               </h1>
               <p className="text-center text-lg font-roboto py-3 text-[#1d2a3b]">
@@ -248,13 +248,13 @@ export const Contact = () => {
                     />
                   </div>
 
-                  <p className="font-dmsans font-semibold text-lg">
+                  <p className="font-sans text-[#1d2b3a] font-semibold text-lg">
                     Chat to us
                   </p>
-                  <p className="font-roboto text-lg text-gray-600 font-bold">
+                  <p className="font-sans text-lg text-gray-600 font-bold">
                     Our friendly team is here to help.
                   </p>
-                  <p className="font-roboto text-md text-center">
+                  <p className="font-sans text-md text-center">
                     growinfinityrealtor1@gmail.com, info@growinfinityrealtors.in
                   </p>
                 </div>
@@ -270,11 +270,11 @@ export const Contact = () => {
                     />
                   </div>
 
-                  <p className="font-dmsans font-semibold text-lg">Office</p>
-                  <p className="font-roboto text-lg text-gray-600 font-bold">
+                  <p className="font-sans font-semibold text-[#1d2b3a] text-lg">Office</p>
+                  <p className="font-sans text-lg text-gray-600 font-bold">
                     Come say hello at our office HQ.
                   </p>
-                  <p className="font-roboto text-md text-center">
+                  <p className="font-sans text-md text-center">
                     Plot No. BL-34, II Floor, Near Fitness Gym, Sector-116,
                     Noida, Uttar Pradesh-201305
                   </p>
@@ -291,11 +291,11 @@ export const Contact = () => {
                     />
                   </div>
 
-                  <p className="font-dmsans font-semibold text-lg">Phone</p>
-                  <p className="font-roboto text-lg text-gray-600 font-bold">
+                  <p className="font-sans font-semibold text-[#1d2b3a] text-lg">Phone</p>
+                  <p className="font-sans text-lg text-gray-600 font-bold">
                     Mon-Sun from 8am to 6pm
                   </p>
-                  <p className="font-roboto text-md">+91-9990052554</p>
+                  <p className="font-sans text-md">+91-9990052554</p>
                 </div>
               </div>
             </div>

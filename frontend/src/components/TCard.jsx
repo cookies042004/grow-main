@@ -10,9 +10,9 @@ import { MdArrowBack, MdArrowForward } from "react-icons/md";
 
 const NextArrow = ({ onClick }) => (
   <div
-    className="arrow next bg-[#1d2a3b] text-white rounded-full p-1 cursor-pointer"
+    className="arrow next bg-[#1d2a3b] text-white rounded-full p-1"
     onClick={onClick}
-  >
+  >
     <MdArrowForward size={24} />
   </div>
 );
