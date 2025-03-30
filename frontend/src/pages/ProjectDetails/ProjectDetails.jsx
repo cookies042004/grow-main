@@ -42,7 +42,6 @@ export const ProjectDetails = () => {
         );
         const data = await res.json();
 
-
         if (data.property) {
           setProperty(data.property); // Store full property data
           setPropertyId(data.property._id); // Store ID
@@ -139,7 +138,7 @@ export const ProjectDetails = () => {
 
     if (targetElement) {
       window.scrollTo({
-        top: targetElement.offsetTop - 200, // Adjust according to navbar height
+        top: targetElement.offsetTop - 100, // Adjust according to navbar height
         behavior: "smooth",
       });
     }
@@ -190,70 +189,70 @@ export const ProjectDetails = () => {
                 </div>
 
                 {/* Property Info Container */}
-                  <div className="border border-gray-300 m-4 sm:mx-10 mt-5 mb-1 flex flex-col sm:flex-row gap-4 sm:gap-8 p-3 items-center sm:items-start">
-                    {/* Left Section - Property Details */}
-                    <div className="flex sm:flex-row flex-col items-center sm:items-start gap-3 w-full">
-                      <div className="border border-black">
+                <div className="border border-gray-300 m-4 sm:mx-10 mt-5 mb-1 flex flex-col sm:flex-row gap-4 sm:gap-8 p-3 items-center sm:items-start">
+                  {/* Left Section - Property Details */}
+                  <div className="flex sm:flex-row flex-col items-center sm:items-start gap-3 w-full">
+                    <div className="border border-black">
                       <img
                         src={property?.dp}
                         alt="dealer"
                         className="h-16 w-16 sm:h-20 sm:w-20 object-contain"
                       />
-                      </div>
-                      <div className="flex flex-col">
-                        <h1 className="flex items-center justify-center sm:justify-start font-bold text-[#1d2a3b] text-lg sm:text-xl py-[1px] sm:pl-2">
-                          {property?.name}
-                        </h1>
-                        <p className="flex items-center justify-center sm:justify-start text-sm text-[#03002a] py-[1px] sm:pl-2">
-                          By {property?.builder}
-                        </p>
-                        <div className="flex items-center justify-center sm:justify-start">
-                          <LocationOnIcon className="text-red-600 text-xs" />
-                          <p className="text-sm text-red-600 py-[1px]">
-                            {property?.location}
-                          </p>
-                        </div>
-                      </div>
                     </div>
-
-                    {/* Right Section - Price & Buttons */}
-                    <div className="flex flex-col items-center sm:items-end w-full sm:w-2/3">
-                      <h5 className="font-semibold text-[#1d2a3b] text-xl sm:text-2xl">
-                        ₹{toINRCr(property?.price)}*
-                      </h5>
-
-                      {/* Buttons - Stack on Small Screens */}
-                      <div className="flex flex-row sm:flex-row gap-1 sm:gap-3 w-full sm:w-auto py-2">
-                        <Link to={`/brochure`} className="w-full sm:w-auto">
-                          <Button
-                            startIcon={<PictureAsPdfIcon />}
-                            variant="outlined"
-                            size="small"
-                            color="error"
-                            sx={{ textTransform: "none" }}
-                            className="w-full sm:w-full text-sm sm:text-sm"
-                          >
-                            Request Pdf
-                          </Button>
-                        </Link>
-
-                        <Button
-                          startIcon={<WhatsAppIcon />}
-                          variant="outlined"
-                          size="small"
-                          color="success"
-                          sx={{ textTransform: "none" }}
-                          component="a"
-                          href={`https://wa.me/+918750238581?text=Hi I am interested in ${property?.name}, Please share the details.`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-full sm:w-auto"
-                        >
-                          WhatsApp Us
-                        </Button>
+                    <div className="flex flex-col">
+                      <h1 className="flex items-center justify-center sm:justify-start font-bold text-[#1d2a3b] text-lg sm:text-xl py-[1px] sm:pl-2">
+                        {property?.name}
+                      </h1>
+                      <p className="flex items-center justify-center sm:justify-start text-sm text-[#03002a] py-[1px] sm:pl-2">
+                        By {property?.builder}
+                      </p>
+                      <div className="flex items-center justify-center sm:justify-start">
+                        <LocationOnIcon className="text-red-600 text-xs" />
+                        <p className="text-sm text-red-600 py-[1px]">
+                          {property?.location}
+                        </p>
                       </div>
                     </div>
                   </div>
+
+                  {/* Right Section - Price & Buttons */}
+                  <div className="flex flex-col items-center sm:items-end w-full sm:w-2/3">
+                    <h5 className="font-semibold text-[#1d2a3b] text-xl sm:text-2xl">
+                      ₹{toINRCr(property?.price)}*
+                    </h5>
+
+                    {/* Buttons - Stack on Small Screens */}
+                    <div className="flex flex-row sm:flex-row gap-1 sm:gap-3 w-full sm:w-auto py-2">
+                      <Link to={`/brochure`} className="w-full sm:w-auto">
+                        <Button
+                          startIcon={<PictureAsPdfIcon />}
+                          variant="outlined"
+                          size="small"
+                          color="error"
+                          sx={{ textTransform: "none" }}
+                          className="w-full sm:w-full text-sm sm:text-sm"
+                        >
+                          Request Pdf
+                        </Button>
+                      </Link>
+
+                      <Button
+                        startIcon={<WhatsAppIcon />}
+                        variant="outlined"
+                        size="small"
+                        color="success"
+                        sx={{ textTransform: "none" }}
+                        component="a"
+                        href={`https://wa.me/+918750238581?text=Hi I am interested in ${property?.name}, Please share the details.`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full sm:w-auto"
+                      >
+                        WhatsApp Us
+                      </Button>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div className="flex flex-wrap  justify-center sm:justify-start gap-2 sm:gap-4 my-6 border-b pb-2">
@@ -390,43 +389,46 @@ export const ProjectDetails = () => {
                       </h3>
                     </div>
 
-                    <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 p-3">
-                      {property?.amenities?.some(
-                        (item) => item.type === "society_amenity"
-                      ) ? (
-                        property.amenities
-                          .filter((item) => item.type === "society_amenity")
-                          .map((item) => (
-                            <div
-                              key={item._id}
-                              className="flex items-center gap-1"
-                            >
-                              <img
-                                src={item.image}
-                                alt={item.name}
-                                className="h-6 sm:h-7 w-6 sm:w-7"
-                              />
-                              <p className="text-sm sm:text-lg font-semibold text-gray-600">
-                                {item.name}
-                              </p>
-                            </div>
-                          ))
-                      ) : (
-                        <div className="col-span-full text-center text-gray-500">
-                          No society amenities available
-                        </div>
-                      )}
+                    <div className="p-4">
+                      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                        {property?.amenities?.some(
+                          (item) => item.type === "society_amenity"
+                        ) ? (
+                          property.amenities
+                            .filter((item) => item.type === "society_amenity")
+                            .map((item) => (
+                              <div
+                                key={item._id}
+                                className="flex items-center gap-2 p-2"
+                              >
+                                <img
+                                  src={item.image}
+                                  alt={item.name}
+                                  className="h-8 w-8 sm:h-8 sm:w-8 object-contain"
+                                />
+                                <p className="text-sm sm:text-base font-medium text-gray-700">
+                                  {item.name}
+                                </p>
+                              </div>
+                            ))
+                        ) : (
+                          <div className="col-span-full text-center text-gray-500">
+                            No society amenities available
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
 
                   {/* Flat Amenities */}
                   <div className="mt-5 shadow-sm border rounded-md">
-                    <div className="p-3 bg-red-50 rounded-t-md text-center">
-                      <h3 className="text-xl sm:text-xl font-semibold text-gray-800">
+                    <div className="p-3 bg-red-50 text-center">
+                      <h3 className="text-lg sm:text-xl font-semibold text-gray-800">
                         Flat Amenities
                       </h3>
                     </div>
-                    <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 p-3">
+
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
                       {property?.amenities?.some(
                         (item) => item.type === "flat_amenity"
                       ) ? (
@@ -435,14 +437,14 @@ export const ProjectDetails = () => {
                           .map((item) => (
                             <div
                               key={item._id}
-                              className="flex items-center gap-2"
+                              className="flex items-center gap-3 p-2"
                             >
                               <img
                                 src={item.image}
                                 alt={item.name}
-                                className="h-6 sm:h-7 w-6 sm:w-7"
+                                className="h-8 w-8 sm:h-8 sm:w-8 object-contain"
                               />
-                              <p className="text-sm sm:text-lg font-semibold text-gray-600">
+                              <p className="text-sm sm:text-base font-medium text-gray-700">
                                 {item.name}
                               </p>
                             </div>
@@ -458,14 +460,14 @@ export const ProjectDetails = () => {
 
                 {/* Location Benefits */}
                 <div
-                  className="col-span-12 bg-white p-6 sm:p-8 rounded-lg shadow-lg shadow-gray-"
+                  className="col-span-12 bg-white p-6 sm:p-8 rounded-2xl shadow-lg"
                   id="Location Benefits"
                 >
-                  <h3 className="text-2xl sm:text-2xl border-b-2 pb-2 font-sans font-semibold text-[#1d2a3b]">
+                  <h3 className="text-xl sm:text-2xl border-b-2 pb-2 font-sans font-semibold text-[#1d2a3b]">
                     Location Benefits
                   </h3>
 
-                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 mt-3">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
                     {property?.amenities?.some(
                       (item) => item.type === "location_advantages"
                     ) ? (
@@ -474,14 +476,14 @@ export const ProjectDetails = () => {
                         .map((item) => (
                           <div
                             key={item._id}
-                            className="flex items-center gap-2"
+                            className="flex items-center gap-3 p-2"
                           >
                             <img
                               src={item.image}
                               alt={item.name}
-                              className="h-5 w-5"
+                              className="h-7 w-7 sm:h-8 sm:w-8 object-contain"
                             />
-                            <p className="text-sm sm:text-lg font-semibold text-gray-600">
+                            <p className="text-sm sm:text-base font-medium text-gray-700">
                               {item.name}
                             </p>
                           </div>
@@ -547,7 +549,14 @@ export const ProjectDetails = () => {
         <h1 className="text-center text-[#1d2a3b] lg:text-3xl text-2xl font-medium py-8 lg:font-medium">
           Trending Properties
         </h1>
-        <TCard category={["New Launches","Affordable Living","New Launches","Commercial" ]}/>
+        <TCard
+          category={[
+            "New Launches",
+            "Affordable Living",
+            "New Launches",
+            "Commercial",
+          ]}
+        />
       </div>
 
       <Marquee />

@@ -7,8 +7,6 @@ export const NavigationProject = () => {
   const { slug } = useParams();
   const [eventName, setEventName] = useState("");
 
-  console.log("slug", slug);
-
   // Fetch event category name when slug is available
   useEffect(() => {
     if (slug) {
@@ -21,8 +19,6 @@ export const NavigationProject = () => {
         .catch((error) => console.error("Error fetching event details:", error));
     }
   }, [slug]);
-
-  console.log("Event Name:", eventName);
 
   const path = location.pathname.split("/").filter(Boolean);
 

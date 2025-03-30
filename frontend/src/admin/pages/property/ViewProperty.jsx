@@ -134,7 +134,7 @@ export const ViewProperty = () => {
                 {property.name}
               </Typography>
               <Typography variant="body2" color="textSecondary">
-                By {property.location}
+                {property.location}
               </Typography>
               <Typography variant="body2" color="primary">
                 ₹ {property.price}
