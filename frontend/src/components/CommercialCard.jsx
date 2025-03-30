@@ -59,14 +59,14 @@ export const CommercialCard = ({
   }
 
   return (
-    <div className="border relative p-2 hover:shadow-2xl bg-white transition-all duration-300">
+    <div className="border relative p-2 hover:shadow-[rgba(0,0,0,0.16)_0px_3px_6px,rgba(0,0,0,0.23)_0px_3px_6px] bg-white transition-all duration-300">
       {/* Property Image */}
       <div className="flex justify-center">
         <img src={image} alt={name} className="h-[230px] w-full object-cover" />
       </div>
 
       {/* Property Details */}
-      <div className="mt-3 font-roboto text-sm flex justify-between">
+      <div className="mt-3 font-sans text-sm flex justify-between">
         <p className="font-semibold ps-3 text-[#1d2a3b] text-sm">
           {name} <br />
           <span className="text-gray-700 font-normal text-xs">
