@@ -8,7 +8,6 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "./AwardComponent.css";
-// import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { MdArrowBack, MdArrowForward } from "react-icons/md";
 
 export const AwardComponent = () => {

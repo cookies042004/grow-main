@@ -81,7 +81,7 @@ export const AddBrochure = () => {
       <div className="p-4 sm:ml-64">
         <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-20">
           <div className="container mx-auto">
-            <h2 className="text-xl font-bold p-2 text-center sm:text-left">
+            <h2 className="text-2xl font-bold p-2 text-center">
               Add Brochure
             </h2>
             <form onSubmit={handleSubmit}>
@@ -188,14 +188,21 @@ export const AddBrochure = () => {
               </div>
 
               {/* Submit Button */}
-              <div className="p-2">
+              <div className="flex flex-col p-2">
                 <Button
                   variant="contained"
                   color="secondary"
                   startIcon={<AddCircleIcon />}
                   type="submit"
                   size="small"
-                  style={{ textTransform: "none" }}
+                  sx={{
+                    width: "150px",
+                    alignSelf: "center",
+                    textTransform: "none",
+                    borderRadius: "8px",
+                    fontWeight: "500",
+                    ":hover": { backgroundColor: "#d32f2f" },
+                  }}
                 >
                   Add Brochure
                 </Button>

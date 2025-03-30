@@ -46,8 +46,6 @@ export const AddCommercial = () => {
 
   const amenities = amenitiesData?.amenity || [];
 
-  console.log(amenities);
-
   // State to manage form data
   const [formData, setFormData] = useState({
     amenities: [], // Initialize amenities here
@@ -320,8 +318,6 @@ export const AddCommercial = () => {
         }
       );
 
-      console.log("Property added:", response.data);
-
       if (response.status === 201) {
         toast.success("Property added successfully!");
         setFormData({
@@ -442,9 +438,9 @@ export const AddCommercial = () => {
       <AdminLayout />
       <div className="p-4 sm:ml-64">
         <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-20">
-          <h2 className="text-xl font-bold p-2 text-center sm:text-left">
+          {/* <h2 className="text-2xl font-bold p-2 text-center">
             Add Commercial Property
-          </h2>
+          </h2> */}
           <div className="container mx-auto">
             <form onSubmit={handleSubmit}>
               <Box
@@ -719,11 +715,25 @@ export const AddCommercial = () => {
               </Box>
 
               <Box
-                sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 2 }}
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 2,
+                  border: "2px solid #ccc",
+                  borderRadius: "8px",
+                  backgroundColor: "#f9f9f9",
+                  padding: "12px",
+                  marginTop: 2,
+                }}
               >
                 <Typography
                   variant="h5"
-                  sx={{ textAlign: "center", fontWeight: "600", color: "#333" }}
+                  sx={{
+                    textAlign: "center",
+                    fontWeight: "600",
+                    color: "#333",
+                    marginTop: 2,
+                  }}
                 >
                   Upload
                 </Typography>

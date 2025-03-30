@@ -32,7 +32,6 @@ export const UpdateCommercial = () => {
   const { data, loading, error, refetch } = useFetchData(
     `${process.env.BASE_URL}/api/v1/commercial/${id}`
   );
-  console.log("DATA IS", data?.property);
 
   const {
     data: amenitiesData,
@@ -97,15 +96,9 @@ export const UpdateCommercial = () => {
     }
   }, [data]);
 
-  console.log(amenities);
-
-  console.log("nothing", data.property?.amenities);
-  console.log("data is", data.property);
-
   // Handle form input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
-    console.log(value);
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -212,7 +205,7 @@ export const UpdateCommercial = () => {
       }
     }
   };
-  
+
   const handleDescriptionUpload = (event) => {
     const file = event.target.files[0];
     let maxSize = 1024 * 1024 * 2; // 2Mb max
@@ -539,9 +532,9 @@ export const UpdateCommercial = () => {
       <AdminLayout />
       <div className="p-4 sm:ml-64">
         <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-20">
-          <h2 className="text-xl font-bold p-2 text-center sm:text-left">
+          {/* <h2 className="text-2xl font-bold p-2 text-center">
             Update Commercial Property
-          </h2>
+          </h2> */}
           <div className="container mx-auto">
             <form onSubmit={handleSubmit}>
               <Box
@@ -766,13 +759,28 @@ export const UpdateCommercial = () => {
                 sx={{
                   display: "flex",
                   flexWrap: "wrap",
-                  gap: "12px",
-                  mt: 2,
-                  padding: "10px",
-                  borderRadius: "8px",
-                  border: "1px solid #ddd",
+                  alignItems: "center",
+                  gap: 2,
+                  border: "2px solid #ccc",
+                  borderRadius: "10px",
+                  backgroundColor: "#f9f9f9",
+                  padding: "16px",
+                  marginTop: 2,
                 }}
               >
+                {/* Section Title */}
+                <Typography
+                  variant="h5"
+                  sx={{
+                    fontWeight: "600",
+                    color: "#333",
+                    flexBasis: "100%",
+                    textAlign: "center",
+                  }}
+                >
+                  Facilities
+                </Typography>
+
                 {/* Select All Checkbox */}
                 <FormControlLabel
                   control={
@@ -786,7 +794,7 @@ export const UpdateCommercial = () => {
                   label="Select All"
                 />
 
-                {/* Prevent error by ensuring `allAmenities` exists */}
+                {/* Ensure `amenities` exists before mapping */}
                 {amenities.length > 0 &&
                   amenities.map((amenity) => (
                     <FormControlLabel
@@ -802,17 +810,36 @@ export const UpdateCommercial = () => {
                       label={amenity.name}
                       sx={{
                         backgroundColor: "#f5f5f5",
-                        padding: "8px 12px",
+                        padding: "6px 12px",
                         borderRadius: "6px",
+                        "&:hover": {
+                          backgroundColor: "#e0e0e0",
+                        },
                       }}
                     />
                   ))}
               </Box>
 
-              <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 2,
+                  border: "2px solid #ccc",
+                  borderRadius: "8px",
+                  backgroundColor: "#f9f9f9",
+                  padding: "12px",
+                  marginTop: 2,
+                }}
+              >
                 <Typography
                   variant="h5"
-                  sx={{ textAlign: "center", fontWeight: "600", color: "#333" }}
+                  sx={{
+                    textAlign: "center",
+                    fontWeight: "600",
+                    color: "#333",
+                    marginTop: 2,
+                  }}
                 >
                   Upload
                 </Typography>

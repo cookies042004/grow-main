@@ -5,7 +5,7 @@ import "./About.css";
 
 import aboutImg from "../../assets/img/aboutImg.jpg";
 import aboutImg2 from "../../assets/img/aboutImg2.jpg";
-import about from "../../assets/img/about.png"
+import about from "../../assets/img/about.jpg"
 import { Choose } from "../../components/Choose";
 import { Testimonials } from "../../components/Testimonials";
 

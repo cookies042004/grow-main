@@ -530,7 +530,7 @@ export const AdminSidebar = ({ mobileMenu }) => {
             >
               <DesignServicesIcon className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" />
               <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">
-                Facilities
+                Commercial Amenities
               </span>
               <svg
                 className="w-3 h-3"

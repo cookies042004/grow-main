@@ -492,9 +492,7 @@ export const AddProperty = () => {
       <AdminLayout />
       <div className="p-4 sm:ml-64">
         <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-20">
-          <h2 className="text-xl font-bold p-2 text-center sm:text-left">
-            Add Property
-          </h2>
+          {/* <h2 className="text-2xl font-bold p-2 text-center">Add Property</h2> */}
           <div className="container mx-auto">
             <form onSubmit={handleSubmit}>
               <Box
@@ -508,6 +506,12 @@ export const AddProperty = () => {
                   backgroundColor: "#f9f9f9",
                 }}
               >
+                <Typography
+                  variant="h5"
+                  sx={{ textAlign: "center", fontWeight: "600", color: "#333" }}
+                >
+                  Property Details
+                </Typography>
                 <FormControl color="secondary" size="small" fullWidth>
                   <InputLabel id="demo-simple-select-label">
                     Property Category*
@@ -604,6 +608,12 @@ export const AddProperty = () => {
                   backgroundColor: "#f9f9f9",
                 }}
               >
+                <Typography
+                  variant="h5"
+                  sx={{ textAlign: "center", fontWeight: "600", color: "#333" }}
+                >
+                  Size & Price
+                </Typography>
                 <TextField
                   type="string"
                   label="Enter Unit (in BHK-bhk should be capital written)*"
@@ -669,9 +679,12 @@ export const AddProperty = () => {
                   backgroundColor: "#f9f9f9",
                 }}
               >
-                <h2 className="text-center text-2xl font-semibold">
+                <Typography
+                  variant="h5"
+                  sx={{ textAlign: "center", fontWeight: "600", color: "#333" }}
+                >
                   Project Details
-                </h2>
+                </Typography>
                 <TextField
                   type="string"
                   label="Enter Project Size With Measurements like acres etc."
@@ -719,6 +732,12 @@ export const AddProperty = () => {
                   backgroundColor: "#f9f9f9",
                 }}
               >
+                <Typography
+                  variant="h5"
+                  sx={{ textAlign: "center", fontWeight: "600", color: "#333" }}
+                >
+                  Facilities
+                </Typography>
                 {/* Furnish Type */}
                 <FormControl
                   style={{
@@ -975,8 +994,28 @@ export const AddProperty = () => {
               </Box>
 
               <Box
-                sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 2 }}
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 2,
+                  border: "2px solid #ccc",
+                  borderRadius: "8px",
+                  backgroundColor: "#f9f9f9",
+                  padding: "12px",
+                  marginTop: 2,
+                }}
               >
+                <Typography
+                  variant="h5"
+                  sx={{
+                    textAlign: "center",
+                    fontWeight: "600",
+                    color: "#333",
+                    marginTop: 2,
+                  }}
+                >
+                  Upload
+                </Typography>
                 <FormControl component="fieldset">
                   <FormLabel id="image-upload">
                     Upload Property Images - (Only jpeg, jpg, png files are

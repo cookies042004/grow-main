@@ -179,6 +179,9 @@ const updateProperty = async (req, res) => {
       address,
       furnishType,
       amenities,
+      projectSize,
+      projectStatus,
+      totalUnits
     } = req.body;
 
     const property = await Property.findById(propertyId);
@@ -241,6 +244,9 @@ const updateProperty = async (req, res) => {
       furnishType,
       amenities,
       dp,
+      projectSize,
+      projectStatus,
+      totalUnits,
       image: newImages.length > 0 ? newImages : property.image,
       video: newVideos.length > 0 ? newVideos : property.video,
     });

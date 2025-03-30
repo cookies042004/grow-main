@@ -4,21 +4,20 @@ import { Layout } from "../../components/Layout";
 import { NavigationBar } from "../../components/NavigationBar";
 import { useFetchData } from "../../hooks/useFetchData";
 import { CircularProgress, Pagination, PaginationItem } from "@mui/material";
-import { ClipLoader } from "react-spinners";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import awardsBanner from "../../assets/img/awardsbanner.jpg";
-import { FaArrowLeft, FaArrowRight, FaTimes } from "react-icons/fa";
+import { FaTimes } from "react-icons/fa";
 
 export const Awards = () => {
   const apiUrl = `${process.env.BASE_URL}/api/v1/awards`;
   const { data, loading, error } = useFetchData(apiUrl);
   const awards = data?.awards || [];
-  
+
   const [modalOpen, setModalOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const awardsPerPage = 9;
+  const awardsPerPage = 6;
 
   const openModal = (index) => {
     setCurrentIndex(index);
@@ -48,36 +47,29 @@ export const Awards = () => {
       <Layout>
         {/* Hero Banner */}
         <div
-          className="relative flex items-center justify-center text-center h-[260px] sm:h-[300px] md:h-[350px] lg:h-[400px] px-4"
+          className="relative flex items-center justify-center text-center h-[300px] px-4"
           style={{
             background: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url(${awardsBanner})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
           }}
         >
-          <h1 className="text-white text-3xl lg:text-4xl mt-10 font-sans font-bold">
-            Awards & Achievements
-          </h1>
+          <h1 className="text-white text-3xl lg:text-4xl mt-10 font-bold">Awards & Achievements</h1>
         </div>
 
         <NavigationBar />
 
         {/* Awards Section */}
         <div className="my-10 px-4 sm:px-8 lg:px-8">
-        <h1 className="font-sans lg:pb-8 text-2xl lg:text-4xl font-medium text-[#1d2a3b] text-center">
+          <h1 className="text-2xl lg:text-4xl font-medium text-[#1d2a3b] text-center mb-6">
             Awards & Achievements
           </h1>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-14 p-9">
-            {loading && (
-              <div className="col-span-2 flex justify-center">
-                <CircularProgress size="30px" />
-              </div>
-            )}
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-10 p-9">
+            {loading && <CircularProgress size="30px" className="col-span-full flex justify-center" />}
 
             {error && (
-              <div className="col-span-12 flex flex-col items-center">
-                <img src="https://shorturl.at/6C2TM" alt="error" />
+              <div className="col-span-full flex flex-col items-center">
                 <p className="text-red-500 mt-2">Failed to load awards. Please try again.</p>
               </div>
             )}
@@ -88,67 +80,52 @@ export const Awards = () => {
                     <img
                       src={award.image}
                       alt={award.name || "Award"}
-                      className="w-full sm:w-[200px] md:w-[352px] h-[352px] sm:h-[200px] md:h-[352px] object-cover rounded-lg shadow-lg transition-transform duration-300 hover:scale-105 cursor-pointer"
-                      onClick={() => openModal(index)}
+                      className="w-[250px] h-[250px] object-cover rounded-lg shadow-lg transition-transform duration-300 hover:scale-105 cursor-pointer"
+                      onClick={() => openModal(index + indexOfFirstAward)}
                     />
-                    <p className="mt-3 text-center text-sm sm:text-base font-medium text-gray-700">
-                      {award.name}
-                    </p>
+                    <p className="text-center text-sm sm:text-base font-medium text-gray-700">{award.name}</p>
                   </div>
                 ))
               : !loading && (
-                  <div className="col-span-12 flex justify-center">
+                  <div className="col-span-full flex justify-center">
                     <p className="text-gray-500">No awards found.</p>
                   </div>
                 )}
           </div>
+
           {/* Pagination */}
-           {awards.length > awardsPerPage && (
-                  <div className="flex justify-center m-6">
-                    <Pagination
-                      count={totalPages}
-                      page={currentPage}
-                      onChange={(event, page) => setCurrentPage(page)}
-                      renderItem={(item) => (
-                        <PaginationItem
-                          slots={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
-                          {...item}
-                        />
-                      )}
-                    />
-                  </div>
+          {totalPages > 1 && (
+            <div className="flex justify-center m-6">
+              <Pagination
+                count={totalPages}
+                page={currentPage}
+                onChange={(event, page) => setCurrentPage(page)}
+                renderItem={(item) => (
+                  <PaginationItem slots={{ previous: ArrowBackIcon, next: ArrowForwardIcon }} {...item} />
                 )}
+              />
+            </div>
+          )}
         </div>
       </Layout>
 
       {/* Modal for Image Preview */}
       {modalOpen && awards.length > 0 && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black z-50">
-          <div className="absolute top-5 left-5 text-white text-lg">
-            {currentIndex + 1} / {awards.length}  
-          </div>
-          <button
-            className="absolute top-5 right-5 text-white text-xl z-50"
-            onClick={closeModal}
-          >
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50">
+          <div className="absolute top-5 left-5 text-white text-lg">{currentIndex + 1} / {awards.length}</div>
+          <button className="absolute top-5 right-5 text-white text-xl z-50" onClick={closeModal}>
             <FaTimes />
           </button>
-          <button
-            className="absolute left-10 text-white text-xl z-50"
-            onClick={prevImage}
-          >
-            <FaArrowLeft />
+          <button className="absolute left-10 text-white text-xl z-50" onClick={prevImage}>
+            <ArrowBackIcon fontSize="large" />
           </button>
           <img
             src={awards[currentIndex]?.image}
             alt={awards[currentIndex]?.name || "Award"}
-            className="max-w-[90%] max-h-[80vh] object-contain rounded-lg shadow-lg"
+            className="w-[300px] h-[300px] object-cover rounded-lg shadow-lg"
           />
-          <button
-            className="absolute right-10 text-white text-xl z-50"
-            onClick={nextImage}
-          >
-            <FaArrowRight />
+          <button className="absolute right-10 text-white text-xl z-50" onClick={nextImage}>
+            <ArrowForwardIcon fontSize="large" />
           </button>
         </div>
       )}

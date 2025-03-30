@@ -65,9 +65,6 @@ export const ViewAwards = () => {
                   style={{ objectFit: "cover" }}
                 />
                 <CardContent>
-                  <Typography variant="h6" className="text-center font-semibold">
-                    Award
-                  </Typography>
                   <div className="flex justify-center mt-3">
                     <Button
                       onClick={() => handleDelete(award._id)}

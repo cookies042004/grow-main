@@ -56,12 +56,12 @@ export const UpdateProperty = () => {
   // State to manage form data
   const [formData, setFormData] = useState({
     category: "",
-    propertyType: "", //PROPERTY TYPE ADDED HERE
+    propertyType: "",
     name: "",
     builder: "",
     unit: "",
     size: "",
-    sizeUnit: "", //SIZEUNIT ADDED HERE
+    sizeUnit: "",
     price: "",
     location: "",
     address: "",
@@ -70,6 +70,9 @@ export const UpdateProperty = () => {
     societyAmenities: [],
     flatAmenities: [],
     locationAdvantages: [],
+    projectSize: "",
+    projectStatus: "",
+    totalUnits: "",
   });
 
   // State to track uploaded images and brochure
@@ -103,6 +106,9 @@ export const UpdateProperty = () => {
         address: property.address || "",
         description: property.description || "",
         furnishType: property.furnishType || "",
+        projectSize: property.projectSize || "",
+        projectStatus: property.projectStatus || "",
+        totalUnits: property.totalUnits || "",
         societyAmenities: property.amenities
           ?.filter((amenity) => amenity.type === "society_amenity")
           ?.map((amenity) => amenity._id),
@@ -542,9 +548,6 @@ export const UpdateProperty = () => {
       <AdminLayout />
       <div className="p-4 sm:ml-64">
         <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-20">
-          <h2 className="text-xl font-bold p-2 text-center sm:text-left">
-            Update Property
-          </h2>
           <div className="container mx-auto">
             <form onSubmit={handleSubmit}>
               <Box
@@ -558,6 +561,12 @@ export const UpdateProperty = () => {
                   backgroundColor: "#f9f9f9",
                 }}
               >
+                <Typography
+                  variant="h5"
+                  sx={{ textAlign: "center", fontWeight: "600", color: "#333" }}
+                >
+                  Property Details
+                </Typography>
                 <FormControl color="secondary" size="small" fullWidth>
                   <InputLabel id="demo-simple-select-label">
                     Property Category*
@@ -651,7 +660,7 @@ export const UpdateProperty = () => {
               <Box
                 sx={{
                   display: "flex",
-                  flexDirection: "row",
+                  flexDirection: "column",
                   flexWrap: "wrap",
                   gap: 2,
                   mt: 2,
@@ -661,6 +670,12 @@ export const UpdateProperty = () => {
                   backgroundColor: "#f9f9f9",
                 }}
               >
+                <Typography
+                  variant="h5"
+                  sx={{ textAlign: "center", fontWeight: "600", color: "#333" }}
+                >
+                  Size & Price
+                </Typography>
                 <TextField
                   label="Enter Unit (in BHK)*"
                   variant="outlined"
@@ -672,35 +687,37 @@ export const UpdateProperty = () => {
                   style={{ width: "50%" }}
                 />
 
-                <TextField
-                  label="Enter Size*"
-                  variant="outlined"
-                  color="secondary"
-                  size="small"
-                  name="size"
-                  value={formData.size}
-                  onChange={handleChange}
-                  style={{ width: "50%" }}
-                />
-
-                <FormControl
-                  variant="outlined"
-                  size="small"
-                  style={{ width: "10%" }}
-                >
-                  <InputLabel id="size-input-label">Unit Type</InputLabel>
-                  <Select
-                    labelId="size-input-label"
-                    id="size-input"
-                    name="sizeUnit"
-                    value={sizeUnit}
+                <div className="flex flex-wrap gap-2">
+                  <TextField
+                    label="Enter Size*"
+                    variant="outlined"
+                    color="secondary"
+                    size="small"
+                    name="size"
+                    value={formData.size}
                     onChange={handleChange}
-                    label="Size Unit"
+                    style={{ width: "50%" }}
+                  />
+
+                  <FormControl
+                    variant="outlined"
+                    size="small"
+                    style={{ width: "10%" }}
                   >
-                    <MenuItem value="sqFt">Sqft</MenuItem>
-                    <MenuItem value="yard">yard</MenuItem>
-                  </Select>
-                </FormControl>
+                    <InputLabel id="size-input-label">Unit Type</InputLabel>
+                    <Select
+                      labelId="size-input-label"
+                      id="size-input"
+                      name="sizeUnit"
+                      value={sizeUnit}
+                      onChange={handleChange}
+                      label="Size Unit"
+                    >
+                      <MenuItem value="sqFt">Sqft</MenuItem>
+                      <MenuItem value="yard">yard</MenuItem>
+                    </Select>
+                  </FormControl>
+                </div>
 
                 <TextField
                   label="Enter Price (in digits)*"
@@ -730,6 +747,65 @@ export const UpdateProperty = () => {
                   backgroundColor: "#f9f9f9",
                 }}
               >
+                <Typography
+                  variant="h5"
+                  sx={{ textAlign: "center", fontWeight: "600", color: "#333" }}
+                >
+                  Project Details
+                </Typography>
+                <TextField
+                  type="string"
+                  label="Enter Project Size With Measurements like acres etc."
+                  variant="outlined"
+                  color="secondary"
+                  size="small"
+                  name="projectSize"
+                  value={formData.projectSize}
+                  onChange={handleChange}
+                  fullWidth
+                />
+                <TextField
+                  type="string"
+                  label="Enter Project Status like under construction, completed etc."
+                  variant="outlined"
+                  color="secondary"
+                  size="small"
+                  name="projectStatus"
+                  value={formData.projectStatus}
+                  onChange={handleChange}
+                  fullWidth
+                />
+                <TextField
+                  type="string"
+                  label="Enter Total Units"
+                  variant="outlined"
+                  color="secondary"
+                  size="small"
+                  name="totalUnits"
+                  value={formData.totalUnits}
+                  onChange={handleChange}
+                  fullWidth
+                />
+              </Box>  
+
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 2,
+                  mt: 2,
+                  padding: "12px",
+                  border: "2px solid #ccc",
+                  borderRadius: "8px",
+                  backgroundColor: "#f9f9f9",
+                }}
+              >
+                <Typography
+                  variant="h5"
+                  sx={{ textAlign: "center", fontWeight: "600", color: "#333" }}
+                >
+                  Facilities
+                </Typography>
                 {/* Furnish Type */}
                 <FormControl
                   style={{
@@ -985,7 +1061,29 @@ export const UpdateProperty = () => {
                 </FormControl>
               </Box>
 
-              <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 2,
+                  border: "2px solid #ccc",
+                  borderRadius: "8px",
+                  backgroundColor: "#f9f9f9",
+                  padding: "12px",
+                  marginTop: 2,
+                }}
+              >
+                <Typography
+                  variant="h5"
+                  sx={{
+                    textAlign: "center",
+                    fontWeight: "600",
+                    color: "#333",
+                    marginTop: 2,
+                  }}
+                >
+                  Upload
+                </Typography>
                 <FormControl component="fieldset">
                   <FormLabel id="image-upload">
                     Upload Property Images - (Only jpeg, jpg, png files are

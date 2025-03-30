@@ -8,7 +8,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { CircularProgress } from "@mui/material";
 import { useFetchData } from "../hooks/useFetchData";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { MdArrowBack, MdArrowForward } from "react-icons/md";
 
 export const Testimonials = () => {
   const prevRef = useRef(null);
@@ -148,7 +148,7 @@ export const Testimonials = () => {
                 ref={prevRef}
                 className="w-[30px] h-[30px] p-2 bg-[#1d2a3b] text-white rounded-full"
               >
-                <FaChevronLeft size={15} />
+                <MdArrowBack size={15} />
               </button>
               <div
                 ref={paginationRef}
@@ -158,7 +158,7 @@ export const Testimonials = () => {
                 ref={nextRef}
                 className="w-[30px] h-[30px] p-2 bg-[#1d2a3b] text-white rounded-full"
               >
-                <FaChevronRight size={15} />
+                <MdArrowForward size={15} />
               </button>
             </div>
           </div>

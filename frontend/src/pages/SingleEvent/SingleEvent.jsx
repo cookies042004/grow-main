@@ -91,12 +91,12 @@ export const SingleEvent = () => {
               <h1 className="font-sans text-3xl lg:text-4xl font-medium text-center mb-8">
                 {event.title}
               </h1>
-              <div className="text-gray-700 leading-relaxed mb-6 text-center">
+              <div className="text-gray-700 text-justify mb-6">
                 {event.description}
               </div>
 
               {/* Image Grid */}
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {paginatedImages.map((item, index) => (
                   <div
                     key={startIndex + index}
