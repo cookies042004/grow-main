@@ -75,7 +75,7 @@ export const PropertyCard = ({
       </div>
 
       {/* Features - Units, Size, Price per sq.ft. */}
-      <div className="flex justify-between gap-3 mt-5 font-roboto text-xs">
+      <div className="flex gap-3 justify-between mt-5 font-roboto">
         <div className="flex items-center gap-1">
           <HomeIcon sx={{ color: "#1d2a3b", fontSize: "18px" }} />
           <span>{unit}</span>
