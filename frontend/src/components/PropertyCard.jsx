@@ -33,7 +33,7 @@ export const PropertyCard = ({
   function toINRCr(amount) {
     return amount < 10000000
       ? (amount / 100000).toFixed(1) + " L"
-      : (amount / 10000000).toFixed(1) + " Cr";
+      : (amount / 10000000).toFixed(2) + " Cr";
   }
 
   function selectUnit(sizeUnit) {

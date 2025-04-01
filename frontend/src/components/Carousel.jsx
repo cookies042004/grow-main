@@ -72,7 +72,7 @@ const Carousel = ({ galleryImages }) => {
   return (
     <div className="grid gap-6">
       <div className="flex w-full relative gap-2 flex-col md:flex-row">
-        <div className="w-full h-[300px] md:w-5/6 relative">
+        <div className="w-full h-[300px] relative">
           <div className="overflow-hidden bg-black h-[300px] transition-transform duration-500">
             <img
               src={galleryImages[activeIndex]}

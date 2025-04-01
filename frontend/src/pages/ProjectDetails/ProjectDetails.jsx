@@ -75,11 +75,13 @@ export const ProjectDetails = () => {
   const [isFading, setIsFading] = useState(false);
 
   function toINRCr(amount) {
-    // writing code for converting amount in lakhs and crores
+    // Check if amount is less than 1 crore (10 million)
     if (amount < 10000000) {
+      // Convert to lakhs, round to 1 decimal place
       return (amount / 100000).toFixed(1) + " L";
     } else {
-      return (amount / 10000000).toFixed(1) + " Cr";
+      // Convert to crores, round to 1 decimal place
+      return (amount / 10000000).toFixed(2) + " Cr";
     }
   }
 
@@ -216,7 +218,7 @@ export const ProjectDetails = () => {
                   </div>
 
                   {/* Right Section - Price & Buttons */}
-                  <div className="flex flex-col items-center sm:items-end w-full sm:w-2/3">
+                  <div className="flex flex-col items-center sm:items-end w-full">
                     <h5 className="font-semibold text-[#1d2a3b] text-xl sm:text-2xl">
                       ₹{toINRCr(property?.price)}*
                     </h5>
@@ -246,7 +248,7 @@ export const ProjectDetails = () => {
                         href={`https://wa.me/+918750238581?text=Hi I am interested in ${property?.name}, Please share the details.`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full sm:w-auto"
+                        className="w-full sm:w-auto text-sm sm:text-sm"
                       >
                         WhatsApp Us
                       </Button>
