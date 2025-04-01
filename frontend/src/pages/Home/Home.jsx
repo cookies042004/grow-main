@@ -72,10 +72,9 @@ export const Home = () => {
           Discover Your Dream Home
         </h1>
 
-        <div className="max-w-[1280px] mx-auto md:p-5">
+        <div className="max-w-[1280px] md:p-5 mx-auto px-4 sm:px-6">
           <div
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5 
-         place-items-center"
+            className="flex flex-wrap justify-center gap-5"
           >
             {[
               {
@@ -104,16 +103,17 @@ export const Home = () => {
                 title={property.title}
                 category={property.category}
                 image={property.image}
-                className="w-[90%] sm:w-[80%] md:w-[90%] lg:w-full p-4 sm:p-6 
+                className="w-full sm:w-[80%] md:w-[60%] lg:w-[22%] p-4 sm:p-6 
           transition-transform duration-300 ease-in-out 
           shadow-lg hover:shadow-2xl hover:-translate-y-3 hover:scale-105 
           hover:rotate-[2deg] hover:bg-gray-100 
-          rounded-2xl bg-white transform-gpu"
+          rounded-xl bg-white transform-gpu"
               />
             ))}
           </div>
         </div>
       </div>
+
 
       {/* More than 10 years of experience  */}
       <div

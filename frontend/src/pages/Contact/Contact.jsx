@@ -106,7 +106,7 @@ export const Contact = () => {
           </div>
         </div>
 
-        <div className="max-w-[1280px] mx-auto">
+        <div className="max-w-[1280px]">
           <div className="grid sm:grid-cols-12 my-5 lg:my-10">
             <div className="col-span-12 lg:col-span-6 p-3 m-5">
               <h1 className="text-2xl lg:text-4xl font-medium font-sans text-[#1d2a3b] text-center">
@@ -236,7 +236,7 @@ export const Contact = () => {
 
         <div className="bg-gray-50">
           <div className="max-w-[1280px] mx-auto">
-            <div className="grid sm:grid-cols-12 py-10">
+            <div className="grid sm:grid-cols-12 py-10 px-5">
               <div className="col-span-12 md:col-span-6 lg:col-span-4 flex justify-center bg-white m-5 px-3 lg:px-4 py-4 lg:py-6 rounded-[24px] shadow-lg">
                 <div className="flex flex-col gap-3 lg:gap-5 justify-center items-center">
                   <div className="flex items-center justify-center p-5 bg-gradient-to-r from-gray-600 to-gray-800 rounded-[50%] h-[50px] w-[50px] lg:h-[70px] lg:w-[70px]">

@@ -26,7 +26,7 @@ export const PropertyCard1 = ({ title }) => {
 
   return (
     <div
-      className="relative items-center w-[280px] h-72 rounded-2xl overflow-hidden shadow-lg cursor-pointer transition-transform transform hover:scale-105 "
+      className="relative items-center w-[280px] h-72 rounded-xl overflow-hidden shadow-lg cursor-pointer transition-transform transform hover:scale-105 "
       // onMouseEnter={() => setHovered(true)}
       // onMouseLeave={() => setHovered(false)}
       onClick={submitHandler}

@@ -78,7 +78,7 @@ export const About = () => {
             <img
               src={aboutImg}
               alt="about-welcome-image"
-              className="h-[280px] lg:h-[430px] w-[480px] mx-5"
+              className="h-[280px] lg:h-[430px] w-[480px] mx-5 rounded-lg"
             />
           </div>
         </div>
@@ -157,11 +157,11 @@ export const About = () => {
               <img
                 src={whatwedo}
                 alt=""
-                className="my-5 w-[300px] lg:w-[450px] lg:h-[410px] object-cover"
+                className="my-5 w-[300px] lg:w-[450px] lg:h-[410px] object-cover rounded-lg"
               />
             </div>
             <div className="col-span-12 lg:col-span-6 flex flex-col justify-center pb-10">
-              <p className="font-poppins text-sm px-8 lg:text-lg lg:leading-8 text-justify text-gray-700">
+              <p className="font-sans text-sm px-8 lg:text-lg lg:leading-8 text-justify text-gray-700">
                 At Grow Infinity Realtors, we take immense pride in our
                 unwavering commitment to providing personalized real estate
                 solutions tailored specifically to meet the unique needs and
@@ -218,7 +218,7 @@ export const About = () => {
             <img
               src={about}
               alt="About us"
-              className="mb-5 w-[400px] lg:w-[450px] lg:h-[410px] object-cover"
+              className="mb-5 w-[400px] lg:w-[450px] lg:h-[410px] object-cover rounded-lg"
             />
           </div>
         </div>
@@ -240,7 +240,7 @@ export const About = () => {
                 <div className="relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden flex flex-col items-center text-center p-6 md:w-[550px] lg:w-[550px]">
                   {/* Background Image */}
                   {/* Image Section */}
-                  <div className="relative w-32 h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden border-4 border-[#1d2a3b]">
+                  <div className="relative w-32 h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden border-2 border-[#1d2a3b]">
                     <img
                       src={member.image}
                       alt={member.name}

@@ -22,7 +22,7 @@ export const Testimonials = () => {
   const [selectedReview, setSelectedReview] = useState(null);
 
   useEffect(() => {
-    if (swiperInstance) {
+    if (swiperInstance && testimonials.length) {
       swiperInstance.params.navigation.prevEl = prevRef.current;
       swiperInstance.params.navigation.nextEl = nextRef.current;
       swiperInstance.params.pagination.el = paginationRef.current;
@@ -30,23 +30,39 @@ export const Testimonials = () => {
       swiperInstance.navigation.update();
       swiperInstance.pagination.init();
       swiperInstance.pagination.update();
-    }
-  }, [swiperInstance]);
 
+      // Override navigation methods
+      swiperInstance.navigation.prev = () => {
+        if (swiperInstance.isBeginning) {
+          swiperInstance.slideTo(testimonials.length - 1, 300);
+        } else {
+          swiperInstance.slidePrev();
+        }
+      };
+
+      swiperInstance.navigation.next = () => {
+        if (swiperInstance.isEnd) {
+          swiperInstance.slideTo(0, 300);
+        } else {
+          swiperInstance.slideNext();
+        }
+      };
+    }
+  }, [swiperInstance, testimonials.length]);
   return (
-    <div className="py-2 lg:py-4 lg:px-10 px-10">
+    <div className="py-2 lg:py-4 lg:px-10 px-6">
       <div>
         <h1 className="flex justify-center items-center lg:text-4xl text-2xl text-[#1d2a3b] font-medium py-4">
           Testimonials
         </h1>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-28 max-w-[1280px] mx-auto">
-        <div className="flex flex-col items-center m-3 lg:m-5 px-5 lg:px-7 font-roboto lg:pe-20">
-          <h1 className="text-xl lg:text-3xl items-left text-[#1A1A1A] my-4 px-[-80px] font-medium">
+      <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-28 max-w-[1280px] mx-auto">
+        <div className="flex flex-col items-center lg:m-5 lg:px-7 font-sans">
+          <h1 className="text-xl lg:text-3xl text-[#1d2a3b] my-4 font-medium">
             What our customers are saying?
           </h1>
-          <p className="text-[#1A1A1A] text-md lg:text-lg mt-5">
-            Don't just take our word for it—hear directly from those who have
+          <p className="text-[#1A1A1A] text-md lg:text-md mt-5">
+            Don't just take our word for it - hear directly from those who have
             experienced our services. Our customer's stories reflect the
             dedication, expertise, and care we put into every transaction. Read
             their testimonials and see why we're the trusted choice for all your
@@ -86,6 +102,7 @@ export const Testimonials = () => {
             <Swiper
               onSwiper={setSwiperInstance}
               grabCursor
+              loop={true}
               modules={[Autoplay, Pagination, Navigation]}
               autoplay={{ delay: 3000, disableOnInteraction: false }}
               pagination={{ clickable: true, el: paginationRef.current }}
@@ -94,7 +111,7 @@ export const Testimonials = () => {
             >
               {testimonials.map((testimonial) => (
                 <SwiperSlide key={testimonial._id}>
-                  <div className="font-roboto">
+                  <div className="font-sans">
                     <div className="flex-col items-center gap-4 testimonial-item">
                       <div className="relative flex items-center gap-5 px-4">
                         <div className="border border-gray-300 p-1 lg:p-1 rounded-full">
@@ -122,9 +139,9 @@ export const Testimonials = () => {
                       </div>
 
                       <div className="mt-5 h-[170px] overflow-hidden">
-                        <p className="text-sm lg:text-lg px-4 text-justify font-roboto font-medium text-[#1A1A1A] lg:leading-[1.5]">
-                          {testimonial.review.length > 150
-                            ? testimonial.review.slice(0, 120) + "..."
+                        <p className="text-sm lg:text-lg px-4 text-justify font-sans font-medium text-[#1A1A1A] lg:leading-[1.5]">
+                          {testimonial.review.length > 200
+                            ? testimonial.review.slice(0, 180) + "..."
                             : testimonial.review}
                         </p>
                         {testimonial.review.length > 200 && (
@@ -142,6 +159,7 @@ export const Testimonials = () => {
               ))}
             </Swiper>
           </div>
+          
           <div className="flex flex-col items-center mt-8">
             <div className="flex gap-4 mb-3">
               <button

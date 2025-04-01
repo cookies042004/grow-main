@@ -24,6 +24,7 @@
     "framer-motion": "^12.4.4",
     "jquery": "^3.7.1",
     "js-cookie": "^3.0.5",
+    "keen-slider": "^6.8.6",
     "lottie-react": "^2.4.1",
     "lucide-react": "^0.475.0",
     "num-words": "^1.2.3",
