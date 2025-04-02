@@ -133,18 +133,18 @@ export const Testimonials = () => {
                           <img
                             src={googleReview}
                             alt="Google Review"
-                            className="w-[40px] lg:w-[70px] h-[40px] lg:h-[70px] object-cover"
+                            className="w-[40px] lg:w-[70px] h-[40px] lg:h-[70px] object-cover shadow-md rounded-full"
                           />
                         </div>
                       </div>
 
                       <div className="mt-5 h-[170px] overflow-hidden">
-                        <p className="text-sm lg:text-lg px-4 text-justify font-sans font-medium text-[#1A1A1A] lg:leading-[1.5]">
+                        <p className="text-sm px-4 text-justify font-sans font-medium text-[#1A1A1A] lg:leading-[1.5]">
                           {testimonial.review.length > 200
-                            ? testimonial.review.slice(0, 180) + "..."
+                            ? testimonial.review.slice(0, 220) + "..."
                             : testimonial.review}
                         </p>
-                        {testimonial.review.length > 200 && (
+                        {testimonial.review.length > 220 && (
                           <button
                             className="text-[#1d2a3b] font-semibold mt-5 cursor-pointer px-4"
                             onClick={() => setSelectedReview(testimonial)}
@@ -185,25 +185,28 @@ export const Testimonials = () => {
 
       {/* Modal */}
       {selectedReview && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
-          <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
-            <div className="flex justify-between items-center">
-              <h2 className="text-xl font-bold">{selectedReview.name}</h2>
-              <img
-                src={googleReview}
-                alt="Google Review"
-                className="w-[40px] h-[40px] object-cover"
-              />
-            </div>
-            <p className="mt-4">{selectedReview.review}</p>
-            <button
-              className="mt-4 px-4 py-2 bg-[#1d2a3b]  text-white rounded"
-              onClick={() => setSelectedReview(null)}
-            >
-              Close
-            </button>
+        <div
+        className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
+        onClick={() => setSelectedReview(null)} // Close modal when clicking outside
+      >
+        <div
+          className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full max-h-[80vh] overflow-y-auto"
+          onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
+        >
+          <div className="flex justify-between items-center">
+            <h2 className="text-xl font-bold">{selectedReview.name}</h2>
+            <img src={googleReview} alt="Google Review" className="w-[40px] h-[40px] object-cover shadow-md rounded-full" />
           </div>
+          <p className="mt-4">{selectedReview.review}</p>
+          <button
+            className="mt-4 px-4 py-2 bg-[#1d2a3b] text-white rounded"
+            onClick={() => setSelectedReview(null)}
+          >
+            Close
+          </button>
         </div>
+      </div>
+      
       )}
     </div>
   );

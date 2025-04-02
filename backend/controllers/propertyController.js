@@ -4,6 +4,7 @@ const Property = require("../models/property");
 const Category = require("../models/category");
 const Amenity = require("../models/amenity");
 const slugify = require("slugify")
+const cloudinary = require("cloudinary").v2;
 
 // Get all Properties
 const getProperty = async (req, res) => {
@@ -160,12 +161,12 @@ const createProperty = async (req, res) => {
   }
 };
 
-// Update a Property
+// Update a property
+
 const updateProperty = async (req, res) => {
   try {
     const propertyId = req.params.id;
-
-    const {
+    let {
       category,
       name,
       propertyType,
@@ -181,54 +182,58 @@ const updateProperty = async (req, res) => {
       amenities,
       projectSize,
       projectStatus,
-      totalUnits
+      totalUnits,
+      removedImages,
     } = req.body;
 
     const property = await Property.findById(propertyId);
     if (!property) {
-      return res.status(404).json({
-        success: false,
-        message: "Property not found"
-      });
+      return res.status(404).json({ success: false, message: "Property not found" });
     }
 
-    const newImages = [];
+    if (typeof removedImages === "string") {
+      try {
+        removedImages = JSON.parse(removedImages);
+      } catch (error) {
+        removedImages = [removedImages];
+      }
+    } else if (!Array.isArray(removedImages)) {
+      removedImages = [];
+    }
+
+    for (const imgUrl of removedImages) {
+      if (!imgUrl.startsWith("http")) continue; // Only Cloudinary URLs
+      
+      const publicId = imgUrl.split("/").slice(-2).join("/").split(".")[0]; // Extract correct Cloudinary public ID
+      const result = await cloudinary.uploader.destroy(publicId, { invalidate: true });
+
+      if (result.result === "ok") {
+        property.image = property.image.filter(img => img !== imgUrl);
+      }
+    }
+
+    const newImages = req.files?.images?.map(file => file.path) || [];
+    property.image = [...(property.image || []), ...newImages];
+
     const newVideos = [];
-    const dp = [];
-
-    if (req.files && req.files.images) {
-      req.files.images.forEach((file) => newImages.push(file.path));
+    if (req.files?.video) {
+      req.files.video.forEach(file => newVideos.push(file.path));
     }
 
-    if (req.files && req.files.video) {
-      req.files.video.forEach((file) => newVideos.push(file.path));
+    const newDp = [];
+    if (req.files?.image) {
+      req.files.image.forEach(file => newDp.push(file.path));
     }
 
-    if (req.files['image']) {
-      req.files['image'].forEach((file) => {
-        dp.push(file.path);
-      });
-    }
-
-    if (newImages.length > 0 && property.image && property.image.length > 0) {
-      property.image.forEach((ele) => {
-        const imagePath = path.join(__dirname, "../", ele);
-        if (fs.existsSync(imagePath)) {
-          fs.unlinkSync(imagePath);
+    if (newDp.length > 0 && property.dp && property.dp.length > 0) {
+      property.dp.forEach((ele) => {
+        const dpPath = path.join(__dirname, "../", ele);
+        if (fs.existsSync(dpPath)) {
+          fs.unlinkSync(dpPath);
         }
       });
     }
 
-    if (newVideos.length > 0 && property.video && property.video.length > 0) {
-      property.video.forEach((ele) => {
-        const videoPath = path.join(__dirname, "../", ele);
-        if (fs.existsSync(videoPath)) {
-          fs.unlinkSync(videoPath);
-        }
-      });
-    }
-
-    // Update property details
     Object.assign(property, {
       category,
       propertyType,
@@ -243,27 +248,18 @@ const updateProperty = async (req, res) => {
       address,
       furnishType,
       amenities,
-      dp,
       projectSize,
       projectStatus,
       totalUnits,
-      image: newImages.length > 0 ? newImages : property.image,
+      dp: newDp.length > 0 ? newDp : property.dp,
       video: newVideos.length > 0 ? newVideos : property.video,
     });
 
     await property.save();
-
-    res.status(200).json({
-      success: true,
-      message: "Property updated successfully",
-      property,
-    });
+    res.status(200).json({ success: true, message: "Property updated successfully", property });
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: "Internal Server Error",
-      error: error.message
-    });
+    console.error("Error updating property:", error);
+    res.status(500).json({ success: false, message: "Internal Server Error", error: error.message });
   }
 };
 

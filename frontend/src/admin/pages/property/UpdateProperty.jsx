@@ -84,11 +84,15 @@ export const UpdateProperty = () => {
   const [selectAllFlat, setSelectAllFlat] = useState([]);
   const [selectAllLocation, setSelectAllLocation] = useState([]);
   const [sizeUnit, setSizeUnit] = useState("");
+  const [removedImages, setRemovedImages] = useState([]);
+
 
   // Ref to the file input element
   const imageInputRef = useRef();
   const videoInputRef = useRef();
   const dpInputRef = useRef();
+
+  console.log(data);
 
   // Load property data into formData when property is fetched
   useEffect(() => {
@@ -119,7 +123,7 @@ export const UpdateProperty = () => {
           ?.filter((amenity) => amenity.type === "location_advantages")
           ?.map((amenity) => amenity._id),
       });
-      setUploadedImages(property.images || []);
+      setUploadedImages(property.image || []);
       setUploadedDpImage(property.dp || null);
       // setUploadedVideos(property.video || null  );
       setSizeUnit(property.sizeUnit);
@@ -139,6 +143,8 @@ export const UpdateProperty = () => {
       );
     }
   }, [data]);
+
+  console.log("uploaded",uploadedImages);
 
   // Handle form input changes
   const handleChange = (event) => {
@@ -226,18 +232,15 @@ export const UpdateProperty = () => {
   // Handler for uploading images
   const handleImageUpload = (event) => {
     const files = Array.from(event.target.files);
-    const maxSize = 2 * 1024 * 1024; // 2 MB
-
-    const validFiles = files.filter((file) => {
-      if (file.size > maxSize) {
-        toast.error(`Image size should be less than 2Mb.`);
-        return false;
-      }
-      return true;
+  
+    // Validate file types & size
+    const validFiles = files.filter(file => {
+      return ["image/jpeg", "image/png", "image/jpg"].includes(file.type) && file.size <= 2 * 1024 * 1024;
     });
-
-    setUploadedImages((prevImages) => [...prevImages, ...validFiles]);
+  
+    setUploadedImages(prevImages => [...prevImages, ...validFiles]); // Keep old images
   };
+  
 
   // Handler for video uplaoding
   const handleVideoUpload = (event) => {
@@ -329,10 +332,19 @@ export const UpdateProperty = () => {
 
   // Function to remove image
   const removeImage = (index) => {
-    setUploadedImages((prevImages) =>
-      prevImages.filter((image, i) => i !== index)
-    );
+    setUploadedImages(prevImages => {
+      const updatedImages = [...prevImages];
+      const removedImage = updatedImages.splice(index, 1)[0];
+  
+      // If the removed image is an existing URL, track it for backend deletion
+      if (typeof removedImage === "string") {
+        setRemovedImages(prevRemoved => [...prevRemoved, removedImage]);
+      }
+  
+      return updatedImages;
+    });
   };
+  
 
   const removeVideo = () => {
     setUploadedVideos(false);
@@ -340,26 +352,32 @@ export const UpdateProperty = () => {
 
   // Function to display image previews
   const renderImagePreviews = () => {
-    return uploadedImages.map((image, index) => (
-      <div
-        key={index}
-        style={{ position: "relative", display: "inline-block" }}
-      >
-        <img
-          src={URL.createObjectURL(image)}
-          alt="Preview"
-          className="image-preview"
-        />
-        <button
-          type="button"
-          className="delete-image"
-          onClick={() => removeImage(index)}
-        >
-          X
-        </button>
-      </div>
-    ));
+    return uploadedImages.map((image, index) => {
+      let imageUrl;
+  
+      // Check if image is a File (newly uploaded) or a URL (existing)
+      if (image instanceof File) {
+        imageUrl = URL.createObjectURL(image);
+      } else {
+        imageUrl = image; // Keep existing image URLs
+      }
+  
+      return (
+        <div key={index} style={{ position: "relative", display: "inline-block" }}>
+          <img src={imageUrl} alt="Preview" className="image-preview" />
+          <button
+            type="button"
+            className="delete-image"
+            onClick={() => removeImage(index)}
+          >
+            X
+          </button>
+        </div>
+      );
+    });
   };
+  
+  
 
   // Function for display video previews
   const renderVideoPreview = () => {
@@ -396,44 +414,37 @@ export const UpdateProperty = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setButtonLoading(true);
-    const allSelectedAmenities = [
-      ...formData.societyAmenities,
-      ...formData.flatAmenities,
-      ...formData.locationAdvantages,
-    ];
-
+  
     const formDataToSend = new FormData();
-
-    // Append form fields to FormData
+  
+    // Append form fields
     Object.keys(formData).forEach((key) => {
-      if (
-        Array.isArray(formData[key]) &&
-        (key === "societyAmenities" ||
-          key === "flatAmenities" ||
-          key === "locationAdvantages")
-      ) {
-        formData[key].forEach((item) =>
-          formDataToSend.append("amenities", item)
-        );
+      if (Array.isArray(formData[key]) && ["societyAmenities", "flatAmenities", "locationAdvantages"].includes(key)) {
+        formData[key].forEach(item => formDataToSend.append("amenities", item));
       } else {
         formDataToSend.append(key, formData[key]);
       }
     });
-
-    // Append uploaded images
+  
+    // Append images (only new ones)
     uploadedImages.forEach((image) => {
-      formDataToSend.append("images", image);
+      if (image instanceof File) {
+        formDataToSend.append("images", image);
+      }
     });
-
-    // Append uploaded video
+  
+    // Append removed images
+    removedImages.forEach((image) => {
+      formDataToSend.append("removedImages", image);
+    });
+  
+    // Append other files
     if (uploadedVideos) {
       formDataToSend.append("video", uploadedVideos);
     }
-
     formDataToSend.append("image", uploadedDpImage);
-
     formDataToSend.append("sizeUnit", sizeUnit);
-
+  
     try {
       const response = await axios.patch(
         `${process.env.BASE_URL}/api/v1/property/${id}`,
@@ -444,22 +455,19 @@ export const UpdateProperty = () => {
           },
         }
       );
-
+  
       if (response.status === 200) {
         toast.success("Property updated successfully!");
-        refetch(); // Refetch the property data
+        refetch();
       }
-      setButtonLoading(false);
-      setSelectAllSociety([]);
-      setSelectAllFlat([]);
-      setSelectAllLocation([]);
-      setSizeUnit();
-      setUploadedVideos(null);
     } catch (error) {
-      setButtonLoading(false);
       toast.error("Failed to update property.");
+      console.log("error is",error)
+    } finally {
+      setButtonLoading(false);
     }
   };
+  
 
   const inWords = (num) => {
     const price = Number(num);
@@ -1084,6 +1092,7 @@ export const UpdateProperty = () => {
                 >
                   Upload
                 </Typography>
+
                 <FormControl component="fieldset">
                   <FormLabel id="image-upload">
                     Upload Property Images - (Only jpeg, jpg, png files are
@@ -1098,6 +1107,9 @@ export const UpdateProperty = () => {
                     multiple
                     onChange={handleImageUpload}
                   />
+                  <div className="flex flex-wrap mt-2">
+                    {renderImagePreviews()}
+                  </div>
                   <label htmlFor="image-upload-input">
                     <Button
                       variant="outlined"
@@ -1108,10 +1120,6 @@ export const UpdateProperty = () => {
                       Choose Images
                     </Button>
                   </label>
-
-                  <div className="flex flex-wrap mt-2">
-                    {renderImagePreviews()}
-                  </div>
 
                   <Typography variant="body2">
                     {uploadedImages.length} images selected

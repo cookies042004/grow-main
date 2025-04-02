@@ -72,7 +72,7 @@ export const Event = () => {
                       <div className="absolute inset-0 bg-black/30 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                         <Link
                           to={`/event/${event._id}`}
-                          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full transition-colors"
+                          className="bg-[#1d2a3b] text-white font-semibold py-2 px-4 rounded-full transition-colors"
                         >
                           View Details
                         </Link>

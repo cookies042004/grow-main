@@ -88,7 +88,7 @@ export const SingleEvent = () => {
 
           {event && (
             <>
-              <h1 className="font-sans text-3xl lg:text-4xl font-medium text-center mb-8">
+              <h1 className="font-sans text-3xl lg:text-4xl font-medium text-center text-[#1d2a3b] mb-8">
                 {event.title}
               </h1>
               <div className="text-gray-700 text-justify mb-6">
@@ -146,7 +146,7 @@ export const SingleEvent = () => {
 
       {/* Image Modal */}
       {modalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/80 z-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-black z-50">
           {/* Close Button */}
           <button
             className="absolute top-5 right-5 text-white text-3xl"
@@ -164,18 +164,18 @@ export const SingleEvent = () => {
           <img
             src={event.image[currentIndex]}
             alt="Event"
-            className="max-w-full max-h-[80vh] object-contain"
+            className="lg:w-[500px] lg:h-[450px] w-[300px] object-contain"
           />
 
           {/* Navigation Arrows */}
           <button
-            className="absolute left-5 text-white text-3xl bg-black/50 p-2 rounded-full"
+            className="absolute left-1 text-white text-3xl bg-black/50 p-2 rounded-full"
             onClick={prevImage}
           >
             <MdArrowBack />
           </button>
           <button
-            className="absolute right-5 text-white text-3xl bg-black/50 p-2 rounded-full"
+            className="absolute right-1 text-white text-3xl bg-black/50 p-2 rounded-full"
             onClick={nextImage}
           >
             <MdArrowForward />

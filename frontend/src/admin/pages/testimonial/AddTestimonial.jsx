@@ -38,6 +38,7 @@ export const AddTestimonial = () => {
       setFormData((prev) => ({
         ...prev,
         selectedFile: file,
+        imagePreview: previewUrl,
       }));
     }
   };

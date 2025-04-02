@@ -22,10 +22,8 @@ export const Footer = () => {
               alt="Grow Infinity Realtors Logo"
               className="h-[70px] w-[200px] lg:w-[250px] object-contain"
             />
-            <p className="mt-5 text-sm text-[#d1cfda] leading-6">
-              Grow Infinity Realtors is an accomplished real estate firm.
-              Drawing from years of experience, they bring a strategic yet
-              personal approach to home buying, selling, and renting.
+            <p className="mt-5 text-sm lg:w-[340px] text-[#d1cfda]">
+            Grow Infinity Realtors is a well-established and highly regarded real estate agent firm based in Noida, known for its expertise in helping clients buy and sell properties. With years of industry experience, the firm combines strategic market insights with a personalized approach, ensuring that every client receives tailored solutions to meet their unique real estate needs.
             </p>
           </div>
 

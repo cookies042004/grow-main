@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { Layout } from "../../components/Layout";
 import { NavigationBar } from "../../components/NavigationBar";
@@ -18,6 +18,14 @@ export const Awards = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const awardsPerPage = 9;
+
+  useEffect(() => {
+    if(modalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [modalOpen]);
 
   const openModal = (index) => {
     setCurrentIndex(index);
@@ -61,9 +69,9 @@ export const Awards = () => {
 
         {/* Awards Section */}
         <div className="my-10 px-4 sm:px-8 lg:px-8">
-          <h1 className="text-2xl lg:text-4xl font-medium text-[#1d2a3b] text-center mb-6">
-            Awards & Achievements
-          </h1>
+          {/* <h1 className="text-2xl lg:text-4xl font-medium text-[#1d2a3b] text-center mb-6"> */}
+            {/* Awards & Achievements */}
+          {/* </h1> */}
 
           <div className="flex flex-wrap justify-center gap-10 lg:p-6">
             {loading && <CircularProgress size="30px" className="flex justify-center" />}
@@ -80,7 +88,7 @@ export const Awards = () => {
                     <img
                       src={award.image}
                       alt={award.name || "Award"}
-                      className="w-[350px] h-[350px] object-cover rounded-lg shadow-lg transition-transform duration-300 cursor-pointer"
+                      className="w-[350px] h-[350px] object-contain rounded-lg shadow-lg transition-transform duration-300 cursor-pointer"
                       onClick={() => openModal(index + indexOfFirstAward)}
                     />
                     <p className="text-center text-sm sm:text-base font-medium text-gray-700">{award.name}</p>
@@ -116,15 +124,15 @@ export const Awards = () => {
           <button className="absolute top-5 right-5 text-white text-xl z-50" onClick={closeModal}>
             <FaTimes />
           </button>
-          <button className="absolute left-10 text-white text-xl z-50" onClick={prevImage}>
+          <button className="absolute left-1 text-white text-xl bg-black/50 rounded-full z-50" onClick={prevImage}>
             <ArrowBackIcon fontSize="large" />
           </button>
           <img
             src={awards[currentIndex]?.image}
             alt={awards[currentIndex]?.name || "Award"}
-            className="w-[400px] h-[400px] object-cover rounded-lg shadow-lg"
+            className="lg:w-[550px] lg:h-[500px] w-[400px] h-[300px] object-contain rounded-lg shadow-lg"
           />
-          <button className="absolute right-10 text-white text-xl z-50" onClick={nextImage}>
+          <button className="absolute right-1 text-white bg-black/50 rounded-full text-xl z-50" onClick={nextImage}>
             <ArrowForwardIcon fontSize="large" />
           </button>
         </div>
