@@ -162,7 +162,6 @@ const createProperty = async (req, res) => {
 };
 
 // Update a property
-
 const updateProperty = async (req, res) => {
   try {
     const propertyId = req.params.id;

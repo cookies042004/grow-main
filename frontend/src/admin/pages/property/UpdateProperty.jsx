@@ -377,8 +377,6 @@ export const UpdateProperty = () => {
     });
   };
   
-  
-
   // Function for display video previews
   const renderVideoPreview = () => {
     // Ensure uploadedVideos is valid before using it

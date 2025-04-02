@@ -4,6 +4,7 @@ const Property = require("../models/commercialProperty");
 const Category = require("../models/category");
 const Amenity = require("../models/amenity");
 const slugify = require("slugify")
+const cloudinary = require("cloudinary").v2;
 
 const getProperty = async (req, res) => {
     try {
@@ -14,7 +15,7 @@ const getProperty = async (req, res) => {
                 success: false,
                 message: "No properties found!",
             });
-        }   
+        }
 
         res.status(200).json({
             success: true,
@@ -168,8 +169,7 @@ const createProperty = async (req, res) => {
 const updateProperty = async (req, res) => {
     try {
         const propertyId = req.params.id;
-
-        const {
+        let {
             category,
             name,
             propertyType,
@@ -181,55 +181,59 @@ const updateProperty = async (req, res) => {
             location,
             description,
             address,
-            projectStatus,
+            furnishType,
+            amenities,
             projectSize,
+            projectStatus,
             totalUnits,
-            amenities
+            removedImages,
         } = req.body;
 
         const property = await Property.findById(propertyId);
         if (!property) {
-            return res.status(404).json({
-                success: false,
-                message: "Property not found"
-            });
+            return res.status(404).json({ success: false, message: "Property not found" });
         }
 
-        const newImages = [];
-        const newVideos = [];
-        const newDp = [];
-
-        if (req.files && req.files.images) {
-            req.files.images.forEach((file) => newImages.push(file.path));
+        if (typeof removedImages === "string") {
+            try {
+                removedImages = JSON.parse(removedImages);
+            } catch (error) {
+                removedImages = [removedImages];
+            }
+        } else if (!Array.isArray(removedImages)) {
+            removedImages = [];
         }
 
-        if (req.files && req.files.video) {
-            req.files.video.forEach((file) => newVideos.push(file.path));
+        for (const imgUrl of removedImages) {
+            if (!imgUrl.startsWith("http")) continue; // Only Cloudinary URLs
+        
+            // Corrected public ID extraction
+            const publicId = imgUrl
+                .replace(/^.*\/v\d+\//, '')
+                .split(".")[0];
+                
+            const result = await cloudinary.uploader.destroy(publicId, { invalidate: true });
+        
+            if (result.result === "ok") {
+                property.image = property.image.filter(img => decodeURIComponent(img) !== decodeURIComponent(imgUrl));
+            }
         }
+        
+        // Save the property after processing all images
+        await property.save();
+        
+        
+        // Save the property after processing all images
+        await property.save();
+        
 
-        if (req.files && req.files.image) {
-            newDp.push(req.files.image[0].path);
-        }
+        const newImages = req.files?.images?.map(file => file.path) || [];
+        property.image = [...(property.image || []), ...newImages];
 
-        if (newImages.length > 0 && property.image && property.image.length > 0) {
-            property.image.forEach((ele) => {
-                const imagePath = path.join(__dirname, "../", ele);
-                if (fs.existsSync(imagePath)) {
-                    fs.unlinkSync(imagePath);
-                }
-            });
-        }
+        const newVideos = req.files?.video?.map(file => file.path) || [];
+        const newDp = req.files?.image?.map(file => file.path) || [];
 
-        if (newVideos.length > 0 && property.video && property.video.length > 0) {
-            property.video.forEach((ele) => {
-                const videoPath = path.join(__dirname, "../", ele);
-                if (fs.existsSync(videoPath)) {
-                    fs.unlinkSync(videoPath);
-                }
-            });
-        }
-
-        if (newDp && property.dp && property.dp.length > 0) {
+        if (newDp.length > 0 && property.dp && property.dp.length > 0) {
             property.dp.forEach((ele) => {
                 const dpPath = path.join(__dirname, "../", ele);
                 if (fs.existsSync(dpPath)) {
@@ -238,16 +242,20 @@ const updateProperty = async (req, res) => {
             });
         }
 
-        let formattedAmenities = amenities;
+        let formattedAmenities = [];
         if (typeof amenities === "string") {
             try {
                 formattedAmenities = JSON.parse(amenities);
             } catch (error) {
-                formattedAmenities = amenities.split(",").map((id) => id.trim());
+                formattedAmenities = amenities.split(",").map(id => id.trim());
             }
+        } else if (Array.isArray(amenities)) {
+            formattedAmenities = amenities.map(id => id.trim());
         }
 
-        // Update property details
+        // Remove invalid ObjectId values (empty or non-valid IDs)
+        formattedAmenities = formattedAmenities.filter(id => id && id !== "''");
+
         Object.assign(property, {
             category,
             propertyType,
@@ -260,28 +268,20 @@ const updateProperty = async (req, res) => {
             location,
             description,
             address,
-            image: newImages.length > 0 ? newImages : property.image,
-            video: newVideos.length > 0 ? newVideos : property.video,
-            projectStatus,
+            furnishType,
             projectSize,
+            projectStatus,
             totalUnits,
-            dp: newDp ? newDp : property.dp,
+            dp: newDp.length > 0 ? newDp : property.dp,
+            video: newVideos.length > 0 ? newVideos : property.video,
             amenities: formattedAmenities
         });
 
         await property.save();
-
-        res.status(200).json({
-            success: true,
-            message: "Property updated successfully",
-            property,
-        });
+        res.status(200).json({ success: true, message: "Property updated successfully", property });
     } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: "Internal Server Error",
-            error: error.message
-        });
+        console.error("Error updating property:", error);
+        res.status(500).json({ success: false, message: "Internal Server Error", error: error.message });
     }
 };
 
@@ -342,9 +342,11 @@ const searchProperty = async (req, res) => {
 
         // Use a regular expression for case-insensitive search
         const properties = await Property.find({
-            $text: { $search: query }
+            $text: {
+                $search: query
+            }
         }).populate("category", "name").populate("amenities", "name type");
-        
+
 
         if (properties.length === 0) {
             return res.status(404).json({

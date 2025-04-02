@@ -64,6 +64,7 @@ export const UpdateCommercial = () => {
   const [uploadedVideos, setUploadedVideos] = useState(null);
   const [uploadedDpImage, setUploadedDpImage] = useState(null);
   const [selectAll, setSelectAll] = useState(false);
+  const [removedImages, setRemovedImages] = useState([]);
 
   // Ref to the file input element
   const imageInputRef = useRef();
@@ -89,7 +90,7 @@ export const UpdateCommercial = () => {
         sizeUnit: property.sizeUnit || "",
         amenities: property.amenities || [],
       });
-      setUploadedImages(property.images || []);
+      setUploadedImages(property.image || []);
       // setUploadedVideos(property.video || null  );
       // setSizeUnit(property.sizeUnit);
       setUploadedDpImage(property.dp || null);
@@ -276,9 +277,17 @@ export const UpdateCommercial = () => {
 
   // Function to remove image
   const removeImage = (index) => {
-    setUploadedImages((prevImages) =>
-      prevImages.filter((image, i) => i !== index)
-    );
+    setUploadedImages(prevImages => {
+      const updatedImages = [...prevImages];
+      const removedImage = updatedImages.splice(index, 1)[0];
+  
+      // If the removed image is an existing URL, track it for backend deletion
+      if (typeof removedImage === "string") {
+        setRemovedImages(prevRemoved => [...prevRemoved, removedImage]);
+      }
+  
+      return updatedImages;
+    });
   };
 
   const removeVideo = () => {
@@ -287,52 +296,29 @@ export const UpdateCommercial = () => {
 
   // Function to display image previews
   const renderImagePreviews = () => {
-    return uploadedImages.map((image, index) => (
-      <Box
-        key={index}
-        sx={{
-          position: "relative",
-          display: "inline-block",
-          width: 100,
-          height: 100,
-          borderRadius: "8px",
-          overflow: "hidden",
-          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.2)",
-          marginRight: 1,
-          marginBottom: 1,
-          "&:hover .delete-image": { opacity: 1 },
-        }}
-      >
-        <img
-          src={URL.createObjectURL(image)}
-          alt="Preview"
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            borderRadius: "8px",
-          }}
-        />
-        <IconButton
-          className="delete-image"
-          onClick={() => removeImage(index)}
-          sx={{
-            position: "absolute",
-            top: 5,
-            right: 5,
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            color: "white",
-            width: 20,
-            height: 20,
-            opacity: 0,
-            transition: "opacity 0.3s ease",
-            "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.7)" },
-          }}
-        >
-          <CloseIcon sx={{ fontSize: 14 }} />
-        </IconButton>
-      </Box>
-    ));
+    return uploadedImages.map((image, index) => {
+      let imageUrl;
+  
+      // Check if image is a File (newly uploaded) or a URL (existing)
+      if (image instanceof File) {
+        imageUrl = URL.createObjectURL(image);
+      } else {
+        imageUrl = image; // Keep existing image URLs
+      }
+  
+      return (
+        <div key={index} style={{ position: "relative", display: "inline-block" }}>
+          <img src={imageUrl} alt="Preview" className="image-preview" />
+          <button
+            type="button"
+            className="delete-image"
+            onClick={() => removeImage(index)}
+          >
+            X
+          </button>
+        </div>
+      );
+    });
   };
 
   // Function for display video previews
@@ -420,6 +406,10 @@ export const UpdateCommercial = () => {
     }
 
     formDataToSend.append("image", uploadedDpImage);
+
+    removedImages.forEach((image) => {
+      formDataToSend.append("removedImages", image);
+    });
 
     try {
       const response = await axios.patch(
