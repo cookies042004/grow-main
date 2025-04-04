@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Layout } from "../../components/Layout";
-
+import CountUp from 'react-countup'
 import "./Home.css";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
@@ -171,7 +171,8 @@ export const Home = () => {
               },
               {
                 Icon: AccessibilityNewIcon,
-                count: 30,
+                count: 40,
+                suffix: "+",
                 label: "Employees",
                 // color: "text-yellow-200",
               },
@@ -195,15 +196,13 @@ export const Home = () => {
                     className={`experience-icon ${item.color} hover:text-yellow-200`}
                   />
                   <div className="flex flex-col gap-1 my-4">
-                    <p className="font-poppins font-semibold text-2xl lg:text-2xl text-center">
-                      <span
-                        className="purecounter"
-                        data-purecounter-start="0"
-                        data-purecounter-end={item.count}
-                        data-purecounter-duration="3"
-                      >
-                        {item.count}
-                      </span>
+                    <p className="font-sans font-semibold text-2xl lg:text-2xl text-center">
+                    <CountUp
+                        start={0}
+                        end={item.count}
+                        duration={5}
+                        separator=","
+                      />
                       {item.suffix && <span>{item.suffix}</span>}
                     </p>
                     <p className="font-sans font-medium text-lg lg:text-lg">
