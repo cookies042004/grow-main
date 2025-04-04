@@ -22,7 +22,7 @@ import { RecentProperty } from "../../components/RecentProperty";
 import { ContactForm } from "../../components/ContactForm";
 import Carousel from "../../components/Carousel";
 import { NavigationProject } from "../../components/NavigationProject";
-import rera from "../../assets/img/rera.gif";
+import rera from "../../assets/img/icons8-approved.gif";
 
 export const ProjectDetails = () => {
   const { slug } = useParams(); // Get slug from URL
