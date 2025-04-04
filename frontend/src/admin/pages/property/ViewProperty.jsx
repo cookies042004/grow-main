@@ -23,7 +23,7 @@ export const ViewProperty = () => {
   const properties = data?.properties || [];
 
   const [selectedProperty, setSelectedProperty] = useState(null);
-  const [visibleCount, setVisibleCount] = useState(6); // Initially show 6 properties
+  const [visibleCount, setVisibleCount] = useState(9); // Initially show 6 properties
 
   const handleDelete = async (propertyId) => {
     try {

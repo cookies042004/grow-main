@@ -636,6 +636,18 @@ export const AddCommercial = () => {
                   Project Details
                 </Typography>
 
+                {/* Project RERA Input */}
+                <TextField
+                  label="Project Size (e.g. 50 acres)*"
+                  variant="outlined"
+                  color="secondary"
+                  size="small"
+                  name="rera"
+                  value={formData.rera}
+                  onChange={handleChange}
+                  fullWidth
+                />
+
                 {/* Project Size Input */}
                 <TextField
                   label="Project Size (e.g. 50 acres)*"
@@ -647,7 +659,7 @@ export const AddCommercial = () => {
                   onChange={handleChange}
                   fullWidth
                 />
-
+                
                 {/* Project Status Input */}
                 <TextField
                   label="Project Status (e.g. Under Construction, Completed)*"

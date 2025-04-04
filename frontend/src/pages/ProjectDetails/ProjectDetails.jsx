@@ -194,7 +194,7 @@ export const ProjectDetails = () => {
                 <div className="border border-gray-300 m-4 sm:mx-10 mt-5 mb-1 flex flex-col sm:flex-row gap-4 sm:gap-8 p-3 items-center sm:items-start">
                   {/* Left Section - Property Details */}
                   <div className="flex sm:flex-row flex-col items-center sm:items-start gap-3 w-full">
-                    <div className="border border-black">
+                    <div className="border border-gray-300">
                       <img
                         src={property?.dp}
                         alt="dealer"
@@ -202,7 +202,7 @@ export const ProjectDetails = () => {
                       />
                     </div>
                     <div className="flex flex-col">
-                      <h1 className="flex items-center justify-center sm:justify-start font-bold text-[#1d2a3b] text-lg sm:text-xl py-[1px] sm:pl-2">
+                      <h1 className="flex items-center justify-center sm:justify-start font-bold text-[#1d2a3b] text-lg py-[1px] sm:pl-2">
                         {property?.name}
                       </h1>
                       <p className="flex items-center justify-center sm:justify-start text-sm text-[#03002a] py-[1px] sm:pl-2">
@@ -353,6 +353,11 @@ export const ProjectDetails = () => {
                         icon: units,
                         label: "Total Units",
                         value: property?.totalUnits || "-",
+                      },
+                      {
+                        icon: units,
+                        label: "Rera No.",
+                        value: property?.propertyRera || "-",
                       },
                     ].map((item, index) => (
                       <div key={index} className="flex items-start gap-4">

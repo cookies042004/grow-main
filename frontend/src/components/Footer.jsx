@@ -93,7 +93,7 @@ export const Footer = () => {
               <div className="flex flex-col mt-5">
                 <p className="font-semibold text-lg mb-2">Follow Us</p>
                 <div className="flex space-x-5">
-                  <a href="#" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.linkedin.com/company/grow-infinity-realtors/" target="_blank" rel="noopener noreferrer">
                     <img
                       src={twitter}
                       alt="Twitter"
@@ -122,7 +122,7 @@ export const Footer = () => {
                       className="w-[25px] h-[25px]"
                     />
                   </a>
-                  <a href="#" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.youtube.com/@growinfinityrealtors" target="_blank" rel="noopener noreferrer">
                     <img
                       src={youtube}
                       alt="YouTube"

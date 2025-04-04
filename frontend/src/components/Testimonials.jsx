@@ -21,34 +21,53 @@ export const Testimonials = () => {
   const testimonials = data?.testimonials || [];
   const [selectedReview, setSelectedReview] = useState(null);
 
-  useEffect(() => {
-    if (swiperInstance && testimonials.length) {
-      swiperInstance.params.navigation.prevEl = prevRef.current;
-      swiperInstance.params.navigation.nextEl = nextRef.current;
-      swiperInstance.params.pagination.el = paginationRef.current;
-      swiperInstance.navigation.init();
-      swiperInstance.navigation.update();
-      swiperInstance.pagination.init();
-      swiperInstance.pagination.update();
+    useEffect(() => {
+      if(selectedReview) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "auto";
+      }
+    }, [selectedReview]);
 
-      // Override navigation methods
-      swiperInstance.navigation.prev = () => {
-        if (swiperInstance.isBeginning) {
-          swiperInstance.slideTo(testimonials.length - 1, 300);
-        } else {
-          swiperInstance.slidePrev();
-        }
-      };
+    useEffect(() => {
+      if (
+        swiperInstance &&
+        testimonials.length &&
+        prevRef.current &&
+        nextRef.current &&
+        paginationRef.current
+      ) {
+        swiperInstance.params.navigation.prevEl = prevRef.current;
+        swiperInstance.params.navigation.nextEl = nextRef.current;
+        swiperInstance.params.pagination.el = paginationRef.current;
+    
+        swiperInstance.navigation.init();
+        swiperInstance.navigation.update();
+        swiperInstance.pagination.init();
+        swiperInstance.pagination.update();
 
-      swiperInstance.navigation.next = () => {
-        if (swiperInstance.isEnd) {
-          swiperInstance.slideTo(0, 300);
-        } else {
-          swiperInstance.slideNext();
+        swiperInstance.navigation.prev = () => {
+          if (swiperInstance.isBeginning) {
+            swiperInstance.slideTo(testimonials.length - 1, 300);
+          } else {
+            swiperInstance.slidePrev();
+          }
+        };
+    
+        swiperInstance.navigation.next = () => {
+          if (swiperInstance.isEnd) {
+            swiperInstance.slideTo(0, 300);
+          } else {
+            swiperInstance.slideNext();
+          }
+        };
+
+        if (swiperInstance.autoplay && swiperInstance.autoplay.start) {
+          swiperInstance.autoplay.start();
         }
-      };
-    }
-  }, [swiperInstance, testimonials.length]);
+      }
+    }, [swiperInstance, testimonials.length, prevRef.current, nextRef.current, paginationRef.current]);
+    
   return (
     <div className="py-2 lg:py-4 lg:px-10 px-6">
       <div>
@@ -164,6 +183,7 @@ export const Testimonials = () => {
             <div className="flex gap-4 mb-3">
               <button
                 ref={prevRef}
+                aria-label="Previous testimonial"
                 className="w-[30px] h-[30px] p-2 bg-[#1d2a3b] text-white rounded-full"
               >
                 <MdArrowBack size={15} />
@@ -174,6 +194,7 @@ export const Testimonials = () => {
               ></div>
               <button
                 ref={nextRef}
+                aria-label="Next testimonial"
                 className="w-[30px] h-[30px] p-2 bg-[#1d2a3b] text-white rounded-full"
               >
                 <MdArrowForward size={15} />

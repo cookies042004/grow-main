@@ -18,6 +18,7 @@ export const Search = () => {
   const { data, loading, error } = useFetchData(apiUrl);
 
   const properties = data?.properties;
+  console.log("Properties:", properties);
 
   return (
     <Layout>
@@ -42,15 +43,25 @@ export const Search = () => {
         </h3>
       </div>
 
-      <div className="grid sm:grid-cols-12 mx-16">
+      <div className="grid sm:grid-cols-12">
         {loading && (
           <div className="col-span-12 flex items-center justify-center">
             <CircularProgress size="30px" />
           </div>
         )}
         {properties?.map((property) => (
-          <div className="col-span-3 flex justify-center m-3" key={property._id}>
-            <PropertyCard {...property} />
+          <div key={property._id} className="col-span-12 md:col-span-5 lg:col-span-3 m-3">
+            <PropertyCard id={property._id}
+              name={property.name}
+              slug={property.slug}
+              image={property.image[0]}
+              location={property.location}
+              builder={property.builder}
+              unit={property.unit}
+              size={property.size}
+              sizeUnit={property.sizeUnit}
+              price={property.price}
+              propertyType={property.propertyType} />
           </div>
         ))}
       </div>

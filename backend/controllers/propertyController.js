@@ -95,7 +95,8 @@ const createProperty = async (req, res) => {
       amenities,
       projectStatus,
       projectSize,
-      totalUnits
+      totalUnits,
+      propertyRera
     } = req.body;
 
     const image = [];
@@ -142,7 +143,8 @@ const createProperty = async (req, res) => {
       dp,
       projectStatus,
       projectSize,
-      totalUnits
+      totalUnits,
+      propertyRera
     });
 
     await newProperty.save();
@@ -183,6 +185,7 @@ const updateProperty = async (req, res) => {
       projectStatus,
       totalUnits,
       removedImages,
+      propertyRera
     } = req.body;
 
     const property = await Property.findById(propertyId);
@@ -250,6 +253,7 @@ const updateProperty = async (req, res) => {
       projectSize,
       projectStatus,
       totalUnits,
+      propertyRera,
       dp: newDp.length > 0 ? newDp : property.dp,
       video: newVideos.length > 0 ? newVideos : property.video,
     });

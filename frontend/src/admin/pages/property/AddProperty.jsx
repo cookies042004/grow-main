@@ -687,6 +687,17 @@ export const AddProperty = () => {
                 </Typography>
                 <TextField
                   type="string"
+                  label="Enter Rera Number"
+                  variant="outlined"
+                  color="secondary"
+                  size="small"
+                  name="propertyRera"
+                  value={formData.propertyRera}
+                  onChange={handleChange}
+                  fullWidth
+                />
+                <TextField
+                  type="string"
                   label="Enter Project Size With Measurements like acres etc."
                   variant="outlined"
                   color="secondary"

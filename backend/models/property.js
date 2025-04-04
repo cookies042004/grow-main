@@ -90,6 +90,10 @@ const propertySchema = new mongoose.Schema(
       type: Number,
       required: false,
     },
+    propertyRera:{
+      type: String,
+      required: false,
+    },
   },
   { timestamps: true }
 );

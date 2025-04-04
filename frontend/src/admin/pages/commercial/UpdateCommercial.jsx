@@ -57,6 +57,7 @@ export const UpdateCommercial = () => {
     projectSize: "",
     projectStatus: "",
     amenities: [],
+    rera: "",
   });
 
   // State to track uploaded images and brochure
@@ -89,6 +90,7 @@ export const UpdateCommercial = () => {
         projectStatus: property.projectStatus || "",
         sizeUnit: property.sizeUnit || "",
         amenities: property.amenities || [],
+        rera: property.rera || "",
       });
       setUploadedImages(property.image || []);
       // setUploadedVideos(property.video || null  );
@@ -277,15 +279,15 @@ export const UpdateCommercial = () => {
 
   // Function to remove image
   const removeImage = (index) => {
-    setUploadedImages(prevImages => {
+    setUploadedImages((prevImages) => {
       const updatedImages = [...prevImages];
       const removedImage = updatedImages.splice(index, 1)[0];
-  
+
       // If the removed image is an existing URL, track it for backend deletion
       if (typeof removedImage === "string") {
-        setRemovedImages(prevRemoved => [...prevRemoved, removedImage]);
+        setRemovedImages((prevRemoved) => [...prevRemoved, removedImage]);
       }
-  
+
       return updatedImages;
     });
   };
@@ -298,16 +300,19 @@ export const UpdateCommercial = () => {
   const renderImagePreviews = () => {
     return uploadedImages.map((image, index) => {
       let imageUrl;
-  
+
       // Check if image is a File (newly uploaded) or a URL (existing)
       if (image instanceof File) {
         imageUrl = URL.createObjectURL(image);
       } else {
         imageUrl = image; // Keep existing image URLs
       }
-  
+
       return (
-        <div key={index} style={{ position: "relative", display: "inline-block" }}>
+        <div
+          key={index}
+          style={{ position: "relative", display: "inline-block" }}
+        >
           <img src={imageUrl} alt="Preview" className="image-preview" />
           <button
             type="button"
@@ -719,6 +724,17 @@ export const UpdateCommercial = () => {
                 >
                   Project Details
                 </Typography>
+
+                <TextField
+                  label="Enter Rera No."
+                  variant="outlined"
+                  color="secondary"
+                  size="small"
+                  name="rera"
+                  value={formData.rera}
+                  onChange={handleChange}
+                  fullWidth
+                />
 
                 {/* Project Size Input */}
                 <TextField

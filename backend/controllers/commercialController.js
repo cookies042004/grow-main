@@ -95,6 +95,7 @@ const createProperty = async (req, res) => {
             propertyType,
             builder,
             amenities,
+            rera
         } = req.body;
 
         const image = [];
@@ -144,6 +145,7 @@ const createProperty = async (req, res) => {
             projectSize,
             propertyType,
             builder,
+            rera,
             amenities: formattedAmenities,
         });
 
@@ -162,8 +164,6 @@ const createProperty = async (req, res) => {
         });
     }
 };
-
-
 
 // Update a Property
 const updateProperty = async (req, res) => {
@@ -187,6 +187,7 @@ const updateProperty = async (req, res) => {
             projectStatus,
             totalUnits,
             removedImages,
+            rera
         } = req.body;
 
         const property = await Property.findById(propertyId);
@@ -272,6 +273,7 @@ const updateProperty = async (req, res) => {
             projectSize,
             projectStatus,
             totalUnits,
+            rera,
             dp: newDp.length > 0 ? newDp : property.dp,
             video: newVideos.length > 0 ? newVideos : property.video,
             amenities: formattedAmenities

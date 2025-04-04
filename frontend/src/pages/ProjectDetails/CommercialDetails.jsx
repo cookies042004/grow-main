@@ -28,6 +28,7 @@ import { RecentProperty } from "../../components/RecentProperty";
 import { ContactForm } from "../../components/ContactForm";
 import Carousel from "../../components/Carousel";
 import { NavigationProject } from "../../components/NavigationProject";
+import rera from "../../assets/img/icons8-approved.gif"
 
 export const CommercialDetails = () => {
   const { slug } = useParams(); // Get slug from URL
@@ -46,8 +47,6 @@ export const CommercialDetails = () => {
           `${process.env.BASE_URL}/api/v1/commercial/search-by-name/${decodedSlug}`
         );
         const data = await res.json();
-
-        console.log("data is ", data);
 
         if (data.property) {
           setProperty(data.property); // Store full property data
@@ -74,8 +73,6 @@ export const CommercialDetails = () => {
       });
   }, []);
 
-  console.log("amenities", allAmenities);
-
   useEffect(() => {
     if (property?.amenities?.length && Array.isArray(allAmenities)) {
       const matchedAmenities = allAmenities.filter((amenity) =>
@@ -84,10 +81,6 @@ export const CommercialDetails = () => {
       setFilteredAmenities(matchedAmenities);
     }
   }, [property, allAmenities]);
-
-  console.log("filtered,", filteredAmenities);
-
-  console.log("property is ", property);
 
   // Fetch full property details using ID (when propertyId is available)
   const apiUrl = propertyId
@@ -404,6 +397,16 @@ export const CommercialDetails = () => {
                         </p>
                       </div>
                     </div>
+
+                    <div className="flex items-start gap-4">
+                      <img src={rera} alt="Rera" className="w-10 h-10" />
+                      <div>
+                        <p className="text-gray-600 text-sm">Rera</p>
+                        <p className="text-lg font-bold text-gray-900">
+                          {property?.rera || "-"}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -416,7 +419,6 @@ export const CommercialDetails = () => {
                     Project Amenities
                   </h3>
 
-                  {/* Society Amenities */}
                   <div className="p-6 bg-gray-50 shadow-md mt-5 rounded-lg">
                     <div className="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-5 gap-6 mt-6">
                       {filteredAmenities.length ? (
@@ -437,7 +439,7 @@ export const CommercialDetails = () => {
                         ))
                       ) : (
                         <div className="col-span-full text-center text-gray-500 font-medium">
-                          No society amenities available
+                          No amenities available
                         </div>
                       )}
                     </div>

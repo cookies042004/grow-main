@@ -9,7 +9,7 @@ import about from "../../assets/img/about.jpg"
 import { Choose } from "../../components/Choose";
 import { Testimonials } from "../../components/Testimonials";
 
-import founder from "../../assets/img/ankitgoyal.jpeg";
+import founder from "../../assets/img/ankitgoyal.jpg";
 import coFounder from "../../assets/img/tushargupta.jpg";
 import whatwedo from "../../assets/img/17.jpg";
 import { NavigationBar } from "../../components/NavigationBar";
@@ -18,30 +18,17 @@ import { Button } from "@mui/material";
 import EastIcon from "@mui/icons-material/East";
 import { Link } from "react-router-dom";
 
-import bgImage from "../../assets/img/img4.jpg";
-import findRealEstate from "../../assets/img/find real estate.jpg";
-import realtor from "../../assets/img/meet realtor.jpeg";
-import keys from "../../assets/img/keys.jpg";
-import Icon1 from "../../assets/img/Icon.png";
-import Icon2 from "../../assets/img/Icon (1).png";
-import Icon3 from "../../assets/img/Icon (2).png";
-import aboutBanner from "../../assets/img/aboutbanner.jpg";
-
 export const About = () => {
   const teamMembers = [
     {
       name: "Ankit Goyal",
       role: "Founder",
       image: founder,
-      tagline:
-        "Leading with vision, redefining modern living through innovation, creativity, and integrity. We strive to build a smarter, more connected world, transforming ideas into impactful solutions. Our commitment to excellence drives progress, inspires change, and shapes a future where passion, purpose, and innovation create lasting success for generations to come.",
     },
     {
       name: "Tushar Gupta",
       role: "Co-Founder",
       image: coFounder,
-      tagline:
-        "Driving innovation and excellence in real estate by redefining spaces, enhancing communities, and setting new industry benchmarks. Through visionary leadership and a commitment to quality, we create transformative environments that inspire, elevate lifestyles, and shape the future of modern living with integrity, sustainability, and excellence.",
     },
   ];
 
@@ -237,7 +224,7 @@ export const About = () => {
           <div className="flex flex-wrap justify-center gap-10 mx-auto">
             {teamMembers.map((member, index) => (
               <div className="p-4 sm:p-6" key={index}>
-                <div className="relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden flex flex-col items-center text-center p-6 md:w-[550px] lg:w-[550px]">
+                <div className="relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden flex flex-col items-center text-center p-6 md:w-[550px] lg:w-[500px]">
                   {/* Background Image */}
                   {/* Image Section */}
                   <div className="relative w-32 h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden border-2 border-[#1d2a3b]">
@@ -256,9 +243,6 @@ export const About = () => {
                     <h5 className="text-gray-500 text-xs sm:text-sm lg:text-md pb-2 font-roboto">
                       {member.role}
                     </h5>
-                    <p className="text-gray-600 text-xs sm:text-sm lg:text-md font-light">
-                      {member.tagline}
-                    </p>
                   </div>
                 </div>
               </div>

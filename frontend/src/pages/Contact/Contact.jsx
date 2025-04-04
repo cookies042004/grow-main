@@ -245,6 +245,9 @@ export const Contact = () => {
                         fontSize: { sm: "20px", lg: "40px" },
                         color: "white",
                       }}
+                      onClick={() => {
+                        window.location.href = "mailto:info@growinfinityrealtors.in"; 
+                        }}
                     />
                   </div>
 
@@ -254,7 +257,7 @@ export const Contact = () => {
                   <p className="font-sans text-lg text-gray-600 font-bold">
                     Our friendly team is here to help.
                   </p>
-                  <p className="font-sans text-md text-center">
+                  <p className="font-sans text-md text-[#5B5B5B] text-center">
                     growinfinityrealtor1@gmail.com, info@growinfinityrealtors.in
                   </p>
                 </div>
@@ -267,6 +270,13 @@ export const Contact = () => {
                         fontSize: { sm: "20px", lg: "40px" },
                         color: "white",
                       }}
+                      onClick={() => {
+                        window.open(
+                          "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14016.248411720519!2d77.3950231!3d28.5678978!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2f7b6f8aa4bbbca1%3A0xcd4a6a4f021202d4!2sGrow%20Infinity%20Realtors!5e0!3m2!1sen!2sin!4v1730825249194!5m2!1sen!2sin",
+                          "_blank"
+                        );
+                      }
+                      }
                     />
                   </div>
 
@@ -274,28 +284,33 @@ export const Contact = () => {
                   <p className="font-sans text-lg text-gray-600 font-bold">
                     Come say hello at our office HQ.
                   </p>
-                  <p className="font-sans text-md text-center">
+                  <p className="font-sans text-md text-[#5B5B5B] text-center">
                     Plot No. BL-34, II Floor, Near Fitness Gym, Sector-116,
                     Noida, Uttar Pradesh-201305
                   </p>
                 </div>
               </div>
               <div className="col-span-12 md:col-span-6 lg:col-span-4 flex justify-center bg-white m-5 px-2 lg:px-4 py-4 lg:py-6 rounded-[24px] shadow-lg">
-                <div className="flex flex-col gap-3 lg:gap-5  justify-center items-center">
+                <div className="flex flex-col gap-3 lg:gap-5 justify-center items-center">
                   <div className="flex items-center justify-center p-3 lg:p-5 bg-gradient-to-r from-gray-600 to-gray-800 rounded-[50%] h-[50px] w-[50px] lg:h-[70px] lg:w-[70px]">
                     <LocalPhoneIcon
                       sx={{
                         fontSize: { sm: "20px", lg: "40px" },
                         color: "white",
                       }}
+                      onClick={() => {
+                        window.location.href = "tel:+91-9990052554";
+                      }
+                      }
                     />
                   </div>
 
                   <p className="font-sans font-semibold text-[#1d2b3a] text-lg">Phone</p>
                   <p className="font-sans text-lg text-gray-600 font-bold">
-                    Mon-Sun from 8am to 6pm
+                    Have questions? Let’s talk!
                   </p>
-                  <p className="font-sans text-md">+91-9990052554</p>
+                  <a href="tel:+91-9990052554"><p className="font-sans text-md text-[#5B5B5B]">+91-9990052554</p>
+                  <br></br></a>
                 </div>
               </div>
             </div>

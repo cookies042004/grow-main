@@ -118,7 +118,7 @@ export const Brochure = () => {
                 <img
                   src={brochure.image}
                   alt={brochure.name}
-                  className="h-64 w-full object-contain"
+                  className="h-64 w-full object-cover"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <motion.button
@@ -131,7 +131,7 @@ export const Brochure = () => {
                     <PictureAsPdfIcon size={30} color="red" /> Request PDF
                   </motion.button>
                 </div>
-                <h4 className="text-center text-xl font-semibold py-3">
+                <h4 className="text-center text-xl bg-gray-300 font-semibold py-3">
                   {brochure.name.length > 20
                     ? `${brochure.name.substring(0, 20)}...`
                     : brochure.name}

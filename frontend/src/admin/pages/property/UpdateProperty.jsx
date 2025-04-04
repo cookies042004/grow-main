@@ -73,6 +73,7 @@ export const UpdateProperty = () => {
     projectSize: "",
     projectStatus: "",
     totalUnits: "",
+    propertyRera: "",
   });
 
   // State to track uploaded images and brochure
@@ -85,14 +86,10 @@ export const UpdateProperty = () => {
   const [selectAllLocation, setSelectAllLocation] = useState([]);
   const [sizeUnit, setSizeUnit] = useState("");
   const [removedImages, setRemovedImages] = useState([]);
-
-
   // Ref to the file input element
   const imageInputRef = useRef();
   const videoInputRef = useRef();
   const dpInputRef = useRef();
-
-  console.log(data);
 
   // Load property data into formData when property is fetched
   useEffect(() => {
@@ -113,6 +110,7 @@ export const UpdateProperty = () => {
         projectSize: property.projectSize || "",
         projectStatus: property.projectStatus || "",
         totalUnits: property.totalUnits || "",
+        propertyRera: property.propertyRera || "",
         societyAmenities: property.amenities
           ?.filter((amenity) => amenity.type === "society_amenity")
           ?.map((amenity) => amenity._id),
@@ -144,8 +142,6 @@ export const UpdateProperty = () => {
     }
   }, [data]);
 
-  console.log("uploaded",uploadedImages);
-
   // Handle form input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -163,6 +159,7 @@ export const UpdateProperty = () => {
       [event.target.name]: event.target.value,
     });
   };
+
   // Handle checkbox changes
   const handleCheckboxChange = (event, type) => {
     const { name, checked } = event.target; // Use name instead of
@@ -344,8 +341,8 @@ export const UpdateProperty = () => {
       return updatedImages;
     });
   };
-  
 
+  // Function to remove video
   const removeVideo = () => {
     setUploadedVideos(false);
   };
@@ -465,8 +462,8 @@ export const UpdateProperty = () => {
       setButtonLoading(false);
     }
   };
-  
 
+  // Function to convert number to words
   const inWords = (num) => {
     const price = Number(num);
 
@@ -759,6 +756,17 @@ export const UpdateProperty = () => {
                 >
                   Project Details
                 </Typography>
+                <TextField
+                  type="string"
+                  label="Enter Rera No."
+                  variant="outlined"
+                  color="secondary"
+                  size="small"
+                  name="propertyRera"
+                  value={formData.propertyRera}
+                  onChange={handleChange}
+                  fullWidth
+                />
                 <TextField
                   type="string"
                   label="Enter Project Size With Measurements like acres etc."

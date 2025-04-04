@@ -70,7 +70,11 @@ const commercialPropertySchema = new mongoose.Schema({
     slug: {
         type: String,
         unique: true
-    }
+    },
+    rera: {
+        type: String,
+        required: false,
+    },
 });
 
 commercialPropertySchema.pre("save", function (next) {

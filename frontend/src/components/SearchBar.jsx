@@ -27,26 +27,25 @@ export const SearchBar = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-  
+
     if (!searchQuery) {
       return alert("Please enter name or location");
     }
-  
+
     try {
       let formattedBHK = bhkValue ? bhkValue.replace(/\s+/g, "") : "";
       let searchUrl = `/search?query=${encodeURIComponent(searchQuery)}`;
-      
+
       if (formattedBHK) {
         searchUrl += `&bhk=${encodeURIComponent(formattedBHK)}`;
       }
-  
+
       navigate(searchUrl);
     } catch (error) {
       console.log(error);
     }
   };
-  
-  
+
   const [value, setValue] = useState([60, 1400]);
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -126,7 +125,8 @@ export const SearchBar = () => {
                 type="button"
                 onClick={() => setBhk(!bhk)}
               >
-                <HomeIcon sx={{ color: "[#1d2a3b]", paddingRight: "5px" }} /> {bhkValue}{" "}
+                <HomeIcon sx={{ color: "[#1d2a3b]", paddingRight: "5px" }} />{" "}
+                {bhkValue}{" "}
                 <svg
                   className="w-2.5 h-2.5 ms-3"
                   aria-hidden="true"
@@ -310,19 +310,18 @@ export const SearchBar = () => {
               </div>
             </div>
 
-            <div className="block lg:hidden col-span-12 lg:col-span-2 md:col-span-12  hover:scale-150">
+            <div className="block lg:hidden col-span-12 lg:col-span-2 md:col-span-12">
               <div>
                 <button
                   onClick={handleSearch}
                   type="submit"
-                  className="text-white text-sm lg:text-lg bg-[#1d2a3b]  w-full rounded-[8.59px] py-[4px] lg:py-2 px-10"
+                  className="text-white text-sm lg:text-lg bg-[#1d2a3b] w-full rounded-[8.59px] py-[4px] lg:py-2 px-10 transition-transform duration-200 hover:scale-105 active:scale-95"
                   style={{ boxShadow: "0px 5.46px 13.27px 0px #1d2a3b" }}
                 >
                   Search
                 </button>
               </div>
             </div>
-            
           </div>
         </div>
       </div>
