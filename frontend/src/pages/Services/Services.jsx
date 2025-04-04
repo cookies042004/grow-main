@@ -40,9 +40,9 @@ export const Services = () => {
 
         {/* Our Services  */}
         <div className="my-5 max-w-[1280px] mx-auto">
-          {/* <h1 className="font-roboto py-3 lg:py-8 text-2xl lg:text-4xl font-medium text-[#1d2a3b] text-center">
+          <h1 className="font-roboto py-3 lg:py-8 text-2xl font-medium text-[#1d2a3b] text-center">
             Our Services
-          </h1> */}
+          </h1>
 
           <div className="grid sm:grid-cols-12">
             <div className="col-span-12 md:col-span-6 lg:col-span-4 m-5">

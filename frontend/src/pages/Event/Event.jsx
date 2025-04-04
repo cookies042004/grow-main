@@ -35,9 +35,9 @@ export const Event = () => {
 
       {/* Events Section */}
       <div className="py-12 px-4 sm:px-6 lg:px-8">
-        {/* <h1 className="font-sans lg:pb-8 text-2xl lg:text-4xl font-medium text-[#1d2a3b] text-center">
+         <h1 className="font-sans lg:pb-8 text-2xl font-medium text-[#1d2a3b] text-center">
           Events
-        </h1> */}
+        </h1>
         <div className="max-w-7xl mx-auto">
           {loading && (
             <div className="flex justify-center">
@@ -74,7 +74,7 @@ export const Event = () => {
                           to={`/event/${event._id}`}
                           className="bg-[#1d2a3b] text-white font-semibold py-2 px-4 rounded-full transition-colors"
                         >
-                          View Details
+                          View Images
                         </Link>
                       </div>
                     </div>

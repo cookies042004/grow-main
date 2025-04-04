@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import logo from "../assets/img/logo.png";
-// import logo1 from "../assets/img/logo1"
 
 export const Navbar = ({ mobileMenu, setMobileMenu }) => {
   document.title = "Grow Infinity Realtors";
 
   const [isSticky, setIsSticky] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
+
+  const location = useLocation();
+  const navigate = useNavigate();
 
   // Handle window resize
   useEffect(() => {
@@ -34,7 +36,16 @@ export const Navbar = ({ mobileMenu, setMobileMenu }) => {
 
   const handleLinkClick = () => {
     setMobileMenu(false);
-    window.scrollTo(0, 0); // Ensure the page scrolls to the top
+    window.scrollTo(0, 0);
+  };
+
+  const handleLogoClick = () => {
+    if (location.pathname === "/") {
+      navigate(0);
+    } else {
+      navigate("/");
+    }
+    window.scrollTo(0, 0);
   };
 
   const navItems = [
@@ -49,7 +60,6 @@ export const Navbar = ({ mobileMenu, setMobileMenu }) => {
 
   return (
     <>
-      {/* Navbar */}
       <nav
         className={`fixed z-[20] top-0 shadow-lg transition-all duration-500 w-full ${
           isSticky
@@ -58,9 +68,9 @@ export const Navbar = ({ mobileMenu, setMobileMenu }) => {
         }`}
       >
         <div className="flex items-center justify-between pr-4">
-          <Link to="/">
+          <div onClick={handleLogoClick} className="cursor-pointer">
             <img src={logo} alt="Logo" width={isSticky ? 200 : 200} />
-          </Link>
+          </div>
           <ul className="hidden lg:flex gap-10">
             {navItems.slice(0, 6).map((item, index) => (
               <li key={index} className="font-dmsans font-[12.49px]">
@@ -98,9 +108,6 @@ export const Navbar = ({ mobileMenu, setMobileMenu }) => {
       >
         <div className="p-4">
           <div className="flex items-center justify-between mx-3">
-            {/* <Link to="/" onClick={handleLinkClick}>
-              <img src={logo} alt="Logo" width={150} />
-            </Link> */}
             <IconButton
               sx={{ color: "#1d2a3b" }}
               size="large"

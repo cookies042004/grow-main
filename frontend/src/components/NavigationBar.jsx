@@ -41,7 +41,7 @@ export const NavigationBar = () => {
         <span className="text-gray-600">Home</span>
 
         {pathSegments.map((segment, index) => (
-          <span key={index} className="font-medium text-gray-700">
+          <span key={index} className="text-gray-700">
             {" → "}
             {index === pathSegments.length - 1 && id ? (
               <span>{eventName || "Loading..."}</span>

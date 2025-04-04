@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
-
 import { ToastContainer, toast } from "react-toastify";
 import { Layout } from "../../components/Layout";
-
 import "react-toastify/dist/ReactToastify.css";
 import "./Contact.css";
-
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import EmailIcon from "@mui/icons-material/Email";
@@ -15,6 +12,7 @@ import MailOutlinedIcon from "@mui/icons-material/MailOutlined";
 import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
 import EastOutlinedIcon from "@mui/icons-material/EastOutlined";
 import { Button } from "@mui/material";
+import { NavigationBar } from "../../components/NavigationBar";
 
 export const Contact = () => {
   const apiUrl = `${process.env.BASE_URL}/api/v1/contact`;
@@ -87,7 +85,7 @@ export const Contact = () => {
       toast.error("Error submitting form. Please try again.");
     } finally {
       toast.success("Message sent successfully!");
-      setLoading(false); // Set loading state back to false after submission
+      setLoading(false);
     }
   };
 
@@ -105,6 +103,8 @@ export const Contact = () => {
             </div>
           </div>
         </div>
+
+        <NavigationBar />
 
         <div className="max-w-[1280px]">
           <div className="grid sm:grid-cols-12 my-5 lg:my-10">

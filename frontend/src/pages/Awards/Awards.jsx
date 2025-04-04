@@ -69,9 +69,9 @@ export const Awards = () => {
 
         {/* Awards Section */}
         <div className="my-10 px-4 sm:px-8 lg:px-8">
-          {/* <h1 className="text-2xl lg:text-4xl font-medium text-[#1d2a3b] text-center mb-6"> */}
-            {/* Awards & Achievements */}
-          {/* </h1> */}
+          <h1 className="text-2xl font-medium text-[#1d2a3b] text-center mb-6">
+            Awards & Achievements
+          </h1>
 
           <div className="flex flex-wrap justify-center gap-10 lg:p-6">
             {loading && <CircularProgress size="30px" className="flex justify-center" />}

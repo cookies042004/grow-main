@@ -12,6 +12,7 @@ import { motion } from "framer-motion";
 import Lottie from "lottie-react";
 import successAnimation from "../../assets/img/success.json";
 import "./Brochure.css";
+import { NavigationBar } from "../../components/NavigationBar";
 
 export const Brochure = () => {
   const [open, setOpen] = useState(false);
@@ -87,7 +88,12 @@ export const Brochure = () => {
         </h1>
       </div>
 
+      <NavigationBar />
+
       <div className="max-w-[1280px] mx-auto px-6">
+      <h1 className="font-roboto pt-8  text-2xl font-medium text-[#1d2a3b] text-center">
+            Brochure
+          </h1>
         {loading && (
           <div className="flex justify-center">
             <CircularProgress />

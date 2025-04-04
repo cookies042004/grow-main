@@ -34,7 +34,6 @@ const createBrochure = async (req, res) => {
       brochure: newBrochure,
     });
   } catch (err) {
-    console.log(err);
     res.status(500).json({
       success: false,
       message: "Internal Server Error",

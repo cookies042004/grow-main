@@ -46,9 +46,9 @@ export const News = () => {
 
       {/* Latest News  */}
       <div className="my-5">
-        {/* <h1 className="font-roboto text-2xl lg:text-4xl font-bold lg:font-medium text-center text-[#1d2a3b]  py-3 lg:py-8">
+         <h1 className="font-roboto text-2xl font-bold lg:font-medium text-center text-[#1d2a3b]  py-3 lg:py-8">
           Latest News
-        </h1> */}
+        </h1> 
 
         <div className="grid sm:grid-cols-12 my-3 lg:my-5 max-w-[1280px] mx-auto">
           {loading && (
