@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Layout } from "../../components/Layout";
-import EastIcon from "@mui/icons-material/East";
 import { useParams } from "react-router-dom";
 import { useFetchData } from "../../hooks/useFetchData";
-
 import "./ProjectDetails.css";
 import { Link } from "react-router-dom";
 import { TCard } from "../../components/TCard";
@@ -12,7 +10,6 @@ import { Button } from "@mui/material";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-
 import size from "../../assets/icons/size.png";
 import construction from "../../assets/icons/construction.png";
 import area from "../../assets/icons/area.png";
@@ -25,6 +22,7 @@ import { RecentProperty } from "../../components/RecentProperty";
 import { ContactForm } from "../../components/ContactForm";
 import Carousel from "../../components/Carousel";
 import { NavigationProject } from "../../components/NavigationProject";
+import rera from "../../assets/img/rera.gif";
 
 export const ProjectDetails = () => {
   const { slug } = useParams(); // Get slug from URL
@@ -355,7 +353,7 @@ export const ProjectDetails = () => {
                         value: property?.totalUnits || "-",
                       },
                       {
-                        icon: units,
+                        icon: rera,
                         label: "Rera No.",
                         value: property?.propertyRera || "-",
                       },
