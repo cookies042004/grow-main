@@ -37,13 +37,10 @@ export const EnquiryForm = ({ handleClose, open }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (
-      !formData.firstName ||
-      !formData.lastName ||
-      !formData.email ||
-      !formData.phone ||
-      !formData.message
+      !formData.firstName ||  
+      !formData.phone
     ) {
-      setError("All fields are required.");
+      setError("All field are required.");
       return;
     }
 

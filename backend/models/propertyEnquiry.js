@@ -22,12 +22,10 @@ const propertyEnquirySchema = new mongoose.Schema(
     },
     reason: {
       type: String,
-      enum: ["investment", "business"],
       required: false,
     },
     dealer: {
       type: String,
-      enum: ["yes", "no"],
       required: false,
     },
   },

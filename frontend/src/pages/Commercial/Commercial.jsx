@@ -14,6 +14,7 @@ export const Commercial = () => {
   const apiUrl = `${process.env.BASE_URL}/api/v1/commercial`;
   const { data, loading, error } = useFetchData(apiUrl);
   const properties = data.properties || [];
+  console.log("Properties:", properties);
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
@@ -41,7 +42,38 @@ export const Commercial = () => {
     );
   }
 
+  
+  if(properties.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen">
+        <img src="https://shorturl.at/6C2TM" alt="error" />
+        <p className="text-red-500">No properties found.</p>
+      </div>
+    );  
+  }
+
   if (error) {
+    if (error === "Network Error") {
+      return (
+        <div className="flex items-center justify-center h-screen">
+          <p className="text-red-500">Network Error: Please check your connection.</p>
+        </div>
+      );
+    }
+    if (error === "Request failed with status code 404") {
+      return (
+        <div className="flex items-center justify-center h-screen">
+          <p className="text-red-500">404: Not Found</p>
+        </div>
+      );
+    }
+    if (error === "Request failed with status code 500") {
+      return (
+        <div className="flex items-center justify-center h-screen">
+          <p className="text-red-500">500: Internal Server Error</p>
+        </div>
+      );
+    }
     return <div>Error: {error}</div>;
   }
 

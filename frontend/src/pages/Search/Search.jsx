@@ -43,7 +43,7 @@ export const Search = () => {
         </h3>
       </div>
 
-      <div className="grid sm:grid-cols-12">
+      <div className="grid sm:grid-cols-12 max-w-[1280px] mx-auto my-10">
         {loading && (
           <div className="col-span-12 flex items-center justify-center">
             <CircularProgress size="30px" />

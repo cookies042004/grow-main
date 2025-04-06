@@ -556,7 +556,7 @@ export const AddCommercial = () => {
                 </Typography>
                 {/* Unit Input */}
                 <TextField
-                  label="Unit (e.g., 2 BHK - bhk/BHK)*"
+                  label="Unit(e.g., office,retail shop etc.)*"
                   variant="outlined"
                   color="secondary"
                   size="small"
@@ -638,7 +638,7 @@ export const AddCommercial = () => {
 
                 {/* Project RERA Input */}
                 <TextField
-                  label="Project Size (e.g. 50 acres)*"
+                  label="Rera No."
                   variant="outlined"
                   color="secondary"
                   size="small"
@@ -650,7 +650,7 @@ export const AddCommercial = () => {
 
                 {/* Project Size Input */}
                 <TextField
-                  label="Project Size (e.g. 50 acres)*"
+                  label="Project Size"
                   variant="outlined"
                   color="secondary"
                   size="small"

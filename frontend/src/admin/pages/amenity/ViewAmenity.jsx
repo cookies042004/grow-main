@@ -55,6 +55,7 @@ export const ViewAmenity = () => {
     } catch (err) {
         // Handle errors properly
         if (err.response && err.response.data && err.response.data.message) {
+          console.log(err.response.data.message); // Log error message
           toast.error(err.response.data.message); // Show server error message
         } else {
           toast.error("Something went wrong. Please try again."); // Fallback for unexpected errors

@@ -26,8 +26,8 @@ const commercialAmenityRoutes = require("./routes/commercialAmenityRoutes");
 
 // Middleware
 const corsOptions = {
-  origin: 'https://www.growinfinityrealtors.in',
-  // origin: "*",
+  // origin: 'https://www.growinfinityrealtors.in',
+  origin: "*",
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 };

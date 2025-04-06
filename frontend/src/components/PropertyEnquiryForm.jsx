@@ -58,8 +58,8 @@ export const PropertyEnquiryForm = ({ id, handleClose, open }) => {
     }
 
     // Validate required fields
-    if (!formData.firstName || !formData.mobile || !formData.reason || !formData.dealer) { 
-      setError("All fileds are required.");
+    if (!formData.firstName || !formData.mobile) { 
+      setError("Name and Mobile is required.");
       return;
     }
 
