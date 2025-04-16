@@ -340,7 +340,7 @@ export const AddProperty = () => {
 
     formDataToSend.append("video", uploadedVideos);
 
-    formDataToSend.append("image", uploadedDpImage);
+    formDataToSend.append("dp", uploadedDpImage);
 
     try {
       const response = await axios.post(
@@ -400,6 +400,7 @@ export const AddProperty = () => {
       }
       setLoading(false);
     } catch (error) {
+      console.log(error);
       setLoading(false);
       toast.error("Failed to add property.", error);
     }

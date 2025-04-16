@@ -437,7 +437,7 @@ export const UpdateProperty = () => {
     if (uploadedVideos) {
       formDataToSend.append("video", uploadedVideos);
     }
-    formDataToSend.append("image", uploadedDpImage);
+    formDataToSend.append("dp", uploadedDpImage);
     formDataToSend.append("sizeUnit", sizeUnit);
   
     try {

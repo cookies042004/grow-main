@@ -305,7 +305,7 @@ export const AddCommercial = () => {
 
     formDataToSend.append("video", uploadedVideos);
 
-    formDataToSend.append("image", uploadedDpImage);
+    formDataToSend.append("dp", uploadedDpImage);
 
     try {
       const response = await axios.post(

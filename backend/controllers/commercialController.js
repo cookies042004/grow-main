@@ -79,6 +79,7 @@ const getSingleProperty = async (req, res) => {
     }
 };
 
+// Create a Property
 const createProperty = async (req, res) => {
     try {
         const {
@@ -114,8 +115,8 @@ const createProperty = async (req, res) => {
             });
         }
 
-        if (req.files['image']) {
-            req.files['image'].forEach((file) => {
+        if (req.files['dp']) {
+            req.files['dp'].forEach((file) => {
                 dp.push(file.path);
             });
         }
@@ -157,6 +158,7 @@ const createProperty = async (req, res) => {
             property: newProperty,
         });
     } catch (error) {
+        console.log("Error creating property:", error);
         res.status(500).json({
             success: false,
             message: "Internal Server Error",
@@ -232,7 +234,7 @@ const updateProperty = async (req, res) => {
         property.image = [...(property.image || []), ...newImages];
 
         const newVideos = req.files?.video?.map(file => file.path) || [];
-        const newDp = req.files?.image?.map(file => file.path) || [];
+        const newDp = req.files?.dp?.map(file => file.path) || [];
 
         if (newDp.length > 0 && property.dp && property.dp.length > 0) {
             property.dp.forEach((ele) => {
@@ -282,7 +284,7 @@ const updateProperty = async (req, res) => {
         await property.save();
         res.status(200).json({ success: true, message: "Property updated successfully", property });
     } catch (error) {
-        console.error("Error updating property:", error);
+        console.log("Error updating property:", error);
         res.status(500).json({ success: false, message: "Internal Server Error", error: error.message });
     }
 };

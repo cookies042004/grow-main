@@ -410,7 +410,7 @@ export const UpdateCommercial = () => {
       formDataToSend.append("video", uploadedVideos);
     }
 
-    formDataToSend.append("image", uploadedDpImage);
+    formDataToSend.append("dp", uploadedDpImage);
 
     removedImages.forEach((image) => {
       formDataToSend.append("removedImages", image);
@@ -435,7 +435,7 @@ export const UpdateCommercial = () => {
       setUploadedVideos(null);
     } catch (error) {
       setButtonLoading(false);
-      console.error("Error updating property:", error);
+      console.log("Error updating property:", error);
       toast.error("Failed to update property.");
     }
   };

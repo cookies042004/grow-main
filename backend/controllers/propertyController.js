@@ -115,8 +115,8 @@ const createProperty = async (req, res) => {
       })
     }
 
-    if (req.files['image']) {
-      req.files['image'].forEach((file) => {
+    if (req.files['dp']) {
+      req.files['dp'].forEach((file) => {
         dp.push(file.path);
       })
     }
@@ -224,7 +224,7 @@ const updateProperty = async (req, res) => {
 
     const newDp = [];
     if (req.files?.image) {
-      req.files.image.forEach(file => newDp.push(file.path));
+      req.files.dp.forEach(file => newDp.push(file.path));
     }
 
     if (newDp.length > 0 && property.dp && property.dp.length > 0) {
