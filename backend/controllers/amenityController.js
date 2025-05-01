@@ -10,8 +10,8 @@ const createAmenity = async (req, res) => {
 
     const image = [];
 
-    if(req.files['image']){
-      req.files['image'].forEach((file) => {
+    if(req.files['images']){
+      req.files['images'].forEach((file) => {
         image.push(file.path);
       })
     }
@@ -97,8 +97,8 @@ const updateAmenity = async (req, res) => {
     let updatedFields = { type, name };
 
     // Handle new images
-    if (req.files && req.files["image"]) {
-      let newImages = req.files["image"].map((file) => file.path);
+    if (req.files && req.files["images"]) {
+      let newImages = req.files["images"].map((file) => file.path);
 
       // Delete old images if they exist and are local
       if (existingAmenity.image && existingAmenity.image.length > 0) {

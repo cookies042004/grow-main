@@ -21,11 +21,6 @@ const createEvent = async (req, res) => {
       })
     }
 
-    console.log("Image Path:", image);
-
-
-
-
     // Create a new event instance
     const newEvent = new Event({
       title,
@@ -144,8 +139,6 @@ const deleteEvent = async (req, res) => {
           fs.unlink(filePath, (err) => {
             if (err) {
               console.error(`Failed to delete image: ${filePath}`, err);
-            } else {
-              console.log(`Image deleted: ${filePath}`);
             }
           });
         }

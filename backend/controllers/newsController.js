@@ -5,10 +5,6 @@ const News = require("../models/news");
 //Create a News
 const createNews = async (req, res) => {
   try {
-    console.log("Request Headers:", req.headers);
-    console.log("Request Body:", req.body);
-    console.log("Uploaded Files:", req.files); // Should contain uploaded files
-
     if (!req.files || !req.files.image) {
       return res.status(400).json({ success: false, message: "Image file is required" });
     }
@@ -40,8 +36,6 @@ const getNews = async (req, res) => {
       .status(200)
       .json({ success: true, message: "Data fetched successfully!", news });
   } catch (err) {
-    console.log(err);
-
     res.status(500).json({
       success: false,
       message: "Internal Server Error",
@@ -67,7 +61,6 @@ const getSingleNews = async (req, res) => {
       news,
     });
   } catch (err) {
-    console.log(err);
     res.status(500).json({
       success: false,
       message: "Internal Server Error",
@@ -97,8 +90,8 @@ const updateNews = async (req, res) => {
     };
 
     // Check if a new image was uploaded
-    if (req.files && req.files["image"]) {
-      const imagePath = req.files["image"][0].path; // Assuming `image` is the field name
+    if (req.files && req.files["images"]) {
+      const imagePath = req.files["images"][0].path; // Assuming `image` is the field name
       updatedFields.image = imagePath;
 
       // Delete the old image if it's a local file
@@ -179,7 +172,6 @@ const deleteNews = async (req, res) => {
       news,
     });
   } catch (err) {
-    console.log(err);
     res.status(500).json({
       success: false,
       message: "Internal Server Error",

@@ -21,7 +21,6 @@ const createPropertyEnquiry = async (req, res) => {
       newPropertyEnquiry,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       success: false,
       message: "Internal Server Error",
@@ -59,7 +58,7 @@ const getPropertyEnquiry = async (req, res) => {
 // Count number of Property Enquiry
 const getTotalPropertyEnquiry = async (req, res) => {
   try {
-    const totalPropertyEnquiry = await propertyEnquiry.countDocuments({}); // Assuming you are using MongoDB
+    const totalPropertyEnquiry = await propertyEnquiry.countDocuments({});
     res.status(200).json({ success: true, totalPropertyEnquiry });
   } catch (error) {
     res.status(500).json({ success: false, message: "Server error", error });
@@ -87,7 +86,6 @@ const deleteEnquiryContacts = async (req, res) => {
       contact,
     });
   } catch (err) {
-    console.log(err);
     res.status(200).json({
       success: false,
       message: "Internal Server Error",

@@ -36,7 +36,7 @@ export const AddAwards = () => {
     e.preventDefault();
     setLoading(true);
     const formDataToSend = new FormData();
-    formDataToSend.append("image", formData.image);
+    formDataToSend.append("images", formData.image);
 
     try {
       const response = await axios.post(apiUrl, formDataToSend, {

@@ -6,9 +6,7 @@ const Testimonials = require("../models/testimonials");
 const createTestimonials = async (req, res) => {
   try {
     const { name, role, review } = req.body;
-    console.log("Request testimonials:", req.files);
-    const imagePath = req.files && req.files.image[0]?.path;
-    console.log("Image Path:", imagePath);
+    const imagePath = req.files && req.files.images[0]?.path;
     const testimonial = new Testimonials({
       name,
       role,
@@ -24,7 +22,6 @@ const createTestimonials = async (req, res) => {
       testimonial,
     });
   } catch (error) {
-    console.log(error);
     res.status(400).json({ success: false, message: error.message });
   }
 };
@@ -39,7 +36,6 @@ const getTestimonials = async (req, res) => {
       testimonials,
     });
   } catch (err) {
-    console.log(err);
     res.status(500).json({
       success: false,
       message: "Internal Server Error",
@@ -65,7 +61,6 @@ const getSingleTestimonial = async (req, res) => {
       testimonial,
     });
   } catch (err) {
-    console.log(err);
     res.status(500).json({
       success: false,
       message: "Internal Server Error",
@@ -96,8 +91,8 @@ const updateTestimonial = async (req, res) => {
     if (review) updatedFields.review = review;
 
     // Check if a new image was uploaded
-    if (req.files?.image?.[0]) {
-      const imagePath = req.files.image[0].path;
+    if (req.files?.images?.[0]) {
+      const imagePath = req.files.images[0].path;
       updatedFields.image = imagePath;
 
       // Delete old image if it exists

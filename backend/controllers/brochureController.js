@@ -16,7 +16,7 @@ const createBrochure = async (req, res) => {
     const { name, location } = req.body;
 
     // Retrieve the uploaded image and pdf paths
-    const image = req.files["image"] ? req.files["image"][0].path : null;
+    const image = req.files["images"] ? req.files["images"][0].path : null;
     const pdf = req.files["pdf"] ? req.files["pdf"][0].path : null;
 
     const newBrochure = new Brochure({
@@ -45,14 +45,12 @@ const createBrochure = async (req, res) => {
 const getBrochure = async (req, res) => {
   try {
     const brochure = await Brochure.find();
-    console.log(brochure.pdf)
     res.status(200).json({
       success: true,
       message: "All brochures fetched !",
       brochure,
     });
   } catch (err) {
-    console.log(err);
     res.status(500).json({
       success: false,
       message: "Internal Server Error",
@@ -79,7 +77,6 @@ const getSingleBrochure = async (req, res) => {
       brochure,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       success: false,
       message: "Intenal Server Error",
@@ -124,8 +121,6 @@ const deleteBrochure = async (req, res) => {
       cloudinary.uploader.destroy(oldPdfPublicId, { resource_type: "raw" }, (err, result) => {
         if (err) {
           console.error(`Error deleting old PDF from Cloudinary: ${err.message}`);
-        } else {
-          console.log(`Cloudinary delete result (PDF): ${result}`);
         }
       });
     }
@@ -171,8 +166,8 @@ const updateBrochure = async (req, res) => {
     };
 
     // Handle image upload
-    if (req.files && req.files.image) {
-      const imagePath = req.files.image[0].path;
+    if (req.files && req.files.images) {
+      const imagePath = req.files.images[0].path;
       updatedFields.image = imagePath;
 
       // Delete old image from Cloudinary
@@ -181,8 +176,6 @@ const updateBrochure = async (req, res) => {
         cloudinary.uploader.destroy(oldImagePublicId, (err, result) => {
           if (err) {
             console.error(`Error deleting old image from Cloudinary: ${err.message}`);
-          } else {
-            console.log(`Cloudinary delete result (image): ${result}`);
           }
         });
       }

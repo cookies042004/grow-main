@@ -10,8 +10,8 @@ const createAmenity = async (req, res) => {
 
     const image = [];
 
-    if(req.files['image']){
-      req.files['image'].forEach((file) => {
+    if(req.files['images']){
+      req.files['images'].forEach((file) => {
         image.push(file.path);
       })
     }
@@ -23,8 +23,6 @@ const createAmenity = async (req, res) => {
       image: imageToSave
     });
 
-    console.log("Amenity Image is ",image);
-
     await amenity.save();
 
     res.status(201).json({
@@ -33,7 +31,6 @@ const createAmenity = async (req, res) => {
       amenity,
     });
   } catch (error) {
-    console.log(error);
     res.status(400).json({ success: false, message: error.message });
   }
 };
@@ -48,7 +45,6 @@ const getAmenity = async (req, res) => {
       amenity,
     });
   } catch (err) {
-    console.log(err);
     res.status(500).json({
       success: false,
       message: "Internal Server Error",
@@ -74,7 +70,6 @@ const getSingleAmenity = async (req, res) => {
       amenity,
     });
   } catch (err) {
-    console.log(err);
     res.status(500).json({
       success: false,
       message: "Internal Server Error",
@@ -101,8 +96,8 @@ const updateAmenity = async (req, res) => {
     let updatedFields = { type, name };
 
     // Handle new images
-    if (req.files && req.files["image"]) {
-      let newImages = req.files["image"].map((file) => file.path);
+    if (req.files && req.files["images"]) {
+      let newImages = req.files["images"].map((file) => file.path);
 
       // Delete old images if they exist and are local
       if (existingAmenity.image && existingAmenity.image.length > 0) {
@@ -181,8 +176,6 @@ const deleteAmenity = async (req, res) => {
         fs.unlink(imagePath, (err) => {
           if (err) {
             console.error("Failed to delete image file:", err);
-          } else {
-            console.log("Image file deleted:", imagePath);
           }
         });
       } else {

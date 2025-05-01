@@ -5,7 +5,7 @@ const Awards = require("../models/awards");
 // Create Awards
 const createAwards = async (req, res) => {
   try {
-    const imagePath = req.files["image"] && req.files["image"][0]?.path;
+    const imagePath = req.files["images"] && req.files["images"][0]?.path;
     const awards = new Awards({
       image: imagePath,
     });
@@ -68,8 +68,6 @@ const deleteAwards = async (req, res) => {
         fs.unlink(imagePath, (err) => {
           if (err) {
             console.error("Failed to delete image file:", err);
-          } else {
-            console.log("Image file deleted:", imagePath);
           }
         });
       } else {
