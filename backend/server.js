@@ -23,6 +23,7 @@ const emailRoutes = require("./routes/emailRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
 const commercialRoutes = require("./routes/commercialRoutes")
 const commercialAmenityRoutes = require("./routes/commercialAmenityRoutes");
+const sitemapRoutes = require("./routes/sitemapRoutes")
 
 // Middleware
 const corsOptions = {
@@ -55,6 +56,7 @@ app.use("/api/v1/testimonials", testimonialRoutes);
 app.use("/api/v1/email", emailRoutes);
 app.use("/api/reviews",reviewRoutes);
 app.use("/api/v1/commercial", commercialRoutes);
+app.use("/", sitemapRoutes);
 
 
 app.listen(process.env.PORT, () => {
