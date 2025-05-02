@@ -81,6 +81,11 @@ export const AddProperty = () => {
   const [uploadedVideos, setUploadedVideos] = useState(null);
   // State to track uploaded dp image
   const [uploadedDpImage, setUploadedDpImage] = useState(null);
+  const [seoTitle, setSeoTitle] = useState("");
+  const [seoDescription, setSeoDescription] = useState("");
+  const [shouldIndex, setShouldIndex] = useState(true);
+  const [headCode, setHeadCode] = useState("");
+  const [footerCode, setFooterCode] = useState("");
 
   // Ref to the file input element
   const imageInputRef = useRef();
@@ -341,6 +346,11 @@ export const AddProperty = () => {
     formDataToSend.append("video", uploadedVideos);
 
     formDataToSend.append("dp", uploadedDpImage);
+    formDataToSend.append("seoTitle", seoTitle);
+    formDataToSend.append("seoDescription", seoDescription);
+    formDataToSend.append("indexStatus", shouldIndex);
+    formDataToSend.append("headerCode", headCode);
+    formDataToSend.append("footerCode", footerCode);
 
     try {
       const response = await axios.post(
@@ -1003,6 +1013,71 @@ export const AddProperty = () => {
                     </div>
                   </RadioGroup>
                 </FormControl>
+              </Box>
+
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 2,
+                  border: "2px solid #ccc",
+                  borderRadius: "8px",
+                  backgroundColor: "#f9f9f9",
+                  padding: "12px",
+                  marginTop: 2,
+                }}
+              >
+                <h3 className="text-lg font-semibold mt-4">SEO Settings</h3>
+
+                <div className="mb-4">
+                  <label>SEO Title</label>
+                  <input
+                    type="text"
+                    value={seoTitle}
+                    onChange={(e) => setSeoTitle(e.target.value)}
+                    className="border w-full p-2"
+                    placeholder="e.g. 3BHK Flats in Noida by Grow Infinity"
+                  />
+                </div>
+
+                <div className="mb-4">
+                  <label>SEO Description</label>
+                  <textarea
+                    value={seoDescription}
+                    onChange={(e) => setSeoDescription(e.target.value)}
+                    className="border w-full p-2"
+                    placeholder="e.g. Explore our top 3BHK flats available in Sector 74, Noida..."
+                  />
+                </div>
+
+                <div className="mb-4">
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={shouldIndex}
+                      onChange={(e) => setShouldIndex(e.target.checked)}
+                    />
+                    Allow search engine indexing
+                  </label>
+                </div>
+
+                <div className="mb-4">
+                  <label>Header Code (e.g. Google Tag Manager)</label>
+                  <textarea
+                    value={headCode}
+                    onChange={(e) => setHeadCode(e.target.value)}
+                    className="border w-full p-2"
+                  />
+                </div>
+
+                <div className="mb-4">
+                  <label>Footer Code (e.g. chat widget)</label>
+                  <textarea
+                    value={footerCode}
+                    onChange={(e) => setFooterCode(e.target.value)}
+                    className="border w-full p-2"
+                  />
+                </div>
               </Box>
 
               <Box

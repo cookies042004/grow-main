@@ -6,7 +6,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import logo from "../assets/img/logo.png";
 
 export const Navbar = ({ mobileMenu, setMobileMenu }) => {
-  document.title = "Grow Infinity Realtors";
 
   const [isSticky, setIsSticky] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);

@@ -86,6 +86,11 @@ export const UpdateProperty = () => {
   const [selectAllLocation, setSelectAllLocation] = useState([]);
   const [sizeUnit, setSizeUnit] = useState("");
   const [removedImages, setRemovedImages] = useState([]);
+  const [seoTitle, setSeoTitle] = useState("");
+  const [seoDescription, setSeoDescription] = useState("");
+  const [shouldIndex, setShouldIndex] = useState(true);
+  const [headCode, setHeadCode] = useState("");
+  const [footerCode, setFooterCode] = useState("");
   // Ref to the file input element
   const imageInputRef = useRef();
   const videoInputRef = useRef();
@@ -139,6 +144,11 @@ export const UpdateProperty = () => {
           .length ===
           amenities.filter((a) => a.type === "location_advantages").length
       );
+      setSeoTitle(property.seoTitle || "");
+      setSeoDescription(property.seoDescription || "");
+      setShouldIndex(property.indexStatus || true);
+      setHeadCode(property.headCode || "");
+      setFooterCode(property.footerCode || "");
     }
   }, [data]);
 
@@ -229,15 +239,17 @@ export const UpdateProperty = () => {
   // Handler for uploading images
   const handleImageUpload = (event) => {
     const files = Array.from(event.target.files);
-  
+
     // Validate file types & size
-    const validFiles = files.filter(file => {
-      return ["image/jpeg", "image/png", "image/jpg"].includes(file.type) && file.size <= 2 * 1024 * 1024;
+    const validFiles = files.filter((file) => {
+      return (
+        ["image/jpeg", "image/png", "image/jpg"].includes(file.type) &&
+        file.size <= 2 * 1024 * 1024
+      );
     });
-  
-    setUploadedImages(prevImages => [...prevImages, ...validFiles]); // Keep old images
+
+    setUploadedImages((prevImages) => [...prevImages, ...validFiles]); // Keep old images
   };
-  
 
   // Handler for video uplaoding
   const handleVideoUpload = (event) => {
@@ -329,15 +341,15 @@ export const UpdateProperty = () => {
 
   // Function to remove image
   const removeImage = (index) => {
-    setUploadedImages(prevImages => {
+    setUploadedImages((prevImages) => {
       const updatedImages = [...prevImages];
       const removedImage = updatedImages.splice(index, 1)[0];
-  
+
       // If the removed image is an existing URL, track it for backend deletion
       if (typeof removedImage === "string") {
-        setRemovedImages(prevRemoved => [...prevRemoved, removedImage]);
+        setRemovedImages((prevRemoved) => [...prevRemoved, removedImage]);
       }
-  
+
       return updatedImages;
     });
   };
@@ -351,16 +363,19 @@ export const UpdateProperty = () => {
   const renderImagePreviews = () => {
     return uploadedImages.map((image, index) => {
       let imageUrl;
-  
+
       // Check if image is a File (newly uploaded) or a URL (existing)
       if (image instanceof File) {
         imageUrl = URL.createObjectURL(image);
       } else {
         imageUrl = image; // Keep existing image URLs
       }
-  
+
       return (
-        <div key={index} style={{ position: "relative", display: "inline-block" }}>
+        <div
+          key={index}
+          style={{ position: "relative", display: "inline-block" }}
+        >
           <img src={imageUrl} alt="Preview" className="image-preview" />
           <button
             type="button"
@@ -373,7 +388,7 @@ export const UpdateProperty = () => {
       );
     });
   };
-  
+
   // Function for display video previews
   const renderVideoPreview = () => {
     // Ensure uploadedVideos is valid before using it
@@ -409,37 +424,49 @@ export const UpdateProperty = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setButtonLoading(true);
-  
+
     const formDataToSend = new FormData();
-  
+
     // Append form fields
     Object.keys(formData).forEach((key) => {
-      if (Array.isArray(formData[key]) && ["societyAmenities", "flatAmenities", "locationAdvantages"].includes(key)) {
-        formData[key].forEach(item => formDataToSend.append("amenities", item));
+      if (
+        Array.isArray(formData[key]) &&
+        ["societyAmenities", "flatAmenities", "locationAdvantages"].includes(
+          key
+        )
+      ) {
+        formData[key].forEach((item) =>
+          formDataToSend.append("amenities", item)
+        );
       } else {
         formDataToSend.append(key, formData[key]);
       }
     });
-  
+
     // Append images (only new ones)
     uploadedImages.forEach((image) => {
       if (image instanceof File) {
         formDataToSend.append("images", image);
       }
     });
-  
+
     // Append removed images
     removedImages.forEach((image) => {
       formDataToSend.append("removedImages", image);
     });
-  
+
     // Append other files
     if (uploadedVideos) {
       formDataToSend.append("video", uploadedVideos);
     }
     formDataToSend.append("dp", uploadedDpImage);
     formDataToSend.append("sizeUnit", sizeUnit);
-  
+    formDataToSend.append("seoTitle", seoTitle);
+    formDataToSend.append("seoDescription", seoDescription);
+    formDataToSend.append("indexStatus", shouldIndex);
+    formDataToSend.append("headerCode", headCode);
+    formDataToSend.append("footerCode", footerCode);
+
     try {
       const response = await axios.patch(
         `${process.env.BASE_URL}/api/v1/property/${id}`,
@@ -450,14 +477,14 @@ export const UpdateProperty = () => {
           },
         }
       );
-  
+
       if (response.status === 200) {
         toast.success("Property updated successfully!");
         refetch();
       }
     } catch (error) {
       toast.error("Failed to update property.");
-      console.log("error is",error)
+      console.log("error is", error);
     } finally {
       setButtonLoading(false);
     }
@@ -800,7 +827,7 @@ export const UpdateProperty = () => {
                   onChange={handleChange}
                   fullWidth
                 />
-              </Box>  
+              </Box>
 
               <Box
                 sx={{
@@ -1073,6 +1100,71 @@ export const UpdateProperty = () => {
                     </div>
                   </RadioGroup>
                 </FormControl>
+              </Box>
+
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 2,
+                  border: "2px solid #ccc",
+                  borderRadius: "8px",
+                  backgroundColor: "#f9f9f9",
+                  padding: "12px",
+                  marginTop: 2,
+                }}
+              >
+                <h3 className="text-lg font-semibold mt-4">SEO Settings</h3>
+
+                <div className="mb-4">
+                  <label>SEO Title</label>
+                  <input
+                    type="text"
+                    value={seoTitle}
+                    onChange={(e) => setSeoTitle(e.target.value)}
+                    className="border w-full p-2"
+                    placeholder="e.g. 3BHK Flats in Noida by Grow Infinity"
+                  />
+                </div>
+
+                <div className="mb-4">
+                  <label>SEO Description</label>
+                  <textarea
+                    value={seoDescription}
+                    onChange={(e) => setSeoDescription(e.target.value)}
+                    className="border w-full p-2"
+                    placeholder="e.g. Explore our top 3BHK flats available in Sector 74, Noida..."
+                  />
+                </div>
+
+                <div className="mb-4">
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={shouldIndex}
+                      onChange={(e) => setShouldIndex(e.target.checked)}
+                    />
+                    Allow search engine indexing
+                  </label>
+                </div>
+
+                <div className="mb-4">
+                  <label>Header Code (e.g. Google Tag Manager)</label>
+                  <textarea
+                    value={headCode}
+                    onChange={(e) => setHeadCode(e.target.value)}
+                    className="border w-full p-2"
+                  />
+                </div>
+
+                <div className="mb-4">
+                  <label>Footer Code (e.g. chat widget)</label>
+                  <textarea
+                    value={footerCode}
+                    onChange={(e) => setFooterCode(e.target.value)}
+                    className="border w-full p-2"
+                  />
+                </div>
               </Box>
 
               <Box

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const slugify = require("slugify")
+const slugify = require("slugify");
 
 const propertySchema = new mongoose.Schema(
   {
@@ -8,9 +8,9 @@ const propertySchema = new mongoose.Schema(
       ref: "Category",
       required: true,
     },
-    propertyType:{
-      type:String,
-      required:false // change it to true later
+    propertyType: {
+      type: String,
+      required: false
     },
     name: {
       type: String,
@@ -26,7 +26,6 @@ const propertySchema = new mongoose.Schema(
     },
     unit: {
       type: String,
-      // enum: ["1BHK", "2BHK", "3BHK", "4BHK", "5BHK"],
       required: true,
     },
     size: {
@@ -37,7 +36,7 @@ const propertySchema = new mongoose.Schema(
       type: String,
       enum: ["sqFt", "yard"],
       required: true,
-    },    
+    },
     price: {
       type: Number,
       required: true,
@@ -68,43 +67,61 @@ const propertySchema = new mongoose.Schema(
     ],
     image: {
       type: [String],
-      required: true, 
+      required: true,
     },
     video: {
-      type: [String]  ,
-      required: false,
-    },
-    dp:{
       type: [String],
       required: false,
     },
-    projectSize:{
+    dp: {
+      type: [String],
+      required: false,
+    },
+    projectSize: {
       type: String,
       required: false,
     },
-    projectStatus:{
+    projectStatus: {
       type: String,
       required: false,
     },
-    totalUnits:{
+    totalUnits: {
       type: Number,
       required: false,
     },
-    propertyRera:{
+    propertyRera: {
       type: String,
       required: false,
     },
+    seoTitle: {
+      type: String,
+      default: ""
+    },
+    seoDescription: {
+      type: String,
+      default: ""
+    },
+    shouldIndex: {
+      type: Boolean,
+      default: true
+    },
+    headCode: {
+      type: String,
+      default: ""
+    },
+    footerCode: {
+      type: String,
+      default: ""
+    }
+
   },
   { timestamps: true }
 );
-
-
 
 propertySchema.pre("save", function (next) {
   this.slug = slugify(`${this.name}-${this.location}`, { lower: true, strict: true });
   next();
 });
-
 
 const Property = mongoose.model("Property", propertySchema);
 module.exports = Property;

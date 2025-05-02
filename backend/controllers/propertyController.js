@@ -62,6 +62,8 @@ const getSingleProperty = async (req, res) => {
       });
     }
 
+    console.log(property);
+
     res.status(200).json({
       success: true,
       message: "Property successfully found!",
@@ -96,8 +98,14 @@ const createProperty = async (req, res) => {
       projectStatus,
       projectSize,
       totalUnits,
-      propertyRera
+      propertyRera,
+      seoTitle,
+      seoDescription,
+      indexStatus,
+      headerCode,
+      footerCode
     } = req.body;
+
 
     const image = [];
     const video = [];
@@ -144,7 +152,12 @@ const createProperty = async (req, res) => {
       projectStatus,
       projectSize,
       totalUnits,
-      propertyRera
+      propertyRera,
+      seoTitle,
+      seoDescription,
+      indexStatus,
+      headerCode,
+      footerCode
     });
 
     await newProperty.save();
@@ -185,12 +198,22 @@ const updateProperty = async (req, res) => {
       projectStatus,
       totalUnits,
       removedImages,
-      propertyRera
+      propertyRera,
+      // ADD THESE:
+      seoTitle,
+      seoDescription,
+      indexStatus,
+      headerCode,
+      footerCode
     } = req.body;
+    
 
     const property = await Property.findById(propertyId);
     if (!property) {
-      return res.status(404).json({ success: false, message: "Property not found" });
+      return res.status(404).json({
+        success: false,
+        message: "Property not found"
+      });
     }
 
     if (typeof removedImages === "string") {
@@ -205,9 +228,11 @@ const updateProperty = async (req, res) => {
 
     for (const imgUrl of removedImages) {
       if (!imgUrl.startsWith("http")) continue; // Only Cloudinary URLs
-      
+
       const publicId = imgUrl.split("/").slice(-2).join("/").split(".")[0]; // Extract correct Cloudinary public ID
-      const result = await cloudinary.uploader.destroy(publicId, { invalidate: true });
+      const result = await cloudinary.uploader.destroy(publicId, {
+        invalidate: true
+      });
 
       if (result.result === "ok") {
         property.image = property.image.filter(img => img !== imgUrl);
@@ -256,13 +281,28 @@ const updateProperty = async (req, res) => {
       propertyRera,
       dp: newDp.length > 0 ? newDp : property.dp,
       video: newVideos.length > 0 ? newVideos : property.video,
+      // ADD SEO FIELDS HERE:
+      seoTitle,
+      seoDescription,
+      indexStatus,
+      headerCode,
+      footerCode
     });
+    
 
     await property.save();
-    res.status(200).json({ success: true, message: "Property updated successfully", property });
+    res.status(200).json({
+      success: true,
+      message: "Property updated successfully",
+      property
+    });
   } catch (error) {
     console.error("Error updating property:", error);
-    res.status(500).json({ success: false, message: "Internal Server Error", error: error.message });
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+      error: error.message
+    });
   }
 };
 
@@ -317,7 +357,10 @@ const deleteProperty = async (req, res) => {
 // Search Property
 const searchProperty = async (req, res) => {
   try {
-    const { query, bhk } = req.query;
+    const {
+      query,
+      bhk
+    } = req.query;
     if (!query) {
       return res.status(400).json({
         success: false,
@@ -329,12 +372,21 @@ const searchProperty = async (req, res) => {
     const searchRegex = new RegExp(query, "i");
 
     let filter = {
-      $or: [
-        { name: searchRegex },
-        { location: searchRegex },
-        { address: searchRegex },
-        { city: searchRegex },
-        { state: searchRegex },
+      $or: [{
+          name: searchRegex
+        },
+        {
+          location: searchRegex
+        },
+        {
+          address: searchRegex
+        },
+        {
+          city: searchRegex
+        },
+        {
+          state: searchRegex
+        },
       ],
     };
 

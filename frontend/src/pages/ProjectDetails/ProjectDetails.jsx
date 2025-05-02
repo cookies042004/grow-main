@@ -23,6 +23,7 @@ import { ContactForm } from "../../components/ContactForm";
 import Carousel from "../../components/Carousel";
 import { NavigationProject } from "../../components/NavigationProject";
 import rera from "../../assets/img/icons8-approved.gif";
+import PropertySEO from "./PropertySEO"
 
 export const ProjectDetails = () => {
   const { slug } = useParams(); // Get slug from URL
@@ -32,39 +33,35 @@ export const ProjectDetails = () => {
   const [property, setProperty] = useState(null);
 
   useEffect(() => {
-    const fetchPropertyByName = async () => {
+    const fetchFullProperty = async () => {
       try {
-        // Fetch property details using slug
-        const res = await fetch(
+        const nameRes = await fetch(
           `${process.env.BASE_URL}/api/v1/property/search-by-name/${decodedSlug}`
         );
-        const data = await res.json();
+        const nameData = await nameRes.json();
 
-        if (data.property) {
-          setProperty(data.property); // Store full property data
-          setPropertyId(data.property._id); // Store ID
+        if (nameData.property) {
+          const id = nameData.property._id;
+          const detailRes = await fetch(
+            `${process.env.BASE_URL}/api/v1/property/${id}`
+          );
+          const detailData = await detailRes.json();
+
+          if (detailData.property) {
+            setProperty(detailData.property);
+          } else {
+            console.error("Detailed property not found");
+          }
         } else {
-          console.error("Property not found");
+          console.error("Property not found by name");
         }
-      } catch (error) {
-        console.error("Error fetching property by name:", error);
+      } catch (err) {
+        console.error("Error fetching property:", err);
       }
     };
 
-    fetchPropertyByName();
+    fetchFullProperty();
   }, [slug]);
-
-  // Fetch full property details using ID (when propertyId is available)
-  const apiUrl = propertyId
-    ? `${process.env.BASE_URL}/api/v1/property/${propertyId}`
-    : null;
-  const { data, loading, error, refetch } = useFetchData(apiUrl);
-
-  useEffect(() => {
-    if (data?.property) {
-      setProperty(data.property);
-    }
-  }, [data]);
 
   const images = property?.image ? property.image.map((item) => item) : [];
   const video = property?.video ? property.video.map((item) => item) : [];
@@ -149,10 +146,8 @@ export const ProjectDetails = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 1000) {
-        // When user scrolls down, make navbar sticky
         setIsSticky(true);
       } else {
-        // When at the top, revert to normal position
         setIsSticky(false);
       }
     };
@@ -165,7 +160,7 @@ export const ProjectDetails = () => {
 
   return (
     <Layout>
-      {/* Project Details Hero */}
+    {property && <PropertySEO property={property} />}
       <div className="detailsbanner flex items-center justify-center">
         <div className="grid sm:grid-cols-12">
           <div className="col-span-12 text-center mt-20">
@@ -565,6 +560,10 @@ export const ProjectDetails = () => {
       </div>
 
       <Marquee />
+
+      {property && property.footerCode && (
+        <div dangerouslySetInnerHTML={{ __html: property.footerCode }} />
+      )}
     </Layout>
   );
 };
