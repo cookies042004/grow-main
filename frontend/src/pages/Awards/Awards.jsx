@@ -20,7 +20,7 @@ export const Awards = () => {
   const awardsPerPage = 9;
 
   useEffect(() => {
-    if(modalOpen) {
+    if (modalOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
@@ -73,33 +73,40 @@ export const Awards = () => {
             Awards & Achievements
           </h1>
 
-          <div className="flex flex-wrap justify-center gap-10 lg:p-6">
-            {loading && <CircularProgress size="30px" className="flex justify-center" />}
+          <div className="flex flex-wrap justify-start gap-10 lg:p-6">
+            {loading && (
+              <div className="flex justify-center items-center w-full">
+                <CircularProgress size="30px" className="flex justify-center" />
+              </div>
+            )}
 
             {error && (
               <div className="flex flex-col items-center w-full">
-                <p className="text-red-500 mt-2">Failed to load awards. Please try again.</p>
+                <p className="text-red-500 mt-2 font-medium">Failed to load awards. Please try again.</p>
               </div>
             )}
 
             {currentAwards.length > 0
               ? currentAwards.map((award, index) => (
-                  <div key={award._id} className="flex flex-col items-center">
-                    <img
-                      src={award.image}
-                      alt={award.name || "Award"}
-                      className="w-[350px] h-[350px] object-contain rounded-lg shadow-lg transition-transform duration-300 cursor-pointer"
-                      onClick={() => openModal(index + indexOfFirstAward)}
-                    />
-                    <p className="text-center text-sm sm:text-base font-medium text-gray-700">{award.name}</p>
-                  </div>
-                ))
+                <div key={award._id} className="flex flex-col items-center">
+                  <img
+                    src={award.image}
+                    alt={award.name || "Award Image"}
+                    className="w-[350px] h-[350px] object-contain rounded-lg shadow-lg transition-transform duration-300 cursor-pointer"
+                    onClick={() => openModal(index + indexOfFirstAward)}
+                  />
+                  <p className="text-center text-sm sm:text-base font-medium text-gray-700 mt-2">
+                    {award.name}
+                  </p>
+                </div>
+              ))
               : !loading && (
-                  <div className="flex justify-center w-full">
-                    <p className="text-gray-500">No awards found.</p>
-                  </div>
-                )}
+                <div className="flex justify-center w-full">
+                  <p className="text-gray-500">No awards found.</p>
+                </div>
+              )}
           </div>
+
 
           {/* Pagination */}
           {totalPages > 1 && (
