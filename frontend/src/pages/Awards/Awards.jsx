@@ -67,50 +67,47 @@ export const Awards = () => {
 
         <NavigationBar />
 
-        {/* Awards Section */}
-        <div className="my-10 px-4 sm:px-8 lg:px-8">
+        <div className="my-10 px-4 sm:px-8">
           <h1 className="text-2xl font-medium text-[#1d2a3b] text-center mb-6">
             Awards & Achievements
           </h1>
 
-          <div className="flex flex-wrap justify-start gap-10 lg:p-6">
-            {loading && (
-              <div className="flex justify-center items-center w-full">
-                <CircularProgress size="30px" className="flex justify-center" />
-              </div>
-            )}
-
-            {error && (
-              <div className="flex flex-col items-center w-full">
-                <p className="text-red-500 mt-2 font-medium">Failed to load awards. Please try again.</p>
-              </div>
-            )}
-
-            {currentAwards.length > 0
-              ? currentAwards.map((award, index) => (
-                <div key={award._id} className="flex flex-col items-center">
-                  <img
-                    src={award.image}
-                    alt={award.name || "Award Image"}
-                    className="w-[350px] h-[350px] object-contain rounded-lg shadow-lg transition-transform duration-300 cursor-pointer"
-                    onClick={() => openModal(index + indexOfFirstAward)}
-                  />
-                  <p className="text-center text-sm sm:text-base font-medium text-gray-700 mt-2">
-                    {award.name}
-                  </p>
-                </div>
-              ))
-              : !loading && (
-                <div className="flex justify-center w-full">
-                  <p className="text-gray-500">No awards found.</p>
+          {/* Centered container */}
+          <div className="flex justify-center">
+            <div className="w-full max-w-7xl flex flex-wrap gap-10 justify-start">
+              {loading && (
+                <div className="flex justify-center items-center w-full">
+                  <CircularProgress size="30px" />
                 </div>
               )}
-          </div>
 
+              {currentAwards.length > 0 ? (
+                currentAwards.map((award, index) => (
+                  <div key={award._id} className="flex flex-col items-center">
+                    <img
+                      src={award.image}
+                      alt={award.name || "Award Image"}
+                      className="w-[350px] h-[350px] object-contain rounded-lg shadow-lg transition-transform duration-300 cursor-pointer"
+                      onClick={() => openModal(index + indexOfFirstAward)}
+                    />
+                    <p className="text-center text-sm sm:text-base font-medium text-gray-700 mt-2">
+                      {award.name}
+                    </p>
+                  </div>
+                ))
+              ) : (
+                !loading && (
+                  <div className="flex justify-center w-full">
+                    <p className="text-gray-500">No awards found.</p>
+                  </div>
+                )
+              )}
+            </div>
+          </div>
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div className="flex justify-center m-6">
+            <div className="flex justify-center mt-8">
               <Pagination
                 count={totalPages}
                 page={currentPage}
