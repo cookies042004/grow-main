@@ -100,12 +100,12 @@ export const SearchBar = () => {
                   aria-labelledby="dropdownDefaultButton"
                 >
                   {options.map((option) => (
-                    <li key={option}>
+                    <li key={option}
                       onClick={() => handleOptionClick(option)}
                       className={`block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${selectedValue === option
                           ? "bg-gray-200 dark:bg-gray-500"
                           : ""
-                        }`}
+                        }`}>
                       {option}
                     </li>
                   ))}
@@ -224,12 +224,12 @@ export const SearchBar = () => {
                   aria-labelledby="dropdownBhkButton"
                 >
                   {bhkOptions.map((option) => (
-                    <li key={option}>
+                    <li key={option}
                       onClick={() => handleBhkClick(option)}
                       className={`block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${bhkValue === option
                           ? "bg-gray-200 dark:bg-gray-500"
                           : ""
-                        }`}
+                        }`}>
                       {option}
                     </li>
                   ))}
