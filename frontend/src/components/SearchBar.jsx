@@ -13,7 +13,7 @@ export const SearchBar = () => {
   const navigate = useNavigate();
 
   const options = ["Sale", "Purchase"];
-  const bhkOptions = ["2 BHK", "3 BHK", "4 BHK"]; // Add BHK options here
+  const bhkOptions = ["2 BHK", "3 BHK", "4 BHK"];
 
   const handleBhkClick = (value) => {
     setBhkValue(value);
@@ -42,7 +42,7 @@ export const SearchBar = () => {
 
       navigate(searchUrl);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -101,16 +101,12 @@ export const SearchBar = () => {
                 >
                   {options.map((option) => (
                     <li key={option}>
-                      <a
-                        onClick={() => handleOptionClick(option)}
-                        className={`block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${
-                          selectedValue === option
-                            ? "bg-gray-200 dark:bg-gray-500"
-                            : ""
+                      onClick={() => handleOptionClick(option)}
+                      className={`block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${selectedValue === option
+                          ? "bg-gray-200 dark:bg-gray-500"
+                          : ""
                         }`}
-                      >
-                        {option}
-                      </a>
+                      {option}
                     </li>
                   ))}
                 </ul>
@@ -159,17 +155,16 @@ export const SearchBar = () => {
                 >
                   {bhkOptions.map((option) => (
                     <li key={option}>
-                      <a
+                      <button
+                        type="button"
                         onClick={() => handleBhkClick(option)}
-                        className={`block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${
-                          bhkValue === option
-                            ? "bg-gray-200 dark:bg-gray-500"
-                            : ""
-                        }`}
+                        className={`block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${bhkValue === option ? "bg-gray-200 dark:bg-gray-500" : ""
+                          }`}
                       >
                         {option}
-                      </a>
+                      </button>
                     </li>
+
                   ))}
                 </ul>
               </div>
@@ -230,16 +225,12 @@ export const SearchBar = () => {
                 >
                   {bhkOptions.map((option) => (
                     <li key={option}>
-                      <a
-                        onClick={() => handleBhkClick(option)}
-                        className={`block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${
-                          bhkValue === option
-                            ? "bg-gray-200 dark:bg-gray-500"
-                            : ""
+                      onClick={() => handleBhkClick(option)}
+                      className={`block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${bhkValue === option
+                          ? "bg-gray-200 dark:bg-gray-500"
+                          : ""
                         }`}
-                      >
-                        {option}
-                      </a>
+                      {option}
                     </li>
                   ))}
                 </ul>
