@@ -162,7 +162,7 @@ const updateBrochure = async (req, res) => {
 
     // Helper function to extract Cloudinary public ID
     const getPublicId = (url) => {
-      return url.split("/").slice(-2).join("/").split(".")[0]; // Extracts "brochures/hpah6bzrdsyij8zlqpbv"
+      return url.split("/").slice(-2).join("/").split(".")[0];
     };
 
     // Handle image upload

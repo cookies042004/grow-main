@@ -111,15 +111,15 @@ export const Brochure = () => {
         {brochures.length > 0 && (
           <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-20">
             {brochures.map((brochure) => (
-              <div
-                key={brochure._id}
-                className="relative group border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
-              >
-                <img
-                  src={brochure.image}
-                  alt={brochure.name}
-                  className="h-64 w-full object-cover"
-                />
+                <div
+                  key={brochure._id}
+                  className="relative group border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
+                >
+                  <img
+                    src={brochure.images}
+                    alt={brochure.name}
+                    className="h-64 w-full object-cover"
+                  />
                 <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <motion.button
                     whileHover={{ scale: 1.1 }}
