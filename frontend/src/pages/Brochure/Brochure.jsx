@@ -116,7 +116,7 @@ export const Brochure = () => {
                   className="relative group border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
                 >
                   <img
-                    src={brochure.images}
+                    src={brochure.image}
                     alt={brochure.name}
                     className="h-64 w-full object-cover"
                   />

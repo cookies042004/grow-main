@@ -43,7 +43,7 @@ export const AddBrochure = () => {
     const formDataToSend = new FormData();
     formDataToSend.append("name", formData.name);
     formDataToSend.append("location", formData.location);
-    formDataToSend.append("image", formData.image); // Image file
+    formDataToSend.append("images", formData.image); // Image file
     formDataToSend.append("pdf", formData.pdf); // PDF file
 
     try {
@@ -62,7 +62,7 @@ export const AddBrochure = () => {
         setFormData({
           name: "",
           location: "",
-          image: null,
+          images: null,
           pdf: null,
         });
       } else {
