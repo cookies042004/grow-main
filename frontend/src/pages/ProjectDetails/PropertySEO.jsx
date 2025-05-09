@@ -6,6 +6,7 @@ const PropertySEO = ({ property }) => {
 
   return (
     <Helmet>
+      <meta charset="UTF-8" />
       <title>{property.seoTitle || property.name || "Default Title"}</title>
       <meta
         name="description"
