@@ -24,7 +24,6 @@ export const AddNews = () => {
   const [imagePreview, setImagePreview] = useState(null); // New state for image preview
 
   const apiUrl = `${process.env.BASE_URL}/api/v1/news`;
-  console.log("apiUrl", apiUrl);
   const imageInputRef = useRef();
 
   const handleChange = (e) => {
@@ -45,7 +44,7 @@ export const AddNews = () => {
     // Set image preview URL
     if (file) {
       const previewUrl = URL.createObjectURL(file);
-      setImagePreview(previewUrl); // Set the preview URL for image
+      setImagePreview(previewUrl);
     }
   };
 
@@ -75,12 +74,12 @@ export const AddNews = () => {
         title: "",
         image: null,
       });
-      setImagePreview(null); // Reset image preview after successful submission
-      imageInputRef.current.value = null; // Reset the file input
+      setImagePreview(null);
+      imageInputRef.current.value = null;
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      console.error(error); // Log the error
+      console.error(error);
       toast.error("An error occurred while adding the news");
     }
   };
@@ -130,7 +129,7 @@ export const AddNews = () => {
                   <Box sx={{ mt: 2 }}>
                     <Typography variant="body1" gutterBottom>
                       Upload News Image - (Only jpeg, jpg, png files are allowed
-                      Max size: 1 mb)
+                      Max size: 5 mb)
                     </Typography>
                     <input
                       accept="image/*"

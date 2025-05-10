@@ -13,6 +13,7 @@ import Lottie from "lottie-react";
 import successAnimation from "../../assets/img/success.json";
 import "./Brochure.css";
 import { NavigationBar } from "../../components/NavigationBar";
+import { Helmet } from "react-helmet-async";
 
 export const Brochure = () => {
   const [open, setOpen] = useState(false);
@@ -54,7 +55,7 @@ export const Brochure = () => {
     e.preventDefault();
     setError("");
 
-    if (!formData.name || !formData.phone || !formData.email) {
+    if (!formData.name || !formData.phone) {
       setError("All fields are required.");
       return;
     }
@@ -82,6 +83,12 @@ export const Brochure = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Grow Infinity Realtors | Brochure</title>
+        <meta name="description" content="Explore our brochures for detailed information about our properties." />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href={`${process.env.BASE_URL}/brochure`} />
+      </Helmet>
       <div className="brochurebanner flex flex-col items-center justify-center">
         <h1 className="font-dmsans font-medium text-white text-3xl lg:text-5xl mt-10 lg:mt-20">
           Brochure
@@ -91,9 +98,9 @@ export const Brochure = () => {
       <NavigationBar />
 
       <div className="max-w-[1280px] mx-auto px-6">
-      <h1 className="font-roboto pt-8  text-2xl font-medium text-[#1d2a3b] text-center">
-            Brochure
-          </h1>
+        <h1 className="font-roboto pt-8  text-2xl font-medium text-[#1d2a3b] text-center">
+          Brochure
+        </h1>
         {loading && (
           <div className="flex justify-center">
             <CircularProgress />
@@ -111,15 +118,15 @@ export const Brochure = () => {
         {brochures.length > 0 && (
           <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-20">
             {brochures.map((brochure) => (
-                <div
-                  key={brochure._id}
-                  className="relative group border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
-                >
-                  <img
-                    src={brochure.image}
-                    alt={brochure.name}
-                    className="h-64 w-full object-cover"
-                  />
+              <div
+                key={brochure._id}
+                className="relative group border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
+              >
+                <img
+                  src={brochure.image}
+                  alt={brochure.name}
+                  className="h-64 w-full object-cover"
+                />
                 <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <motion.button
                     whileHover={{ scale: 1.1 }}

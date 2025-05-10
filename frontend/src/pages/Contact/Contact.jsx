@@ -13,10 +13,10 @@ import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
 import EastOutlinedIcon from "@mui/icons-material/EastOutlined";
 import { Button } from "@mui/material";
 import { NavigationBar } from "../../components/NavigationBar";
+import { Helmet } from "react-helmet-async";
 
 export const Contact = () => {
   const apiUrl = `${process.env.BASE_URL}/api/v1/contact`;
-  console.log(apiUrl);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -93,6 +93,18 @@ export const Contact = () => {
     <>
       <ToastContainer position="top-center" />
       <Layout>
+        <Helmet>
+          <title>Grow Infinity Realtors | Contact Us</title>
+          <meta
+            name="description"
+            content="Get in touch with Grow Infinity Realtors for all your real estate needs. Contact us today!"
+          />
+          <meta name="robots" content="index, follow" />
+          <link
+            rel="canonical"
+            href={`${process.env.BASE_URL}/contact`}
+          />
+        </Helmet> 
         {/* Contact Hero */}
         <div className="contactbanner flex items-center justify-center">
           <div className="grid sm:grid-cols-12 w-full">
@@ -177,7 +189,7 @@ export const Contact = () => {
                       {/* Full Name */}
                       <div className="col-span-12">
                         <div className="flex flex-col gap-2">
-                          <label htmlFor="name" className="ps-2">Full Name</label>
+                          <label htmlFor="name" className="ps-2">*Full Name</label>
                           <div className="flex items-center bg-white border rounded-[24px]">
                             <PersonOutlineOutlinedIcon sx={{ marginLeft: "15px" }} />
                             <input
@@ -187,6 +199,27 @@ export const Contact = () => {
                               onChange={handleChange}
                               required
                               placeholder="Enter your full name..."
+                              className="p-3 outline-none w-full rounded-[24px]"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Phone Number */}
+                      <div className="col-span-12">
+                        <div className="flex flex-col gap-2">
+                          <label htmlFor="phone" className="ps-2">*Phone Number</label>
+                          <div className="flex items-center bg-white border rounded-[24px]">
+                            <LocalPhoneOutlinedIcon sx={{ marginLeft: "15px" }} />
+                            <input
+                              type="text"
+                              name="phone"
+                              value={formData.phone}
+                              onChange={handleChange}
+                              required
+                              maxLength={10}
+                              minLength={10}
+                              placeholder="Enter your phone number..."
                               className="p-3 outline-none w-full rounded-[24px]"
                             />
                           </div>
@@ -206,27 +239,6 @@ export const Contact = () => {
                               onChange={handleChange}
                               required
                               placeholder="Enter your email address..."
-                              className="p-3 outline-none w-full rounded-[24px]"
-                            />
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Phone Number */}
-                      <div className="col-span-12">
-                        <div className="flex flex-col gap-2">
-                          <label htmlFor="phone" className="ps-2">Phone Number</label>
-                          <div className="flex items-center bg-white border rounded-[24px]">
-                            <LocalPhoneOutlinedIcon sx={{ marginLeft: "15px" }} />
-                            <input
-                              type="text"
-                              name="phone"
-                              value={formData.phone}
-                              onChange={handleChange}
-                              required
-                              maxLength={10}
-                              minLength={10}
-                              placeholder="Enter your phone number..."
                               className="p-3 outline-none w-full rounded-[24px]"
                             />
                           </div>
@@ -306,9 +318,6 @@ export const Contact = () => {
                     <p className="font-sans text-lg text-gray-600 font-bold">
                       Our friendly team is here to help.
                     </p>
-                    <p className="font-sans text-md text-[#5B5B5B] text-center">
-                      growinfinityrealtor1@gmail.com, info@growinfinityrealtors.in
-                    </p>
                   </div>
                 </div>
                 <div className="col-span-12 md:col-span-6 lg:col-span-4 flex justify-center bg-white m-5 px-3 lg:px-4 py-4 lg:py-6 rounded-[24px] shadow-lg">
@@ -334,10 +343,6 @@ export const Contact = () => {
                     <p className="font-sans text-lg text-gray-600 font-bold">
                       Come say hello at our office HQ.
                     </p>
-                    <p className="font-sans text-md text-[#5B5B5B] text-center">
-                      Plot No. BL-34, II Floor, Near Fitness Gym, Sector-116,
-                      Noida, Uttar Pradesh-201305
-                    </p>
                   </div>
                 </div>
                 <div className="col-span-12 md:col-span-6 lg:col-span-4 flex justify-center bg-white m-5 px-3 lg:px-4 py-4 lg:py-6 rounded-[24px] shadow-lg">
@@ -359,9 +364,6 @@ export const Contact = () => {
                     </p>
                     <p className="font-sans text-lg text-gray-600 font-bold">
                       Have questions? Let’s talk!
-                    </p>
-                    <p className="font-sans text-md text-[#5B5B5B] text-center">
-                      +91-9990052554
                     </p>
                   </div>
                 </div>

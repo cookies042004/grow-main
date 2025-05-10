@@ -8,13 +8,13 @@ import { ClipLoader } from "react-spinners";
 import { Navigation } from "../../components/Navigation";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { Helmet } from "react-helmet-async";
 
 export const Commercial = () => {
   const { id } = useParams();
   const apiUrl = `${process.env.BASE_URL}/api/v1/commercial`;
   const { data, loading, error } = useFetchData(apiUrl);
   const properties = data.properties || [];
-  console.log("Properties:", properties);
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
@@ -79,6 +79,19 @@ export const Commercial = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Grow Infinity Realtors | Commercial Properties</title>
+        <meta
+          name="description"
+          content={`Explore our commercial properties in ${id.replace("-", " ")}`}
+        />
+        <meta name="robots" content="index, follow" />
+        <link
+          rel="canonical"
+          href={`${process.env.BASE_URL}/commercial/${id}`}
+        />
+      </Helmet>
+
       <div className="projectbanner flex justify-center items-center">
         <div className="grid sm:grid-cols-12">
           <div className="col-span-12 text-center lg:mt-20">

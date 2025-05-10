@@ -32,12 +32,22 @@ import realtor from "../../assets/img/meet realtor.jpeg";
 import bgImage from "/src/assets/img/img4.jpg";
 import EnquiryHome from "../../components/EnquiryHome";
 import { AwardComponent } from "../../components/AwardComponent";
-import { hover } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 
 export const Home = () => {
   return (
     <Layout>
       {/* Hero  */}
+      <Helmet>
+        <meta charSet="UTF-8" />
+        <title>Grow Infinity - Home</title>
+        <meta
+          name="description"
+          content="Discover your dream home with Grow Infinity. Explore our listings and find the perfect property for you."
+        />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href={`${process.env.BASE_URL}/`} />
+      </Helmet>
 
       <div className="homeBanner overflow-hidden relative h-screen flex flex-col items-center lg:items-start justify-center lg:ps-24 ">
         <div className="text-center">

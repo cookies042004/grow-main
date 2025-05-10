@@ -139,7 +139,7 @@ export const AddEvents = () => {
                   <Box sx={{ mt: 2 }}>
                     <Typography variant="body1" gutterBottom>
                       Upload Event Images - (Only jpeg, jpg, png files are
-                      allowed Max size: 1 mb)
+                      allowed Max size: 5 mb)
                     </Typography>
                     <input
                       ref={imageInputRef}

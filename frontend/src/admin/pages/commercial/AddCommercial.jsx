@@ -172,10 +172,10 @@ export const AddCommercial = () => {
   // Handler for video uplaoding
   const handleVideoUpload = (event) => {
     const file = event.target.files[0];
-    let maxSize = 1024 * 1024 * 2; // 2Mb max
+    const maxSize = 1024 * 1024 * 5;
 
     if (file.size > maxSize) {
-      toast.error(`Video size should be less than 2Mb`);
+      toast.error(`Video size should be less than 5Mb`);
     } else {
       if (
         (file && file.type === "video/mp4") ||
@@ -191,9 +191,9 @@ export const AddCommercial = () => {
 
   const handleDescriptionUpload = (event) => {
     const file = event.target.files[0];
-    let maxSize = 1024 * 1024 * 2; // 2Mb max
+    const maxSize = 1024 * 1024 * 5;
     if (file.size > maxSize) {
-      toast.error(`Dp size should be less than 2Mb`);
+      toast.error(`Dp size should be less than 5Mb`);
     } else {
       if (
         file &&
@@ -720,7 +720,7 @@ export const AddCommercial = () => {
                       backgroundColor: "#f5f5f5",
                       padding: "6px 10px",
                       borderRadius: "6px",
-                      minWidth: "150px", // Ensures proper spacing
+                      minWidth: "150px",
                     }}
                   />
                 ))}
@@ -754,7 +754,7 @@ export const AddCommercial = () => {
                   sx={{ display: "flex", flexDirection: "column", gap: 1 }}
                 >
                   <FormLabel>
-                    Upload Property Images (JPEG, JPG, PNG - Max 2MB)
+                    Upload Property Images (JPEG, JPG, PNG - Max 5MB)
                   </FormLabel>
                   <input
                     accept="image/*"

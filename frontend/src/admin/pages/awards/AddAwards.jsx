@@ -71,7 +71,7 @@ export const AddAwards = () => {
                 <div className="w-full p-2">
                   <Box sx={{ mt: 1 }}>
                     <Typography variant="body1" gutterBottom>
-                      Upload Awards Image - (Only jpeg, jpg, png files are allowed, Max size: 1MB)
+                      Upload Awards Image - (Only jpeg, jpg, png files are allowed, Max size: 5MB)
                     </Typography>
                     <input
                       ref={imageInputRef}
@@ -112,7 +112,7 @@ export const AddAwards = () => {
                             }}
                           />
                           <button
-                            onClick={handleRemoveImage} // ✅ Reset on remove
+                            onClick={handleRemoveImage}
                             style={{
                               position: "absolute",
                               top: "-10px",

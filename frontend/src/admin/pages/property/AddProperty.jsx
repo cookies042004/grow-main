@@ -123,8 +123,8 @@ export const AddProperty = () => {
         ...formData,
         [type]: checked
           ? amenities
-              .filter((amenity) => amenity.type === amenityTypeMap[type])
-              .map((amenity) => amenity._id)
+            .filter((amenity) => amenity.type === amenityTypeMap[type])
+            .map((amenity) => amenity._id)
           : [],
       });
     } else {
@@ -170,8 +170,8 @@ export const AddProperty = () => {
       ...formData,
       [type]: isSelectAll
         ? amenities
-            .filter((amenity) => amenity.type === getAmenityType(type))
-            .map((amenity) => amenity._id)
+          .filter((amenity) => amenity.type === getAmenityType(type))
+          .map((amenity) => amenity._id)
         : [],
     });
   };
@@ -179,11 +179,11 @@ export const AddProperty = () => {
   // Handler for image uploading
   const handleImageUpload = (event) => {
     const files = Array.from(event.target.files);
-    const maxSize = 2 * 1024 * 1024; // 2 MB
+    const maxSize = 5 * 1024 * 1024;
 
     const validFiles = files.filter((file) => {
       if (file.size > maxSize) {
-        toast.error(`Image size should be less than 2Mb.`);
+        toast.error(`Image size should be less than 5Mb.`);
         return false;
       }
       return true;
@@ -195,10 +195,10 @@ export const AddProperty = () => {
   // Handler for video uplaoding
   const handleVideoUpload = (event) => {
     const file = event.target.files[0];
-    let maxSize = 1024 * 1024 * 2; // 2Mb max
+    let maxSize = 1024 * 1024 * 5;
 
     if (file.size > maxSize) {
-      toast.error(`Video size should be less than 2Mb`);
+      toast.error(`Video size should be less than 5Mb`);
     } else {
       if (
         (file && file.type === "video/mp4") ||
@@ -214,9 +214,9 @@ export const AddProperty = () => {
 
   const handleDescriptionUpload = (event) => {
     const file = event.target.files[0];
-    let maxSize = 1024 * 1024 * 2; // 2Mb max
+    let maxSize = 1024 * 1024 * 5;
     if (file.size > maxSize) {
-      toast.error(`Dp size should be less than 2Mb`);
+      toast.error(`Dp size should be less than 5Mb`);
     } else {
       if (
         file &&
@@ -247,7 +247,7 @@ export const AddProperty = () => {
     setUploadedVideos(false);
   };
 
-  // Function to display image previews
+
   const renderImagePreviews = () => {
     return uploadedImages.map((image, index) => (
       <div
@@ -270,7 +270,7 @@ export const AddProperty = () => {
     ));
   };
 
-  // Function for display video previews
+
   const renderVideoPreview = () => {
     return uploadedVideos ? (
       <div className="preview">
@@ -291,7 +291,7 @@ export const AddProperty = () => {
 
   const renderDescriptionPreview = () => {
     return uploadedDpImage ? (
-      <div className="preview">
+      <div style={{ position: "relative", display: "inline-block" }}>
         <img
           src={URL.createObjectURL(uploadedDpImage)}
           alt="Preview"
@@ -403,14 +403,13 @@ export const AddProperty = () => {
         setUploadedImages([]);
         setUploadedDpImage("");
 
-        // Reset the file input after submission
+        
         if (imageInputRef.current) {
-          imageInputRef.current.value = ""; // Reset the file input
+          imageInputRef.current.value = "";
         }
       }
       setLoading(false);
     } catch (error) {
-      console.log(error);
       setLoading(false);
       toast.error("Failed to add property.", error);
     }
@@ -1106,7 +1105,7 @@ export const AddProperty = () => {
                 <FormControl component="fieldset">
                   <FormLabel id="image-upload">
                     Upload Property Images - (Only jpeg, jpg, png files are
-                    allowed Max size: 2Mb)
+                    allowed Max size: 5Mb)
                   </FormLabel>
                   <input
                     accept="image/*"
@@ -1197,7 +1196,7 @@ export const AddProperty = () => {
                 <Button
                   variant="contained"
                   color="secondary"
-                  startIcon={!loading && <AddCircleIcon />}
+                  startIcon={loading ? null : <AddCircleIcon />}
                   type="submit"
                   size="small"
                   onClick={handleSubmit}
@@ -1211,7 +1210,7 @@ export const AddProperty = () => {
                   }}
                 >
                   {loading ? (
-                    <CircularProgress size="25px" sx={{ color: "white" }} />
+                    <CircularProgress size={20} sx={{ color: "white" }} />
                   ) : (
                     "Add Property"
                   )}

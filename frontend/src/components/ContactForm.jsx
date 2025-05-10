@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button } from "@mui/material";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const ContactForm = () => {
   const apiUrl = `${process.env.BASE_URL}/api/v1/contact`;
@@ -13,135 +14,122 @@ export const ContactForm = () => {
     message: "",
   });
 
-  const [loading, setLoading] = useState(false); // To manage loading state
+  const [loading, setLoading] = useState(false);
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value, // dynamically update the state
-    });
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Validate form data
   const validateForm = () => {
-    const { name, email, phone, message } = formData;
+    const { name, phone } = formData;
 
     if (!name || !phone) {
-      toast.error("Please fill in all fields.");
+      toast.error("Please fill in all required fields.");
       return false;
     }
 
     const phoneRegex = /^[0-9]{10}$/;
     if (!phoneRegex.test(phone)) {
-      toast.error("Please enter a valid phone number.");
+      toast.error("Please enter a valid 10-digit phone number.");
       return false;
     }
 
     return true;
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent page reload
+    e.preventDefault();
 
-    if (!validateForm()) {
-      return; // If validation fails, don't submit
-    }
-
-    setLoading(true); // Set loading state to true when submitting
+    if (!validateForm()) return;
+    setLoading(true);
 
     try {
-      // Post formData to the backend API
       const response = await axios.post(apiUrl, formData);
 
       if (response.data.success) {
-        toast.success(response.data.success.message); // Show success toast
-        // Optionally, clear the form after submission
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          message: "",
-        });
+        toast.success("Message sent successfully!");
+        setFormData({ name: "", email: "", phone: "", message: "" });
       } else {
         toast.error("Something went wrong. Please try again.");
       }
     } catch (error) {
-      console.error("Error submitting form:", error);
-      toast.error("Error submitting form. Please try again.");
+      console.error("Submission error:", error);
+      toast.error("Server error. Please try again later.");
     } finally {
-      toast.success("Message sent successfully!");
-      setLoading(false); // Set loading state back to false after submission
+      setLoading(false);
     }
   };
 
   return (
     <>
       <ToastContainer position="top-center" />
-
-      <div className="bg-white px-5 py-8">
-        <form onSubmit={handleSubmit}>
-          <h1 className="text-center text-lg font-medium font-roboto">
-            Get Price on Request*
-          </h1>
-          <div className="grid sm:col-span-12 mt-4 gap-4">
-            <div className="col-span-12">
-              <label htmlFor="name" className="text-sm">
-                Name
-              </label>
-              <input
-                type="text"
-                value={formData.name}
-                onChange={handleChange}
-                name="name"
-                className="border w-full py-1 px-2 rounded-lg outline-none"
-                required
-              />
-            </div>
-            <div className="col-span-12">
-              <label htmlFor="" className="text-sm">
-                Email
-              </label>
-              <input
-                type="email"
-                value={formData.email}
-                onChange={handleChange}
-                name="email"
-                className="border w-full py-1 px-2 rounded-lg outline-none"
-              />
-            </div>
-            <div className="col-span-12">
-              <label htmlFor="" className="text-sm">
-                Phone
-              </label>
-              <input
-                type="text"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                required
-                maxLength={10}
-                minLength={10}
-                className="border w-full py-1 px-2 rounded-lg outline-none"
-              />
-            </div>
-            <div className="col-span-12">
-              <Button
-                type="submit"
-                fullWidth
-                sx={{
-                  textTransform: "none",
-                  backgroundColor: "#1d2a3b",
-                  marginTop: "10px",
-                }}
-                variant="contained"
-              >
-                Submit
-              </Button>
-            </div>
+      <div className="bg-white border border-gray-200 p-6 shadow-sm w-full">
+        <h1 className="text-center text-lg font-semibold text-[#03002a] mb-4">
+          Get Price on Request
+        </h1>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Name */}
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+              Name<span className="text-red-600"> *</span>
+            </label>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              className="mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[#03002a]"
+            />
           </div>
+
+          {/* Phone */}
+          <div>
+            <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+              Phone<span className="text-red-600"> *</span>
+            </label>
+            <input
+              type="text"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              required
+              maxLength={10}
+              minLength={10}
+              className="mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[#03002a]"
+            />
+          </div>
+
+          {/* Email */}
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[#03002a]"
+            />
+          </div>
+
+          {/* Submit */}
+          <Button
+            type="submit"
+            fullWidth
+            disabled={loading}
+            variant="contained"
+            sx={{
+              textTransform: "none",
+              backgroundColor: "#03002a",
+              ":hover": { backgroundColor: "#1d1a4a" },
+              mt: 1,
+            }}
+          >
+            {loading ? "Submitting..." : "Submit"}
+          </Button>
         </form>
       </div>
     </>

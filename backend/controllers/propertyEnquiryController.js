@@ -93,9 +93,26 @@ const deleteEnquiryContacts = async (req, res) => {
   }
 };
 
+const markEnquiryAsResolved = async (req, res) => {
+  try {
+    const enquiry = await propertyEnquiry.findByIdAndUpdate(
+      req.params.id,
+      { resolved: true },
+      { new: true }
+    );
+    if (!enquiry) {
+      return res.status(404).json({ success: false, message: "Enquiry not found" });
+    }
+    res.status(200).json({ success: true, message: "Enquiry marked as resolved", enquiry });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+};
+
 module.exports = {
   createPropertyEnquiry,
   getPropertyEnquiry,
   getTotalPropertyEnquiry,
-  deleteEnquiryContacts
+  deleteEnquiryContacts,
+  markEnquiryAsResolved,
 };

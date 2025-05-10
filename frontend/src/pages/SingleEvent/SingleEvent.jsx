@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 import { MdClose, MdArrowBack, MdArrowForward } from "react-icons/md";
 import eventBanner from "../../assets/img/eventBanner.jpg";
+import { Helmet } from "react-helmet-async";
 
 export const SingleEvent = () => {
   const { id } = useParams();
@@ -50,6 +51,19 @@ export const SingleEvent = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <meta charset="UTF-8" />
+        <title>Grow Infinity Realtors | Event</title>
+        <meta
+          name="description"
+          content="Explore our latest events and activities at Grow Infinity Realtors."
+        />
+        <meta name="robots" content="index, follow" />
+        <link
+          rel="canonical"
+          href={`${process.env.BASE_URL}/events/${id}`}
+        />
+      </Helmet>
       {/* Banner Section */}
       <div className="eventbanner relative overflow-hidden">
         <img

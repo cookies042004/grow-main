@@ -13,10 +13,24 @@ import PhoneCallbackIcon from "@mui/icons-material/PhoneCallback";
 import StorefrontIcon from "@mui/icons-material/Storefront";
 import { NavigationBar } from "../../components/NavigationBar";
 import serviceBanner from "../../assets/img/servicebanner.jpg";
+import { Helmet } from "react-helmet-async";
 
 export const Services = () => {
   return (
     <Layout>
+      <Helmet>
+        <meta charset="UTF-8" />
+        <title>Grow Infinity Realtors | Services</title>
+        <meta
+        name="description"
+        content="Explore our comprehensive range of real estate services, including residential, commercial, home rental, home loan, investment, and consultation services."
+        />
+        <meta name="robots" content="index, follow" />
+        <link
+        rel="canonical"
+        href={`${process.env.BASE_URL}/services`}
+        />
+      </Helmet>
       <div className="bg-[#a79d900c]">
         {/* Service Hero  */}
         <div className="servicebanner flex items-center justify-center relative">

@@ -1,9 +1,23 @@
 import React from "react";
 import { Layout } from "../../components/Layout";
+import { Helmet } from "react-helmet-async";
 
 export const TermCondition = () => {
   return (
     <Layout>
+      <Helmet>
+        <meta charset="UTF-8" />
+        <title>Grow Infinity Realtors | Terms & Conditions</title>
+        <meta
+          name="description"
+          content="Read our Terms & Conditions to understand the rules and regulations governing your use of our services."
+        />
+        <meta name="robots" content="index, follow" />
+        <link
+          rel="canonical"
+          href={`${process.env.BASE_URL}/terms-and-conditions`}
+        />
+      </Helmet>
       <div className="privacybanner flex justify-center items-center bg-gray-800 py-12">
         <div className="text-center">
           <h1 className="font-dmsans font-semibold text-white text-4xl capitalize">

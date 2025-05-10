@@ -176,11 +176,11 @@ export const UpdateCommercial = () => {
   // Handler for uploading images
   const handleImageUpload = (event) => {
     const files = Array.from(event.target.files);
-    const maxSize = 2 * 1024 * 1024; // 2 MB
+    const maxSize = 5 * 1024 * 1024;
 
     const validFiles = files.filter((file) => {
       if (file.size > maxSize) {
-        toast.error(`Image size should be less than 2Mb.`);
+        toast.error(`Image size should be less than 5Mb.`);
         return false;
       }
       return true;
@@ -192,10 +192,10 @@ export const UpdateCommercial = () => {
   // Handler for video uplaoding
   const handleVideoUpload = (event) => {
     const file = event.target.files[0];
-    let maxSize = 1024 * 1024 * 2; // 2Mb max
+    let maxSize = 1024 * 1024 * 5;
 
     if (file.size > maxSize) {
-      toast.error(`Video size should be less than 2Mb`);
+      toast.error(`Video size should be less than 5Mb`);
     } else {
       if (
         (file && file.type === "video/mp4") ||
@@ -211,9 +211,9 @@ export const UpdateCommercial = () => {
 
   const handleDescriptionUpload = (event) => {
     const file = event.target.files[0];
-    let maxSize = 1024 * 1024 * 2; // 2Mb max
+    let maxSize = 1024 * 1024 * 5;
     if (file.size > maxSize) {
-      toast.error(`Dp size should be less than 2Mb`);
+      toast.error(`Dp size should be less than 5Mb`);
     } else {
       if (
         file &&
@@ -854,7 +854,7 @@ export const UpdateCommercial = () => {
                   sx={{ display: "flex", flexDirection: "column", gap: 1 }}
                 >
                   <FormLabel>
-                    Upload Property Images (JPEG, JPG, PNG - Max 2MB)
+                    Upload Property Images (JPEG, JPG, PNG - Max 5MB)
                   </FormLabel>
                   <input
                     accept="image/*"

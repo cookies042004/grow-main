@@ -9,6 +9,7 @@ import { ClipLoader } from "react-spinners";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { Navigation } from "../../components/Navigation";
+import { Helmet } from "react-helmet-async";
 
 export const SingleProject = () => {
   const { id } = useParams();
@@ -52,6 +53,19 @@ export const SingleProject = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <meta charset="UTF-8" />
+        <title>Grow Infinity Realtors | {id.replace("-", " ")}</title>
+        <meta
+          name="description"
+          content={`Explore our ${id.replace("-", " ")} properties at Grow Infinity Realtors.`}
+        />
+        <meta name="robots" content="index, follow" />
+        <link
+          rel="canonical"
+          href={`${process.env.BASE_URL}/projects/${id}`}
+        />
+      </Helmet>
       <div className="projectbanner flex justify-center items-center">
         <div className="grid sm:grid-cols-12">
           <div className="col-span-12 text-center lg:mt-20">

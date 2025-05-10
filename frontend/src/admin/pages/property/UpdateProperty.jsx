@@ -244,7 +244,7 @@ export const UpdateProperty = () => {
     const validFiles = files.filter((file) => {
       return (
         ["image/jpeg", "image/png", "image/jpg"].includes(file.type) &&
-        file.size <= 2 * 1024 * 1024
+        file.size <= 5 * 1024 * 1024
       );
     });
 
@@ -254,10 +254,10 @@ export const UpdateProperty = () => {
   // Handler for video uplaoding
   const handleVideoUpload = (event) => {
     const file = event.target.files[0];
-    let maxSize = 1024 * 1024 * 2; // 2Mb max
+    let maxSize = 1024 * 1024 * 5;
 
     if (file.size > maxSize) {
-      toast.error(`Video size should be less than 2Mb`);
+      toast.error(`Video size should be less than 5Mb`);
     } else {
       if (
         (file && file.type === "video/mp4") ||
@@ -273,9 +273,9 @@ export const UpdateProperty = () => {
 
   const handleDescriptionUpload = (event) => {
     const file = event.target.files[0];
-    let maxSize = 1024 * 1024 * 2; // 2Mb max
+    let maxSize = 1024 * 1024 * 5;
     if (file.size > maxSize) {
-      toast.error(`Dp size should be less than 2Mb`);
+      toast.error(`Dp size should be less than 5Mb`);
     } else {
       if (
         file &&
@@ -1194,7 +1194,7 @@ export const UpdateProperty = () => {
                 <FormControl component="fieldset">
                   <FormLabel id="image-upload">
                     Upload Property Images - (Only jpeg, jpg, png files are
-                    allowed Max size: 2 mb)
+                    allowed Max size: 5mb)
                   </FormLabel>
                   <input
                     accept="image/*"

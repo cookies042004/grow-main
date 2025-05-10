@@ -29,6 +29,7 @@ import { ContactForm } from "../../components/ContactForm";
 import Carousel from "../../components/Carousel";
 import { NavigationProject } from "../../components/NavigationProject";
 import rera from "../../assets/img/icons8-approved.gif"
+import { Helmet } from "react-helmet-async";
 
 export const CommercialDetails = () => {
   const { slug } = useParams(); // Get slug from URL
@@ -191,6 +192,22 @@ export const CommercialDetails = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <meta charset="UTF-8" />
+        <title>{property?.title || "Property Details"}</title>
+        <meta
+          name="description"
+          content={
+            property?.description ||
+            "Explore our commercial properties and their details."
+          }
+        />
+        <meta name="robots" content="index, follow" />
+        <link
+          rel="canonical"
+          href={`${process.env.BASE_URL}/commercial/${property?.slug}`}
+        />
+      </Helmet>
       {/* Project Details Hero */}
       <div className="detailsbannercom flex items-center justify-center">
         <div className="grid sm:grid-cols-12">

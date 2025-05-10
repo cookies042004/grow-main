@@ -144,7 +144,7 @@ export const AddTestimonial = () => {
                 <div className="w-full p-2">
                   <Box sx={{ mt: 1 }}>
                     <Typography variant="body1" gutterBottom>
-                      Upload Reviewer Image - (jpeg, jpg, png | Max size: 1MB)
+                      Upload Reviewer Image - (jpeg, jpg, png | Max size: 5MB)
                     </Typography>
                     <input
                       ref={imageInputRef}

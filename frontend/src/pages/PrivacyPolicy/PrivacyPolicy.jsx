@@ -1,10 +1,24 @@
 import React from "react";
 import { Layout } from "../../components/Layout";
 import './PrivacyPolicy.css'
+import { Helmet } from "react-helmet-async";
 
 export const PrivacyPolicy = () => {
   return (
     <Layout>
+      <Helmet>
+        <meta charset="UTF-8" />
+        <title>Grow Infinity Realtors | Privacy Policy</title>
+        <meta
+          name="description"
+          content="Read our Privacy Policy to understand how we handle your personal information and ensure your privacy."
+        />
+        <meta name="robots" content="index, follow" />
+        <link
+          rel="canonical"
+          href={`${process.env.BASE_URL}/privacy-policy`}
+        />
+      </Helmet>
       {/* Banner Section */}
       <div className="privacybanner flex justify-center items-center bg-gray-800 py-12">
         <div className="text-center">

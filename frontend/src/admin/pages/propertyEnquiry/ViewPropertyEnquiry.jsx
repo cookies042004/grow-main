@@ -9,9 +9,9 @@ import {
   TableRow,
   TablePagination,
   Button,
+  CircularProgress,
 } from "@mui/material";
 import { useFetchData } from "../../../hooks/useFetchData";
-import CircularProgress from "@mui/material/CircularProgress";
 import { AdminLayout } from "../../components/AdminLayout";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
@@ -26,7 +26,6 @@ export const ViewPropertyEnquiry = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  // Handle pagination
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -36,10 +35,9 @@ export const ViewPropertyEnquiry = () => {
     setPage(0);
   };
 
-  // Handle resolve/delete
   const handleResolve = async (id) => {
     try {
-      const res = await axios.delete(`${apiUrl}/${id}`);
+      const res = await axios.put(`${apiUrl}/${id}/resolve`);
       if (res.data.success) {
         toast.success("Enquiry marked as resolved!");
         refetch();
@@ -50,7 +48,7 @@ export const ViewPropertyEnquiry = () => {
       toast.error("Something went wrong");
       console.error(err);
     }
-  };
+  };  
 
   return (
     <>
@@ -58,9 +56,8 @@ export const ViewPropertyEnquiry = () => {
       <AdminLayout />
       <div className="p-4 sm:ml-64">
         <div className="p-6 bg-white rounded-lg shadow-lg border border-gray-300 mt-20">
-          {/* Header */}
           <div className="flex items-center justify-between pb-6 border-b">
-            <h2 className="text-2xl font-bold text-center sm:text-left text-blue-600">
+            <h2 className="text-2xl font-bold text-blue-600">
               View Property Enquiries
             </h2>
             <Button
@@ -74,7 +71,6 @@ export const ViewPropertyEnquiry = () => {
             </Button>
           </div>
 
-          {/* Table */}
           <Paper sx={{ marginTop: "20px" }}>
             {loading ? (
               <div className="flex justify-center py-10">
@@ -98,7 +94,7 @@ export const ViewPropertyEnquiry = () => {
                         <TableCell>Reason</TableCell>
                         <TableCell>Dealer</TableCell>
                         <TableCell>Date</TableCell>
-                        <TableCell>Action</TableCell>
+                        <TableCell>Status</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -114,7 +110,7 @@ export const ViewPropertyEnquiry = () => {
                               i % 2 === 0 ? "bg-gray-50" : "bg-white"
                             } hover:bg-gray-200`}
                           >
-                            <TableCell>{i + 1}</TableCell>
+                            <TableCell>{page * rowsPerPage + i + 1}</TableCell>
                             <TableCell>{enquiry.name || "N/A"}</TableCell>
                             <TableCell>{enquiry.email}</TableCell>
                             <TableCell>{enquiry.mobile}</TableCell>
@@ -129,15 +125,21 @@ export const ViewPropertyEnquiry = () => {
                               {new Date(enquiry.createdAt).toLocaleDateString()}
                             </TableCell>
                             <TableCell>
-                              <Button
-                                variant="contained"
-                                color="success"
-                                size="small"
-                                onClick={() => handleResolve(enquiry._id)}
-                                sx={{ textTransform: "none" }}
-                              >
-                                Resolved
-                              </Button>
+                              {enquiry.resolved ? (
+                                <span className="text-green-600 font-semibold">
+                                  Resolved
+                                </span>
+                              ) : (
+                                <Button
+                                  variant="contained"
+                                  color="success"
+                                  size="small"
+                                  onClick={() => handleResolve(enquiry._id)}
+                                  sx={{ textTransform: "none" }}
+                                >
+                                  Mark as Resolved
+                                </Button>
+                              )}
                             </TableCell>
                           </TableRow>
                         ))}
@@ -145,7 +147,6 @@ export const ViewPropertyEnquiry = () => {
                   </Table>
                 </TableContainer>
 
-                {/* Pagination */}
                 <TablePagination
                   rowsPerPageOptions={[5, 10, 25]}
                   component="div"

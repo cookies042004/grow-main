@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useFetchData } from "../../hooks/useFetchData";
 import { CircularProgress } from "@mui/material";
 import eventBanner from "../../assets/img/eventBanner.jpg";
+import { Helmet } from "react-helmet-async";
 
 export const Event = () => {
   const apiUrl = `${process.env.BASE_URL}/api/v1/events`;
@@ -14,6 +15,20 @@ export const Event = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <meta charset="UTF-8" />
+        <title>Grow Infinity Realtors | Events</title>
+        <meta
+          name="description"
+          content="Explore Grow Infinity latest events and activities that showcase our commitment to excellence."
+        />
+        <meta name="robots" content="index, follow" />
+        <link
+          rel="canonical"
+          href={`${process.env.BASE_URL}/events`}
+        />
+      </Helmet>
+
       {/* Banner Section */}
       <div className="eventbanner relative overflow-hidden">
         <img

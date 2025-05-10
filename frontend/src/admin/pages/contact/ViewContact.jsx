@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Card,
   CardContent,
@@ -6,10 +6,8 @@ import {
   Button,
   CircularProgress,
 } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { ToastContainer, toast } from "react-toastify";
 import { useFetchData } from "../../../hooks/useFetchData";
-import axios from "axios";
 import { AdminLayout } from "../../components/AdminLayout";
 
 export const ViewContact = () => {
@@ -18,22 +16,6 @@ export const ViewContact = () => {
   const apiUrl = `${process.env.BASE_URL}/api/v1/contact`;
   const { data, loading, error, refetch } = useFetchData(apiUrl);
   const contacts = data?.contact || [];
-
-  const handleDelete = async (contactId) => {
-    if (window.confirm("Are you sure you want to delete this contact?")) {
-      try {
-        const response = await axios.delete(`${apiUrl}/${contactId}`);
-        if (response.data.success) {
-          refetch();
-          toast.success(response.data.message);
-        } else {
-          toast.error("Failed to delete contact");
-        }
-      } catch (err) {
-        toast.error("An error occurred while deleting");
-      }
-    }
-  };
 
   return (
     <>
@@ -89,16 +71,6 @@ export const ViewContact = () => {
                   <Typography variant="body2" color="text.secondary">
                     <strong>Date:</strong> {new Date(contact.createdAt).toLocaleDateString()}
                   </Typography>
-                  <Button
-                    variant="contained"
-                    color="error"
-                    size="small"
-                    startIcon={<DeleteIcon />}
-                    sx={{ mt: 2 }}
-                    onClick={() => handleDelete(contact._id)}
-                  >
-                    Delete
-                  </Button>
                 </CardContent>
               </Card>
             ))}

@@ -17,6 +17,7 @@ import { AwardComponent } from "../../components/AwardComponent";
 import { Button } from "@mui/material";
 import EastIcon from "@mui/icons-material/East";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 export const About = () => {
   const teamMembers = [
@@ -34,6 +35,20 @@ export const About = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <meta charset="UTF-8" />
+        <title>Grow Infinity Realtors | About Us</title>
+        <meta
+          name="description"
+          content="Discover Grow Infinity Realtors, a trusted real estate agency in Noida, dedicated to helping you find your dream home with personalized service and expertise."
+        />
+        <meta name="robots" content="index, follow" />
+        <link
+          rel="canonical"
+          href={`${process.env.BASE_URL}/about`}
+        />
+      </Helmet>
+      
       {/* About Hero  */}
       <div className="aboutbanner flex items-center justify-center">
         <div className="grid sm:grid-cols-12">

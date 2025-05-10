@@ -62,8 +62,6 @@ const getSingleProperty = async (req, res) => {
       });
     }
 
-    console.log(property);
-
     res.status(200).json({
       success: true,
       message: "Property successfully found!",
@@ -105,7 +103,6 @@ const createProperty = async (req, res) => {
       headerCode,
       footerCode
     } = req.body;
-
 
     const image = [];
     const video = [];
@@ -248,7 +245,7 @@ const updateProperty = async (req, res) => {
     }
 
     const newDp = [];
-    if (req.files?.image) {
+    if (req.files?.dp) {
       req.files.dp.forEach(file => newDp.push(file.path));
     }
 
@@ -444,8 +441,8 @@ const recentProperty = async (req, res) => {
     const recentProperties = await Property.find()
       .sort({
         createdAt: -1
-      }) // Sort by createdAt in descending order (latest first)
-      .limit(6); // Limit to 5 properties
+      })
+      .limit(5);
 
     if (recentProperties.length === 0) {
       return res.status(404).json({

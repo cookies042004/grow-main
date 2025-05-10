@@ -149,7 +149,7 @@ export const EnquiryHome = () => {
                           type="text"
                           name="firstName"
                           className="outline-none p-3 rounded-lg w-full"
-                          placeholder="Name"
+                          placeholder="*Name"
                           value={formData.firstName}
                           onChange={handleChange}
                           required
@@ -163,7 +163,7 @@ export const EnquiryHome = () => {
                           type="text"
                           name="phone"
                           className="outline-none p-3 rounded-lg w-full"
-                          placeholder="Phone Number"
+                          placeholder="*Phone Number"
                           value={formData.phone}
                           onChange={(e) => {
                             const value = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters

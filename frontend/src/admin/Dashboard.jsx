@@ -32,19 +32,17 @@ export const Dashboard = () => {
 
   const apiUrl = `${process.env.BASE_URL}/api/v1/contact`;
 
-  const { data, loading, error, refetch } = useFetchData(apiUrl); // Use the custom hook
+  const { data, loading, error, refetch } = useFetchData(apiUrl);
 
   const contacts = data.contact;
 
-  const [page, setPage] = useState(0); // Current page
-  const [rowsPerPage, setRowsPerPage] = useState(5); // Rows per page
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  // Handle pagination change (page number)
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
 
-  // Handle rows per page change
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
@@ -56,13 +54,12 @@ export const Dashboard = () => {
       const response = await axios.delete(deleteUrl);
 
       if (response.data.success) {
-        refetch(); // Refetch data after deletion
+        refetch();
         toast.success(response.data.message);
       } else {
         toast.error("Failed to delete contact");
       }
     } catch (err) {
-      console.log(err);
       toast.error("An error occurred while deleting");
     }
   };
@@ -187,21 +184,16 @@ export const Dashboard = () => {
                       View Contact Enquiries
                     </h2>
                     <Paper sx={{ marginTop: "20px" }}>
-                      {/* Loading State */}
                       {loading && (
                         <div className="flex justify-center py-10">
                           <CircularProgress size="large" color="secondary" />
                         </div>
                       )}
-
-                      {/* Error Message */}
                       {error && (
                         <div className="text-center text-red-500 py-4">
                           <p>{error}</p>
                         </div>
                       )}
-
-                      {/* Table Content */}
                       {contacts && (
                         <>
                           <TableContainer>
@@ -226,9 +218,6 @@ export const Dashboard = () => {
                                   <TableCell className="font-semibold">
                                     Date
                                   </TableCell>
-                                  <TableCell className="font-semibold">
-                                    Action
-                                  </TableCell>
                                 </TableRow>
                               </TableHead>
                               <TableBody>
@@ -240,9 +229,8 @@ export const Dashboard = () => {
                                   .map((contact, i) => (
                                     <TableRow
                                       key={contact._id}
-                                      className={`${
-                                        i % 2 === 0 ? "bg-gray-50" : "bg-white"
-                                      } hover:bg-gray-200`}
+                                      className={`${i % 2 === 0 ? "bg-gray-50" : "bg-white"
+                                        } hover:bg-gray-200`}
                                     >
                                       <TableCell>{i + 1}</TableCell>
                                       <TableCell>{contact.name}</TableCell>
@@ -254,33 +242,12 @@ export const Dashboard = () => {
                                           contact.createdAt
                                         ).toLocaleDateString()}
                                       </TableCell>
-                                      <TableCell>
-                                        <Button
-                                          onClick={() =>
-                                            handleDelete(contact._id)
-                                          }
-                                          endIcon={<DeleteIcon />}
-                                          variant="contained"
-                                          size="small"
-                                          color="error"
-                                          sx={{
-                                            textTransform: "none",
-                                            backgroundColor: "#ff4d4f",
-                                            "&:hover": {
-                                              backgroundColor: "#ff7875",
-                                            },
-                                          }}
-                                        >
-                                          Delete
-                                        </Button>
-                                      </TableCell>
                                     </TableRow>
                                   ))}
                               </TableBody>
                             </Table>
                           </TableContainer>
 
-                          {/* Pagination */}
                           <TablePagination
                             rowsPerPageOptions={[5, 10, 25]}
                             component="div"
@@ -294,9 +261,9 @@ export const Dashboard = () => {
                                 justifyContent: "center",
                               },
                               ".MuiTablePagination-selectLabel, .MuiTablePagination-input":
-                                {
-                                  fontSize: "0.9rem",
-                                },
+                              {
+                                fontSize: "0.9rem",
+                              },
                             }}
                           />
                         </>

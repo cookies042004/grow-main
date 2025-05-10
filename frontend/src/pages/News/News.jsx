@@ -6,6 +6,7 @@ import { useFetchData } from "../../hooks/useFetchData";
 import { NavigationBar } from "../../components/NavigationBar";
 import { CircularProgress } from "@mui/material";
 import newsBanner from "../../assets/img/newsbanner.jpg";
+import { Helmet } from "react-helmet-async";
 
 export const News = () => {
   const apiUrl = `${process.env.BASE_URL}/api/v1/news`;
@@ -19,6 +20,19 @@ export const News = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <meta charset="UTF-8" />
+        <title>Grow Infinity Realtors | News</title>
+        <meta
+          name="description"
+          content="Stay updated with the latest news and updates from Grow Infinity Realtors."
+        />
+        <meta name="robots" content="index, follow" />
+        <link
+          rel="canonical"
+          href={`${process.env.BASE_URL}/news`}
+        />
+      </Helmet>
       {/* News Hero  */}
       <div className="newsbanner flex items-center justify-center relative">
         {/* Lazy-loaded Background Image */}

@@ -58,7 +58,7 @@ export const PropertyEnquiryForm = ({ id, handleClose, open }) => {
     }
 
     // Validate required fields
-    if (!formData.firstName || !formData.mobile) { 
+    if (!formData.firstName || !formData.mobile) {
       setError("Name and Mobile is required.");
       return;
     }
@@ -93,7 +93,6 @@ export const PropertyEnquiryForm = ({ id, handleClose, open }) => {
         setError("There was an issue submitting your enquiry. Please try again.");
       }
     } catch (error) {
-      console.log(error);
       const errorMessage =
         error.response?.data?.message || "Network error. Please try again.";
       setError(errorMessage);
@@ -134,28 +133,15 @@ export const PropertyEnquiryForm = ({ id, handleClose, open }) => {
                     type="text"
                     name="firstName"
                     className="outline-none p-3 rounded-lg w-full"
-                    placeholder="Name"
+                    placeholder="*Name"
                     value={formData.firstName}
                     onChange={handleChange}
                     required
                   />
                 </div>
               </div>
-              <div className="col-span-12">
-                <div className="flex border rounded-lg items-center bg-white">
-                  <div className="flex justify-center ps-3">
-                    <MarkunreadIcon sx={{ color: "gray" }} />
-                  </div>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="outline-none p-3 rounded-lg w-full"
-                    placeholder="Email Address"
-                  />
-                </div>
-              </div>
+
+
               <div className="col-span-12">
                 <div className="flex border rounded-lg items-center bg-white">
                   <div className="flex justify-center ps-3">
@@ -170,8 +156,24 @@ export const PropertyEnquiryForm = ({ id, handleClose, open }) => {
                       setFormData({ ...formData, mobile: value });
                     }}
                     className="outline-none p-3 rounded-lg w-full"
-                    placeholder="Phone"
+                    placeholder="*Phone"
                     required
+                  />
+                </div>
+              </div>
+
+              <div className="col-span-12">
+                <div className="flex border rounded-lg items-center bg-white">
+                  <div className="flex justify-center ps-3">
+                    <MarkunreadIcon sx={{ color: "gray" }} />
+                  </div>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="outline-none p-3 rounded-lg w-full"
+                    placeholder="Email Address"
                   />
                 </div>
               </div>

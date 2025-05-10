@@ -8,6 +8,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import awardsBanner from "../../assets/img/awardsbanner.jpg";
 import { FaTimes } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 export const Awards = () => {
   const apiUrl = `${process.env.BASE_URL}/api/v1/awards`;
@@ -50,7 +51,15 @@ export const Awards = () => {
   const totalPages = Math.ceil(awards.length / awardsPerPage);
 
   return (
-    <>
+    <> 
+      <Helmet>
+        <meta charset="UTF-8" />
+        <title>Grow Infinity Realtors | Awards & Achievements</title>
+        <meta name="description" content="Explore our awards and achievements that reflect our commitment to excellence." />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href={`${process.env.BASE_URL}/awards`} />
+      </Helmet>
+      
       <ToastContainer />
       <Layout>
         {/* Hero Banner */}
