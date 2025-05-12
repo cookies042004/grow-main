@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Cookies from "js-cookie";
 import { Link, useNavigate } from "react-router-dom";
 import growinfinity from "../../assets/img/Grow Infinity Logo White.png";
-import { Menu, X } from "lucide-react"; // Modern icons
+import { Menu, X } from "lucide-react";
+import favicon from "../../../public/favicon.png"
 
 export const AdminNavbar = ({ mobileMenu, setMobileMenu }) => {
   const [profile, setProfile] = useState(false);
@@ -39,8 +40,8 @@ export const AdminNavbar = ({ mobileMenu, setMobileMenu }) => {
             className="flex items-center space-x-2 p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-300"
           >
             <img
-              className="w-9 h-9 rounded-full"
-              src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+              className="w-9 h-9"
+              src={favicon}
               alt="User"
             />
           </button>
