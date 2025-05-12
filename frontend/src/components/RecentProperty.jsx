@@ -19,7 +19,7 @@ export const RecentProperty = () => {
       <div className="space-y-4 max-h-[400px] overflow-y-auto custom-scroll">
         {properties?.map((property) => (
           <Link
-            to={`/project/${property._id}`}
+            to={`/project/${property.slug}`}
             key={property._id}
             className="flex items-start gap-3 hover:bg-gray-50 p-2 rounded transition"
           >
