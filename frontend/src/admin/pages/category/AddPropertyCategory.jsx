@@ -8,14 +8,13 @@ import { AdminLayout } from "../../components/AdminLayout";
 
 export const AddPropertyCategory = () => {
   document.title = "Add Property Category";
-  const apiURL = `${process.env.BASE_URL}/api/v1/category`; // Ensure URL starts with `http://` or `https://`
-
+  const apiURL = `${process.env.BASE_URL}/api/v1/category`;
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Prevent the form from reloading the page
+    setLoading(true);
     try {
       const response = await axios.post(apiURL, {
         name: name,
@@ -36,7 +35,7 @@ export const AddPropertyCategory = () => {
       ) {
         toast.error(error.response.data.message);
       } else {
-        toast.error("Something went wrong. Please try again!"); // Fallback message
+        toast.error("Something went wrong. Please try again!");
       }
       console.error("Login error:", error);
     }

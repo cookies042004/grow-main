@@ -60,7 +60,7 @@ export const UpdateBrochure = () => {
 
     // Check if new files are uploaded, and append them
     if (formData.image) {
-      formDataToSend.append("image", formData.image);
+      formDataToSend.append("images", formData.image);
     }
     if (formData.pdf) {
       formDataToSend.append("pdf", formData.pdf);

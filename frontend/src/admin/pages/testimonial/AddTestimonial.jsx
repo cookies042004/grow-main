@@ -61,7 +61,7 @@ export const AddTestimonial = () => {
     formDataToSend.append("name", formData.name);
     formDataToSend.append("role", formData.role);
     formDataToSend.append("review", formData.review);
-    formDataToSend.append("image", formData.selectedFile);
+    formDataToSend.append("images", formData.selectedFile);
 
     try {
       const response = await axios.post(apiUrl, formDataToSend, {

@@ -18,10 +18,10 @@ export const AddNews = () => {
   const [formData, setFormData] = useState({
     url: "",
     title: "",
-    image: null,
+    images: null,
   });
 
-  const [imagePreview, setImagePreview] = useState(null); // New state for image preview
+  const [imagePreview, setImagePreview] = useState(null);
 
   const apiUrl = `${process.env.BASE_URL}/api/v1/news`;
   const imageInputRef = useRef();
@@ -35,13 +35,13 @@ export const AddNews = () => {
   };
 
   const handleFileChange = (event) => {
-    const file = event.target.files[0]; // Ensure the file is properly set
+    const file = event.target.files[0];
     setFormData({
       ...formData,
-      image: file, // Ensure the file is properly set
+      images: file,
     });
 
-    // Set image preview URL
+    
     if (file) {
       const previewUrl = URL.createObjectURL(file);
       setImagePreview(previewUrl);
@@ -54,7 +54,7 @@ export const AddNews = () => {
     const formDataToSend = new FormData();
     formDataToSend.append("url", formData.url);
     formDataToSend.append("title", formData.title);
-    formDataToSend.append("image", formData.image);
+    formDataToSend.append("images", formData.image);
 
     try {
       const response = await axios.post(apiUrl, formDataToSend, {
@@ -72,7 +72,7 @@ export const AddNews = () => {
       setFormData({
         url: "",
         title: "",
-        image: null,
+        images: null,
       });
       setImagePreview(null);
       imageInputRef.current.value = null;

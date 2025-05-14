@@ -67,7 +67,7 @@ export const UpdateTestimonial = () => {
     formDataToSend.append("role", formData.role);
     formDataToSend.append("review", formData.review);
     if (formData.selectedFile) {
-      formDataToSend.append("image", formData.selectedFile); // Only append file if it exists
+      formDataToSend.append("images", formData.selectedFile); // Only append file if it exists
     }
 
     try {

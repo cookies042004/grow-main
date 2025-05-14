@@ -53,11 +53,10 @@ export const ViewTestimonial = () => {
         toast.error("Failed to delete testimonial");
       }
     } catch (err) {
-      // Handle errors properly
       if (err.response && err.response.data && err.response.data.message) {
-        toast.error(err.response.data.message); // Show server error message
+        toast.error(err.response.data.message);
       } else {
-        toast.error("Something went wrong. Please try again."); // Fallback for unexpected errors
+        toast.error("Something went wrong. Please try again.");
       }
       console.error(err);
     }

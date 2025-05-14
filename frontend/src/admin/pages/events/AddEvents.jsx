@@ -77,9 +77,8 @@ export const AddEvents = () => {
         toast.success("Event added successfully!");
         setFormData({ title: "", description: "", images: [] });
         setImagePreviews([]);
-        // Reset the file input after submission
         if (imageInputRef.current) {
-          imageInputRef.current.value = ""; // Reset the file input
+          imageInputRef.current.value = "";
         }
       } else {
         setLoading(false);

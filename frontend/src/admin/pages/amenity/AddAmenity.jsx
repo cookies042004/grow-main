@@ -91,7 +91,7 @@ export const AddAmenity = () => {
 
     // Append uploaded images
     uploadedImage.forEach((image) => {
-      formDataToSend.append("image", image);
+      formDataToSend.append("images", image);
     });
 
     console.log("Frontend Amenity ", uploadedImage);

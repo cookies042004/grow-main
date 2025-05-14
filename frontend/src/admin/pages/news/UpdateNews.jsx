@@ -54,7 +54,7 @@ export const UpdateNews = () => {
     const formDataToSend = new FormData();
     formDataToSend.append("url", formData.url);
     formDataToSend.append("title", formData.title);
-    formDataToSend.append("image", formData.selectedFile);
+    formDataToSend.append("images", formData.selectedFile);
 
     try {
       const response = await axios.patch(apiUrl, formDataToSend, {
@@ -95,7 +95,7 @@ export const UpdateNews = () => {
                     color="secondary"
                     size="small"
                     name="title"
-                    value={formData.title} // Controlled by formData
+                    value={formData.title}
                     fullWidth
                     onChange={handleChange}
                   />
@@ -108,11 +108,12 @@ export const UpdateNews = () => {
                     color="secondary"
                     size="small"
                     name="url"
-                    value={formData.url} // Controlled by formData
+                    value={formData.url}
                     fullWidth
                     onChange={handleChange}
                   />
                 </div>
+                
                 {/* Image Preview */}
                 <div className="w-full p-2">
                   {data?.news?.image && (
