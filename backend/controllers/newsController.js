@@ -5,12 +5,12 @@ const News = require("../models/news");
 //Create a News
 const createNews = async (req, res) => {
   try {
-    if (!req.files || !req.files.image) {
+    if (!req.files || !req.files.images) {
       return res.status(400).json({ success: false, message: "Image file is required" });
     }
 
     const { title, url } = req.body;
-    const imagePath = req.files.image[0].path;
+    const imagePath = req.files.images[0].path;
 
     const news = new News({
       title,
@@ -91,7 +91,7 @@ const updateNews = async (req, res) => {
 
     // Check if a new image was uploaded
     if (req.files && req.files["images"]) {
-      const imagePath = req.files["images"][0].path; // Assuming `image` is the field name
+      const imagePath = req.files["images"][0].path;
       updatedFields.image = imagePath;
 
       // Delete the old image if it's a local file
@@ -100,19 +100,16 @@ const updateNews = async (req, res) => {
 
         try {
           await fs.promises.unlink(oldImagePath);
-          console.log("Old image deleted successfully");
         } catch (unlinkError) {
           console.error(`Error deleting old image: ${unlinkError.message}`);
         }
       }
     }
-
-    // Update the news item
+    
     const updatedNews = await News.findByIdAndUpdate(newsId, updatedFields, {
-      new: true, // Return the updated document
+      new: true,
     });
 
-    // Send success response
     res.status(200).json({
       success: true,
       message: "Record updated successfully",
