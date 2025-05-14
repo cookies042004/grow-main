@@ -54,7 +54,7 @@ export const AddNews = () => {
     const formDataToSend = new FormData();
     formDataToSend.append("url", formData.url);
     formDataToSend.append("title", formData.title);
-    formDataToSend.append("images", formData.image);
+    formDataToSend.append("images", formData.images);
 
     try {
       const response = await axios.post(apiUrl, formDataToSend, {
